@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PDiscountCard.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PDiscountCard_vfiliasesb0_WriteVisitDiscountService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://vfiliasesb0:2580/process/WriteVisitProc</Value>
+    </Setting>
+    <Setting Name="PDiscountCard_s2010_Service1" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://s2010:3132/Service1.asmx</Value>
+    </Setting>
+    <Setting Name="PDiscountCard_StopListService_Service1" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://s2010:3131/Service1.asmx</Value>
+    </Setting>
+    <Setting Name="PDiscountCard_sadkudr1_Service1" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://s2010:3131/Service1.asmx</Value>
+    </Setting>
+    <Setting Name="AlohaToGoConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=avrora1\sqlexpress;Initial Catalog=AlohaToGo;Persist Security Info=True;User ID=PDiscount;Password=PDiscount&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=avrora1\sqlexpress;Initial Catalog=AlohaToGo;Persist Security Info=True;User ID=PDiscount;Password=PDiscount</Value>
+    </Setting>
+    <Setting Name="AlohaPDiscountConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=s2010;Initial Catalog=AlohaPDiscount;User ID=v.piskov&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=s2010;Initial Catalog=AlohaPDiscount;User ID=v.piskov</Value>
+    </Setting>
+    <Setting Name="AlohaPDiscountConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=s2010;Initial Catalog=AlohaPDiscount;User ID=v.piskov;Password=Eit160t&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=s2010;Initial Catalog=AlohaPDiscount;User ID=v.piskov;Password=Eit160t</Value>
+    </Setting>
+    <Setting Name="PDiscountCard_ZRSrv_Service1" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://s2010:3134/service1.asmx</Value>
+    </Setting>
+    <Setting Name="PDiscountCard_ASVWebSrv_StoredValuePublicWSImplService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://ams01-sv113.ams01-aloha.local:8080/StoredValue/public/soap/StoredValuePublicWS</Value>
+    </Setting>
+    <Setting Name="PDiscountCard_EGAISSrv_wsExtAlco_WebServiceAlco" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://server1c/alco/ws/wsAlco.1cws</Value>
+    </Setting>
+    <Setting Name="PDiscountCard_EGAISSrv2_wsExtAlco_WebServiceAlco" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://server1c/retail/ws/wsAlco.1cws</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

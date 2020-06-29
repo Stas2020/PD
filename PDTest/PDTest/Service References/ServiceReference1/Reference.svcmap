@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f28a1504-6065-4786-8d32-704b5b42d9fb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.77.7:3838/FRSService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RemoteData.wsdl" MetadataType="Wsdl" ID="7ccbac26-153d-4187-bae9-371ac4998543" SourceId="1" SourceUrl="http://192.168.77.7:3838/FRSService?wsdl" />
+    <MetadataFile FileName="FRSService.xsd" MetadataType="Schema" ID="730da81b-5e00-4c88-bc44-d011cee089d3" SourceId="1" SourceUrl="http://192.168.77.7:3838/FRSService?xsd=xsd2" />
+    <MetadataFile FileName="FRSService1.xsd" MetadataType="Schema" ID="304ead2b-7541-4d55-a0e3-0a98dd2494ae" SourceId="1" SourceUrl="http://192.168.77.7:3838/FRSService?xsd=xsd0" />
+    <MetadataFile FileName="FRSService.disco" MetadataType="Disco" ID="c29258c0-a3f1-405f-8c4f-3c1ae80dffee" SourceId="1" SourceUrl="http://192.168.77.7:3838/FRSService?disco" />
+    <MetadataFile FileName="FRSService.wsdl" MetadataType="Wsdl" ID="08c1a8eb-47e4-407d-8d4d-524a5227f70f" SourceId="1" SourceUrl="http://192.168.77.7:3838/FRSService?wsdl=wsdl0" />
+    <MetadataFile FileName="FRSService2.xsd" MetadataType="Schema" ID="61fd9713-4a08-4500-8060-7240608cd362" SourceId="1" SourceUrl="http://192.168.77.7:3838/FRSService?xsd=xsd3" />
+    <MetadataFile FileName="FRSService3.xsd" MetadataType="Schema" ID="db481957-4ab5-4151-8fdf-78f14a9b413b" SourceId="1" SourceUrl="http://192.168.77.7:3838/FRSService?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

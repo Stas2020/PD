@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="FCCIntegration.WPFControls.ctrlShowOrders"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="70"/>
+        </Grid.ColumnDefinitions>
+            
+        <Grid.RowDefinitions>
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1" >
+            <Button Name="btnUp" Content="/\" FontSize="20" Height="80" Margin="5,10,5,10" Click="btnUp_Click"  ></Button>
+            <Button Name="btnDown" Content="\/" FontSize="20" Height="80" Margin="5,10,5,10" Click="btnDown_Click"></Button>
+            <Button Content="->" FontSize="30" Height="80" Margin="5,10,5,10" Name="btnRight" IsEnabled="False" Click="btnRight_Click"/>
+            <Label Name="lblDt" FontSize="20" HorizontalContentAlignment="Center" Content="17.10"/>
+            <Button Content="&lt;-" FontSize="30" Height="80" Margin="5,10,5,10" Name="btnLeft" Click="btnLeft_Click" />
+            <Button   Name="btnExit" FontSize="14" Height="80" Content="Закрыть" Margin="5,40,5,10" Click="btnExit_Click" />
+                        
+        </StackPanel>
+        <DataGrid  Grid.Column="0" AutoGenerateColumns="False" FontSize="20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Name="dataGrid1" LoadingRow="dataGrid1_LoadingRow"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Время" Width="235" 
+                             Binding="{Binding Path=dtStr, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Статус" Width="175" 
+                             Binding="{Binding Path=Status, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn  Width="110" Binding="{Binding Path=Summ}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text ="Внесенная cумма" TextWrapping="Wrap" TextAlignment="Center" Padding="0" />
+                    </DataGridTextColumn.Header>
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Сдача" Width="100" Binding="{Binding Path=Change, Mode=OneWay}">
+                    
+                    
+                </DataGridTextColumn>
+                <DataGridTextColumn   Width="100" Binding="{Binding Path=HandChange, Mode=OneWay}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text ="Сдача из кассы" TextWrapping="Wrap" TextAlignment="Center" Padding="0" />
+                    </DataGridTextColumn.Header>
+                    
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Итого" Width="100" Binding="{Binding Path=Itog, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="105" Binding="{Binding Path=AlohaNumber, Mode=OneWay}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text ="Номер чека" TextWrapping="Wrap" TextAlignment="Center" Padding="0" />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=dt, Mode=OneWay}" Width="100" Visibility="Collapsed">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text ="Номер чека" TextWrapping="Wrap" TextAlignment="Center" Padding="0" />
+                    </DataGridTextColumn.Header>
+                    
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </Grid>
+</UserControl>

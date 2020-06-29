@@ -1,0 +1,45 @@
+﻿<Window x:Name="mWndCardPayment"
+            xmlns:my="clr-namespace:SVSistem"  
+        x:Class="SVSistem.WndCardPayment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+        
+        WindowState="Maximized" WindowStyle="None" Closed="mWndCardPayment_Closed">
+    <Window.Resources>
+        <Style x:Key="StTxt" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="36" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="TbCaption" HorizontalAlignment="Center" Style="{StaticResource StTxt}" Text="Оплата бонусной картой"/>
+        <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
+            <StackPanel Name="StSumm" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource StTxt}" Text="К оплате:  "/>
+                <TextBlock x:Name="TbSumm" HorizontalAlignment="Center" Style="{StaticResource StTxt}" Text="{Binding ElementName=mWndCardPayment, Path= Summ}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource StTxt}" Text="Карта: "/>
+                <TextBlock x:Name="TbCardNum" HorizontalAlignment="Center" Style="{StaticResource StTxt}" Text="{Binding ElementName=mWndCardPayment, Path= CardText}"/>
+            </StackPanel>
+        </StackPanel>
+        <my:ctrlNumPad Grid.Row="2" SendKeyEvent="ctrlNumPad_SendKeyEvent"  SendClearEvent="ctrlNumPad_SendClearEvent" SendOkEvent="ctrlNumPad_SendOkEvent"/>
+        <Border Name="BrdErrorMessage" Grid.Row="2" BorderThickness="2" CornerRadius="15" BorderBrush="Red" Width="800" Height="300" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+            <StackPanel Orientation="Vertical">
+            <TextBlock Name="TbError" TextWrapping="Wrap" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button Width="300" Margin="10" Grid.Row="3" FontSize="36" Click="Button_Click_1" Content="Ok"/>
+            </StackPanel>
+        </Border>
+        <Button Width="300" Margin="10" Grid.Row="3" FontSize="36" Click="Button_Click" Content="Выход"/>
+    </Grid>
+</Window>

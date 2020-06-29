@@ -1,0 +1,72 @@
+﻿<Window xmlns:my="clr-namespace:FCCIntegration.WPFControls"  x:Class="FCCIntegration.WPFControls.frmFCCAdminDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024" 
+            Height="768" Width="1024"
+        WindowStyle="None"
+        WindowState="Maximized"
+       IsVisibleChanged="Window_IsVisibleChanged"
+        >
+    <Grid Name="MainGrid">
+        
+        <Grid Name="AdmGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
+            <RowDefinition/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <my:ctrlFCCStatus x:Name="Barabans" Margin="20" Grid.Column="0" Grid.Row="2"/>
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <my:ctrIncass x:Name="pnlInkassMenu"  Grid.Column="0" Visibility="Hidden"/>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Name="pnlBtnsMain" Visibility="Hidden">
+                <Button Name="btnRepl" FontSize="15" Margin="7" Padding="5" Width="115" Click="btnRepl_Click">Внесение</Button>
+                <Button Name="btnInkas" FontSize="15" Margin="7" Padding="5" Width="115" Click="btnInkas_Click">Инкассация</Button>
+                    <Button Name="btnReport" FontSize="15" Margin="7" Padding="5" Width="115" Click="btnReport_Click">История</Button>
+                    <Button Name="btnReset" FontSize="15" Margin="7" Padding="5" Width="115" Click="btnReset_Click" >
+                    <TextBlock TextWrapping="Wrap" FontSize="15" TextAlignment="Center" Text="Перезагрузить устройство" />
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Name="pnlBtnsRepl">
+                <my:ctrlShowMoney2 Width="350" Grid.Row="4" MoneyName="Внесено: " x:Name="ReplTotal"/>
+                <Button Name="btnReplEnd" FontSize="15" Margin="7" Padding="5" Width="90" Click="btnReplEnd_Click">
+                    <TextBlock TextWrapping="Wrap" FontSize="15" TextAlignment="Center" Text="Закончить внесение" />
+                </Button>
+                <Button Name="btnReplCancel" FontSize="15" Margin="7" Padding="5" Width="90" Click="btnReplCancel_Click">Отменить</Button>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Name="pnlBtnsRefresh" Visibility="Visible">
+
+                <Button Name="btnRefresh" FontSize="15" Margin="7" Padding="5" Width="85" Click="btnRefresh_Click">
+                    <TextBlock TextWrapping="Wrap" FontSize="15" Text="Обновить состояние" />
+
+                </Button>
+                <Button Name="btnClose" FontSize="15" Margin="7" Width="85" Padding="5" Click="btnClose_Click"   >Выход</Button>
+            </StackPanel>
+        </Grid>
+        <Label Name="lblStatus" FontSize="18" Grid.Row="1"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Готов к работе" />
+        <my:ctrlShowMoney2 Width="350" Grid.Row="4" MoneyName="Итого: " x:Name="MonTotal"/>
+            <Button Content="Button" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="917,43,0,0" Name="button1" VerticalAlignment="Top" Visibility="Hidden" Width="75" Click="button1_Click" />
+        </Grid>
+        <Grid Width="600" Height="400" Name="MsgGrid" Background="White" Opacity="0.9" Margin="0,80,0,0">
+            <Border    CornerRadius="10" BorderBrush="#FFA5946B" BorderThickness="3" Margin="5,5,5,5">
+                
+                <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,30,0,0" FontSize="22" Name="MsgLbl" TextWrapping="Wrap">Сообщение</TextBlock>
+                </Border>
+            
+            
+        </Grid>
+        <my:ctrlShowOrders HorizontalAlignment="Stretch" Visibility="Hidden" x:Name="ctrlShowOrders1" VerticalAlignment="Stretch" />
+    </Grid>
+</Window>

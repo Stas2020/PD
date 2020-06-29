@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/FRSTypes" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FRSTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.250.7:3838/FRSService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://192.168.250.7:3838/FRSService?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="AddCheckRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Check" nillable="true" type="tns:FiskalCheck" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddCheckRequest" nillable="true" type="tns:AddCheckRequest" />
+  <xs:complexType name="FiskalCheck">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:FiskalCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cassir" type="xs:int" />
+          <xs:element minOccurs="0" name="CheckTimeLong" type="xs:double" />
+          <xs:element minOccurs="0" name="Discounts" nillable="true" type="tns:ArrayOfFiskalDiscount" />
+          <xs:element minOccurs="0" name="Dishes" nillable="true" type="tns:ArrayOfFiskalDish" />
+          <xs:element minOccurs="0" name="ExtNum" type="xs:int" />
+          <xs:element minOccurs="0" name="ExtNumData" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FROutData" nillable="true" type="tns:FCheckOutData" />
+          <xs:element minOccurs="0" name="NeedUpdateItems" type="xs:boolean" />
+          <xs:element minOccurs="0" name="NoFR" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Payments" nillable="true" type="tns:ArrayOfFiskalPayment" />
+          <xs:element minOccurs="0" name="Reason" type="xs:int" />
+          <xs:element minOccurs="0" name="ReturnSale" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SQLCheckId" type="xs:int" />
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="StringsForPrintAfter" nillable="true" type="q1:ArrayOfstring" />
+          <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="StringsForPrintBefore" nillable="true" type="q2:ArrayOfstring" />
+          <xs:element minOccurs="0" name="SystemDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TableNum" type="xs:int" />
+          <xs:element minOccurs="0" name="Waiter" type="xs:int" />
+          <xs:element minOccurs="0" name="WrongChk" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FiskalCheck" nillable="true" type="tns:FiskalCheck" />
+  <xs:complexType name="FiskalCommand">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BusinessDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Dep" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Sucсess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Term" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeOfRecive" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FiskalCommand" nillable="true" type="tns:FiskalCommand" />
+  <xs:complexType name="ArrayOfFiskalDiscount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FiskalDiscount" nillable="true" type="tns:FiskalDiscount" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFiskalDiscount" nillable="true" type="tns:ArrayOfFiskalDiscount" />
+  <xs:complexType name="FiskalDiscount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Discount" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExternalId" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Summ" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FiskalDiscount" nillable="true" type="tns:FiskalDiscount" />
+  <xs:complexType name="ArrayOfFiskalDish">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FiskalDish" nillable="true" type="tns:FiskalDish" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFiskalDish" nillable="true" type="tns:ArrayOfFiskalDish" />
+  <xs:complexType name="FiskalDish">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Barcode" type="xs:int" />
+      <xs:element minOccurs="0" name="Count" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Tax" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FiskalDish" nillable="true" type="tns:FiskalDish" />
+  <xs:complexType name="FCheckOutData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Change" type="xs:decimal" />
+      <xs:element minOccurs="0" name="FD" type="xs:int" />
+      <xs:element minOccurs="0" name="FN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FNSumm" type="xs:decimal" />
+      <xs:element minOccurs="0" name="FP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperationType" type="xs:int" />
+      <xs:element minOccurs="0" name="QRAsStr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SmallNum" type="xs:int" />
+      <xs:element minOccurs="0" name="Smena" type="xs:int" />
+      <xs:element minOccurs="0" name="SysDt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="bigNum" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FCheckOutData" nillable="true" type="tns:FCheckOutData" />
+  <xs:complexType name="ArrayOfFiskalPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FiskalPayment" nillable="true" type="tns:FiskalPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFiskalPayment" nillable="true" type="tns:ArrayOfFiskalPayment" />
+  <xs:complexType name="FiskalPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExternalId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Summ" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FiskalPayment" nillable="true" type="tns:FiskalPayment" />
+  <xs:complexType name="AddCheckResponce">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Attrs" nillable="true" type="tns:FRAttributes" />
+      <xs:element minOccurs="0" name="Check" nillable="true" type="tns:FiskalCheck" />
+      <xs:element minOccurs="0" name="ChkAlreadyExistInSQL" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FRError" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FRErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="ParentCheck" nillable="true" type="tns:FiskalCheck" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SQLAddErrorException" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddCheckResponce" nillable="true" type="tns:AddCheckResponce" />
+  <xs:complexType name="FRAttributes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cassir" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FNNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="INN" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Klishe" nillable="true" type="q3:ArrayOfstring" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PaymentNames" nillable="true" type="q4:ArrayOfKeyValueOfintstring" />
+      <xs:element minOccurs="0" name="RN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Smena" type="xs:int" />
+      <xs:element minOccurs="0" name="TaxId" type="xs:int" />
+      <xs:element minOccurs="0" name="TaxName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxPercent" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TaxSystem" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxSystemId" type="xs:int" />
+      <xs:element minOccurs="0" name="ZN" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FRAttributes" nillable="true" type="tns:FRAttributes" />
+  <xs:complexType name="ArrayOfFiskalCheck">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FiskalCheck" nillable="true" type="tns:FiskalCheck" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFiskalCheck" nillable="true" type="tns:ArrayOfFiskalCheck" />
+  <xs:complexType name="ZReportResponce">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BUsinessDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FRError" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FRErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="OutData" nillable="true" type="tns:ZReportComamnd" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZReportResponce" nillable="true" type="tns:ZReportResponce" />
+  <xs:complexType name="ZReportComamnd">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:XReportComamnd">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FRAttributesData" nillable="true" type="tns:FRAttributes" />
+          <xs:element minOccurs="0" name="FROutData" nillable="true" type="tns:FCheckOutData" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ZReportComamnd" nillable="true" type="tns:ZReportComamnd" />
+  <xs:complexType name="XReportComamnd">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:FiskalCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Payments" nillable="true" type="tns:ArrayOfXRepFiskalPayment" />
+          <xs:element minOccurs="0" name="PrintOnFR" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RegisterData" nillable="true" type="tns:ArrayOfZRepPositionData" />
+          <xs:element minOccurs="0" name="VoidPayments" nillable="true" type="tns:ArrayOfXRepFiskalPayment" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="XReportComamnd" nillable="true" type="tns:XReportComamnd" />
+  <xs:complexType name="ArrayOfXRepFiskalPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="XRepFiskalPayment" nillable="true" type="tns:XRepFiskalPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfXRepFiskalPayment" nillable="true" type="tns:ArrayOfXRepFiskalPayment" />
+  <xs:complexType name="XRepFiskalPayment">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:FiskalPayment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Count" type="xs:int" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Term" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="XRepFiskalPayment" nillable="true" type="tns:XRepFiskalPayment" />
+  <xs:complexType name="ArrayOfZRepPositionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZRepPositionData" nillable="true" type="tns:ZRepPositionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfZRepPositionData" nillable="true" type="tns:ArrayOfZRepPositionData" />
+  <xs:complexType name="ZRepPositionData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ZRepPaymentPositionData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AllCount" type="xs:int" />
+          <xs:element minOccurs="0" name="AllCountRegNum" type="xs:int" />
+          <xs:element minOccurs="0" name="PaymentsData" nillable="true" type="tns:ArrayOfZRepPaymentPositionData" />
+          <xs:element minOccurs="0" name="PaymentsDataNameFromFR" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ZRepPositionData" nillable="true" type="tns:ZRepPositionData" />
+  <xs:complexType name="ZRepPaymentPositionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SmenaCount" type="xs:int" />
+      <xs:element minOccurs="0" name="SmenaCountRegNum" type="xs:int" />
+      <xs:element minOccurs="0" name="SmenaSumm" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SmenaSummRegNum" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZRepPaymentPositionData" nillable="true" type="tns:ZRepPaymentPositionData" />
+  <xs:complexType name="ArrayOfZRepPaymentPositionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZRepPaymentPositionData" nillable="true" type="tns:ZRepPaymentPositionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfZRepPaymentPositionData" nillable="true" type="tns:ArrayOfZRepPaymentPositionData" />
+  <xs:complexType name="XReportResponce">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnulchecksCount" type="xs:int" />
+      <xs:element minOccurs="0" name="BUsinessDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Payments" nillable="true" type="tns:ArrayOfXRepFiskalPayment" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SmenaNum" type="xs:int" />
+      <xs:element minOccurs="0" name="VoidPayments" nillable="true" type="tns:ArrayOfXRepFiskalPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="XReportResponce" nillable="true" type="tns:XReportResponce" />
+</xs:schema>

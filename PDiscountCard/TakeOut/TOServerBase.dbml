@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AlohaToGo" Class="TOServerBaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Guest" Member="Guests">
+    <Type Name="Guest">
+      <Column Name="GuestID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ReferenceID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MemberlinkID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VipInfoID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PrimaryPhoneAreaCode" Type="System.String" DbType="NVarChar(7)" CanBeNull="true" />
+      <Column Name="PrimaryPhoneNumber" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="PrimaryPhoneExtension" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="PrimaryPhoneNumberTypeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ZoneID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="AddressTypeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="DwellingTypeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Company" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddressNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DistanceFromStore" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="OverrideDeliveryFee" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ProfileInfo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Attributes" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SmokingPreference" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="BirthdayDate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="AnniversaryDate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OrderHistoryCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderHistoryTotal" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ContactPhoneNumberID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ContactAddressID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ContactVehicleID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="HouseAccountID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CreditCardType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="CreditCardNumber" Type="System.Data.Linq.Binary" DbType="VarBinary(64)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreditCardExpirationDate" Type="System.Data.Linq.Binary" DbType="VarBinary(64)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreditCardNumberMasked" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EFrequencyMemberID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TaxID" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="LastActivity" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsTraining" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifiedReference" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedTimestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/CardService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CardService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.254.139/CardService/CardService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CardService.Classes" />
+  <xs:import schemaLocation="http://192.168.254.139/CardService/CardService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://192.168.254.139/CardService/CardService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ProcessedCheck">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlohaCheckNumber" type="xs:long" />
+      <xs:element minOccurs="0" name="CheckAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CheckDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CheckNumber" type="xs:long" />
+      <xs:element minOccurs="0" name="DepartmentNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="GestoryCheckNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TerminalNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="UsedCardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WaiterNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessedCheck" nillable="true" type="tns:ProcessedCheck" />
+  <xs:complexType name="OperationResultOfMyCardInfo">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultOf{0}" Namespace="http://schemas.datacontract.org/2004/07/CardService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="MyCardInfo" Namespace="http://schemas.datacontract.org/2004/07/CardService" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Result" nillable="true" type="tns:MyCardInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperationResultOfMyCardInfo" nillable="true" type="tns:OperationResultOfMyCardInfo" />
+  <xs:complexType name="OperationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfOperationError" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResult" nillable="true" type="tns:OperationResult" />
+  <xs:complexType name="ArrayOfOperationError">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OperationError" nillable="true" type="tns:OperationError" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOperationError" nillable="true" type="tns:ArrayOfOperationError" />
+  <xs:complexType name="OperationError">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationError" nillable="true" type="tns:OperationError" />
+  <xs:complexType name="MyCardInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CardRegistered" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CompId" type="xs:int" />
+      <xs:element minOccurs="0" name="DaysLeft" type="xs:int" />
+      <xs:element minOccurs="0" name="Discount" type="xs:int" />
+      <xs:element minOccurs="0" name="FirstVisitDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NumberOfVisits" type="xs:int" />
+      <xs:element minOccurs="0" name="PersonsFullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PurchaseIsRegistered" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ShowInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TemporarilyInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="VisitCounterIncreased" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyCardInfo" nillable="true" type="tns:MyCardInfo" />
+  <xs:complexType name="VisitChangeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="FullCardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VisitChangeRequest" nillable="true" type="tns:VisitChangeRequest" />
+  <xs:complexType name="CardActivateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FullCardNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardActivateRequest" nillable="true" type="tns:CardActivateRequest" />
+  <xs:complexType name="OperationResultOfMyIssuanceInfo">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultOf{0}" Namespace="http://schemas.datacontract.org/2004/07/CardService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="MyIssuanceInfo" Namespace="http://schemas.datacontract.org/2004/07/CardService" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Result" nillable="true" type="tns:MyIssuanceInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperationResultOfMyIssuanceInfo" nillable="true" type="tns:OperationResultOfMyIssuanceInfo" />
+  <xs:complexType name="MyIssuanceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardActivated" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CardRegistered" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PersonsFullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonsMindID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShowInfo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyIssuanceInfo" nillable="true" type="tns:MyIssuanceInfo" />
+  <xs:complexType name="OperationResultOfCustomerResponse">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultOf{0}" Namespace="http://schemas.datacontract.org/2004/07/CardService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="CustomerResponse" Namespace="http://schemas.datacontract.org/2004/07/CardService.Classes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationResult">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CardService.Classes" minOccurs="0" name="Result" nillable="true" type="q1:CustomerResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperationResultOfCustomerResponse" nillable="true" type="tns:OperationResultOfCustomerResponse" />
+  <xs:complexType name="OperationResultOfPBCustomerInfo">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultOf{0}" Namespace="http://schemas.datacontract.org/2004/07/CardService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="PBCustomerInfo" Namespace="http://schemas.datacontract.org/2004/07/CardService" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Result" nillable="true" type="tns:PBCustomerInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperationResultOfPBCustomerInfo" nillable="true" type="tns:OperationResultOfPBCustomerInfo" />
+  <xs:complexType name="PBCustomerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Auth" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Balance" type="xs:int" />
+      <xs:element minOccurs="0" name="BalanceAccumulated" type="xs:int" />
+      <xs:element minOccurs="0" name="BalanceAction" type="xs:int" />
+      <xs:element minOccurs="0" name="BalancePresent" type="xs:int" />
+      <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BlockedFlag" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GUID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastCardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneStr" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PBCustomerInfo" nillable="true" type="tns:PBCustomerInfo" />
+  <xs:complexType name="PBBonusAvailableRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DepNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="GUIDStr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfPBItem" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Waiters" nillable="true" type="q2:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PBBonusAvailableRequest" nillable="true" type="tns:PBBonusAvailableRequest" />
+  <xs:complexType name="ArrayOfPBItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PBItem" nillable="true" type="tns:PBItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPBItem" nillable="true" type="tns:ArrayOfPBItem" />
+  <xs:complexType name="PBItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BarCode" type="xs:int" />
+      <xs:element minOccurs="0" name="Discount" type="xs:decimal" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Groups" nillable="true" type="q3:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Tags" nillable="true" type="q4:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PBItem" nillable="true" type="tns:PBItem" />
+  <xs:complexType name="OperationResultOfdecimal">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultOf{0}" Namespace="http://schemas.datacontract.org/2004/07/CardService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="decimal" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Result" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperationResultOfdecimal" nillable="true" type="tns:OperationResultOfdecimal" />
+  <xs:complexType name="PBOrderRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlohaCheckNumber" type="xs:long" />
+      <xs:element minOccurs="0" name="CheckAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CloseOrderFlag" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DateBusines" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateTimeLocal" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DepNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="GUIDStr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GestoryCheckNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfPBItem" />
+      <xs:element minOccurs="0" name="TermNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="WaiterNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="WriteOffPoints" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PBOrderRequest" nillable="true" type="tns:PBOrderRequest" />
+  <xs:complexType name="OperationResultOfboolean">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultOf{0}" Namespace="http://schemas.datacontract.org/2004/07/CardService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperationResultOfboolean" nillable="true" type="tns:OperationResultOfboolean" />
+  <xs:complexType name="TermSettingsRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DepartmentNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="TerminalNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TermSettingsRequest" nillable="true" type="tns:TermSettingsRequest" />
+  <xs:complexType name="OperationResultOfMyTermSettings">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultOf{0}" Namespace="http://schemas.datacontract.org/2004/07/CardService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="MyTermSettings" Namespace="http://schemas.datacontract.org/2004/07/CardService" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Result" nillable="true" type="tns:MyTermSettings" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperationResultOfMyTermSettings" nillable="true" type="tns:OperationResultOfMyTermSettings" />
+  <xs:complexType name="MyTermSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Precheck" nillable="true" type="tns:MyTermSettingsPrecheck" />
+      <xs:element minOccurs="0" name="StopList" nillable="true" type="tns:MyTermSettingsStopList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyTermSettings" nillable="true" type="tns:MyTermSettings" />
+  <xs:complexType name="MyTermSettingsPrecheck">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="QrPrint" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyTermSettingsPrecheck" nillable="true" type="tns:MyTermSettingsPrecheck" />
+  <xs:complexType name="MyTermSettingsStopList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StopListUpdateDelay" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyTermSettingsStopList" nillable="true" type="tns:MyTermSettingsStopList" />
+</xs:schema>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AlohaPDiscount" Class="AlohaPDiscountSQLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=s2010;Initial Catalog=AlohaPDiscount;User ID=v.piskov" SettingsObjectName="PDiscountCard.Properties.Settings" SettingsPropertyName="AlohaPDiscountConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.WestITM" Member="WestITMs">
+    <Type Name="WestITM">
+      <Column Name="Barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WestHEADER" Member="WestHEADERs">
+    <Type Name="WestHEADER">
+      <Column Name="Name" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="DateStart" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateEnd" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Plan]" Member="Plan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderTime" Member="OrderTimes">
+    <Type Name="OrderTime">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CheckId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BusinessDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SystemDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TableId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QueueId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EntryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Sale" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EmployeeOwner" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DishClosed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

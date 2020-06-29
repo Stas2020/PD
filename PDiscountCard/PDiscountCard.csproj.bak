@@ -1,0 +1,1393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{58E97BC0-EEFD-4B72-BB25-32B4FDCF85DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PDiscountCard</RootNamespace>
+    <AssemblyName>PDiscountCard</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\Aloha\AlohaTS\BIN\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\..\Aloha\AlohaTS\BIN\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AlohaFOHLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\IberDll\AlohaFOHLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DualConnector">
+      <HintPath>..\..\..\..\Program Files (x86)\INPAS\DualConnector\DualConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.INTERCEPTACTIVITYLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\aloha\alohats\BIN\Interop.INTERCEPTACTIVITYLib.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="zxing">
+      <HintPath>..\..\ZXing\net4.0\zxing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddWaterFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddWaterFrm.Designer.cs">
+      <DependentUpon>AddWaterFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Akciya.cs" />
+    <Compile Include="AlohaExternal\AlohaExternalJSON.cs" />
+    <Compile Include="AlohaExternal\AlohaExternalTypes.cs" />
+    <Compile Include="AlohaExternal\AlohaMnuExt.cs" />
+    <Compile Include="AlohaExternal\Behavior.cs" />
+    <Compile Include="AlohaExternal\CAlohaError.cs" />
+    <Compile Include="AlohaFlyExport\AlohaFlyExportHelper.cs" />
+    <Compile Include="AlohaFlyExport\DBProvider.cs" />
+    <Compile Include="AlohaI\AlohaActiviti.cs" />
+    <Compile Include="AlohaI\AlohaActivityClass.cs" />
+    <Compile Include="AlohaI\AlohaEvent.cs" />
+    <Compile Include="AlohaI\AlohaEventVoids.cs" />
+    <Compile Include="AlohaI\AlohaPerClass.cs" />
+    <Compile Include="AlohaI\AlohaPrinting.cs" />
+    <Compile Include="AlohaI\WndPaymentSelect.xaml.cs">
+      <DependentUpon>WndPaymentSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AlohaTS.cs" />
+    <Compile Include="Config\ConfigSettings.cs" />
+    <Compile Include="CreditCardIntegration\Arcus3CreditCardConnector.cs" />
+    <Compile Include="CreditCardIntegration\Arcus3Wrapper.cs" />
+    <Compile Include="CreditCardIntegration\Arcus4CreditCardConnector.cs" />
+    <Compile Include="CreditCardIntegration\InpasChk.cs" />
+    <Compile Include="CreditCardIntegration\InpasCreditCardConnector.cs" />
+    <Compile Include="EGAIS\ctrlEGAISBeer.xaml.cs">
+      <DependentUpon>ctrlEGAISBeer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FayRetail\ctrlApplyFayRetailCard.xaml.cs">
+      <DependentUpon>ctrlApplyFayRetailCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FayRetail\FayRetailCheck.cs" />
+    <Compile Include="FayRetail\FayRetailClient.cs" />
+    <Compile Include="FayRetail\FayRetailMain.cs" />
+    <Compile Include="FayRetail\FayRetailTest.cs" />
+    <Compile Include="FayRetail\RequestData .cs" />
+    <Compile Include="FayRetail\ResponseData.cs" />
+    <Compile Include="FayRetail\XMLSerializer.cs" />
+    <Compile Include="FCloseCheck\ctrlCloseCheckErrorMess.xaml.cs">
+      <DependentUpon>ctrlCloseCheckErrorMess.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CtrlHotelBreakfastCount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlHotelBreakfastCount.Designer.cs">
+      <DependentUpon>CtrlHotelBreakfastCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreditCardIntegration\frmLockScreeen.xaml.cs">
+      <DependentUpon>frmLockScreeen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreditCardIntegration\CreditCardAlohaIntegration.cs" />
+    <Compile Include="CreditCardIntegration\Arcus2CreditCardConnector.cs" />
+    <Compile Include="CreditCardIntegration\Arcus2DataFromXML.cs" />
+    <Compile Include="CreditCardIntegration\EmulatorCreditCardTerminal.cs" />
+    <Compile Include="CreditCardIntegration\frmCreditCardFuncs.xaml.cs">
+      <DependentUpon>frmCreditCardFuncs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreditCardIntegration\ICreditCardConnector.cs" />
+    <Compile Include="CreditCardIntegration\SBRFCreditCardConnector.cs" />
+    <Compile Include="DualConnector\DualConnectorApi.cs" />
+    <Compile Include="DualConnector\frmInpasVoid.xaml.cs">
+      <DependentUpon>frmInpasVoid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EGAIS\EGAISCodeReader.cs" />
+    <Compile Include="EGAIS\wndEGAIS.xaml.cs">
+      <DependentUpon>wndEGAIS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmAllertMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAllertMessage.Designer.cs">
+      <DependentUpon>frmAllertMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlDigitalKeyBoard.xaml.cs">
+      <DependentUpon>ctrlDigitalKeyBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CtrStopListReasonChooser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrStopListReasonChooser.Designer.cs">
+      <DependentUpon>CtrStopListReasonChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerDisplay.cs" />
+    <Compile Include="FCC.cs" />
+    <Compile Include="FrmCashIn.xaml.cs">
+      <DependentUpon>FrmCashIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStopListReasons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStopListReasons.Designer.cs">
+      <DependentUpon>FrmStopListReasons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreditCardIntegration\ArcusAlohaIntegrator.cs" />
+    <Compile Include="CreditCardIntegration\ArcusClass.cs" />
+    <Compile Include="CardEmulate.cs" />
+    <Compile Include="CardMooverInfo.cs" />
+    <Compile Include="CardMooverSerialize.cs" />
+    <Compile Include="Check.cs" />
+    <Compile Include="CloseCheck.cs" />
+    <Compile Include="CoffeToGo.cs" />
+    <Compile Include="CopySlipFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CopySlipFrm.Designer.cs">
+      <DependentUpon>CopySlipFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CtrlDegustationsManagers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlDegustationsManagers.Designer.cs">
+      <DependentUpon>CtrlDegustationsManagers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CtrlDegustationsWithKeys.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlDegustationsWithKeys.Designer.cs">
+      <DependentUpon>CtrlDegustationsWithKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FDegustations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FDegustations.Designer.cs">
+      <DependentUpon>FDegustations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DisplayBoardClass.cs" />
+    <Compile Include="EnterNumberFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnterNumberFrm.Designer.cs">
+      <DependentUpon>EnterNumberFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventSenderClass.cs" />
+    <Compile Include="frmCardMoover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCardMoover.Designer.cs">
+      <DependentUpon>frmCardMoover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStopList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStopList.Designer.cs">
+      <DependentUpon>FrmStopList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRSClientApp\ctrlCheckVisual.xaml.cs">
+      <DependentUpon>ctrlCheckVisual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FRSClientApp\ctrlFiscalCheckItem.xaml.cs">
+      <DependentUpon>ctrlFiscalCheckItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FRSClientApp\ctrlPrintFiscalCheck.xaml.cs">
+      <DependentUpon>ctrlPrintFiscalCheck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FRSClientApp\ctrlShowOChecks.xaml.cs">
+      <DependentUpon>ctrlShowOChecks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FRSClientApp\FiscalCheckCreator.cs" />
+    <Compile Include="FRSClientApp\FRDocTemlates.cs" />
+    <Compile Include="FRSClientApp\FRSClient.cs" />
+    <Compile Include="FRSClientApp\FRSQueue.cs" />
+    <Compile Include="FRSClientApp\GesData.cs" />
+    <Compile Include="FRSClientApp\PrintOnWinPrinter.cs" />
+    <Compile Include="FRSClientApp\ZReportAskSaver.cs" />
+    <Compile Include="FTermonalSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FTermonalSelect.Designer.cs">
+      <DependentUpon>FTermonalSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FTrposxRunComplited.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FTrposxRunComplited.Designer.cs">
+      <DependentUpon>FTrposxRunComplited.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FTwoChecks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FTwoChecks.Designer.cs">
+      <DependentUpon>FTwoChecks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GallerySrvs.cs" />
+    <Compile Include="GuestCount\CtrlGuestCountAsk.xaml.cs">
+      <DependentUpon>CtrlGuestCountAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GuestCount\GuestCount.cs" />
+    <Compile Include="Hamster\HamsterWorker.cs" />
+    <Compile Include="InternalConnections.cs" />
+    <Compile Include="KeyBoardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KeyBoardControl.designer.cs">
+      <DependentUpon>KeyBoardControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Loyalty\LoyaltyBasik.cs" />
+    <Compile Include="MainClass.cs" />
+    <Compile Include="MB\ClassLibrary.cs" />
+    <Compile Include="MB\MBClient.cs" />
+    <Compile Include="MB\PB.cs" />
+    <Compile Include="MB\PBAuthorization.xaml.cs">
+      <DependentUpon>PBAuthorization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MB\PBUserInfo.xaml.cs">
+      <DependentUpon>PBUserInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MB\PBUserInfoViewModel.cs" />
+    <Compile Include="MB\RelayCommand.cs" />
+    <Compile Include="MenuSender.cs" />
+    <Compile Include="MessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageForm.Designer.cs">
+      <DependentUpon>MessageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MF2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MF2.Designer.cs">
+      <DependentUpon>MF2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MF3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MF3.Designer.cs">
+      <DependentUpon>MF3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreditCardIntegration\mTRPOSXLib.cs" />
+    <Compile Include="OrderDishTime.cs" />
+    <Compile Include="OrderDivider.cs" />
+    <Compile Include="PrintOrder\CtrlCheckPrintTemplate.xaml.cs">
+      <DependentUpon>CtrlCheckPrintTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintOrder\PrintOrder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="QFromTrposxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QFromTrposxForm.Designer.cs">
+      <DependentUpon>QFromTrposxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QSverkaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QSverkaForm.Designer.cs">
+      <DependentUpon>QSverkaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegWorker.cs" />
+    <Compile Include="RemoteCloseCheck.cs" />
+    <Compile Include="RemoteCommands\CustomerDisplayEventSender.cs" />
+    <Compile Include="RemoteCommands\RemoteConnection.cs" />
+    <Compile Include="RemoteCommands\RemoteLisenter.cs" />
+    <Compile Include="RemoteCommands\RemoteSender.cs" />
+    <Compile Include="RemoteConnection.cs" />
+    <Compile Include="RemoteSrvs\GesData.cs" />
+    <Compile Include="RusMessage\FrmRussMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RusMessage\FrmRussMessage.Designer.cs">
+      <DependentUpon>FrmRussMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scale\ScaleCasSWN.cs" />
+    <Compile Include="Scale\ctrlScaleMessage.xaml.cs">
+      <DependentUpon>ctrlScaleMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scale\IScale.cs" />
+    <Compile Include="Scale\Scale.cs" />
+    <Compile Include="Scale\Scale2.cs" />
+    <Compile Include="Scale\ScaleCasAD.cs" />
+    <Compile Include="SendToVideo.cs" />
+    <Compile Include="Service References\AlohaService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\FRSSrv\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Gestory\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\MBProxi\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ZRepSrv\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Shtrih.cs" />
+    <Compile Include="Shtrih2.cs" />
+    <Compile Include="ShtrihReports.cs" />
+    <Compile Include="Sonic\Sonic.cs" />
+    <Compile Include="Sonic\SonicCom.cs" />
+    <Compile Include="Spool\FromTranslog.cs" />
+    <Compile Include="Spool\SpoolCreator.cs" />
+    <Compile Include="Spool\SpoolToGesWebSrv.cs" />
+    <Compile Include="Spool\SpoolToHamster.cs" />
+    <Compile Include="SQL\AlohaPDiscountSQL.cs">
+      <DependentUpon>AlohaPDiscountSQL.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\AlohaPDiscountSQL.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlohaPDiscountSQL.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\ToSql.cs" />
+    <Compile Include="SV\SVClass.cs" />
+    <Compile Include="PDSystem\AlertModalWindow.xaml.cs">
+      <DependentUpon>AlertModalWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDSystem\ModalWindowsForegraund.cs" />
+    <Compile Include="TakeOut\TOBaseConnect.cs" />
+    <Compile Include="TakeOut\TOLoaltyConnaect.cs" />
+    <Compile Include="TakeOut\TOServerBase.cs">
+      <DependentUpon>TOServerBase.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="TakeOut\TOServerBase.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TOServerBase.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="ToBase.cs" />
+    <Compile Include="ToShtrih.cs" />
+    <Compile Include="ToTestBase.cs" />
+    <Compile Include="CreditCardIntegration\TrPosXAlohaIntegrator.cs" />
+    <Compile Include="CreditCardIntegration\TrPosXClass.cs" />
+    <Compile Include="CreditCardIntegration\TrposxImport.cs" />
+    <Compile Include="UnitKeyboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UnitKeyboard.designer.cs">
+      <DependentUpon>UnitKeyboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlohaExternal\AlohaExternalSrv.cs" />
+    <Compile Include="AlohaExternal\AlohaExternalSrvHost.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="VideoSender\Sender.cs" />
+    <Compile Include="VoidFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VoidFrm.Designer.cs">
+      <DependentUpon>VoidFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ASVWebSrv\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\EGAISSrv2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\EGAISSrv\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RemoteOrderSrv\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\StopListService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\vfiliasesb0\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ZRSrv\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WebSrvStopList.cs" />
+    <Compile Include="West\WestMain.cs" />
+    <Compile Include="WinApi.cs" />
+    <Compile Include="WinHook.cs" />
+    <Compile Include="WinHookVoids.cs" />
+    <Compile Include="Wmi\WmiProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AlohaService\AlohaService1.wsdl" />
+    <None Include="Service References\AlohaService\AlohaService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AlohaService\AlohaService51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AlohaService\AlohaService52.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AlohaService\AlohaService53.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AlohaService\AlohaService54.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfAirCompanydi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfAlertdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfAirCompanydi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfAlertdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfContactPersondi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfCurierdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfDeliveryPersondi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfDeliveryPlacedi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfDiscountdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfDiscountRangedi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfDishdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfDishKitchenGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfDishLogicGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfDishPackageFlightOrderdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfDishPackageToGoOrderdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfDriverdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfItemLabelInfodi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfLogItemdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfMarketingChanneldi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfOrderCustomerAddressdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfOrderCustomerdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfOrderCustomerPhonedi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfOrderFlightdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfOrderToGodi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfPaymentdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfPaymentGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfstringuHEDJ7Dj.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfUserdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfUserFuncdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfUserGroupAccessdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfArrayOfUserGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfContactPersondi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfCurierdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfdecimal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfDeliveryPersondi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfDeliveryPlacedi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfDiscountdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfDiscountRangedi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfDishdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfDishKitchenGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfDishLogicGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfDishPackageFlightOrderdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfDishPackageToGoOrderdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfDriverdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfItemLabelInfodi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfMarketingChanneldi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfOrderCustomerdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfOrderFlightdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfOrderToGodi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfPaymentdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfPaymentGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfUserdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlohaService\PDiscountCard.AlohaService.OperationResultValueOfUserFuncdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FRSSrv\FRSService1.wsdl" />
+    <None Include="Service References\FRSSrv\FRSService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FRSSrv\FRSService41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FRSSrv\FRSService42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FRSSrv\FRSService43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FRSSrv\PDiscountCard.FRSSrv.AddCheckResponce.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FRSSrv\PDiscountCard.FRSSrv.FiskalCheck.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FRSSrv\PDiscountCard.FRSSrv.XReportResponce.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FRSSrv\PDiscountCard.FRSSrv.ZReportResponce.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FRSSrv\RemoteData1.wsdl" />
+    <None Include="Service References\Gestory\Ges3Services.wsdl" />
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.chek_biznes_data_tmp2Row.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.ExportDataForSubdivisions_T_rezultsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.ExportReturnDocumentForNumber_T_GoodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.ExportWriteOffForSubdivisions_T_spisRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.GestoriCashByDay_T_cashRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.GestoriCustomerSalesByMonth_T_naklRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.GestoriGetZakazGoods_ZakazGoodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.GestoriGoodCalculationWithQuantity_CalculationGoodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.GetGes3FirmCodesList_temp2Row.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.GetGestoriBalanceAll_ResultGoodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.get_check_sales_by_code_T_salesRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.get_GestoriGoods_T_GestoriGoodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.get_ML_recipe_RecipeDetailsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.get_ML_recipe_RecipeHeaderRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.get_podr_chek_T_cheksRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.get_present_cards_t_cardsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.GoodsOfFiliasPurchase_T_rezultsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.GoodsOfFiliasReturn_T_rezultsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.GoodsOfFiliasVozvrat_T_rezultsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.RealShops_tmp_podrRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.ReturnDocumentList_T_naklRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.ShopsGoodTime_T_goodtimeRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.sostav_goods_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.SouseLost_tmp2Row.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.storage_times_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.transferForSubdivisions_T_rezultsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.virt_obj_T_shopsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MBProxi\CardService.wsdl" />
+    <None Include="Service References\MBProxi\CardService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBProxi\CardService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBProxi\CardService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBProxi\CardService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBProxi\PDiscountCard.MBProxi.OperationResultOfCustomerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MBProxi\PDiscountCard.MBProxi.OperationResultOfMyCardInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MBProxi\PDiscountCard.MBProxi.OperationResultOfMyIssuanceInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MBProxi\PDiscountCard.MBProxi.OperationResultOfMyTermSettings.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MBProxi\PDiscountCard.MBProxi.OperationResultOfPBCustomerInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZRepSrv\PDiscountCard.ZRepSrv.ArrayOfInt.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZRepSrv\PDiscountCard.ZRepSrv.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZRepSrv\PDiscountCard.ZRepSrv.CopyCheckFileResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZRepSrv\PDiscountCard.ZRepSrv.DimTable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZRepSrv\PDiscountCard.ZRepSrv.PaymentCard.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZRepSrv\PDiscountCard.ZRepSrv.TblZReports2.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZRepSrv\PDiscountCard.ZRepSrv.ZReportInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZRepSrv\service1.wsdl" />
+    <None Include="SQL\AlohaPDiscountSQL.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>AlohaPDiscountSQL.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TakeOut\TOServerBase.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TOServerBase.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ASVWebSrv\BalanceTransferResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ASVWebSrv\GetCardBalanceResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ASVWebSrv\GetCardHistoryResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ASVWebSrv\GetTerminalTransactionSummaryResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ASVWebSrv\LiabilityResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ASVWebSrv\ProcessDepositResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ASVWebSrv\ProcessRedemptionResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ASVWebSrv\ProcessVoidDepositResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ASVWebSrv\ProcessVoidRedemptionResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ASVWebSrv\processVoidTransactionResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ASVWebSrv\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ASVWebSrv\StoredValuePublicWSImplService.wsdl" />
+    <None Include="Web References\ASVWebSrv\ValidateCardPinResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EGAISSrv2\Element.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EGAISSrv2\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\EGAISSrv2\wsExtAlco_WebServiceAlco.wsdl" />
+    <None Include="Web References\EGAISSrv\Element.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EGAISSrv\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\EGAISSrv\wsExtAlco_WebServiceAlco.wsdl" />
+    <None Include="Web References\RemoteOrderSrv\OrderInfoForAloha1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RemoteOrderSrv\OrderInfoResponse1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RemoteOrderSrv\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\RemoteOrderSrv\Service1.wsdl" />
+    <None Include="Web References\StopListService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\StopListService\Service1.wsdl" />
+    <None Include="Web References\StopListService\StopListReasonEvent.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StopListService\StopListReasonT.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\vfiliasesb0\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\vfiliasesb0\WriteVisitDiscount.wsdl" />
+    <None Include="Web References\ZRSrv\CopyCheckFileResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ZRSrv\DimTable.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ZRSrv\PaymentCard.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ZRSrv\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ZRSrv\service1.wsdl" />
+    <None Include="Web References\ZRSrv\TblZReports2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ZRSrv\ZReportInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ARCCOMLib">
+      <Guid>{CF921C08-02B9-415D-84C9-BA2ACE7C20AF}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="JMSCOMCLIENTLib">
+      <Guid>{E8637076-E893-494D-A31C-D02E794D7010}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="SBRFSRV">
+      <Guid>{6BBE4979-4393-435C-8327-DA421A689F70}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AddWaterFrm.resx">
+      <DependentUpon>AddWaterFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlHotelBreakfastCount.resx">
+      <DependentUpon>CtrlHotelBreakfastCount.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAllertMessage.resx">
+      <DependentUpon>frmAllertMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrStopListReasonChooser.resx">
+      <DependentUpon>CtrStopListReasonChooser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStopListReasons.resx">
+      <DependentUpon>FrmStopListReasons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlDegustationsManagers.resx">
+      <DependentUpon>CtrlDegustationsManagers.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlDegustationsWithKeys.resx">
+      <DependentUpon>CtrlDegustationsWithKeys.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FDegustations.resx">
+      <DependentUpon>FDegustations.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnterNumberFrm.resx">
+      <DependentUpon>EnterNumberFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCardMoover.resx">
+      <DependentUpon>frmCardMoover.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStopList.resx">
+      <DependentUpon>FrmStopList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FTermonalSelect.resx">
+      <DependentUpon>FTermonalSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FTrposxRunComplited.resx">
+      <DependentUpon>FTrposxRunComplited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyBoardControl.resx">
+      <DependentUpon>KeyBoardControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageForm.resx">
+      <DependentUpon>MessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MF2.resx">
+      <DependentUpon>MF2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MF3.resx">
+      <DependentUpon>MF3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QFromTrposxForm.resx">
+      <DependentUpon>QFromTrposxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QSverkaForm.resx">
+      <DependentUpon>QSverkaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RusMessage\FrmRussMessage.resx">
+      <DependentUpon>FrmRussMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="TakeOut\TOServerBase.dbml.layout">
+      <DependentUpon>TOServerBase.dbml</DependentUpon>
+    </None>
+    <None Include="SQL\AlohaPDiscountSQL.dbml.layout">
+      <DependentUpon>AlohaPDiscountSQL.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="UnitKeyboard.resx">
+      <DependentUpon>UnitKeyboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VoidFrm.resx">
+      <DependentUpon>VoidFrm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone_sound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PDiscountVersion.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Service References\MBProxi\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\MBProxi\configuration.svcinfo" />
+    <None Include="Service References\MBProxi\configuration91.svcinfo" />
+    <None Include="Service References\MBProxi\CardService.disco" />
+    <None Include="Service References\AlohaService\AlohaService1.disco" />
+    <None Include="Service References\AlohaService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AlohaService\configuration.svcinfo" />
+    <None Include="Service References\AlohaService\configuration91.svcinfo" />
+    <None Include="Service References\FRSSrv\FRSService1.disco" />
+    <None Include="Service References\ZRepSrv\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ZRepSrv\configuration.svcinfo" />
+    <None Include="Service References\ZRepSrv\configuration91.svcinfo" />
+    <None Include="Service References\ZRepSrv\service1.disco" />
+    <None Include="Service References\Gestory\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Gestory\configuration.svcinfo" />
+    <None Include="Service References\Gestory\configuration91.svcinfo" />
+    <None Include="Service References\FRSSrv\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\FRSSrv\configuration.svcinfo" />
+    <None Include="Service References\FRSSrv\configuration91.svcinfo" />
+    <None Include="Web References\ZRSrv\service1.disco" />
+    <None Include="Web References\StopListService\Service1.disco" />
+    <None Include="Web References\RemoteOrderSrv\Service1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://s2010:3131/Service1.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\StopListService\</RelPath>
+      <UpdateFromURL>http://s2010:3131/Service1.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>PDiscountCard_sadkudr1_Service1</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://s2010:3132/Service1.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RemoteOrderSrv\</RelPath>
+      <UpdateFromURL>http://s2010:3132/Service1.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>PDiscountCard_s2010_Service1</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://s2010:3134/service1.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ZRSrv\</RelPath>
+      <UpdateFromURL>http://s2010:3134/service1.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>PDiscountCard_ZRSrv_Service1</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://server1c/alco/ws/wsAlco.1cws%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\EGAISSrv\</RelPath>
+      <UpdateFromURL>http://server1c/alco/ws/wsAlco.1cws%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>PDiscountCard_EGAISSrv_wsExtAlco_WebServiceAlco</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://server1c/retail/ws/wsAlco.1cws%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\EGAISSrv2\</RelPath>
+      <UpdateFromURL>http://server1c/retail/ws/wsAlco.1cws%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>PDiscountCard_EGAISSrv2_wsExtAlco_WebServiceAlco</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://vfiliasesb0:2580/process/WriteVisitProc%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\vfiliasesb0\</RelPath>
+      <UpdateFromURL>http://vfiliasesb0:2580/process/WriteVisitProc%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>PDiscountCard_vfiliasesb0_WriteVisitDiscountService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://storedvalue.alohaenterprise.eu/StoredValue/public/soap/StoredValuePublicWS%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ASVWebSrv\</RelPath>
+      <UpdateFromURL>https://storedvalue.alohaenterprise.eu/StoredValue/public/soap/StoredValuePublicWS%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>PDiscountCard_ASVWebSrv_StoredValuePublicWSImplService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerDisplay\CustomerDisplay.csproj">
+      <Project>{cdde797a-4bfd-4610-b168-65a2afd8c330}</Project>
+      <Name>CustomerDisplay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataReciver\DataReciver.csproj">
+      <Project>{308174c4-007e-4b9b-93e9-9b9f1c92b1d9}</Project>
+      <Name>DataReciver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FCCIntegration\FCCIntegration.csproj">
+      <Project>{663e9008-5663-458e-bb0e-6b162930d886}</Project>
+      <Name>FCCIntegration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FiskalDrivers\FiskalDrivers.csproj">
+      <Project>{cef558ba-0de6-40b7-8552-6dd7e0b3d3c0}</Project>
+      <Name>FiskalDrivers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SVSistem\SVSistem\SVSistem.csproj">
+      <Project>{f60674b2-f251-488b-8e73-19c58bbc9907}</Project>
+      <Name>SVSistem</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="AlohaI\WndPaymentSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EGAIS\ctrlEGAISBeer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FayRetail\ctrlApplyFayRetailCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FCloseCheck\ctrlCloseCheckErrorMess.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreditCardIntegration\frmLockScreeen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CreditCardIntegration\frmCreditCardFuncs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ctrlDigitalKeyBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DualConnector\frmInpasVoid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EGAIS\wndEGAIS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmCashIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FRSClientApp\ctrlCheckVisual.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FRSClientApp\ctrlFiscalCheckItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FRSClientApp\ctrlPrintFiscalCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FRSClientApp\ctrlShowOChecks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GuestCount\CtrlGuestCountAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MB\PBAuthorization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MB\PBUserInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDSystem\AlertModalWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Resource Include="PDSystem\PDWPFResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Page Include="PrintOrder\CtrlCheckPrintTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scale\ctrlScaleMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Resource Include="WPFResources\PDWPFResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AlohaService\" />
+    <WCFMetadataStorage Include="Service References\FRSSrv\" />
+    <WCFMetadataStorage Include="Service References\Gestory\" />
+    <WCFMetadataStorage Include="Service References\MBProxi\" />
+    <WCFMetadataStorage Include="Service References\ZRepSrv\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+</Project>

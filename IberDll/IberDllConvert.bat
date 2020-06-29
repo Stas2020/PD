@@ -1,0 +1,1 @@
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC>tlbimp C:\Aloha\alohats\BIN\Iber.tlb /out:C:\VS.Project\PDiscountCard\PDiscountCard\IberDll\alohafohlib.dll

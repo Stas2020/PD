@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://FRS.Srv" elementFormDefault="qualified" targetNamespace="http://FRS.Srv" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.77.7:3838/FRSService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FRS" />
+  <xs:element name="AddCheck">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/FRS" minOccurs="0" name="Request" nillable="true" type="q1:AddCheckRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCheckResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/FRS" minOccurs="0" name="AddCheckResult" nillable="true" type="q2:AddCheckResponce" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CAF4913C-B578-4C9C-AC7A-EFD3BDDFE438}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PDTest</RootNamespace>
+    <AssemblyName>PDTest</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\PDiscountCard\PDiscountCard\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmFayRetailTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFayRetailTest.Designer.cs">
+      <DependentUpon>FrmFayRetailTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SrvGes\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <None Include="Properties\DataSources\PDiscountCard.FRSSrv.AddCheckAsincResponce.datasource" />
+    <None Include="Properties\DataSources\PDiscountCard.FRSSrv.AddCheckResponce.datasource" />
+    <None Include="Service References\ServiceReference1\PDTest.ServiceReference1.AddCheckResponce.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference1\FRSService.disco" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFayRetailTest.resx">
+      <DependentUpon>FrmFayRetailTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\ServiceReference1\FRSService.wsdl" />
+    <None Include="Service References\ServiceReference1\FRSService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\FRSService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\FRSService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\FRSService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\RemoteData.wsdl" />
+    <None Include="Service References\SrvGes\Ges3ServicesUTF8.wsdl" />
+    <None Include="Service References\SrvGes\PDTest.SrvGes.AllStockItems_StockItemsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.getBaseCalc_BarcodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.getBaseCalc_CalcHeaderRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.getBaseCalc_CalcSpecRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.GetInvoiceGestori_InvoiceDetailRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.GetInvoiceGestori_InvoiceHeaderRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.GetTransferGestori_InvoiceDetailRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.GetTransferGestori_InvoiceHeaderRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_actual_recipe_barc_BarcodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_actual_recipe_barc_RecipeDetailsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_actual_recipe_barc_RecipeHeaderRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_cash_sales_by_code_long_with_prod_T_alcoRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_cash_sales_by_code_long_with_prod_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_cash_sales_by_code_long_with_prod_T_prodRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_cash_sales_by_code_short_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_cash_sales_by_code_short_with_prod_T_alcoRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_cash_sales_by_code_short_with_prod_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_cash_sales_by_code_short_with_prod_T_prodRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_cash_sales_by_code_T_salesRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_client_returns_T_NumberInvoiceRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_client_return_by_code_long_T_alcoRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_client_return_by_code_long_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_client_return_by_code_short_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_client_return_by_code_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_costprice_T_AmountTabRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_costs_T_AmountTabRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_disassembles_T_NumberInvoiceRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_disassemble_by_code_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_disassemble_by_code_T_ingrRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_GestoriGoods_T_GestoriGoodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_inventory_shortage_T_AmountTabRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_inventory_surpluses_T_AmountTabRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_invoices_extended_T_NumberInvoiceRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_invoices_intercompany_T_NumberInvoiceRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_invoices_T_NumberInvoiceRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_invoice_by_code_long_T_alcoRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_invoice_by_code_long_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_invoice_by_code_short_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_invoice_by_code_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_losses_T_NumberInvoiceRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_loss_by_code_long_T_alcoRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_loss_by_code_long_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_loss_by_code_short_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_loss_by_code_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_ML_classif_TmpGrRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_ML_classif_TmpSgrRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_ML_recipe_barc_BarcodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_ML_recipe_barc_RecipeDetailsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_ML_recipe_barc_RecipeHeaderRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_ML_recipe_podr_RecipeDetailsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_ML_recipe_podr_RecipeHeaderRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_ML_sales_podr_TmpSalesRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_productions_T_NumberInvoiceRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_production_by_code_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_production_by_code_T_ingrRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_returns_T_NumberInvoiceRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_return_by_code_long_T_alcoRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_return_by_code_long_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_return_by_code_short_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_return_by_code_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_return_costprice_T_AmountTabRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_sales_intercompany_T_NumberInvoiceRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_sales_T_NumberInvoiceRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_sale_by_code_long_T_alcoRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_sale_by_code_long_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_sale_by_code_short_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_sale_by_code_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_stocks_long_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_stocks_long_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_stocks_short_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_stocks_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_transfers_total_T_AmountTabRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_transfer_by_code_long_T_alcoRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_transfer_by_code_long_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_transfer_by_code_short_T_byNDSRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_transfer_by_code_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_transfer_list_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.get_transfer_list_T_NumberInvoiceRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.Matrix_112_MatrixRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.report_from_dol_sp_T_goodsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SrvGes\PDTest.SrvGes.TransferDocTorg13_T_rezultsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FCCIntegration\FCCIntegration.csproj">
+      <Project>{663E9008-5663-458E-BB0E-6B162930D886}</Project>
+      <Name>FCCIntegration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FiskalDrivers\FiskalDrivers.csproj">
+      <Project>{CEF558BA-0DE6-40B7-8552-6DD7E0B3D3C0}</Project>
+      <Name>FiskalDrivers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OrderToAlohaSrv\OrderToAlohaSrv.csproj">
+      <Project>{29F0A2D7-C9F0-4D62-B9BF-0AF156CCD532}</Project>
+      <Name>OrderToAlohaSrv</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PDiscountCard\PDiscountCard.csproj">
+      <Project>{58E97BC0-EEFD-4B72-BB25-32B4FDCF85DB}</Project>
+      <Name>PDiscountCard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SVSistem\SVSistem\SVSistem.csproj">
+      <Project>{F60674B2-F251-488B-8E73-19C58BBC9907}</Project>
+      <Name>SVSistem</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+    <WCFMetadataStorage Include="Service References\SrvGes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SrvGes\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SrvGes\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SrvGes\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

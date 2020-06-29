@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DeliveryHubConnector" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DeliveryHubConnector" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="OperationRequestFromPOSInfo">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationRequestFrom{0}" Namespace="http://schemas.datacontract.org/2004/07/DeliveryHubConnector" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="POSInfo" Namespace="http://schemas.datacontract.org/2004/07/DeliveryHubConnector" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RequestData" nillable="true" type="tns:POSInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperationRequestFromPOSInfo" nillable="true" type="tns:OperationRequestFromPOSInfo" />
+  <xs:complexType name="OperationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DepNum" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationRequest" nillable="true" type="tns:OperationRequest" />
+  <xs:complexType name="POSInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IpAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MainPOSFlag" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="POSInfo" nillable="true" type="tns:POSInfo" />
+  <xs:complexType name="OperationRequestFromlong">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationRequestFrom{0}" Namespace="http://schemas.datacontract.org/2004/07/DeliveryHubConnector" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="long" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RequestData" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperationRequestFromlong" nillable="true" type="tns:OperationRequestFromlong" />
+  <xs:complexType name="OperationResponseOfShortOrderInfo">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResponseOf{0}" Namespace="http://schemas.datacontract.org/2004/07/DeliveryHubConnector" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ShortOrderInfo" Namespace="http://schemas.datacontract.org/2004/07/DeliveryHubConnector" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ResponseData" nillable="true" type="tns:ShortOrderInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperationResponseOfShortOrderInfo" nillable="true" type="tns:OperationResponseOfShortOrderInfo" />
+  <xs:complexType name="OperationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfOperationError" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResponse" nillable="true" type="tns:OperationResponse" />
+  <xs:complexType name="ArrayOfOperationError">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OperationError" nillable="true" type="tns:OperationError" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOperationError" nillable="true" type="tns:ArrayOfOperationError" />
+  <xs:complexType name="OperationError">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationError" nillable="true" type="tns:OperationError" />
+  <xs:complexType name="ShortOrderInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobilePhone" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShortOrderInfo" nillable="true" type="tns:ShortOrderInfo" />
+</xs:schema>

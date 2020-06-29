@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://coffeemania.ru/VPiskov" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://coffeemania.ru/VPiskov" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://coffeemania.ru/VPiskov">
+      <s:element name="MenuModifEnabled">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MenuModifEnabledResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MenuModifEnabledResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendGloryLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Dep" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Term" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendGloryLogResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetGloryLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Dep" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Term" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDt" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="StopDt" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGloryLogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGloryLogResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DishIds" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEventResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AlohaEventSend">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CassaNum" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="_MashName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventType" type="tns:AlohaEventType" />
+            <s:element minOccurs="1" maxOccurs="1" name="Code" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CodeDoljn" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="AlohaEventType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Login" />
+          <s:enumeration value="LogOut" />
+          <s:enumeration value="TransferTable" />
+          <s:enumeration value="TErmInit" />
+          <s:enumeration value="PrintPredCheck" />
+          <s:enumeration value="CloseCheck" />
+          <s:enumeration value="LoyaltyTimeOutError" />
+          <s:enumeration value="LoyaltyOtherError" />
+          <s:enumeration value="LoyaltyCardOk" />
+          <s:enumeration value="ErrorCreditCardterminal" />
+          <s:enumeration value="AndrFoool" />
+          <s:enumeration value="AndrFoool2" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="AlohaEventSendResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AlohaEventSend2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CassaNum" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="_MashName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventType" type="tns:AlohaEventType" />
+            <s:element minOccurs="1" maxOccurs="1" name="Code" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CodeDoljn" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ToEmployeeId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TableId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CheckId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlohaEventSend2Response">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetResonTypes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetResonTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResonTypesResult" type="tns:ArrayOfStopListReasonT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStopListReasonT">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StopListReasonT" type="tns:StopListReasonT" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StopListReasonT">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TypeNum" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RemoteEventSend">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CassaNum" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="_MashName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventType" type="tns:RemoteEventType" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="RemoteEventType">
+        <s:restriction base="s:string">
+          <s:enumeration value="AndrFoool" />
+          <s:enumeration value="CheckClosed" />
+          <s:enumeration value="TermActive" />
+          <s:enumeration value="AlohaInit" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="RemoteEventSendResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCurentResons">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurentResonsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurentResonsResult" type="tns:ArrayOfStopListReasonEvent" />
+            <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStopListReasonEvent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StopListReasonEvent" nillable="true" type="tns:StopListReasonEvent" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StopListReasonEvent">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Dep" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BarCode" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TypeNum" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="RDateTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddStopListReasons">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Res" type="tns:ArrayOfStopListReasonEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddStopListReasonsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddStopListReasonsResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDishList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListOfDish" type="tns:ArrayOfDishN" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDishN">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DishN" type="tns:DishN" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DishN">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BarCode" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetDishListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SeтMnuToServer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Mnu" type="tns:AlohaMnu" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AlohaMnu">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Smnus" type="tns:ArrayOfAlohaSMnu" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dep" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cats" type="tns:ArrayOfAlohaCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAlohaSMnu">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AlohaSMnu" nillable="true" type="tns:AlohaSMnu" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AlohaSMnu">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dep" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dishes" type="tns:ArrayOfAlohaDish" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAlohaDish">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AlohaDish" type="tns:AlohaDish" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AlohaDish">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dep" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BarCode" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="delay" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OneCategory" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Categories" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EngName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModGroups" type="tns:ArrayOfAlohaModGroupe" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAlohaModGroupe">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AlohaModGroupe" type="tns:AlohaModGroupe" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AlohaModGroupe">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mods" type="tns:ArrayOfAlohaMod" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAlohaMod">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AlohaMod" type="tns:AlohaMod" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AlohaMod">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BarCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAlohaCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AlohaCategory" type="tns:AlohaCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AlohaCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dep" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SeтMnuToServerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetMnuToServer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Mnu" type="tns:AlohaMnu" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetMnuToServerResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="MenuModifEnabledSoapIn">
+    <wsdl:part name="parameters" element="tns:MenuModifEnabled" />
+  </wsdl:message>
+  <wsdl:message name="MenuModifEnabledSoapOut">
+    <wsdl:part name="parameters" element="tns:MenuModifEnabledResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendGloryLogSoapIn">
+    <wsdl:part name="parameters" element="tns:SendGloryLog" />
+  </wsdl:message>
+  <wsdl:message name="SendGloryLogSoapOut">
+    <wsdl:part name="parameters" element="tns:SendGloryLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGloryLogSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGloryLog" />
+  </wsdl:message>
+  <wsdl:message name="GetGloryLogSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGloryLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEvent" />
+  </wsdl:message>
+  <wsdl:message name="GetEventSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="AlohaEventSendSoapIn">
+    <wsdl:part name="parameters" element="tns:AlohaEventSend" />
+  </wsdl:message>
+  <wsdl:message name="AlohaEventSendSoapOut">
+    <wsdl:part name="parameters" element="tns:AlohaEventSendResponse" />
+  </wsdl:message>
+  <wsdl:message name="AlohaEventSend2SoapIn">
+    <wsdl:part name="parameters" element="tns:AlohaEventSend2" />
+  </wsdl:message>
+  <wsdl:message name="AlohaEventSend2SoapOut">
+    <wsdl:part name="parameters" element="tns:AlohaEventSend2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetResonTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetResonTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetResonTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetResonTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoteEventSendSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteEventSend" />
+  </wsdl:message>
+  <wsdl:message name="RemoteEventSendSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteEventSendResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurentResonsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurentResons" />
+  </wsdl:message>
+  <wsdl:message name="GetCurentResonsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurentResonsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddStopListReasonsSoapIn">
+    <wsdl:part name="parameters" element="tns:AddStopListReasons" />
+  </wsdl:message>
+  <wsdl:message name="AddStopListReasonsSoapOut">
+    <wsdl:part name="parameters" element="tns:AddStopListReasonsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDishListSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDishList" />
+  </wsdl:message>
+  <wsdl:message name="SetDishListSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDishListResponse" />
+  </wsdl:message>
+  <wsdl:message name="SeтMnuToServerSoapIn">
+    <wsdl:part name="parameters" element="tns:SeтMnuToServer" />
+  </wsdl:message>
+  <wsdl:message name="SeтMnuToServerSoapOut">
+    <wsdl:part name="parameters" element="tns:SeтMnuToServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetMnuToServerSoapIn">
+    <wsdl:part name="parameters" element="tns:SetMnuToServer" />
+  </wsdl:message>
+  <wsdl:message name="SetMnuToServerSoapOut">
+    <wsdl:part name="parameters" element="tns:SetMnuToServerResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="MenuModifEnabled">
+      <wsdl:input message="tns:MenuModifEnabledSoapIn" />
+      <wsdl:output message="tns:MenuModifEnabledSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendGloryLog">
+      <wsdl:input message="tns:SendGloryLogSoapIn" />
+      <wsdl:output message="tns:SendGloryLogSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGloryLog">
+      <wsdl:input message="tns:GetGloryLogSoapIn" />
+      <wsdl:output message="tns:GetGloryLogSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEvent">
+      <wsdl:input message="tns:GetEventSoapIn" />
+      <wsdl:output message="tns:GetEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlohaEventSend">
+      <wsdl:input message="tns:AlohaEventSendSoapIn" />
+      <wsdl:output message="tns:AlohaEventSendSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlohaEventSend2">
+      <wsdl:input message="tns:AlohaEventSend2SoapIn" />
+      <wsdl:output message="tns:AlohaEventSend2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResonTypes">
+      <wsdl:input message="tns:GetResonTypesSoapIn" />
+      <wsdl:output message="tns:GetResonTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteEventSend">
+      <wsdl:input message="tns:RemoteEventSendSoapIn" />
+      <wsdl:output message="tns:RemoteEventSendSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurentResons">
+      <wsdl:input message="tns:GetCurentResonsSoapIn" />
+      <wsdl:output message="tns:GetCurentResonsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddStopListReasons">
+      <wsdl:input message="tns:AddStopListReasonsSoapIn" />
+      <wsdl:output message="tns:AddStopListReasonsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDishList">
+      <wsdl:input message="tns:SetDishListSoapIn" />
+      <wsdl:output message="tns:SetDishListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SeтMnuToServer">
+      <wsdl:input message="tns:SeтMnuToServerSoapIn" />
+      <wsdl:output message="tns:SeтMnuToServerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMnuToServer">
+      <wsdl:input message="tns:SetMnuToServerSoapIn" />
+      <wsdl:output message="tns:SetMnuToServerSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MenuModifEnabled">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/MenuModifEnabled" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendGloryLog">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/SendGloryLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGloryLog">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/GetGloryLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEvent">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/GetEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlohaEventSend">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/AlohaEventSend" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlohaEventSend2">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/AlohaEventSend2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResonTypes">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/GetResonTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteEventSend">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/RemoteEventSend" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurentResons">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/GetCurentResons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddStopListReasons">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/AddStopListReasons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDishList">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/SetDishList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SeтMnuToServer">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/SeтMnuToServer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMnuToServer">
+      <soap:operation soapAction="http://coffeemania.ru/VPiskov/SetMnuToServer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MenuModifEnabled">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/MenuModifEnabled" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendGloryLog">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/SendGloryLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGloryLog">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/GetGloryLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEvent">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/GetEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlohaEventSend">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/AlohaEventSend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlohaEventSend2">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/AlohaEventSend2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResonTypes">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/GetResonTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteEventSend">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/RemoteEventSend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurentResons">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/GetCurentResons" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddStopListReasons">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/AddStopListReasons" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDishList">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/SetDishList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SeтMnuToServer">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/SeтMnuToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMnuToServer">
+      <soap12:operation soapAction="http://coffeemania.ru/VPiskov/SetMnuToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://s2010:3131/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://s2010:3131/Service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

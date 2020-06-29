@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="PiskovSRv" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="PiskovSRv" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="PiskovSRv">
+      <s:element name="DishOnStop">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="BarCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DishOnStopResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DishOnStopResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OrderOrdered">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OrderOrderedResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="OrderOrdered2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="OrderId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OrderOrdered2Response">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetNewOrders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNewOrdersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNewOrdersResult" type="tns:ArrayOfOrderInfoForAloha" />
+            <s:element minOccurs="0" maxOccurs="1" name="selstr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOrderInfoForAloha">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrderInfoForAloha" nillable="true" type="tns:OrderInfoForAloha" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderInfoForAloha">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderDestinationDeptID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerPhone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderRegisteredAtTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderRequiredStartTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderRequiredEndTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="tns:Item" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Item">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ItemID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ItemQuantity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemSpecialMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Modifiers" type="tns:ArrayOfModifier" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfModifier">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Modifier" nillable="true" type="tns:Modifier" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Modifier">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ItemModifierID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemModifierName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ItemModifierQuantity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemModifierSpecialMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ch" type="tns:OrderInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OrderInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OrderID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderDestinationDeptID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerPhone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderRegisteredAtTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderRequiredStartTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderRequiredEndTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetOrderResult" type="tns:OrderInfoResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OrderInfoResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OrderInfoIsProcessed" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderInfoNonFatalErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DishOnStopSoapIn">
+    <wsdl:part name="parameters" element="tns:DishOnStop" />
+  </wsdl:message>
+  <wsdl:message name="DishOnStopSoapOut">
+    <wsdl:part name="parameters" element="tns:DishOnStopResponse" />
+  </wsdl:message>
+  <wsdl:message name="OrderOrderedSoapIn">
+    <wsdl:part name="parameters" element="tns:OrderOrdered" />
+  </wsdl:message>
+  <wsdl:message name="OrderOrderedSoapOut">
+    <wsdl:part name="parameters" element="tns:OrderOrderedResponse" />
+  </wsdl:message>
+  <wsdl:message name="OrderOrdered2SoapIn">
+    <wsdl:part name="parameters" element="tns:OrderOrdered2" />
+  </wsdl:message>
+  <wsdl:message name="OrderOrdered2SoapOut">
+    <wsdl:part name="parameters" element="tns:OrderOrdered2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetNewOrdersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNewOrders" />
+  </wsdl:message>
+  <wsdl:message name="GetNewOrdersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:SetOrder" />
+  </wsdl:message>
+  <wsdl:message name="SetOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:SetOrderResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="DishOnStop">
+      <wsdl:input message="tns:DishOnStopSoapIn" />
+      <wsdl:output message="tns:DishOnStopSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderOrdered">
+      <wsdl:input message="tns:OrderOrderedSoapIn" />
+      <wsdl:output message="tns:OrderOrderedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderOrdered2">
+      <wsdl:input message="tns:OrderOrdered2SoapIn" />
+      <wsdl:output message="tns:OrderOrdered2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNewOrders">
+      <wsdl:input message="tns:GetNewOrdersSoapIn" />
+      <wsdl:output message="tns:GetNewOrdersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrder">
+      <wsdl:input message="tns:SetOrderSoapIn" />
+      <wsdl:output message="tns:SetOrderSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DishOnStop">
+      <soap:operation soapAction="PiskovSRv/DishOnStop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderOrdered">
+      <soap:operation soapAction="PiskovSRv/OrderOrdered" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderOrdered2">
+      <soap:operation soapAction="PiskovSRv/OrderOrdered2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewOrders">
+      <soap:operation soapAction="PiskovSRv/GetNewOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrder">
+      <soap:operation soapAction="PiskovSRv/SetOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DishOnStop">
+      <soap12:operation soapAction="PiskovSRv/DishOnStop" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderOrdered">
+      <soap12:operation soapAction="PiskovSRv/OrderOrdered" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderOrdered2">
+      <soap12:operation soapAction="PiskovSRv/OrderOrdered2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewOrders">
+      <soap12:operation soapAction="PiskovSRv/GetNewOrders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrder">
+      <soap12:operation soapAction="PiskovSRv/SetOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://s2010:3132/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://s2010:3132/Service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

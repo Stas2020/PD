@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://storedvalue.ws.alohaenterprise.com/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="StoredValuePublicWSImplService" targetNamespace="http://storedvalue.ws.alohaenterprise.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://storedvalue.ws.alohaenterprise.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="PublicRequest">
+        <xs:sequence>
+          <xs:element name="company" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="requestID" type="xs:string" />
+          <xs:element name="storeID" type="xs:int" />
+          <xs:element name="user" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCardHistoryRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence>
+              <xs:element name="cardNumber" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PublicResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element name="responseCode" type="xs:int" />
+          <xs:element minOccurs="0" name="responseCodeName" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCardHistoryResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="cardNumber" type="xs:string" />
+              <xs:element minOccurs="0" name="transactionHistory" type="tns:TransactionHistory" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TransactionHistory">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="historicTransaction" nillable="true" type="tns:HistoricTransaction" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="HistoricTransaction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+          <xs:element minOccurs="0" name="balance" type="xs:decimal" />
+          <xs:element name="checkID" type="xs:int" />
+          <xs:element minOccurs="0" name="dateOfBusiness" type="xs:dateTime" />
+          <xs:element name="storeID" type="xs:int" />
+          <xs:element minOccurs="0" name="storeName" type="xs:string" />
+          <xs:element name="transactionID" type="xs:long" />
+          <xs:element name="transactionType" type="xs:int" />
+          <xs:element minOccurs="0" name="transactionTypeName" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValidateCardPinRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence>
+              <xs:element name="cardNumber" type="xs:string" />
+              <xs:element name="pinNumber" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ValidateCardPinResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="GetCardBalanceRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence>
+              <xs:element name="cardNumber" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="GetCardBalanceResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="balance" type="xs:decimal" />
+              <xs:element minOccurs="0" name="cardNumber" type="xs:string" />
+              <xs:element minOccurs="0" name="expirationDate" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProcessVoidDepositRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence>
+              <xs:element name="amount" type="xs:decimal" />
+              <xs:element name="cardNumber" type="xs:string" />
+              <xs:element name="quantity" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProcessVoidDepositResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="cardTransactions" type="tns:CardTransactions" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="CardTransactions">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="cardTransaction" nillable="true" type="tns:CardTransaction" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CardTransaction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+          <xs:element minOccurs="0" name="balance" type="xs:decimal" />
+          <xs:element minOccurs="0" name="cardNumber" type="xs:string" />
+          <xs:element name="transactionID" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LiabilityHistoryRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="LiabilityResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="liability" type="xs:decimal" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="BalanceTransferRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence>
+              <xs:element name="amount" type="xs:double" />
+              <xs:element name="sourceCardNumber" type="xs:string" />
+              <xs:element name="targetCardNumber" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="BalanceTransferResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicResponse">
+            <xs:sequence>
+              <xs:element name="amountTransferred" type="xs:double" />
+              <xs:element name="sourceCardBalance" type="xs:double" />
+              <xs:element minOccurs="0" name="sourceCardNumber" type="xs:string" />
+              <xs:element name="targetCardBalance" type="xs:double" />
+              <xs:element minOccurs="0" name="targetCardNumber" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProcessDepositRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence>
+              <xs:element name="amount" type="xs:decimal" />
+              <xs:element name="cardNumber" type="xs:string" />
+              <xs:element name="quantity" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProcessDepositResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="cardTransactions" type="tns:CardTransactions" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProcessVoidRedemptionRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence>
+              <xs:element name="amount" type="xs:decimal" />
+              <xs:element name="cardNumber" type="xs:string" />
+              <xs:element minOccurs="0" name="changeAmount" type="xs:decimal" />
+              <xs:element minOccurs="0" name="keptAmount" type="xs:decimal" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProcessVoidRedemptionResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="balance" type="xs:decimal" />
+              <xs:element minOccurs="0" name="cardNumber" type="xs:string" />
+              <xs:element name="transactionID" type="xs:long" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="LiabilityRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="processVoidTransactionRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="cardNumber" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="processVoidTransactionResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="amountVoided" type="xs:decimal" />
+              <xs:element minOccurs="0" name="cardNumber" type="xs:string" />
+              <xs:element minOccurs="0" name="endingBalance" type="xs:decimal" />
+              <xs:element minOccurs="0" name="startingBalance" type="xs:decimal" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="GetTerminalTransactionSummaryRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+              <xs:element name="startDate" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="GetTerminalTransactionSummaryResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="totalSales" type="xs:decimal" />
+              <xs:element minOccurs="0" name="totalRedemption" type="xs:decimal" />
+              <xs:element minOccurs="0" name="netTotal" type="xs:decimal" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProcessRedemptionRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicRequest">
+            <xs:sequence>
+              <xs:element name="amount" type="xs:decimal" />
+              <xs:element name="cardNumber" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProcessRedemptionResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PublicResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+              <xs:element minOccurs="0" name="cardNumber" type="xs:string" />
+              <xs:element minOccurs="0" name="balance" type="xs:decimal" />
+              <xs:element name="transactionID" type="xs:long" />
+              <xs:element minOccurs="0" name="changeAmount" type="xs:decimal" />
+              <xs:element minOccurs="0" name="keptAmount" type="xs:decimal" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getLiabilityResponse">
+    <wsdl:part name="return" type="tns:LiabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcessBalanceTransfer">
+    <wsdl:part name="balanceTransferRequest" type="tns:BalanceTransferRequest" />
+  </wsdl:message>
+  <wsdl:message name="ProcessVoidTransactionResponse">
+    <wsdl:part name="return" type="tns:processVoidTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcessRedemption">
+    <wsdl:part name="processRedemptionRequest" type="tns:ProcessRedemptionRequest" />
+  </wsdl:message>
+  <wsdl:message name="ProcessVoidDepositResponse">
+    <wsdl:part name="return" type="tns:ProcessVoidDepositResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcessDeposit">
+    <wsdl:part name="processDepositRequest" type="tns:ProcessDepositRequest" />
+  </wsdl:message>
+  <wsdl:message name="CheckService" />
+  <wsdl:message name="ProcessVoidDeposit">
+    <wsdl:part name="processVoidDepositRequest" type="tns:ProcessVoidDepositRequest" />
+  </wsdl:message>
+  <wsdl:message name="ProcessVoidTransaction">
+    <wsdl:part name="processVoidTransactionRequest" type="tns:processVoidTransactionRequest" />
+  </wsdl:message>
+  <wsdl:message name="getLiabilityHistoryResponse">
+    <wsdl:part name="return" type="tns:LiabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcessDepositResponse">
+    <wsdl:part name="return" type="tns:ProcessDepositResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLiability">
+    <wsdl:part name="arg0" type="tns:LiabilityRequest" />
+  </wsdl:message>
+  <wsdl:message name="ProcessBalanceTransferResponse">
+    <wsdl:part name="return" type="tns:BalanceTransferResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTerminalTransactionSummary">
+    <wsdl:part name="getTerminalTransactionSummaryRequest" type="tns:GetTerminalTransactionSummaryRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetCardHistory">
+    <wsdl:part name="getCardHistoryRequest" type="tns:GetCardHistoryRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetCardBalance">
+    <wsdl:part name="getCardBalanceRequest" type="tns:GetCardBalanceRequest" />
+  </wsdl:message>
+  <wsdl:message name="CheckServiceResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCardPinResponse">
+    <wsdl:part name="return" type="tns:ValidateCardPinResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLiabilityHistory">
+    <wsdl:part name="arg0" type="tns:LiabilityHistoryRequest" />
+  </wsdl:message>
+  <wsdl:message name="ProcessRedemptionResponse">
+    <wsdl:part name="return" type="tns:ProcessRedemptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcessVoidRedemptionResponse">
+    <wsdl:part name="return" type="tns:ProcessVoidRedemptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTerminalTransactionSummaryResponse">
+    <wsdl:part name="return" type="tns:GetTerminalTransactionSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcessVoidRedemption">
+    <wsdl:part name="processVoidRedemptionRequest" type="tns:ProcessVoidRedemptionRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetCardHistoryResponse">
+    <wsdl:part name="return" type="tns:GetCardHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCardPin">
+    <wsdl:part name="validateCardPinRequest" type="tns:ValidateCardPinRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetCardBalanceResponse">
+    <wsdl:part name="return" type="tns:GetCardBalanceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="StoredValuePublicWS">
+    <wsdl:operation name="GetCardHistory">
+      <wsdl:input name="GetCardHistory" message="tns:GetCardHistory" />
+      <wsdl:output name="GetCardHistoryResponse" message="tns:GetCardHistoryResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCardPin">
+      <wsdl:input name="ValidateCardPin" message="tns:ValidateCardPin" />
+      <wsdl:output name="ValidateCardPinResponse" message="tns:ValidateCardPinResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardBalance">
+      <wsdl:input name="GetCardBalance" message="tns:GetCardBalance" />
+      <wsdl:output name="GetCardBalanceResponse" message="tns:GetCardBalanceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessVoidDeposit">
+      <wsdl:input name="ProcessVoidDeposit" message="tns:ProcessVoidDeposit" />
+      <wsdl:output name="ProcessVoidDepositResponse" message="tns:ProcessVoidDepositResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getLiabilityHistory">
+      <wsdl:input name="getLiabilityHistory" message="tns:getLiabilityHistory" />
+      <wsdl:output name="getLiabilityHistoryResponse" message="tns:getLiabilityHistoryResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessBalanceTransfer">
+      <wsdl:input name="ProcessBalanceTransfer" message="tns:ProcessBalanceTransfer" />
+      <wsdl:output name="ProcessBalanceTransferResponse" message="tns:ProcessBalanceTransferResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDeposit">
+      <wsdl:input name="ProcessDeposit" message="tns:ProcessDeposit" />
+      <wsdl:output name="ProcessDepositResponse" message="tns:ProcessDepositResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessVoidRedemption">
+      <wsdl:input name="ProcessVoidRedemption" message="tns:ProcessVoidRedemption" />
+      <wsdl:output name="ProcessVoidRedemptionResponse" message="tns:ProcessVoidRedemptionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckService">
+      <wsdl:input name="CheckService" message="tns:CheckService" />
+      <wsdl:output name="CheckServiceResponse" message="tns:CheckServiceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getLiability">
+      <wsdl:input name="getLiability" message="tns:getLiability" />
+      <wsdl:output name="getLiabilityResponse" message="tns:getLiabilityResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessVoidTransaction">
+      <wsdl:input name="ProcessVoidTransaction" message="tns:ProcessVoidTransaction" />
+      <wsdl:output name="ProcessVoidTransactionResponse" message="tns:ProcessVoidTransactionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminalTransactionSummary">
+      <wsdl:input name="GetTerminalTransactionSummary" message="tns:GetTerminalTransactionSummary" />
+      <wsdl:output name="GetTerminalTransactionSummaryResponse" message="tns:GetTerminalTransactionSummaryResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRedemption">
+      <wsdl:input name="ProcessRedemption" message="tns:ProcessRedemption" />
+      <wsdl:output name="ProcessRedemptionResponse" message="tns:ProcessRedemptionResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StoredValuePublicWSImplServiceSoapBinding" type="tns:StoredValuePublicWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="GetCardHistory">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="GetCardHistory">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="GetCardHistoryResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCardPin">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="ValidateCardPin">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="ValidateCardPinResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardBalance">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="GetCardBalance">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="GetCardBalanceResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessVoidDeposit">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="ProcessVoidDeposit">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="ProcessVoidDepositResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLiabilityHistory">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="getLiabilityHistory">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="getLiabilityHistoryResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessBalanceTransfer">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="ProcessBalanceTransfer">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="ProcessBalanceTransferResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDeposit">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="ProcessDeposit">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="ProcessDepositResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessVoidRedemption">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="ProcessVoidRedemption">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="ProcessVoidRedemptionResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckService">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="CheckService">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="CheckServiceResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLiability">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="getLiability">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="getLiabilityResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessVoidTransaction">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="ProcessVoidTransaction">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="ProcessVoidTransactionResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminalTransactionSummary">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="GetTerminalTransactionSummary">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="GetTerminalTransactionSummaryResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRedemption">
+      <soap:operation soapAction="" style="rpc" />
+      <wsdl:input name="ProcessRedemption">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:input>
+      <wsdl:output name="ProcessRedemptionResponse">
+        <soap:body use="literal" namespace="http://storedvalue.ws.alohaenterprise.com/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StoredValuePublicWSImplService">
+    <wsdl:port name="StoredValuePublicWSImplPort" binding="tns:StoredValuePublicWSImplServiceSoapBinding">
+      <soap:address location="http://ams01-sv113.ams01-aloha.local:8080/StoredValue/public/soap/StoredValuePublicWS" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

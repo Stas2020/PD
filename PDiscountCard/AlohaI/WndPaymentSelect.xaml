@@ -1,0 +1,70 @@
+﻿<Window x:Class="PDiscountCard.AlohaI.WndPaymentSelect"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Width="600" Height="400" Background="AliceBlue" WindowState="Normal" WindowStyle="None" WindowStartupLocation="CenterScreen" Topmost="True" >
+    <Window.Resources>
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="Control.FontFamily" Value="Calibri"></Setter>
+            <Setter Property="Control.FontSize" Value="24"></Setter>
+            <Setter Property="Control.FontWeight" Value="Bold"></Setter>
+            <Setter Property="Control.Padding" Value="5"></Setter>
+            <Setter Property="Control.Margin" Value="10"></Setter>
+        </Style>
+        <Style x:Key="MyTextStyle" TargetType="TextBlock">
+            <Setter Property="Control.FontFamily" Value="Calibri"></Setter>
+            <Setter Property="Control.FontSize" Value="24"></Setter>
+            <Setter Property="Control.HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Control.HorizontalContentAlignment" Value="Center"></Setter>
+            
+            <Setter Property="Control.Padding" Value="0"></Setter>
+            <Setter Property="Control.Margin" Value="3"></Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Border BorderThickness="10" BorderBrush ="Aqua" CornerRadius="15">
+            <Grid>
+            <Grid Name="GrdPayments" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Style="{StaticResource MyTextStyle}" Text="Укажите вид оплаты"  />
+                <Button Name="BtnGlory" Grid.Row="1" Grid.Column="0" Style="{StaticResource MyButtonStyle}" Content="Наличные" Background="LightGreen" Click="BtnGlory_Click"/>
+                <Button Name="BtnPlast" Grid.Row="2" Grid.Column="1" Style="{StaticResource MyButtonStyle}" Content="Пластик"  Background="LightYellow" Click="BtnPlast_Click"/>
+                <Button Name="BtnCred" Grid.Row="3" Grid.Column="2" Style="{StaticResource MyButtonStyle}" Content="Предоплата" Background="LightCoral" Click="BtnCred_Click"/>
+                <Button Name="BtnCancel" Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0" Style="{StaticResource MyButtonStyle}" Margin="30,10,30,10" Content="Отмена" Click="BtnCancel_Click"/>
+            </Grid>
+                <Grid Name="GrdCreditAsk">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        
+                        <RowDefinition ></RowDefinition>
+                        
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="TbCreditAsk" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Style="{StaticResource MyTextStyle}" TextAlignment="Center" Text=""  TextWrapping="Wrap"/>
+                    <Button Name="BtnCredYes" Grid.Row="3" Grid.Column="2" Style="{StaticResource MyButtonStyle}" Content="Да" Background="LightCoral" Click="BtnCredYes_Click"/>
+                    <Button Name="BtnCredNo" Grid.Row="3" Grid.Column="0" Style="{StaticResource MyButtonStyle}" Content="Нет" Background="LightGreen" Click="BtnCredNo_Click"/>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,20 @@
+﻿<Window x:Class="PDiscountCard.frmLockScreeen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" WindowState="Maximized" WindowStyle="None">
+    <Grid>
+        
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel>
+            <TextBlock FontSize="36" TextWrapping="Wrap" TextAlignment="Center">Следуйте инструкциям на терминале пластиковых карт</TextBlock>
+                <TextBlock Name="TbTime" FontSize="36" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+            </StackPanel>
+        </Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center">
+           
+        </Label>
+    </Grid>
+</Window>

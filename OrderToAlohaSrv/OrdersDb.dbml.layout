@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.75, 8.5" name="OrdersDb">
+  <DataContextMoniker Name="/OrdersDbDataContext" />
+  <nestedChildShapes>
+    <classShape Id="d3268f7f-e567-413e-b45c-7601ef54edf5" absoluteBounds="1.625, 6.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/OrdersDbDataContext/OrderDiscount" />
+      <nestedChildShapes>
+        <elementListCompartment Id="675950ad-fcd2-4c95-ba60-a726a0df531b" absoluteBounds="1.6400000000000001, 6.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="803c9ac6-d205-43b4-9533-3aafda382dd7" absoluteBounds="5.875, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/OrdersDbDataContext/Itm" />
+      <nestedChildShapes>
+        <elementListCompartment Id="982e0a78-06eb-4206-a2ef-f20125cbc190" absoluteBounds="5.89, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="875355a8-66e2-4968-bd3c-b5533d86e1e3" absoluteBounds="9.5, 3.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/OrdersDbDataContext/OrderPayment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="282f4947-795d-448a-823f-c74fa565ee2f" absoluteBounds="9.515, 3.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3e2b3fa4-4638-406e-bd5b-1bf0aeb9941d" absoluteBounds="7.125, 5.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/OrdersDbDataContext/TNDR" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9affe7d4-caac-471e-9fcf-ca8c76767a39" absoluteBounds="7.1400000000000006, 5.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.125 : 5.375); (9.5 : 5.07859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/OrdersDbDataContext/TNDR/TNDR_OrderPayment" />
+      <nodes>
+        <classShapeMoniker Id="3e2b3fa4-4638-406e-bd5b-1bf0aeb9941d" />
+        <classShapeMoniker Id="875355a8-66e2-4968-bd3c-b5533d86e1e3" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="a97c0bb9-2c42-4f7f-b312-2e23a9bad7f8" absoluteBounds="4.75, 2.875, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/OrdersDbDataContext/OrderItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2ddd0326-a0f0-4914-b4ab-ccfcc12ba192" absoluteBounds="4.765, 3.335, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ae28d964-1bce-4671-a738-10a086520ffe" absoluteBounds="1.75, 0.5, 2, 5.0400211588541657">
+      <DataClassMoniker Name="/OrdersDbDataContext/Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4e28e060-b9b6-4c19-9d0d-5eb576f2c2c0" absoluteBounds="1.7650000000000001, 0.96, 1.9700000000000002, 4.4800211588541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.75 : 2.47679768880208); (10.5 : 2.47679768880208); (10.5 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/OrdersDbDataContext/Order/Order_OrderPayment" />
+      <nodes>
+        <classShapeMoniker Id="ae28d964-1bce-4671-a738-10a086520ffe" />
+        <classShapeMoniker Id="875355a8-66e2-4968-bd3c-b5533d86e1e3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.75 : 4.20751057942708); (4.75 : 4.20751057942708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/OrdersDbDataContext/Order/Order_OrderItem" />
+      <nodes>
+        <classShapeMoniker Id="ae28d964-1bce-4671-a738-10a086520ffe" />
+        <classShapeMoniker Id="a97c0bb9-2c42-4f7f-b312-2e23a9bad7f8" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="FCCIntegration.ctrlShowOrder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="250" xmlns:my="clr-namespace:FCCIntegration">
+    <Grid>
+        <Border    VerticalAlignment="Top"   BorderThickness="5" BorderBrush="White">
+            <StackPanel   Background="White" >
+                <Label Name="lbYourOrder" Background="#FFA5946B" FontFamily="Tahoma" FontSize="24" FontWeight="Bold" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0,0,0,5">ВАШ ЗАКАЗ</Label>
+                <StackPanel  ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" CanVerticallyScroll="True"  Name="CheckPanel" Height="400"  Background="#FFA5946B"></StackPanel>
+                <DockPanel Margin="0,10,0,10">
+                    <Label Name="lbTotal" DockPanel.Dock="Left" Background="White" FontFamily="Tahoma" FontSize="26"  VerticalAlignment="Stretch" HorizontalContentAlignment="Left" >ИТОГО</Label>
+                    <Label DockPanel.Dock="Right" Name="SumLabel" Background="White" FontFamily="Tahoma" FontSize="26"  VerticalAlignment="Stretch" HorizontalContentAlignment="Right" >0.00р</Label>
+                </DockPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

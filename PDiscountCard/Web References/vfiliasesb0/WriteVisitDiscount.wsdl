@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:coffeemania:discount-services" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:S1="urn:soap-fault:details" xmlns:S2="urn:coffeemania:discount-services:WriteVisitDiscount" xmlns="http://schemas.xmlsoap.org/wsdl/" name="WriteVisitDiscount" targetNamespace="urn:coffeemania:discount-services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Author=Grigory, EncodingType=DOC_LITERAL, Proxygen_Product=Progress Version 10.1C</wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="urn:soap-fault:details">
+      <xsd:element name="FaultDetail">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="errorMessage" type="xsd:string" />
+            <xsd:element name="requestID" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:coffeemania:discount-services:WriteVisitDiscount">
+      <xsd:element name="DefiniteSafeCard">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="KardPrefix" nillable="true" type="xsd:string" />
+            <xsd:element name="KardKode" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DefiniteSafeCardResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="TrustedCustomer" nillable="true" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="FixedVizit">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="pPrefix" nillable="true" type="xsd:string" />
+            <xsd:element name="CardN" nillable="true" type="xsd:string" />
+            <xsd:element name="CodSh" nillable="true" type="xsd:int" />
+            <xsd:element name="CheckN" nillable="true" type="xsd:string" />
+            <xsd:element name="TermN" nillable="true" type="xsd:int" />
+            <xsd:element name="DaTime" nillable="true" type="xsd:dateTime" />
+            <xsd:element name="iWrite" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="FixedVizitResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="CountV" nillable="true" type="xsd:int" />
+            <xsd:element name="CountD" nillable="true" type="xsd:int" />
+            <xsd:element name="iGold" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="WriteVizit">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="pPrefix" nillable="true" type="xsd:string" />
+            <xsd:element name="CardN" nillable="true" type="xsd:string" />
+            <xsd:element name="CodSh" nillable="true" type="xsd:int" />
+            <xsd:element name="CheckN" nillable="true" type="xsd:string" />
+            <xsd:element name="TermN" nillable="true" type="xsd:int" />
+            <xsd:element name="DaTime" nillable="true" type="xsd:dateTime" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="WriteVizitResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="CountV" nillable="true" type="xsd:int" />
+            <xsd:element name="CountD" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="WriteVizitNew">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="pPrefix" nillable="true" type="xsd:string" />
+            <xsd:element name="CardN" nillable="true" type="xsd:string" />
+            <xsd:element name="CodSh" nillable="true" type="xsd:int" />
+            <xsd:element name="CheckN" nillable="true" type="xsd:string" />
+            <xsd:element name="TermN" nillable="true" type="xsd:int" />
+            <xsd:element name="DaTime" nillable="true" type="xsd:dateTime" />
+            <xsd:element name="Summ" nillable="true" type="xsd:decimal" />
+            <xsd:element name="kol" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="WriteVizitNewResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="CountV" nillable="true" type="xsd:int" />
+            <xsd:element name="CountD" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="WriteVisitDiscount_FixedVizit">
+    <wsdl:part name="parameters" element="S2:FixedVizit" />
+  </wsdl:message>
+  <wsdl:message name="WriteVisitDiscount_WriteVizitResponse">
+    <wsdl:part name="parameters" element="S2:WriteVizitResponse" />
+  </wsdl:message>
+  <wsdl:message name="WriteVisitDiscount_WriteVizitNewResponse">
+    <wsdl:part name="parameters" element="S2:WriteVizitNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="WriteVisitDiscount_DefiniteSafeCardResponse">
+    <wsdl:part name="parameters" element="S2:DefiniteSafeCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="WriteVisitDiscount_FixedVizitResponse">
+    <wsdl:part name="parameters" element="S2:FixedVizitResponse" />
+  </wsdl:message>
+  <wsdl:message name="FaultDetailMessage">
+    <wsdl:part name="FaultDetail" element="S1:FaultDetail" />
+  </wsdl:message>
+  <wsdl:message name="WriteVisitDiscount_WriteVizitNew">
+    <wsdl:part name="parameters" element="S2:WriteVizitNew" />
+  </wsdl:message>
+  <wsdl:message name="WriteVisitDiscount_WriteVizit">
+    <wsdl:part name="parameters" element="S2:WriteVizit" />
+  </wsdl:message>
+  <wsdl:message name="WriteVisitDiscount_DefiniteSafeCard">
+    <wsdl:part name="parameters" element="S2:DefiniteSafeCard" />
+  </wsdl:message>
+  <wsdl:portType name="WriteVisitDiscountObj">
+    <wsdl:operation name="DefiniteSafeCard">
+      <wsdl:input message="tns:WriteVisitDiscount_DefiniteSafeCard" />
+      <wsdl:output message="tns:WriteVisitDiscount_DefiniteSafeCardResponse" />
+      <wsdl:fault name="WriteVisitDiscountFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FixedVizit">
+      <wsdl:input message="tns:WriteVisitDiscount_FixedVizit" />
+      <wsdl:output message="tns:WriteVisitDiscount_FixedVizitResponse" />
+      <wsdl:fault name="WriteVisitDiscountFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteVizit">
+      <wsdl:input message="tns:WriteVisitDiscount_WriteVizit" />
+      <wsdl:output message="tns:WriteVisitDiscount_WriteVizitResponse" />
+      <wsdl:fault name="WriteVisitDiscountFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteVizitNew">
+      <wsdl:input message="tns:WriteVisitDiscount_WriteVizitNew" />
+      <wsdl:output message="tns:WriteVisitDiscount_WriteVizitNewResponse" />
+      <wsdl:fault name="WriteVisitDiscountFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WriteVisitDiscountObj" type="tns:WriteVisitDiscountObj">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DefiniteSafeCard">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WriteVisitDiscountFault">
+        <soap:fault use="literal" name="WriteVisitDiscountFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="FixedVizit">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WriteVisitDiscountFault">
+        <soap:fault use="literal" name="WriteVisitDiscountFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="WriteVizit">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WriteVisitDiscountFault">
+        <soap:fault use="literal" name="WriteVisitDiscountFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="WriteVizitNew">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WriteVisitDiscountFault">
+        <soap:fault use="literal" name="WriteVisitDiscountFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WriteVisitDiscountService">
+    <wsdl:port name="WriteVisitDiscountObj" binding="tns:WriteVisitDiscountObj">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" />
+      <soap:address location="http://vfiliasesb0:2580/process/WriteVisitProc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

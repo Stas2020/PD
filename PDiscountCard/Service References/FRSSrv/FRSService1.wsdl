@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://FRS.Srv" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://FRS.Srv" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://FRS.Srv/Imports">
+      <xsd:import schemaLocation="http://192.168.250.7:3838/FRSService?xsd=xsd0" namespace="http://FRS.Srv" />
+      <xsd:import schemaLocation="http://192.168.250.7:3838/FRSService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.250.7:3838/FRSService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FRSTypes" />
+      <xsd:import schemaLocation="http://192.168.250.7:3838/FRSService?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IRemoteData_AddCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCheck" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteData_AddCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteData_PrintCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintCheck" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteData_PrintCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrintCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteData_GetLastChecks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastChecks" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteData_GetLastChecks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastChecksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteData_ZReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:ZReport" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteData_ZReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ZReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteData_XReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:XReport" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteData_XReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:XReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteData_InitItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitItems" />
+  </wsdl:message>
+  <wsdl:message name="IRemoteData_InitItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitItemsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IRemoteData">
+    <wsdl:operation name="AddCheck">
+      <wsdl:input wsaw:Action="http://FRS.Srv/IRemoteData/AddCheck" message="tns:IRemoteData_AddCheck_InputMessage" />
+      <wsdl:output wsaw:Action="http://FRS.Srv/IRemoteData/AddCheckResponse" message="tns:IRemoteData_AddCheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintCheck">
+      <wsdl:input wsaw:Action="http://FRS.Srv/IRemoteData/PrintCheck" message="tns:IRemoteData_PrintCheck_InputMessage" />
+      <wsdl:output wsaw:Action="http://FRS.Srv/IRemoteData/PrintCheckResponse" message="tns:IRemoteData_PrintCheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastChecks">
+      <wsdl:input wsaw:Action="http://FRS.Srv/IRemoteData/GetLastChecks" message="tns:IRemoteData_GetLastChecks_InputMessage" />
+      <wsdl:output wsaw:Action="http://FRS.Srv/IRemoteData/GetLastChecksResponse" message="tns:IRemoteData_GetLastChecks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ZReport">
+      <wsdl:input wsaw:Action="http://FRS.Srv/IRemoteData/ZReport" message="tns:IRemoteData_ZReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://FRS.Srv/IRemoteData/ZReportResponse" message="tns:IRemoteData_ZReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="XReport">
+      <wsdl:input wsaw:Action="http://FRS.Srv/IRemoteData/XReport" message="tns:IRemoteData_XReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://FRS.Srv/IRemoteData/XReportResponse" message="tns:IRemoteData_XReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InitItems">
+      <wsdl:input wsaw:Action="http://FRS.Srv/IRemoteData/InitItems" message="tns:IRemoteData_InitItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://FRS.Srv/IRemoteData/InitItemsResponse" message="tns:IRemoteData_InitItems_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

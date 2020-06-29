@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AddCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Prefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Department" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RealSale" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddCardResult" type="tns:RespResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Sucsess" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddRedemption">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Prefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Department" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Check" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Terminal" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RealSale" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRedemptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddRedemptionResult" type="tns:RespResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CardExist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Prefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CardExistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CardExistResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Prefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBalanceResult" type="tns:GetBalanceResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetBalanceResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RespResult">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddCardSoapIn">
+    <wsdl:part name="parameters" element="tns:AddCard" />
+  </wsdl:message>
+  <wsdl:message name="AddCardSoapOut">
+    <wsdl:part name="parameters" element="tns:AddCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRedemptionSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRedemption" />
+  </wsdl:message>
+  <wsdl:message name="AddRedemptionSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRedemptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CardExistSoapIn">
+    <wsdl:part name="parameters" element="tns:CardExist" />
+  </wsdl:message>
+  <wsdl:message name="CardExistSoapOut">
+    <wsdl:part name="parameters" element="tns:CardExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBalance" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBalanceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SVSrvSoap">
+    <wsdl:operation name="AddCard">
+      <wsdl:input message="tns:AddCardSoapIn" />
+      <wsdl:output message="tns:AddCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRedemption">
+      <wsdl:input message="tns:AddRedemptionSoapIn" />
+      <wsdl:output message="tns:AddRedemptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CardExist">
+      <wsdl:input message="tns:CardExistSoapIn" />
+      <wsdl:output message="tns:CardExistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <wsdl:input message="tns:GetBalanceSoapIn" />
+      <wsdl:output message="tns:GetBalanceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SVSrvSoap" type="tns:SVSrvSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddCard">
+      <soap:operation soapAction="http://tempuri.org/AddCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRedemption">
+      <soap:operation soapAction="http://tempuri.org/AddRedemption" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardExist">
+      <soap:operation soapAction="http://tempuri.org/CardExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <soap:operation soapAction="http://tempuri.org/GetBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SVSrvSoap12" type="tns:SVSrvSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddCard">
+      <soap12:operation soapAction="http://tempuri.org/AddCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRedemption">
+      <soap12:operation soapAction="http://tempuri.org/AddRedemption" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardExist">
+      <soap12:operation soapAction="http://tempuri.org/CardExist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalance">
+      <soap12:operation soapAction="http://tempuri.org/GetBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SVSrv">
+    <wsdl:port name="SVSrvSoap" binding="tns:SVSrvSoap">
+      <soap:address location="http://s2010:3131/SVSrv.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SVSrvSoap12" binding="tns:SVSrvSoap12">
+      <soap12:address location="http://s2010:3131/SVSrv.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

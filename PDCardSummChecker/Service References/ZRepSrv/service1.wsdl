@@ -1,0 +1,1146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://Piskov.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://Piskov.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://Piskov.org/">
+      <s:element name="GetZReports">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TermNum" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetZReportsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetZReportsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetKKmsSumFromStartLife">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetKKmsSumFromStartLifeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetKKmsSumFromStartLifeResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Test">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddError">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="_DepNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Term" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddErrorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ConvertData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UnDepNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConvertDataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddHamsterCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UnDepNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddHamsterCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddHamsterCheckResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddHamsterChecks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Data">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="UnDepNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddHamsterChecksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddHamsterChecksResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyLogFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="OriginalDataLenght" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="FName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UnDepNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyLogFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CopyLogFileResult" type="tns:CopyCheckFileResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CopyCheckFileResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Sucsess" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileLenght" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CopyCheckFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="OriginalDataLenght" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="FName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UnDepNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyCheckFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CopyCheckFileResult" type="tns:CopyCheckFileResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddPaymentCardInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mPaymentCardInfo" type="tns:PaymentCard" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PaymentCard">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dep" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnDep" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SystemDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardPrefix" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Summ" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Slip" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckNumber" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddPaymentCardInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddPaymentCardInfoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentCardInfoReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UndepNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bdate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentCardInfoReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentCardInfoReportResult" type="tns:ArrayOfPaymentCard" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPaymentCard">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PaymentCard" nillable="true" type="tns:PaymentCard" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddZRep2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Rep" type="tns:TblZReports2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TblZReports2">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SystemDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Summ1" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Summ2" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Summ3" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Summ4" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="VSumm1" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="VSumm2" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="VSumm3" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="VSumm4" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="FP" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FD" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="bigNum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SmallNum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SysDt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="QRAsStr" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Term" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dep" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Smena" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Klishe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="INN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FNNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TblZRepPositionData" type="tns:ArrayOfTblZRepPositionData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTblZRepPositionData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TblZRepPositionData" nillable="true" type="tns:TblZRepPositionData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TblZRepPositionData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PosId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ZRepId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SmenaSummRegNum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SmenaCountRegNum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SmenaCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SmenaSumm" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllCountRegNum" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TblZRepPaymentsData" type="tns:ArrayOfTblZRepPaymentsData" />
+          <s:element minOccurs="0" maxOccurs="1" name="TblZReports2" type="tns:TblZReports2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTblZRepPaymentsData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TblZRepPaymentsData" nillable="true" type="tns:TblZRepPaymentsData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TblZRepPaymentsData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PosDataId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SmenaSummRegNum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SmenaSumm" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SmenaCountRegNum" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SmenaCount" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TblZRepPositionData" type="tns:TblZRepPositionData" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddZRep2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddZRep2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddZRep">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZInfo" type="tns:ZReportInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ZReportInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Report" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cash" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Card" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Credit" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CashX" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardX" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreditX" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AnulChecks" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CashCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VozvrCash" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="VozvrCard" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="VozvrCredit" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="VozvrCashX" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="VozvrCardX" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="VozvrCreditX" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CashCountX" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardCountX" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreditCountX" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VozvrCardCountX" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VozvrCashCountX" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VozvrCreditCountX" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VozvrCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VozvrNum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SystemDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Depnum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnDepNum" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Klishe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KkmNum" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="INN" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RepNum" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateTimeOfReport" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RepNum2" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IzEKLZFool" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartSum" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="StopSum" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="StopSumFromStartLife" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="EKLZNUM" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="KPKNum" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="KriptoCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddZRepResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddZRepResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetZRep">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="UnDepNum" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetZRepResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetZRepResult" type="tns:ZReportInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCheckCountFromEklz">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kkmnum" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="repnum2" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCheckCountFromEklzResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCheckCountFromEklzResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetZRepStrings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Term" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetZRepStringsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetZRepStringsResult" type="tns:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetZRepStringsTest">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetZRepStringsTestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetZRepStringsTestResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetZRep3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepNum" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetZRep3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetZRep3Result" type="tns:ArrayOfTblZReports2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTblZReports2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TblZReports2" nillable="true" type="tns:TblZReports2" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetZRep2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="UnDepNum" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetZRep2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetZRep2Result" type="tns:ArrayOfZReportInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfZReportInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ZReportInfo" nillable="true" type="tns:ZReportInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DepIsWhite">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="_DepNum" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DepIsWhiteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepIsWhiteResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChecksByDofBandDep">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BD" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="Dep" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChecksByDofBandDepResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChecksByDofBandDepResult" type="tns:ArrayOfXmlCheckRecive" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfXmlCheckRecive">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="XmlCheckRecive" nillable="true" type="tns:XmlCheckRecive" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="XmlCheckRecive">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Card" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dt" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllDeps">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllDepsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllDepsResult" type="tns:ArrayOfDimTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDimTable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DimTable" nillable="true" type="tns:DimTable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DimTable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UnDepNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PointName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Place" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cassa" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CassEnable" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetZReportsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetZReports" />
+  </wsdl:message>
+  <wsdl:message name="GetZReportsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetZReportsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetKKmsSumFromStartLifeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetKKmsSumFromStartLife" />
+  </wsdl:message>
+  <wsdl:message name="GetKKmsSumFromStartLifeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetKKmsSumFromStartLifeResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestSoapIn">
+    <wsdl:part name="parameters" element="tns:Test" />
+  </wsdl:message>
+  <wsdl:message name="TestSoapOut">
+    <wsdl:part name="parameters" element="tns:TestResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddErrorSoapIn">
+    <wsdl:part name="parameters" element="tns:AddError" />
+  </wsdl:message>
+  <wsdl:message name="AddErrorSoapOut">
+    <wsdl:part name="parameters" element="tns:AddErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConvertDataSoapIn">
+    <wsdl:part name="parameters" element="tns:ConvertData" />
+  </wsdl:message>
+  <wsdl:message name="ConvertDataSoapOut">
+    <wsdl:part name="parameters" element="tns:ConvertDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddHamsterCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:AddHamsterCheck" />
+  </wsdl:message>
+  <wsdl:message name="AddHamsterCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:AddHamsterCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddHamsterChecksSoapIn">
+    <wsdl:part name="parameters" element="tns:AddHamsterChecks" />
+  </wsdl:message>
+  <wsdl:message name="AddHamsterChecksSoapOut">
+    <wsdl:part name="parameters" element="tns:AddHamsterChecksResponse" />
+  </wsdl:message>
+  <wsdl:message name="CopyLogFileSoapIn">
+    <wsdl:part name="parameters" element="tns:CopyLogFile" />
+  </wsdl:message>
+  <wsdl:message name="CopyLogFileSoapOut">
+    <wsdl:part name="parameters" element="tns:CopyLogFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CopyCheckFileSoapIn">
+    <wsdl:part name="parameters" element="tns:CopyCheckFile" />
+  </wsdl:message>
+  <wsdl:message name="CopyCheckFileSoapOut">
+    <wsdl:part name="parameters" element="tns:CopyCheckFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddPaymentCardInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:AddPaymentCardInfo" />
+  </wsdl:message>
+  <wsdl:message name="AddPaymentCardInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:AddPaymentCardInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentCardInfoReportSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentCardInfoReport" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentCardInfoReportSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentCardInfoReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddZRep2SoapIn">
+    <wsdl:part name="parameters" element="tns:AddZRep2" />
+  </wsdl:message>
+  <wsdl:message name="AddZRep2SoapOut">
+    <wsdl:part name="parameters" element="tns:AddZRep2Response" />
+  </wsdl:message>
+  <wsdl:message name="AddZRepSoapIn">
+    <wsdl:part name="parameters" element="tns:AddZRep" />
+  </wsdl:message>
+  <wsdl:message name="AddZRepSoapOut">
+    <wsdl:part name="parameters" element="tns:AddZRepResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetZRepSoapIn">
+    <wsdl:part name="parameters" element="tns:GetZRep" />
+  </wsdl:message>
+  <wsdl:message name="GetZRepSoapOut">
+    <wsdl:part name="parameters" element="tns:GetZRepResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckCountFromEklzSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCheckCountFromEklz" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckCountFromEklzSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCheckCountFromEklzResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetZRepStringsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetZRepStrings" />
+  </wsdl:message>
+  <wsdl:message name="GetZRepStringsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetZRepStringsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetZRepStringsTestSoapIn">
+    <wsdl:part name="parameters" element="tns:GetZRepStringsTest" />
+  </wsdl:message>
+  <wsdl:message name="GetZRepStringsTestSoapOut">
+    <wsdl:part name="parameters" element="tns:GetZRepStringsTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetZRep3SoapIn">
+    <wsdl:part name="parameters" element="tns:GetZRep3" />
+  </wsdl:message>
+  <wsdl:message name="GetZRep3SoapOut">
+    <wsdl:part name="parameters" element="tns:GetZRep3Response" />
+  </wsdl:message>
+  <wsdl:message name="GetZRep2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetZRep2" />
+  </wsdl:message>
+  <wsdl:message name="GetZRep2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetZRep2Response" />
+  </wsdl:message>
+  <wsdl:message name="DepIsWhiteSoapIn">
+    <wsdl:part name="parameters" element="tns:DepIsWhite" />
+  </wsdl:message>
+  <wsdl:message name="DepIsWhiteSoapOut">
+    <wsdl:part name="parameters" element="tns:DepIsWhiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChecksByDofBandDepSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChecksByDofBandDep" />
+  </wsdl:message>
+  <wsdl:message name="GetChecksByDofBandDepSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChecksByDofBandDepResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDepsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllDeps" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDepsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllDepsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="GetZReports">
+      <wsdl:input message="tns:GetZReportsSoapIn" />
+      <wsdl:output message="tns:GetZReportsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKKmsSumFromStartLife">
+      <wsdl:input message="tns:GetKKmsSumFromStartLifeSoapIn" />
+      <wsdl:output message="tns:GetKKmsSumFromStartLifeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <wsdl:input message="tns:TestSoapIn" />
+      <wsdl:output message="tns:TestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddError">
+      <wsdl:input message="tns:AddErrorSoapIn" />
+      <wsdl:output message="tns:AddErrorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertData">
+      <wsdl:input message="tns:ConvertDataSoapIn" />
+      <wsdl:output message="tns:ConvertDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddHamsterCheck">
+      <wsdl:input message="tns:AddHamsterCheckSoapIn" />
+      <wsdl:output message="tns:AddHamsterCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddHamsterChecks">
+      <wsdl:input message="tns:AddHamsterChecksSoapIn" />
+      <wsdl:output message="tns:AddHamsterChecksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyLogFile">
+      <wsdl:input message="tns:CopyLogFileSoapIn" />
+      <wsdl:output message="tns:CopyLogFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyCheckFile">
+      <wsdl:input message="tns:CopyCheckFileSoapIn" />
+      <wsdl:output message="tns:CopyCheckFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPaymentCardInfo">
+      <wsdl:input message="tns:AddPaymentCardInfoSoapIn" />
+      <wsdl:output message="tns:AddPaymentCardInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentCardInfoReport">
+      <wsdl:input message="tns:GetPaymentCardInfoReportSoapIn" />
+      <wsdl:output message="tns:GetPaymentCardInfoReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddZRep2">
+      <wsdl:input message="tns:AddZRep2SoapIn" />
+      <wsdl:output message="tns:AddZRep2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddZRep">
+      <wsdl:input message="tns:AddZRepSoapIn" />
+      <wsdl:output message="tns:AddZRepSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZRep">
+      <wsdl:input message="tns:GetZRepSoapIn" />
+      <wsdl:output message="tns:GetZRepSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckCountFromEklz">
+      <wsdl:input message="tns:GetCheckCountFromEklzSoapIn" />
+      <wsdl:output message="tns:GetCheckCountFromEklzSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZRepStrings">
+      <wsdl:input message="tns:GetZRepStringsSoapIn" />
+      <wsdl:output message="tns:GetZRepStringsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZRepStringsTest">
+      <wsdl:input message="tns:GetZRepStringsTestSoapIn" />
+      <wsdl:output message="tns:GetZRepStringsTestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZRep3">
+      <wsdl:input message="tns:GetZRep3SoapIn" />
+      <wsdl:output message="tns:GetZRep3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZRep2">
+      <wsdl:input message="tns:GetZRep2SoapIn" />
+      <wsdl:output message="tns:GetZRep2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DepIsWhite">
+      <wsdl:input message="tns:DepIsWhiteSoapIn" />
+      <wsdl:output message="tns:DepIsWhiteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChecksByDofBandDep">
+      <wsdl:input message="tns:GetChecksByDofBandDepSoapIn" />
+      <wsdl:output message="tns:GetChecksByDofBandDepSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDeps">
+      <wsdl:input message="tns:GetAllDepsSoapIn" />
+      <wsdl:output message="tns:GetAllDepsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetZReports">
+      <soap:operation soapAction="http://Piskov.org/GetZReports" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKKmsSumFromStartLife">
+      <soap:operation soapAction="http://Piskov.org/GetKKmsSumFromStartLife" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <soap:operation soapAction="http://Piskov.org/Test" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddError">
+      <soap:operation soapAction="http://Piskov.org/AddError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertData">
+      <soap:operation soapAction="http://Piskov.org/ConvertData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHamsterCheck">
+      <soap:operation soapAction="http://Piskov.org/AddHamsterCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHamsterChecks">
+      <soap:operation soapAction="http://Piskov.org/AddHamsterChecks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyLogFile">
+      <soap:operation soapAction="http://Piskov.org/CopyLogFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyCheckFile">
+      <soap:operation soapAction="http://Piskov.org/CopyCheckFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPaymentCardInfo">
+      <soap:operation soapAction="http://Piskov.org/AddPaymentCardInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentCardInfoReport">
+      <soap:operation soapAction="http://Piskov.org/GetPaymentCardInfoReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddZRep2">
+      <soap:operation soapAction="http://Piskov.org/AddZRep2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddZRep">
+      <soap:operation soapAction="http://Piskov.org/AddZRep" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZRep">
+      <soap:operation soapAction="http://Piskov.org/GetZRep" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckCountFromEklz">
+      <soap:operation soapAction="http://Piskov.org/GetCheckCountFromEklz" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZRepStrings">
+      <soap:operation soapAction="http://Piskov.org/GetZRepStrings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZRepStringsTest">
+      <soap:operation soapAction="http://Piskov.org/GetZRepStringsTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZRep3">
+      <soap:operation soapAction="http://Piskov.org/GetZRep3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZRep2">
+      <soap:operation soapAction="http://Piskov.org/GetZRep2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DepIsWhite">
+      <soap:operation soapAction="http://Piskov.org/DepIsWhite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChecksByDofBandDep">
+      <soap:operation soapAction="http://Piskov.org/GetChecksByDofBandDep" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDeps">
+      <soap:operation soapAction="http://Piskov.org/GetAllDeps" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetZReports">
+      <soap12:operation soapAction="http://Piskov.org/GetZReports" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKKmsSumFromStartLife">
+      <soap12:operation soapAction="http://Piskov.org/GetKKmsSumFromStartLife" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <soap12:operation soapAction="http://Piskov.org/Test" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddError">
+      <soap12:operation soapAction="http://Piskov.org/AddError" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertData">
+      <soap12:operation soapAction="http://Piskov.org/ConvertData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHamsterCheck">
+      <soap12:operation soapAction="http://Piskov.org/AddHamsterCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHamsterChecks">
+      <soap12:operation soapAction="http://Piskov.org/AddHamsterChecks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyLogFile">
+      <soap12:operation soapAction="http://Piskov.org/CopyLogFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyCheckFile">
+      <soap12:operation soapAction="http://Piskov.org/CopyCheckFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPaymentCardInfo">
+      <soap12:operation soapAction="http://Piskov.org/AddPaymentCardInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentCardInfoReport">
+      <soap12:operation soapAction="http://Piskov.org/GetPaymentCardInfoReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddZRep2">
+      <soap12:operation soapAction="http://Piskov.org/AddZRep2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddZRep">
+      <soap12:operation soapAction="http://Piskov.org/AddZRep" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZRep">
+      <soap12:operation soapAction="http://Piskov.org/GetZRep" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckCountFromEklz">
+      <soap12:operation soapAction="http://Piskov.org/GetCheckCountFromEklz" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZRepStrings">
+      <soap12:operation soapAction="http://Piskov.org/GetZRepStrings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZRepStringsTest">
+      <soap12:operation soapAction="http://Piskov.org/GetZRepStringsTest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZRep3">
+      <soap12:operation soapAction="http://Piskov.org/GetZRep3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZRep2">
+      <soap12:operation soapAction="http://Piskov.org/GetZRep2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DepIsWhite">
+      <soap12:operation soapAction="http://Piskov.org/DepIsWhite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChecksByDofBandDep">
+      <soap12:operation soapAction="http://Piskov.org/GetChecksByDofBandDep" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDeps">
+      <soap12:operation soapAction="http://Piskov.org/GetAllDeps" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://s2010:3134/service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://s2010:3134/service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

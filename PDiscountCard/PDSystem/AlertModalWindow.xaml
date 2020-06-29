@@ -1,0 +1,18 @@
+﻿<Window x:Class="PDiscountCard.PDSystem.AlertModalWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="333" d:DesignWidth="472" SizeToContent="WidthAndHeight" Background="Transparent" WindowState="Normal" WindowStyle="None" WindowStartupLocation="CenterScreen"  Topmost="True" AllowsTransparency="True">
+    <Window.Resources>
+        <ResourceDictionary Source="PDWPFResourceDictionary.xaml" />
+    </Window.Resources>
+    <Grid >
+        <Border BorderThickness="10" BorderBrush ="Aqua" CornerRadius="15" >
+            <Grid Name="MainGrid" Margin="-3">
+                
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

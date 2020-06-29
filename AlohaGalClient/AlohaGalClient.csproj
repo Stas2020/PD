@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{616BA087-EBC2-482E-8113-C643F7DFB349}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AlohaGalClient</RootNamespace>
+    <AssemblyName>AlohaGalClient</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DBQuery.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainClass.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\DbSrv\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfAirCompanydi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfAlertdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfAirCompanydi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfAlertdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfContactPersondi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfCurierdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfDeliveryPersondi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfDeliveryPlacedi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfDiscountdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfDiscountRangedi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfDishdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfDishKitchenGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfDishLogicGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfDishPackageFlightOrderdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfDishPackageToGoOrderdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfDriverdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfItemLabelInfodi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfLogItemdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfMarketingChanneldi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfOrderCustomerAddressdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfOrderCustomerdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfOrderCustomerPhonedi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfOrderFlightdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfOrderToGodi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfPaymentdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfPaymentGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfstringuHEDJ7Dj.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfUserdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfUserFuncdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfUserGroupAccessdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfArrayOfUserGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfContactPersondi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfCurierdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfdecimal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfDeliveryPersondi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfDeliveryPlacedi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfDiscountdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfDiscountRangedi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfDishdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfDishKitchenGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfDishLogicGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfDishPackageFlightOrderdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfDishPackageToGoOrderdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfDriverdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfItemLabelInfodi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfMarketingChanneldi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfOrderCustomerdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfOrderFlightdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfOrderToGodi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfPaymentdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfPaymentGroupdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfUserdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DbSrv\AlohaGalClient.DbSrv.OperationResultValueOfUserFuncdi1iiSGT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FiskalDrivers\FiskalDrivers.csproj">
+      <Project>{cef558ba-0de6-40b7-8552-6dd7e0b3d3c0}</Project>
+      <Name>FiskalDrivers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OrderToAlohaSrv\OrderToAlohaSrv.csproj">
+      <Project>{29f0a2d7-c9f0-4d62-b9bf-0af156ccd532}</Project>
+      <Name>OrderToAlohaSrv</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OrderToAloha\OrderToAloha\OrderToAloha.csproj">
+      <Project>{1621d795-24b8-4307-96ab-a5316f03f54a}</Project>
+      <Name>OrderToAloha</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\DbSrv\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DbSrv\AlohaService1.wsdl" />
+    <None Include="Service References\DbSrv\AlohaService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DbSrv\AlohaService51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DbSrv\AlohaService52.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DbSrv\AlohaService53.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DbSrv\AlohaService54.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DbSrv\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DbSrv\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DbSrv\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DbSrv\AlohaService1.disco" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

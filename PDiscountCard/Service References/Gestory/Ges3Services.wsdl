@@ -1,0 +1,1903 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:coffeemania:Ges3Services" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:S1="urn:soap-fault:details" xmlns:S2="urn:coffeemania:Ges3Services:Ges3Services" xmlns="http://schemas.xmlsoap.org/wsdl/" name="Ges3Services" targetNamespace="urn:coffeemania:Ges3Services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Author=Volkov, EncodingType=DOC_LITERAL, Proxygen_Product=Progress Version 10.1C</wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="urn:soap-fault:details">
+      <xsd:element name="FaultDetail">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="errorMessage" type="xsd:string" />
+            <xsd:element name="requestID" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:coffeemania:Ges3Services:Ges3Services">
+      <xsd:complexType name="chek_biznes_data_tmp2Row">
+        <xsd:sequence>
+          <xsd:element name="summa" nillable="true" type="xsd:decimal" />
+          <xsd:element name="dt" nillable="true" type="xsd:date" />
+          <xsd:element name="csh" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="chek_biznes_data_tmp2Param">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="tmp2Row" type="S2:chek_biznes_data_tmp2Row" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExportDataForSubdivisions_T_rezultsRow">
+        <xsd:sequence>
+          <xsd:element name="cod_ob" nillable="true" type="xsd:int" />
+          <xsd:element name="cod_shop" nillable="true" type="xsd:int" />
+          <xsd:element name="sum_sebest" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_izl" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_otr" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_ned" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_nedsNDS" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExportDataForSubdivisions_T_rezultsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_rezultsRow" type="S2:ExportDataForSubdivisions_T_rezultsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExportReturnDocumentForNumber_T_GoodsRow">
+        <xsd:sequence>
+          <xsd:element name="name_tov" nillable="true" type="xsd:string" />
+          <xsd:element name="quant_tov" nillable="true" type="xsd:decimal" />
+          <xsd:element name="ret_price" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_s_nds" nillable="true" type="xsd:decimal" />
+          <xsd:element name="proc_nds" nillable="true" type="xsd:int" />
+          <xsd:element name="sum_nds" nillable="true" type="xsd:decimal" />
+          <xsd:element name="c_meas" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExportReturnDocumentForNumber_T_GoodsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_GoodsRow" type="S2:ExportReturnDocumentForNumber_T_GoodsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExportWriteOffForSubdivisions_T_spisRow">
+        <xsd:sequence>
+          <xsd:element name="cod_ob" nillable="true" type="xsd:int" />
+          <xsd:element name="cod_shop" nillable="true" type="xsd:int" />
+          <xsd:element name="cod_prov" nillable="true" type="xsd:int" />
+          <xsd:element name="sum_prov" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sumsNDS_prov" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExportWriteOffForSubdivisions_T_spisParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_spisRow" type="S2:ExportWriteOffForSubdivisions_T_spisRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriCashByDay_T_shopsRow">
+        <xsd:sequence>
+          <xsd:element name="codShop" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriCashByDay_T_shopsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_shopsRow" type="S2:GestoriCashByDay_T_shopsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriCashByDay_T_cashRow">
+        <xsd:sequence>
+          <xsd:element name="cod_shop" nillable="true" type="xsd:int" />
+          <xsd:element name="sum_nal" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_plast" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriCashByDay_T_cashParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_cashRow" type="S2:GestoriCashByDay_T_cashRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriCustomerSalesByMonth_T_shopsRow">
+        <xsd:sequence>
+          <xsd:element name="codShop" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriCustomerSalesByMonth_T_shopsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_shopsRow" type="S2:GestoriCustomerSalesByMonth_T_shopsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriCustomerSalesByMonth_T_firmsRow">
+        <xsd:sequence>
+          <xsd:element name="codFirm" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriCustomerSalesByMonth_T_firmsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_firmsRow" type="S2:GestoriCustomerSalesByMonth_T_firmsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriCustomerSalesByMonth_T_naklRow">
+        <xsd:sequence>
+          <xsd:element name="cod_shop" nillable="true" type="xsd:int" />
+          <xsd:element name="cod_firm" nillable="true" type="xsd:int" />
+          <xsd:element name="proc_nds" nillable="true" type="xsd:int" />
+          <xsd:element name="sum_clear" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_nds" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriCustomerSalesByMonth_T_naklParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_naklRow" type="S2:GestoriCustomerSalesByMonth_T_naklRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriGetZakazGoods_ZakazGoodsRow">
+        <xsd:sequence>
+          <xsd:element name="good_code" nillable="true" type="xsd:decimal" />
+          <xsd:element name="good_name" nillable="true" type="xsd:string" />
+          <xsd:element name="good_meas" nillable="true" type="xsd:string" />
+          <xsd:element name="shop_code" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriGetZakazGoods_ZakazGoodsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ZakazGoodsRow" type="S2:GestoriGetZakazGoods_ZakazGoodsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="get_check_sales_by_code_T_salesRow">
+        <xsd:sequence>
+          <xsd:element name="cod_good" nillable="true" type="xsd:decimal" />
+          <xsd:element name="quantity" nillable="true" type="xsd:decimal" />
+          <xsd:element name="price" nillable="true" type="xsd:decimal" />
+          <xsd:element name="NDSproc" nillable="true" type="xsd:int" />
+          <xsd:element name="NDSsum" nillable="true" type="xsd:decimal" />
+          <xsd:element name="TOVsum" nillable="true" type="xsd:decimal" />
+          <xsd:element name="dt_sale" nillable="true" type="xsd:date" />
+          <xsd:element name="cod_podr" nillable="true" type="xsd:int" />
+          <xsd:element name="AlohaShopId" nillable="true" type="xsd:int" />
+          <xsd:element name="CheckNumber" nillable="true" type="xsd:string" />
+          <xsd:element name="IdCash" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="get_check_sales_by_code_T_salesParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_salesRow" type="S2:get_check_sales_by_code_T_salesRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="get_GestoriGoods_T_GestoriGoodsRow">
+        <xsd:sequence>
+          <xsd:element name="bar_cod" nillable="true" type="xsd:int" />
+          <xsd:element name="good_name" nillable="true" type="xsd:string" />
+          <xsd:element name="unit" nillable="true" type="xsd:string" />
+          <xsd:element name="isMade" nillable="true" type="xsd:boolean" />
+          <xsd:element name="isMadeString" nillable="true" type="xsd:string" />
+          <xsd:element name="ConsistOf" nillable="true" type="xsd:string" />
+          <xsd:element name="IsInOther" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="get_GestoriGoods_T_GestoriGoodsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_GestoriGoodsRow" type="S2:get_GestoriGoods_T_GestoriGoodsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="get_podr_chek_T_cheksRow">
+        <xsd:sequence>
+          <xsd:element name="ChekDate" nillable="true" type="xsd:date" />
+          <xsd:element name="ChekTime" nillable="true" type="xsd:string" />
+          <xsd:element name="Aloha_n" nillable="true" type="xsd:string" />
+          <xsd:element name="Chek_sum" nillable="true" type="xsd:decimal" />
+          <xsd:element name="cKlient" nillable="true" type="xsd:int" />
+          <xsd:element name="cod_pay1" nillable="true" type="xsd:int" />
+          <xsd:element name="SUM_pay1" nillable="true" type="xsd:decimal" />
+          <xsd:element name="cod_pay2" nillable="true" type="xsd:int" />
+          <xsd:element name="SUM_pay2" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="get_podr_chek_T_cheksParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_cheksRow" type="S2:get_podr_chek_T_cheksRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriGoodCalculationWithQuantity_CalculationGoodsRow">
+        <xsd:sequence>
+          <xsd:element name="comp_Code" nillable="true" type="xsd:int" />
+          <xsd:element name="comp_name" nillable="true" type="xsd:string" />
+          <xsd:element name="comp_meas" nillable="true" type="xsd:string" />
+          <xsd:element name="comp_quant" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestoriGoodCalculationWithQuantity_CalculationGoodsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="CalculationGoodsRow" type="S2:GestoriGoodCalculationWithQuantity_CalculationGoodsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetGestoriBalanceAll_GoodsRow">
+        <xsd:sequence>
+          <xsd:element name="good_code" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetGestoriBalanceAll_GoodsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="GoodsRow" type="S2:GetGestoriBalanceAll_GoodsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetGestoriBalanceAll_ResultGoodsRow">
+        <xsd:sequence>
+          <xsd:element name="good_code" nillable="true" type="xsd:decimal" />
+          <xsd:element name="ostatok" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetGestoriBalanceAll_ResultGoodsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ResultGoodsRow" type="S2:GetGestoriBalanceAll_ResultGoodsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GoodsOfFiliasPurchase_T_rezultsRow">
+        <xsd:sequence>
+          <xsd:element name="Proc_nds" nillable="true" type="xsd:int" />
+          <xsd:element name="Quantty" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_s_nds" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_bez_nds" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GoodsOfFiliasPurchase_T_rezultsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_rezultsRow" type="S2:GoodsOfFiliasPurchase_T_rezultsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GoodsOfFiliasReturn_T_rezultsRow">
+        <xsd:sequence>
+          <xsd:element name="Proc_nds" nillable="true" type="xsd:int" />
+          <xsd:element name="Quantty" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_s_nds" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_bez_nds" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GoodsOfFiliasReturn_T_rezultsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_rezultsRow" type="S2:GoodsOfFiliasReturn_T_rezultsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GoodsOfFiliasVozvrat_T_rezultsRow">
+        <xsd:sequence>
+          <xsd:element name="cod_shop" nillable="true" type="xsd:int" />
+          <xsd:element name="Proc_nds" nillable="true" type="xsd:int" />
+          <xsd:element name="Quantty" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_s_nds" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_bez_nds" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GoodsOfFiliasVozvrat_T_rezultsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_rezultsRow" type="S2:GoodsOfFiliasVozvrat_T_rezultsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PrihAndSpisTable_T_barcRow">
+        <xsd:sequence>
+          <xsd:element name="bCod" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PrihAndSpisTable_T_barcParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_barcRow" type="S2:PrihAndSpisTable_T_barcRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutOrderInGestoriNew_DetailRow">
+        <xsd:sequence>
+          <xsd:element name="ItemCode" nillable="true" type="xsd:int" />
+          <xsd:element name="ItemName" nillable="true" type="xsd:string" />
+          <xsd:element name="Unit" nillable="true" type="xsd:string" />
+          <xsd:element name="Quantity" nillable="true" type="xsd:decimal" />
+          <xsd:element name="Price" nillable="true" type="xsd:decimal" />
+          <xsd:element name="OrderTotal" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PutOrderInGestoriNew_DetailParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DetailRow" type="S2:PutOrderInGestoriNew_DetailRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RealShops_tmp_podrRow">
+        <xsd:sequence>
+          <xsd:element name="cod_shop" nillable="true" type="xsd:int" />
+          <xsd:element name="virt_shop" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RealShops_tmp_podrParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="tmp_podrRow" type="S2:RealShops_tmp_podrRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReturnDocumentList_T_naklRow">
+        <xsd:sequence>
+          <xsd:element name="num_docum" nillable="true" type="xsd:string" />
+          <xsd:element name="dt_docum" nillable="true" type="xsd:date" />
+          <xsd:element name="contragent" nillable="true" type="xsd:string" />
+          <xsd:element name="customer" nillable="true" type="xsd:string" />
+          <xsd:element name="summa" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReturnDocumentList_T_naklParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_naklRow" type="S2:ReturnDocumentList_T_naklRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ShopsGoodTime_T_goodtimeRow">
+        <xsd:sequence>
+          <xsd:element name="OrderTime" nillable="true" type="xsd:string" />
+          <xsd:element name="BarCode" nillable="true" type="xsd:string" />
+          <xsd:element name="Norma" nillable="true" type="xsd:int" />
+          <xsd:element name="Fact" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ShopsGoodTime_T_goodtimeParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_goodtimeRow" type="S2:ShopsGoodTime_T_goodtimeRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="sostav_barc_T_barcRow">
+        <xsd:sequence>
+          <xsd:element name="bar_cod" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="sostav_barc_T_barcParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_barcRow" type="S2:sostav_barc_T_barcRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="sostav_barc_T_goodsRow">
+        <xsd:sequence>
+          <xsd:element name="bar_cod" nillable="true" type="xsd:string" />
+          <xsd:element name="sostav" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="sostav_barc_T_goodsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_goodsRow" type="S2:sostav_barc_T_goodsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="sostav_goods_T_barcRow">
+        <xsd:sequence>
+          <xsd:element name="bar_cod" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="sostav_goods_T_barcParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_barcRow" type="S2:sostav_goods_T_barcRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="sostav_goods_T_goodsRow">
+        <xsd:sequence>
+          <xsd:element name="bar_cod" nillable="true" type="xsd:string" />
+          <xsd:element name="KKal" nillable="true" type="xsd:int" />
+          <xsd:element name="qBel" nillable="true" type="xsd:decimal" />
+          <xsd:element name="qZhs" nillable="true" type="xsd:decimal" />
+          <xsd:element name="qUgl" nillable="true" type="xsd:decimal" />
+          <xsd:element name="iFlag" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="sostav_goods_T_goodsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_goodsRow" type="S2:sostav_goods_T_goodsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SouseLost_tmp2Row">
+        <xsd:sequence>
+          <xsd:element name="quanty" nillable="true" type="xsd:decimal" />
+          <xsd:element name="cg" nillable="true" type="xsd:decimal" />
+          <xsd:element name="cNAME" nillable="true" type="xsd:string" />
+          <xsd:element name="summa" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SouseLost_tmp2Param">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="tmp2Row" type="S2:SouseLost_tmp2Row" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="storage_times_T_barcRow">
+        <xsd:sequence>
+          <xsd:element name="bar_cod" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="storage_times_T_barcParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_barcRow" type="S2:storage_times_T_barcRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="storage_times_T_goodsRow">
+        <xsd:sequence>
+          <xsd:element name="bar_cod" nillable="true" type="xsd:string" />
+          <xsd:element name="param1" nillable="true" type="xsd:int" />
+          <xsd:element name="param2" nillable="true" type="xsd:int" />
+          <xsd:element name="param3" nillable="true" type="xsd:int" />
+          <xsd:element name="param4" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="storage_times_T_goodsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_goodsRow" type="S2:storage_times_T_goodsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="storage_times2_T_barcRow">
+        <xsd:sequence>
+          <xsd:element name="bar_cod" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="storage_times2_T_barcParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_barcRow" type="S2:storage_times2_T_barcRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="storage_times2_T_goodsRow">
+        <xsd:sequence>
+          <xsd:element name="bar_cod" nillable="true" type="xsd:string" />
+          <xsd:element name="PARAM_usl" nillable="true" type="xsd:string" />
+          <xsd:element name="param1" nillable="true" type="xsd:int" />
+          <xsd:element name="param2" nillable="true" type="xsd:int" />
+          <xsd:element name="param3" nillable="true" type="xsd:int" />
+          <xsd:element name="param4" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="storage_times2_T_goodsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_goodsRow" type="S2:storage_times2_T_goodsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="transferForSubdivisions_T_rezultsRow">
+        <xsd:sequence>
+          <xsd:element name="cod_shop" nillable="true" type="xsd:int" />
+          <xsd:element name="sum_seb" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sum_bezNDS" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="transferForSubdivisions_T_rezultsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_rezultsRow" type="S2:transferForSubdivisions_T_rezultsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="virt_obj_T_shopsRow">
+        <xsd:sequence>
+          <xsd:element name="ishop_real" nillable="true" type="xsd:int" />
+          <xsd:element name="ishop_virt" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="virt_obj_T_shopsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_shopsRow" type="S2:virt_obj_T_shopsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="chek_biznes_data">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="StartDate" nillable="true" type="xsd:date" />
+            <xsd:element name="EndDate" nillable="true" type="xsd:date" />
+            <xsd:element name="cshop" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="chek_biznes_dataResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="tmp2" nillable="true" type="S2:chek_biznes_data_tmp2Param" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExportDataForSubdivisions">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="par_year" nillable="true" type="xsd:int" />
+            <xsd:element name="par_month" nillable="true" type="xsd:int" />
+            <xsd:element name="pCodShop" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExportDataForSubdivisionsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_rezults" nillable="true" type="S2:ExportDataForSubdivisions_T_rezultsParam" />
+            <xsd:element name="lRezult" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExportReturnDocumentForNumber">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="num_dcmnt" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExportReturnDocumentForNumberResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="dt_dcmnt" nillable="true" type="xsd:date" />
+            <xsd:element name="name_organ" nillable="true" type="xsd:string" />
+            <xsd:element name="inn_organ" nillable="true" type="xsd:string" />
+            <xsd:element name="kpp_organ" nillable="true" type="xsd:string" />
+            <xsd:element name="addr_organ" nillable="true" type="xsd:string" />
+            <xsd:element name="accnt_organ" nillable="true" type="xsd:string" />
+            <xsd:element name="bik_organ" nillable="true" type="xsd:string" />
+            <xsd:element name="korr_organ" nillable="true" type="xsd:string" />
+            <xsd:element name="bank_organ" nillable="true" type="xsd:string" />
+            <xsd:element name="name_plat" nillable="true" type="xsd:string" />
+            <xsd:element name="inn_plat" nillable="true" type="xsd:string" />
+            <xsd:element name="kpp_plat" nillable="true" type="xsd:string" />
+            <xsd:element name="addr_plat" nillable="true" type="xsd:string" />
+            <xsd:element name="accnt_plat" nillable="true" type="xsd:string" />
+            <xsd:element name="bik_plat" nillable="true" type="xsd:string" />
+            <xsd:element name="korr_plat" nillable="true" type="xsd:string" />
+            <xsd:element name="bank_plat" nillable="true" type="xsd:string" />
+            <xsd:element name="name_gr_otpr" nillable="true" type="xsd:string" />
+            <xsd:element name="name_gr_pol" nillable="true" type="xsd:string" />
+            <xsd:element name="addr_dost" nillable="true" type="xsd:string" />
+            <xsd:element name="T_Goods" nillable="true" type="S2:ExportReturnDocumentForNumber_T_GoodsParam" />
+            <xsd:element name="lRezult" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExportWriteOffForSubdivisions">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="par_year" nillable="true" type="xsd:int" />
+            <xsd:element name="par_month" nillable="true" type="xsd:int" />
+            <xsd:element name="pCodShop" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExportWriteOffForSubdivisionsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_spis" nillable="true" type="S2:ExportWriteOffForSubdivisions_T_spisParam" />
+            <xsd:element name="lRezult" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriCashByDay">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="DT1" nillable="true" type="xsd:date" />
+            <xsd:element name="L_shops" nillable="true" type="xsd:boolean" />
+            <xsd:element name="T_shops" nillable="true" type="S2:GestoriCashByDay_T_shopsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriCashByDayResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_cash" nillable="true" type="S2:GestoriCashByDay_T_cashParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriCustomerSalesByMonth">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="par_year" nillable="true" type="xsd:int" />
+            <xsd:element name="par_month" nillable="true" type="xsd:int" />
+            <xsd:element name="L_shops" nillable="true" type="xsd:boolean" />
+            <xsd:element name="L_firms" nillable="true" type="xsd:boolean" />
+            <xsd:element name="T_shops" nillable="true" type="S2:GestoriCustomerSalesByMonth_T_shopsParam" />
+            <xsd:element name="T_firms" nillable="true" type="S2:GestoriCustomerSalesByMonth_T_firmsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriCustomerSalesByMonthResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_nakl" nillable="true" type="S2:GestoriCustomerSalesByMonth_T_naklParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriGetQuantityAndZakaz">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Cod_Podrazdelenia" nillable="true" type="xsd:int" />
+            <xsd:element name="Cod_Tovara" nillable="true" type="xsd:decimal" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriGetQuantityAndZakazResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="QuantityTv" nillable="true" type="xsd:decimal" />
+            <xsd:element name="QuantityZak" nillable="true" type="xsd:decimal" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriGetZakazGoods">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Cod_Podrazdelenia" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriGetZakazGoodsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="ZakazGoods" nillable="true" type="S2:GestoriGetZakazGoods_ZakazGoodsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriGetZakazQuantity">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Cod_Podrazdelenia" nillable="true" type="xsd:int" />
+            <xsd:element name="Cod_Tovara" nillable="true" type="xsd:decimal" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriGetZakazQuantityResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="QuantityTv" nillable="true" type="xsd:decimal" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="get_check_sales_by_code">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="dateStart" nillable="true" type="xsd:date" />
+            <xsd:element name="dateEnd" nillable="true" type="xsd:date" />
+            <xsd:element name="CODE_Union" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="get_check_sales_by_codeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_sales" nillable="true" type="S2:get_check_sales_by_code_T_salesParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="get_GestoriGoods">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="p_sub_id" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="get_GestoriGoodsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_GestoriGoods" nillable="true" type="S2:get_GestoriGoods_T_GestoriGoodsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="get_podr_chek">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="dateStart" nillable="true" type="xsd:date" />
+            <xsd:element name="dateEnd" nillable="true" type="xsd:date" />
+            <xsd:element name="CODE_podr" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="get_podr_chekResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_cheks" nillable="true" type="S2:get_podr_chek_T_cheksParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriGoodCalculationWithQuantity">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Cod_Podrazdelenia" nillable="true" type="xsd:int" />
+            <xsd:element name="Cod_Tovara" nillable="true" type="xsd:int" />
+            <xsd:element name="Quantity_Tovara" nillable="true" type="xsd:decimal" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GestoriGoodCalculationWithQuantityResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="Error_String" nillable="true" type="xsd:string" />
+            <xsd:element name="CalculationGoods" nillable="true" type="S2:GestoriGoodCalculationWithQuantity_CalculationGoodsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGes3FirmDetails">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="codfirm" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGes3FirmDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="nameFirm" nillable="true" type="xsd:string" />
+            <xsd:element name="adres" nillable="true" type="xsd:string" />
+            <xsd:element name="gen_dir" nillable="true" type="xsd:string" />
+            <xsd:element name="glav_buh" nillable="true" type="xsd:string" />
+            <xsd:element name="OKOHX" nillable="true" type="xsd:string" />
+            <xsd:element name="OKPO" nillable="true" type="xsd:string" />
+            <xsd:element name="telefon" nillable="true" type="xsd:string" />
+            <xsd:element name="telefax" nillable="true" type="xsd:string" />
+            <xsd:element name="email" nillable="true" type="xsd:string" />
+            <xsd:element name="r_schet" nillable="true" type="xsd:string" />
+            <xsd:element name="bank" nillable="true" type="xsd:string" />
+            <xsd:element name="bank_town" nillable="true" type="xsd:string" />
+            <xsd:element name="corrschet" nillable="true" type="xsd:string" />
+            <xsd:element name="s_bik" nillable="true" type="xsd:string" />
+            <xsd:element name="s_inn" nillable="true" type="xsd:string" />
+            <xsd:element name="s_kpp" nillable="true" type="xsd:string" />
+            <xsd:element name="i_cod" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGestoriBalance">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="codgood" nillable="true" type="xsd:decimal" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGestoriBalanceResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="ostatok" nillable="true" type="xsd:decimal" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGestoriBalanceAll">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Goods" nillable="true" type="S2:GetGestoriBalanceAll_GoodsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGestoriBalanceAllResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="ResultGoods" nillable="true" type="S2:GetGestoriBalanceAll_ResultGoodsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GoodsOfFiliasPurchase">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="par_year" nillable="true" type="xsd:int" />
+            <xsd:element name="par_month" nillable="true" type="xsd:int" />
+            <xsd:element name="pCodFirm" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GoodsOfFiliasPurchaseResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_rezults" nillable="true" type="S2:GoodsOfFiliasPurchase_T_rezultsParam" />
+            <xsd:element name="lRezult" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GoodsOfFiliasReturn">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="par_year" nillable="true" type="xsd:int" />
+            <xsd:element name="par_month" nillable="true" type="xsd:int" />
+            <xsd:element name="pCodFirm" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GoodsOfFiliasReturnResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_rezults" nillable="true" type="S2:GoodsOfFiliasReturn_T_rezultsParam" />
+            <xsd:element name="lRezult" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GoodsOfFiliasVozvrat">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="par_year" nillable="true" type="xsd:int" />
+            <xsd:element name="par_month" nillable="true" type="xsd:int" />
+            <xsd:element name="pCodFirm" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GoodsOfFiliasVozvratResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_rezults" nillable="true" type="S2:GoodsOfFiliasVozvrat_T_rezultsParam" />
+            <xsd:element name="lRezult" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="NewMenuAloha">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="cshop" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="NewMenuAlohaResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="obj_virt">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="cod_ob_shop" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="obj_virtResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="cod_virt_shop" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OpenGestoriDocument">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="TypeDoc" nillable="true" type="xsd:string" />
+            <xsd:element name="Num_Doc" nillable="true" type="xsd:string" />
+            <xsd:element name="Num_PayDox" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OpenGestoriDocumentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="lRezult" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PrihAndSpisTable">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="T_barc" nillable="true" type="S2:PrihAndSpisTable_T_barcParam" />
+            <xsd:element name="dt1" nillable="true" type="xsd:date" />
+            <xsd:element name="dt2" nillable="true" type="xsd:date" />
+            <xsd:element name="cShop" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PrihAndSpisTableResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="qPr" nillable="true" type="xsd:decimal" />
+            <xsd:element name="qSp" nillable="true" type="xsd:decimal" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PutOrderInGestoriNew">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="OrderId" nillable="true" type="xsd:int" />
+            <xsd:element name="VendorCode" nillable="true" type="xsd:int" />
+            <xsd:element name="DueDate" nillable="true" type="xsd:date" />
+            <xsd:element name="OrderDate" nillable="true" type="xsd:date" />
+            <xsd:element name="OrderTotal" nillable="true" type="xsd:decimal" />
+            <xsd:element name="Detail" nillable="true" type="S2:PutOrderInGestoriNew_DetailParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PutOrderInGestoriNewResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="Rezult" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RealShops">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="objId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RealShopsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="tmp_podr" nillable="true" type="S2:RealShops_tmp_podrParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RecommendedPrice">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="cg" nillable="true" type="xsd:decimal" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RecommendedPriceResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="rec_price" nillable="true" type="xsd:decimal" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReturnDocumentList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="DT1" nillable="true" type="xsd:date" />
+            <xsd:element name="DT2" nillable="true" type="xsd:date" />
+            <xsd:element name="cshop" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReturnDocumentListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_nakl" nillable="true" type="S2:ReturnDocumentList_T_naklParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ShopsGoodTime">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="DepId" nillable="true" type="xsd:int" />
+            <xsd:element name="dateStart" nillable="true" type="xsd:date" />
+            <xsd:element name="dateEnd" nillable="true" type="xsd:date" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ShopsGoodTimeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="kol_ch" nillable="true" type="xsd:int" />
+            <xsd:element name="T_goodtime" nillable="true" type="S2:ShopsGoodTime_T_goodtimeParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sostav_barc">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="T_barc" nillable="true" type="S2:sostav_barc_T_barcParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sostav_barcResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_goods" nillable="true" type="S2:sostav_barc_T_goodsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sostav_goods">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="cshop" nillable="true" type="xsd:int" />
+            <xsd:element name="T_barc" nillable="true" type="S2:sostav_goods_T_barcParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sostav_goodsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_goods" nillable="true" type="S2:sostav_goods_T_goodsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SouseLost">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="cshop" nillable="true" type="xsd:int" />
+            <xsd:element name="dt1" nillable="true" type="xsd:date" />
+            <xsd:element name="dt2" nillable="true" type="xsd:date" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SouseLostResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="tmp2" nillable="true" type="S2:SouseLost_tmp2Param" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="storage_times">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="T_barc" nillable="true" type="S2:storage_times_T_barcParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="storage_timesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_goods" nillable="true" type="S2:storage_times_T_goodsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="storage_times2">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="T_barc" nillable="true" type="S2:storage_times2_T_barcParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="storage_times2Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_goods" nillable="true" type="S2:storage_times2_T_goodsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="transferForSubdivisions">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="par_year" nillable="true" type="xsd:int" />
+            <xsd:element name="par_month" nillable="true" type="xsd:int" />
+            <xsd:element name="pCodShop" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="transferForSubdivisionsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_rezults" nillable="true" type="S2:transferForSubdivisions_T_rezultsParam" />
+            <xsd:element name="lRezult" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="virt_obj">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="cod_ob_shop" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="virt_objResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_shops" nillable="true" type="S2:virt_obj_T_shopsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Ges3Services_GestoriGetZakazQuantityResponse">
+    <wsdl:part name="parameters" element="S2:GestoriGetZakazQuantityResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ReturnDocumentListResponse">
+    <wsdl:part name="parameters" element="S2:ReturnDocumentListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_RecommendedPriceResponse">
+    <wsdl:part name="parameters" element="S2:RecommendedPriceResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ExportReturnDocumentForNumber">
+    <wsdl:part name="parameters" element="S2:ExportReturnDocumentForNumber" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGestoriBalanceResponse">
+    <wsdl:part name="parameters" element="S2:GetGestoriBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_storage_times">
+    <wsdl:part name="parameters" element="S2:storage_times" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_SouseLost">
+    <wsdl:part name="parameters" element="S2:SouseLost" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_sostav_goods">
+    <wsdl:part name="parameters" element="S2:sostav_goods" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGetZakazGoodsResponse">
+    <wsdl:part name="parameters" element="S2:GestoriGetZakazGoodsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGetZakazGoods">
+    <wsdl:part name="parameters" element="S2:GestoriGetZakazGoods" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasPurchase">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasPurchase" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasPurchaseResponse">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasPurchaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_OpenGestoriDocument">
+    <wsdl:part name="parameters" element="S2:OpenGestoriDocument" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriCustomerSalesByMonth">
+    <wsdl:part name="parameters" element="S2:GestoriCustomerSalesByMonth" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_RecommendedPrice">
+    <wsdl:part name="parameters" element="S2:RecommendedPrice" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGoodCalculationWithQuantity">
+    <wsdl:part name="parameters" element="S2:GestoriGoodCalculationWithQuantity" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ExportReturnDocumentForNumberResponse">
+    <wsdl:part name="parameters" element="S2:ExportReturnDocumentForNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGetQuantityAndZakazResponse">
+    <wsdl:part name="parameters" element="S2:GestoriGetQuantityAndZakazResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_podr_chekResponse">
+    <wsdl:part name="parameters" element="S2:get_podr_chekResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_sostav_barc">
+    <wsdl:part name="parameters" element="S2:sostav_barc" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_PutOrderInGestoriNewResponse">
+    <wsdl:part name="parameters" element="S2:PutOrderInGestoriNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ShopsGoodTime">
+    <wsdl:part name="parameters" element="S2:ShopsGoodTime" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasVozvratResponse">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasVozvratResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGes3FirmDetails">
+    <wsdl:part name="parameters" element="S2:GetGes3FirmDetails" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_storage_times2Response">
+    <wsdl:part name="parameters" element="S2:storage_times2Response" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGes3FirmDetailsResponse">
+    <wsdl:part name="parameters" element="S2:GetGes3FirmDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ExportDataForSubdivisions">
+    <wsdl:part name="parameters" element="S2:ExportDataForSubdivisions" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_chek_biznes_data">
+    <wsdl:part name="parameters" element="S2:chek_biznes_data" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_obj_virtResponse">
+    <wsdl:part name="parameters" element="S2:obj_virtResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ReturnDocumentList">
+    <wsdl:part name="parameters" element="S2:ReturnDocumentList" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_storage_times2">
+    <wsdl:part name="parameters" element="S2:storage_times2" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriCashByDay">
+    <wsdl:part name="parameters" element="S2:GestoriCashByDay" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_virt_objResponse">
+    <wsdl:part name="parameters" element="S2:virt_objResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriCustomerSalesByMonthResponse">
+    <wsdl:part name="parameters" element="S2:GestoriCustomerSalesByMonthResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_chek_biznes_dataResponse">
+    <wsdl:part name="parameters" element="S2:chek_biznes_dataResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ExportWriteOffForSubdivisions">
+    <wsdl:part name="parameters" element="S2:ExportWriteOffForSubdivisions" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_PrihAndSpisTable">
+    <wsdl:part name="parameters" element="S2:PrihAndSpisTable" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_RealShops">
+    <wsdl:part name="parameters" element="S2:RealShops" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGoodCalculationWithQuantityResponse">
+    <wsdl:part name="parameters" element="S2:GestoriGoodCalculationWithQuantityResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriCashByDayResponse">
+    <wsdl:part name="parameters" element="S2:GestoriCashByDayResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_storage_timesResponse">
+    <wsdl:part name="parameters" element="S2:storage_timesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ShopsGoodTimeResponse">
+    <wsdl:part name="parameters" element="S2:ShopsGoodTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_GestoriGoods">
+    <wsdl:part name="parameters" element="S2:get_GestoriGoods" />
+  </wsdl:message>
+  <wsdl:message name="FaultDetailMessage">
+    <wsdl:part name="FaultDetail" element="S1:FaultDetail" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_transferForSubdivisions">
+    <wsdl:part name="parameters" element="S2:transferForSubdivisions" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasReturnResponse">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasReturnResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_podr_chek">
+    <wsdl:part name="parameters" element="S2:get_podr_chek" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGetZakazQuantity">
+    <wsdl:part name="parameters" element="S2:GestoriGetZakazQuantity" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_check_sales_by_codeResponse">
+    <wsdl:part name="parameters" element="S2:get_check_sales_by_codeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_obj_virt">
+    <wsdl:part name="parameters" element="S2:obj_virt" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ExportDataForSubdivisionsResponse">
+    <wsdl:part name="parameters" element="S2:ExportDataForSubdivisionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_NewMenuAlohaResponse">
+    <wsdl:part name="parameters" element="S2:NewMenuAlohaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasReturn">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasReturn" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_PutOrderInGestoriNew">
+    <wsdl:part name="parameters" element="S2:PutOrderInGestoriNew" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_check_sales_by_code">
+    <wsdl:part name="parameters" element="S2:get_check_sales_by_code" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGestoriBalance">
+    <wsdl:part name="parameters" element="S2:GetGestoriBalance" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_virt_obj">
+    <wsdl:part name="parameters" element="S2:virt_obj" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_SouseLostResponse">
+    <wsdl:part name="parameters" element="S2:SouseLostResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_transferForSubdivisionsResponse">
+    <wsdl:part name="parameters" element="S2:transferForSubdivisionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_NewMenuAloha">
+    <wsdl:part name="parameters" element="S2:NewMenuAloha" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGestoriBalanceAllResponse">
+    <wsdl:part name="parameters" element="S2:GetGestoriBalanceAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGestoriBalanceAll">
+    <wsdl:part name="parameters" element="S2:GetGestoriBalanceAll" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGetQuantityAndZakaz">
+    <wsdl:part name="parameters" element="S2:GestoriGetQuantityAndZakaz" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasVozvrat">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasVozvrat" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_sostav_barcResponse">
+    <wsdl:part name="parameters" element="S2:sostav_barcResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_sostav_goodsResponse">
+    <wsdl:part name="parameters" element="S2:sostav_goodsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_RealShopsResponse">
+    <wsdl:part name="parameters" element="S2:RealShopsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_PrihAndSpisTableResponse">
+    <wsdl:part name="parameters" element="S2:PrihAndSpisTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_OpenGestoriDocumentResponse">
+    <wsdl:part name="parameters" element="S2:OpenGestoriDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_GestoriGoodsResponse">
+    <wsdl:part name="parameters" element="S2:get_GestoriGoodsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ExportWriteOffForSubdivisionsResponse">
+    <wsdl:part name="parameters" element="S2:ExportWriteOffForSubdivisionsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Ges3ServicesObj">
+    <wsdl:operation name="chek_biznes_data">
+      <wsdl:input message="tns:Ges3Services_chek_biznes_data" />
+      <wsdl:output message="tns:Ges3Services_chek_biznes_dataResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportDataForSubdivisions">
+      <wsdl:input message="tns:Ges3Services_ExportDataForSubdivisions" />
+      <wsdl:output message="tns:Ges3Services_ExportDataForSubdivisionsResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportReturnDocumentForNumber">
+      <wsdl:input message="tns:Ges3Services_ExportReturnDocumentForNumber" />
+      <wsdl:output message="tns:Ges3Services_ExportReturnDocumentForNumberResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportWriteOffForSubdivisions">
+      <wsdl:input message="tns:Ges3Services_ExportWriteOffForSubdivisions" />
+      <wsdl:output message="tns:Ges3Services_ExportWriteOffForSubdivisionsResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GestoriCashByDay">
+      <wsdl:input message="tns:Ges3Services_GestoriCashByDay" />
+      <wsdl:output message="tns:Ges3Services_GestoriCashByDayResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GestoriCustomerSalesByMonth">
+      <wsdl:input message="tns:Ges3Services_GestoriCustomerSalesByMonth" />
+      <wsdl:output message="tns:Ges3Services_GestoriCustomerSalesByMonthResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GestoriGetQuantityAndZakaz">
+      <wsdl:input message="tns:Ges3Services_GestoriGetQuantityAndZakaz" />
+      <wsdl:output message="tns:Ges3Services_GestoriGetQuantityAndZakazResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GestoriGetZakazGoods">
+      <wsdl:input message="tns:Ges3Services_GestoriGetZakazGoods" />
+      <wsdl:output message="tns:Ges3Services_GestoriGetZakazGoodsResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GestoriGetZakazQuantity">
+      <wsdl:input message="tns:Ges3Services_GestoriGetZakazQuantity" />
+      <wsdl:output message="tns:Ges3Services_GestoriGetZakazQuantityResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_check_sales_by_code">
+      <wsdl:input message="tns:Ges3Services_get_check_sales_by_code" />
+      <wsdl:output message="tns:Ges3Services_get_check_sales_by_codeResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_GestoriGoods">
+      <wsdl:input message="tns:Ges3Services_get_GestoriGoods" />
+      <wsdl:output message="tns:Ges3Services_get_GestoriGoodsResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_podr_chek">
+      <wsdl:input message="tns:Ges3Services_get_podr_chek" />
+      <wsdl:output message="tns:Ges3Services_get_podr_chekResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GestoriGoodCalculationWithQuantity">
+      <wsdl:input message="tns:Ges3Services_GestoriGoodCalculationWithQuantity" />
+      <wsdl:output message="tns:Ges3Services_GestoriGoodCalculationWithQuantityResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGes3FirmDetails">
+      <wsdl:input message="tns:Ges3Services_GetGes3FirmDetails" />
+      <wsdl:output message="tns:Ges3Services_GetGes3FirmDetailsResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGestoriBalance">
+      <wsdl:input message="tns:Ges3Services_GetGestoriBalance" />
+      <wsdl:output message="tns:Ges3Services_GetGestoriBalanceResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGestoriBalanceAll">
+      <wsdl:input message="tns:Ges3Services_GetGestoriBalanceAll" />
+      <wsdl:output message="tns:Ges3Services_GetGestoriBalanceAllResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GoodsOfFiliasPurchase">
+      <wsdl:input message="tns:Ges3Services_GoodsOfFiliasPurchase" />
+      <wsdl:output message="tns:Ges3Services_GoodsOfFiliasPurchaseResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GoodsOfFiliasReturn">
+      <wsdl:input message="tns:Ges3Services_GoodsOfFiliasReturn" />
+      <wsdl:output message="tns:Ges3Services_GoodsOfFiliasReturnResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GoodsOfFiliasVozvrat">
+      <wsdl:input message="tns:Ges3Services_GoodsOfFiliasVozvrat" />
+      <wsdl:output message="tns:Ges3Services_GoodsOfFiliasVozvratResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewMenuAloha">
+      <wsdl:input message="tns:Ges3Services_NewMenuAloha" />
+      <wsdl:output message="tns:Ges3Services_NewMenuAlohaResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obj_virt">
+      <wsdl:input message="tns:Ges3Services_obj_virt" />
+      <wsdl:output message="tns:Ges3Services_obj_virtResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenGestoriDocument">
+      <wsdl:input message="tns:Ges3Services_OpenGestoriDocument" />
+      <wsdl:output message="tns:Ges3Services_OpenGestoriDocumentResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrihAndSpisTable">
+      <wsdl:input message="tns:Ges3Services_PrihAndSpisTable" />
+      <wsdl:output message="tns:Ges3Services_PrihAndSpisTableResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PutOrderInGestoriNew">
+      <wsdl:input message="tns:Ges3Services_PutOrderInGestoriNew" />
+      <wsdl:output message="tns:Ges3Services_PutOrderInGestoriNewResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RealShops">
+      <wsdl:input message="tns:Ges3Services_RealShops" />
+      <wsdl:output message="tns:Ges3Services_RealShopsResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecommendedPrice">
+      <wsdl:input message="tns:Ges3Services_RecommendedPrice" />
+      <wsdl:output message="tns:Ges3Services_RecommendedPriceResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnDocumentList">
+      <wsdl:input message="tns:Ges3Services_ReturnDocumentList" />
+      <wsdl:output message="tns:Ges3Services_ReturnDocumentListResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShopsGoodTime">
+      <wsdl:input message="tns:Ges3Services_ShopsGoodTime" />
+      <wsdl:output message="tns:Ges3Services_ShopsGoodTimeResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="sostav_barc">
+      <wsdl:input message="tns:Ges3Services_sostav_barc" />
+      <wsdl:output message="tns:Ges3Services_sostav_barcResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="sostav_goods">
+      <wsdl:input message="tns:Ges3Services_sostav_goods" />
+      <wsdl:output message="tns:Ges3Services_sostav_goodsResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SouseLost">
+      <wsdl:input message="tns:Ges3Services_SouseLost" />
+      <wsdl:output message="tns:Ges3Services_SouseLostResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="storage_times">
+      <wsdl:input message="tns:Ges3Services_storage_times" />
+      <wsdl:output message="tns:Ges3Services_storage_timesResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="storage_times2">
+      <wsdl:input message="tns:Ges3Services_storage_times2" />
+      <wsdl:output message="tns:Ges3Services_storage_times2Response" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="transferForSubdivisions">
+      <wsdl:input message="tns:Ges3Services_transferForSubdivisions" />
+      <wsdl:output message="tns:Ges3Services_transferForSubdivisionsResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="virt_obj">
+      <wsdl:input message="tns:Ges3Services_virt_obj" />
+      <wsdl:output message="tns:Ges3Services_virt_objResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Ges3ServicesObj" type="tns:Ges3ServicesObj">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="chek_biznes_data">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ExportDataForSubdivisions">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ExportReturnDocumentForNumber">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ExportWriteOffForSubdivisions">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GestoriCashByDay">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GestoriCustomerSalesByMonth">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GestoriGetQuantityAndZakaz">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GestoriGetZakazGoods">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GestoriGetZakazQuantity">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="get_check_sales_by_code">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="get_GestoriGoods">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="get_podr_chek">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GestoriGoodCalculationWithQuantity">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetGes3FirmDetails">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetGestoriBalance">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetGestoriBalanceAll">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GoodsOfFiliasPurchase">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GoodsOfFiliasReturn">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GoodsOfFiliasVozvrat">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="NewMenuAloha">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obj_virt">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="OpenGestoriDocument">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="PrihAndSpisTable">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="PutOrderInGestoriNew">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RealShops">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RecommendedPrice">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnDocumentList">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ShopsGoodTime">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="sostav_barc">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="sostav_goods">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SouseLost">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="storage_times">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="storage_times2">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="transferForSubdivisions">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="virt_obj">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Ges3ServicesService">
+    <wsdl:port name="Ges3ServicesObj" binding="tns:Ges3ServicesObj">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" />
+      <soap:address location="http://vfiliasesb0:2580/process/Ges3ServicesProc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

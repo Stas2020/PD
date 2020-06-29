@@ -1,0 +1,78 @@
+﻿<UserControl xmlns:my="clr-namespace:PDiscountCard"  x:Class="PDiscountCard.FayRetail.ctrlApplyFayRetailCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="1332" d:DesignWidth="716">
+    <UserControl.Resources>
+        <ResourceDictionary Source="..\PDSystem\PDWPFResourceDictionary.xaml" />
+
+
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid Name="StSweepCard" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel  Grid.Row="0">
+                <TextBlock Style="{StaticResource MyTextStyle}" Text="Просканируйте карту"></TextBlock>
+                <TextBox Name="tbCode" Width="200" FontSize="20" KeyDown="tbCode_KeyDown" KeyUp="tbCode_KeyUp"></TextBox>
+                <TextBlock Name="tbError" Style="{StaticResource MyTextStyle}" Text="" TextWrapping="Wrap"></TextBlock>
+                <Button Name="btnTest" Width="50" Content="test" Click="btnTest_Click" Visibility="Visible"/>
+            </StackPanel>
+            <Button x:Name="btnCancel" Grid.Row="1" Margin="30,15" Click="btnCancel_Click">Отмена</Button>
+        </Grid>
+        <StackPanel Name="StCardInfo" Visibility="Visible" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="10">
+                <TextBlock Text="Информация об участнике "></TextBlock>
+                <TextBlock x:Name="guestName" ></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" Height="30" Margin="10">
+                <TextBlock Text="Итоговая сумма чека:  "></TextBlock>
+                <TextBlock Name="tbAllChkSumm"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="10">
+                <TextBlock HorizontalAlignment="Left" Text="Баланс бонусного счета:  "></TextBlock>
+                <TextBlock Name="tbBalance" HorizontalAlignment="Right"></TextBlock>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="10">
+                <TextBlock HorizontalAlignment="Left" Text="Доступно к списанию:  "></TextBlock>
+                <TextBlock Name="tbBalanceAvaible"  HorizontalAlignment="Right"></TextBlock>
+            </StackPanel>
+            <Grid Margin="0,100,0,0"  HorizontalAlignment="Stretch" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Name="btnDiscount" Grid.Column="0" Height="80" Click="btnDiscount_Click">Списать</Button>
+                <Button Name="btnAddBonus" Grid.Column="1" Click="btnAddBonus_Click">Накопить</Button>
+                <Button Name="btnCancel2"  Grid.Column="2"  Click="btnCancel_Click">Отмена</Button>
+            </Grid>
+        </StackPanel>
+        <Grid Name="grDigitalKeys" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0"  Orientation="Vertical">
+                <TextBlock Margin="20" Text="Введите сумму списания. Максимум: " HorizontalAlignment="Center"/>
+                <TextBlock Margin="20" Name="tbMaxSumm" Text="" HorizontalAlignment="Center"/>
+                <TextBlock Margin="20" Name="tbInfoMsg" Text="" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <my:ctrlDigitalKeyBoard x:Name="digitKeyboard" Grid.Row="1" />
+
+        </Grid>
+        <Grid Name="grFinalMsg" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Margin="20" Name="tbFinalMsg" Text="" HorizontalAlignment="Center"/>
+            <Button x:Name="btnFinalOk" Grid.Row="1" Margin="30,15" Click="btnCancel_Click">Завершить</Button>
+        </Grid>
+    </Grid>
+</UserControl>

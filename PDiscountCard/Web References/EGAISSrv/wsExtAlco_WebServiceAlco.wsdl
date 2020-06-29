@@ -1,0 +1,1006 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd1="1c_ws_alco" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd4="http://v8.1c.ru/8.1/data/enterprise" xmlns:soap12bind="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd2="http://alco.coffeemania.ru" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd3="http://v8.1c.ru/8.1/data/core" xmlns:tns="1c_ws_alco" name="wsExtAlco_WebServiceAlco" targetNamespace="1c_ws_alco" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns:tns="http://alco.coffeemania.ru" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://alco.coffeemania.ru" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="Array" type="tns:Elements" />
+      <xs:element name="ArrayOfQRCodes" type="tns:QRCodes" />
+      <xs:complexType name="Element">
+        <xs:sequence>
+          <xs:element name="AlcoCode" type="xs:string" />
+          <xs:element name="AlcoName" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Elements">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Element" type="tns:Element" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="QRCodes">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="QRCode" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://v8.1c.ru/8.1/data/core" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://v8.1c.ru/8.1/data/core" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:simpleType name="AllowedLength">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Fixed" />
+          <xs:enumeration value="Variable" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="AllowedSign">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Any" />
+          <xs:enumeration value="Nonnegative" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="Array">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" nillable="true" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BinaryDataQualifiers">
+        <xs:sequence>
+          <xs:element name="Length" type="xs:decimal" />
+          <xs:element name="AllowedLength" type="tns:AllowedLength" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="CompositeID">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="-?[0-9]+(:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})?" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="DataFillError">
+        <xs:sequence>
+          <xs:element name="Data" type="xs:string" />
+          <xs:element name="DataDescr" type="xs:string" />
+          <xs:element name="Text" type="xs:string" />
+          <xs:element name="Status" type="tns:FillCheckErrorStatus" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DataFillErrors">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="tns:DataFillError" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="DateFractions">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Date" />
+          <xs:enumeration value="Time" />
+          <xs:enumeration value="DateTime" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="DateQualifiers">
+        <xs:sequence>
+          <xs:element name="DateFractions" type="tns:DateFractions" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Exception">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:GenericException">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" type="xs:base64Binary" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:simpleType name="FillCheckErrorStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Error" />
+          <xs:enumeration value="Warning" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="FillChecking">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DontCheck" />
+          <xs:enumeration value="ShowError" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="FixedArray">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" nillable="true" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FixedMap">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="pair" type="tns:KeyAndValue" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FixedStructure">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Property">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Value" nillable="true" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xs:NMTOKEN" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GenericException" abstract="true">
+        <xs:sequence>
+          <xs:element name="descr" type="xs:string" />
+          <xs:element minOccurs="0" name="inner" type="tns:GenericException" />
+        </xs:sequence>
+        <xs:attribute name="clsid" type="tns:UUID" use="required" />
+        <xs:attribute default="false" name="encoded" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="KeyAndValue">
+        <xs:sequence>
+          <xs:element name="Key" />
+          <xs:element name="Value" nillable="true" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LocalStringItemType">
+        <xs:sequence>
+          <xs:element name="lang" type="xs:NMTOKEN" />
+          <xs:element name="content" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LocalStringType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="tns:LocalStringItemType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="MainClientApplicationWindowMode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Normal" />
+          <xs:enumeration value="Workplace" />
+          <xs:enumeration value="FullscreenWorkplace" />
+          <xs:enumeration value="Kiosk" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="Map">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="pair" type="tns:KeyAndValue" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="Null">
+        <xs:restriction base="xs:string">
+          <xs:length value="0" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="NumberQualifiers">
+        <xs:sequence>
+          <xs:element name="Digits" type="xs:decimal" />
+          <xs:element name="FractionDigits" type="xs:decimal" />
+          <xs:element name="AllowedSign" type="tns:AllowedSign" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ObjectVersion">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[0-9a-fA-F]{40}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="StandardBeginningDate">
+        <xs:sequence>
+          <xs:element name="variant" />
+          <xs:element minOccurs="0" name="date" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="StandardBeginningDateVariant">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Custom" />
+          <xs:enumeration value="BeginningOfThisDay" />
+          <xs:enumeration value="BeginningOfThisWeek" />
+          <xs:enumeration value="BeginningOfThisTenDays" />
+          <xs:enumeration value="BeginningOfThisMonth" />
+          <xs:enumeration value="BeginningOfThisQuarter" />
+          <xs:enumeration value="BeginningOfThisHalfYear" />
+          <xs:enumeration value="BeginningOfThisYear" />
+          <xs:enumeration value="BeginningOfLastDay" />
+          <xs:enumeration value="BeginningOfLastWeek" />
+          <xs:enumeration value="BeginningOfLastTenDays" />
+          <xs:enumeration value="BeginningOfLastMonth" />
+          <xs:enumeration value="BeginningOfLastQuarter" />
+          <xs:enumeration value="BeginningOfLastHalfYear" />
+          <xs:enumeration value="BeginningOfLastYear" />
+          <xs:enumeration value="BeginningOfNextDay" />
+          <xs:enumeration value="BeginningOfNextWeek" />
+          <xs:enumeration value="BeginningOfNextTenDays" />
+          <xs:enumeration value="BeginningOfNextMonth" />
+          <xs:enumeration value="BeginningOfNextQuarter" />
+          <xs:enumeration value="BeginningOfNextHalfYear" />
+          <xs:enumeration value="BeginningOfNextYear" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="StandardPeriod">
+        <xs:sequence>
+          <xs:element name="variant" />
+          <xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="StandardPeriodVariant">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Custom" />
+          <xs:enumeration value="Today" />
+          <xs:enumeration value="ThisWeek" />
+          <xs:enumeration value="ThisTenDays" />
+          <xs:enumeration value="ThisMonth" />
+          <xs:enumeration value="ThisQuarter" />
+          <xs:enumeration value="ThisHalfYear" />
+          <xs:enumeration value="ThisYear" />
+          <xs:enumeration value="FromBeginningOfThisWeek" />
+          <xs:enumeration value="FromBeginningOfThisTenDays" />
+          <xs:enumeration value="FromBeginningOfThisMonth" />
+          <xs:enumeration value="FromBeginningOfThisQuarter" />
+          <xs:enumeration value="FromBeginningOfThisHalfYear" />
+          <xs:enumeration value="FromBeginningOfThisYear" />
+          <xs:enumeration value="Yesterday" />
+          <xs:enumeration value="LastWeek" />
+          <xs:enumeration value="LastTenDays" />
+          <xs:enumeration value="LastMonth" />
+          <xs:enumeration value="LastQuarter" />
+          <xs:enumeration value="LastHalfYear" />
+          <xs:enumeration value="LastYear" />
+          <xs:enumeration value="LastWeekTillSameWeekDay" />
+          <xs:enumeration value="LastTenDaysTillSameDayNumber" />
+          <xs:enumeration value="LastMonthTillSameDate" />
+          <xs:enumeration value="LastQuarterTillSameDate" />
+          <xs:enumeration value="LastHalfYearTillSameDate" />
+          <xs:enumeration value="LastYearTillSameDate" />
+          <xs:enumeration value="Tomorrow" />
+          <xs:enumeration value="NextWeek" />
+          <xs:enumeration value="NextTenDays" />
+          <xs:enumeration value="NextMonth" />
+          <xs:enumeration value="NextQuarter" />
+          <xs:enumeration value="NextHalfYear" />
+          <xs:enumeration value="NextYear" />
+          <xs:enumeration value="NextWeekTillSameWeekDay" />
+          <xs:enumeration value="NextTenDaysTillSameDayNumber" />
+          <xs:enumeration value="NextMonthTillSameDate" />
+          <xs:enumeration value="NextQuarterTillSameDate" />
+          <xs:enumeration value="NextHalfYearTillSameDate" />
+          <xs:enumeration value="NextYearTillSameDate" />
+          <xs:enumeration value="TillEndOfThisWeek" />
+          <xs:enumeration value="TillEndOfThisTenDays" />
+          <xs:enumeration value="TillEndOfThisMonth" />
+          <xs:enumeration value="TillEndOfThisQuarter" />
+          <xs:enumeration value="TillEndOfThisHalfYear" />
+          <xs:enumeration value="TillEndOfThisYear" />
+          <xs:enumeration value="Last7Days" />
+          <xs:enumeration value="Next7Days" />
+          <xs:enumeration value="Month" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="StringQualifiers">
+        <xs:sequence>
+          <xs:element name="Length" type="xs:decimal" />
+          <xs:element name="AllowedLength" type="tns:AllowedLength" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Structure">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Property">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Value" nillable="true" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xs:NMTOKEN" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="Type">
+        <xs:restriction base="xs:QName" />
+      </xs:simpleType>
+      <xs:complexType name="TypeDescription">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Type" type="xs:QName" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="TypeSet" type="xs:QName" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="TypeId" type="tns:UUID" />
+          <xs:element minOccurs="0" name="NumberQualifiers" type="tns:NumberQualifiers" />
+          <xs:element minOccurs="0" name="StringQualifiers" type="tns:StringQualifiers" />
+          <xs:element minOccurs="0" name="DateQualifiers" type="tns:DateQualifiers" />
+          <xs:element minOccurs="0" name="BinaryDataQualifiers" type="tns:BinaryDataQualifiers" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="UUID">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="ValueListItemType">
+        <xs:sequence>
+          <xs:element name="value" nillable="true" />
+          <xs:element minOccurs="0" name="presentation" type="xs:string" />
+          <xs:element minOccurs="0" name="checkState" type="xs:decimal" />
+          <xs:element minOccurs="0" name="picture" />
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="formatPresentationSpecified" type="xs:boolean" />
+          <xs:element minOccurs="0" name="formatPresentation" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValueListType">
+        <xs:choice>
+          <xs:element name="valueType" type="tns:TypeDescription" />
+          <xs:element minOccurs="0" name="availableValues" type="tns:ValueListType" />
+          <xs:element minOccurs="0" name="lastId" type="xs:long" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="tns:ValueListItemType" />
+        </xs:choice>
+      </xs:complexType>
+      <xs:simpleType name="ValueStorage">
+        <xs:restriction base="xs:base64Binary" />
+      </xs:simpleType>
+      <xs:complexType name="ValueTable">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="column" type="tns:ValueTableColumn" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="index" type="tns:ValueTableIndex" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="row" type="tns:ValueTableRow" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValueTableColumn">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" type="xs:NMTOKEN" />
+          <xs:element minOccurs="0" name="ValueType" type="tns:TypeDescription" />
+          <xs:element minOccurs="0" name="Title" type="xs:string" />
+          <xs:element minOccurs="0" name="Width" type="xs:nonNegativeInteger" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValueTableIndex">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="column" type="xs:NMTOKEN" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValueTableRow">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" nillable="true" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValueTree">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="column" type="tns:ValueTreeColumn" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="row" type="tns:ValueTreeRow" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValueTreeColumn">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" type="xs:NMTOKEN" />
+          <xs:element minOccurs="0" name="ValueType" type="tns:TypeDescription" />
+          <xs:element minOccurs="0" name="Title" type="xs:string" />
+          <xs:element minOccurs="0" name="Width" type="xs:nonNegativeInteger" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValueTreeRow">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="row" type="tns:ValueTreeRow" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" nillable="true" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://v8.1c.ru/8.1/data/enterprise" xmlns:ns1="http://v8.1c.ru/8.1/data/core" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://v8.1c.ru/8.1/data/enterprise" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://v8.1c.ru/8.1/data/core" />
+      <xs:simpleType name="AccountType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Active" />
+          <xs:enumeration value="Passive" />
+          <xs:enumeration value="ActivePassive" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="AccountingRecordType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Debit" />
+          <xs:enumeration value="Credit" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="AccumulationRecordType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Receipt" />
+          <xs:enumeration value="Expense" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="AccumulationRegisterAggregatePeriodicity">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Nonperiodical" />
+          <xs:enumeration value="Auto" />
+          <xs:enumeration value="Day" />
+          <xs:enumeration value="Month" />
+          <xs:enumeration value="Quarter" />
+          <xs:enumeration value="HalfYear" />
+          <xs:enumeration value="Year" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="AccumulationRegisterAggregateUse">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Auto" />
+          <xs:enumeration value="Always" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="Aggregate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="use" type="xs:boolean" />
+          <xs:element minOccurs="0" name="periodicity" type="xs:decimal" />
+          <xs:element minOccurs="0" name="beginOfPeriod" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="endOfPeriod" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="size" type="xs:decimal" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="dimension" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AggregateList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="buildDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="sizeLimit" type="xs:decimal" />
+          <xs:element minOccurs="0" name="size" type="xs:decimal" />
+          <xs:element minOccurs="0" name="effect" type="xs:decimal" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="aggregate" type="tns:Aggregate" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="AnyRef">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="AutoShowStateMode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Auto" />
+          <xs:enumeration value="DontShow" />
+          <xs:enumeration value="Show" />
+          <xs:enumeration value="ShowOnComposition" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="AutoTimeMode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DontUse" />
+          <xs:enumeration value="Last" />
+          <xs:enumeration value="First" />
+          <xs:enumeration value="CurrentOrLast" />
+          <xs:enumeration value="CurrentOrFirst" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="Bound">
+        <xs:sequence>
+          <xs:element name="value" nillable="true" />
+          <xs:element name="kind" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ClientApplicationBaseFontVariant">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Normal" />
+          <xs:enumeration value="Large" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ClientApplicationFormScaleVariant">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Auto" />
+          <xs:enumeration value="Normal" />
+          <xs:enumeration value="Compact" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ClientApplicationInterfaceVariant">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Version8_2" />
+          <xs:enumeration value="Taxi" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ClientConnectionSpeed">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Normal" />
+          <xs:enumeration value="Low" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ComparisonType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Equal" />
+          <xs:enumeration value="NotEqual" />
+          <xs:enumeration value="Less" />
+          <xs:enumeration value="LessOrEqual" />
+          <xs:enumeration value="Greater" />
+          <xs:enumeration value="GreaterOrEqual" />
+          <xs:enumeration value="Interval" />
+          <xs:enumeration value="IntervalIncludingBounds" />
+          <xs:enumeration value="IntervalIncludingLowerBound" />
+          <xs:enumeration value="IntervalIncludingUpperBound" />
+          <xs:enumeration value="Contains" />
+          <xs:enumeration value="InList" />
+          <xs:enumeration value="InListByHierarchy" />
+          <xs:enumeration value="NotInList" />
+          <xs:enumeration value="NotInListByHierarchy" />
+          <xs:enumeration value="InHierarchy" />
+          <xs:enumeration value="NotInHierarchy" />
+          <xs:enumeration value="NotContains" />
+          <xs:enumeration value="BeginsWith" />
+          <xs:enumeration value="NotBeginsWith" />
+          <xs:enumeration value="Like" />
+          <xs:enumeration value="NotLike" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="DataChangeType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Create" />
+          <xs:enumeration value="Update" />
+          <xs:enumeration value="Delete" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="DataLineChangeType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Add" />
+          <xs:enumeration value="Update" />
+          <xs:enumeration value="Delete" />
+          <xs:enumeration value="Move" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="DocumentPostingMode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Regular" />
+          <xs:enumeration value="RealTime" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="DocumentWriteMode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Write" />
+          <xs:enumeration value="Posting" />
+          <xs:enumeration value="UndoPosting" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="Filter">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="FilterItem" type="tns:FilterItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FilterItem">
+        <xs:sequence>
+          <xs:element name="Name" type="xs:NCName" />
+          <xs:element minOccurs="0" name="Usage" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ComparisonType" type="tns:ComparisonType" />
+          <xs:element minOccurs="0" name="Value" nillable="true" />
+          <xs:element minOccurs="0" name="ValueFrom" nillable="true" />
+          <xs:element minOccurs="0" name="ValueTo" nillable="true" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="FoldersAndItemsUse">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Items" />
+          <xs:enumeration value="Folders" />
+          <xs:enumeration value="FoldersAndItems" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="JobSchedule">
+        <xs:sequence>
+          <xs:element name="WeekDays" type="tns:JobScheduleWeekDays" />
+          <xs:element name="Months" type="tns:JobScheduleMonths" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DetailedDailySchedules" type="tns:JobSchedule" />
+        </xs:sequence>
+        <xs:attribute name="BeginDate" type="xs:date" />
+        <xs:attribute name="EndDate" type="xs:date" />
+        <xs:attribute name="BeginTime" type="xs:time" />
+        <xs:attribute name="EndTime" type="xs:time" />
+        <xs:attribute name="CompletionTime" type="xs:time" />
+        <xs:attribute name="CompletionInterval" type="xs:decimal" />
+        <xs:attribute name="RepeatPeriodInDay" type="xs:decimal" />
+        <xs:attribute name="RepeatPause" type="xs:decimal" />
+        <xs:attribute name="WeekDayInMonth" type="xs:decimal" />
+        <xs:attribute name="DayInMonth" type="xs:decimal" />
+        <xs:attribute name="WeeksPeriod" type="xs:decimal" />
+        <xs:attribute name="DaysRepeatPeriod" type="xs:decimal" />
+      </xs:complexType>
+      <xs:simpleType name="JobScheduleMonths">
+        <xs:list itemType="xs:decimal" />
+      </xs:simpleType>
+      <xs:simpleType name="JobScheduleWeekDays">
+        <xs:list itemType="xs:decimal" />
+      </xs:simpleType>
+      <xs:simpleType name="LinkedValueChangeMode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Clear" />
+          <xs:enumeration value="DontChange" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="MessageStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="WithoutStatus" />
+          <xs:enumeration value="Ordinary" />
+          <xs:enumeration value="Information" />
+          <xs:enumeration value="Attention" />
+          <xs:enumeration value="Important" />
+          <xs:enumeration value="VeryImportant" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ModalityUseMode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Use" />
+          <xs:enumeration value="UseWithWarnings" />
+          <xs:enumeration value="DontUse" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="ObjectDeletion">
+        <xs:sequence>
+          <xs:element name="Ref" type="tns:AnyRef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PointOfTime">
+        <xs:sequence>
+          <xs:element name="date" type="xs:dateTime" />
+          <xs:element name="reference" nillable="true" type="tns:AnyRef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PointOfTimeWithPeriodAdjustment">
+        <xs:sequence>
+          <xs:element name="date" type="xs:dateTime" />
+          <xs:element name="dateAdjustment" type="xs:decimal" />
+          <xs:element name="reference" nillable="true" type="tns:AnyRef" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="PostingModeUse">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Regular" />
+          <xs:enumeration value="RealTime" />
+          <xs:enumeration value="Ask" />
+          <xs:enumeration value="Auto" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="PredefinedDataUpdate">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Auto" />
+          <xs:enumeration value="AutoUpdate" />
+          <xs:enumeration value="DontAutoUpdate" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ResultCompositionMode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Auto" />
+          <xs:enumeration value="Background" />
+          <xs:enumeration value="Directly" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TransactionsIsolationLevel">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Auto" />
+          <xs:enumeration value="ReadUncommitted" />
+          <xs:enumeration value="ReadCommitted" />
+          <xs:enumeration value="RepeatableRead" />
+          <xs:enumeration value="Serializable" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="UpdateOnDataChange">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Auto" />
+          <xs:enumeration value="DontUpdate" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="UserMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Text" type="xs:string" />
+          <xs:element name="Ref" nillable="true" type="tns:AnyRef" />
+          <xs:element minOccurs="0" name="pic" />
+        </xs:sequence>
+        <xs:attribute name="MessageMarker" type="xs:decimal" />
+        <xs:attribute name="DataPath" type="xs:string" />
+        <xs:attribute name="FormAttributePath" type="xs:string" />
+        <xs:attribute name="FormID" type="ns1:UUID" />
+        <xs:attribute name="notification" type="xs:boolean" />
+        <xs:attribute name="caption" type="xs:string" />
+        <xs:attribute name="url" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="UserMessages">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="message" type="tns:UserMessage" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:xs4="1c_ws_alco" xmlns:xs2="http://v8.1c.ru/8.1/data/core" xmlns:xs1="http://alco.coffeemania.ru" xmlns:xs3="http://v8.1c.ru/8.1/data/enterprise" elementFormDefault="qualified" targetNamespace="1c_ws_alco" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://alco.coffeemania.ru" />
+      <xs:import namespace="http://v8.1c.ru/8.1/data/core" />
+      <xs:import namespace="http://v8.1c.ru/8.1/data/enterprise" />
+      <xs:element name="stringGetItemByQRCode">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="QRCode" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="stringGetItemByQRCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="stringPutBottleOpen">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="QRCode" type="xs:string" />
+            <xs:element name="SiteCode" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="stringPutBottleOpenResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="stringPutStockInventory">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ArrQRCodes" type="xs1:QRCodes" />
+            <xs:element name="SiteCode" type="xs:string" />
+            <xs:element name="DateOfInventory" type="xs:dateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="stringPutStockInventoryResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBeerStockAlcoCodes">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="SiteCode" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBeerStockAlcoCodesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs1:Elements" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="stringPutBeerOpen">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="AlcoCode" type="xs:string" />
+            <xs:element name="SiteCode" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="stringPutBeerOpenResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="stringGetSiteNameByCode">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="SiteCode" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="stringGetSiteNameByCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="boolCheckQRCodeDoubleDayUse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="QRCode" type="xs:string" />
+            <xs:element name="SiteCode" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="boolCheckQRCodeDoubleDayUseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </types>
+  <message name="stringGetItemByQRCodeRequestMessage">
+    <part name="parameters" element="tns:stringGetItemByQRCode" />
+  </message>
+  <message name="stringGetItemByQRCodeResponseMessage">
+    <part name="parameters" element="tns:stringGetItemByQRCodeResponse" />
+  </message>
+  <message name="stringPutBottleOpenRequestMessage">
+    <part name="parameters" element="tns:stringPutBottleOpen" />
+  </message>
+  <message name="stringPutBottleOpenResponseMessage">
+    <part name="parameters" element="tns:stringPutBottleOpenResponse" />
+  </message>
+  <message name="stringPutStockInventoryRequestMessage">
+    <part name="parameters" element="tns:stringPutStockInventory" />
+  </message>
+  <message name="stringPutStockInventoryResponseMessage">
+    <part name="parameters" element="tns:stringPutStockInventoryResponse" />
+  </message>
+  <message name="GetBeerStockAlcoCodesRequestMessage">
+    <part name="parameters" element="tns:GetBeerStockAlcoCodes" />
+  </message>
+  <message name="GetBeerStockAlcoCodesResponseMessage">
+    <part name="parameters" element="tns:GetBeerStockAlcoCodesResponse" />
+  </message>
+  <message name="stringPutBeerOpenRequestMessage">
+    <part name="parameters" element="tns:stringPutBeerOpen" />
+  </message>
+  <message name="stringPutBeerOpenResponseMessage">
+    <part name="parameters" element="tns:stringPutBeerOpenResponse" />
+  </message>
+  <message name="stringGetSiteNameByCodeRequestMessage">
+    <part name="parameters" element="tns:stringGetSiteNameByCode" />
+  </message>
+  <message name="stringGetSiteNameByCodeResponseMessage">
+    <part name="parameters" element="tns:stringGetSiteNameByCodeResponse" />
+  </message>
+  <message name="boolCheckQRCodeDoubleDayUseRequestMessage">
+    <part name="parameters" element="tns:boolCheckQRCodeDoubleDayUse" />
+  </message>
+  <message name="boolCheckQRCodeDoubleDayUseResponseMessage">
+    <part name="parameters" element="tns:boolCheckQRCodeDoubleDayUseResponse" />
+  </message>
+  <portType name="wsExtAlco_WebServiceAlcoPortType">
+    <operation name="stringGetItemByQRCode">
+      <input message="tns:stringGetItemByQRCodeRequestMessage" />
+      <output message="tns:stringGetItemByQRCodeResponseMessage" />
+    </operation>
+    <operation name="stringPutBottleOpen">
+      <input message="tns:stringPutBottleOpenRequestMessage" />
+      <output message="tns:stringPutBottleOpenResponseMessage" />
+    </operation>
+    <operation name="stringPutStockInventory">
+      <input message="tns:stringPutStockInventoryRequestMessage" />
+      <output message="tns:stringPutStockInventoryResponseMessage" />
+    </operation>
+    <operation name="GetBeerStockAlcoCodes">
+      <input message="tns:GetBeerStockAlcoCodesRequestMessage" />
+      <output message="tns:GetBeerStockAlcoCodesResponseMessage" />
+    </operation>
+    <operation name="stringPutBeerOpen">
+      <input message="tns:stringPutBeerOpenRequestMessage" />
+      <output message="tns:stringPutBeerOpenResponseMessage" />
+    </operation>
+    <operation name="stringGetSiteNameByCode">
+      <input message="tns:stringGetSiteNameByCodeRequestMessage" />
+      <output message="tns:stringGetSiteNameByCodeResponseMessage" />
+    </operation>
+    <operation name="boolCheckQRCodeDoubleDayUse">
+      <input message="tns:boolCheckQRCodeDoubleDayUseRequestMessage" />
+      <output message="tns:boolCheckQRCodeDoubleDayUseResponseMessage" />
+    </operation>
+  </portType>
+  <binding name="wsExtAlco_WebServiceAlcoSoapBinding" type="tns:wsExtAlco_WebServiceAlcoPortType">
+    <soapbind:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="stringGetItemByQRCode">
+      <soapbind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:stringGetItemByQRCode" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="stringPutBottleOpen">
+      <soapbind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:stringPutBottleOpen" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="stringPutStockInventory">
+      <soapbind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:stringPutStockInventory" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetBeerStockAlcoCodes">
+      <soapbind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:GetBeerStockAlcoCodes" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="stringPutBeerOpen">
+      <soapbind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:stringPutBeerOpen" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="stringGetSiteNameByCode">
+      <soapbind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:stringGetSiteNameByCode" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="boolCheckQRCodeDoubleDayUse">
+      <soapbind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:boolCheckQRCodeDoubleDayUse" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="wsExtAlco_WebServiceAlcoSoap12Binding" type="tns:wsExtAlco_WebServiceAlcoPortType">
+    <soap12bind:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="stringGetItemByQRCode">
+      <soap12bind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:stringGetItemByQRCode" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="stringPutBottleOpen">
+      <soap12bind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:stringPutBottleOpen" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="stringPutStockInventory">
+      <soap12bind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:stringPutStockInventory" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetBeerStockAlcoCodes">
+      <soap12bind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:GetBeerStockAlcoCodes" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="stringPutBeerOpen">
+      <soap12bind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:stringPutBeerOpen" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="stringGetSiteNameByCode">
+      <soap12bind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:stringGetSiteNameByCode" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="boolCheckQRCodeDoubleDayUse">
+      <soap12bind:operation soapAction="1c_ws_alco#wsExtAlco_WebServiceAlco:boolCheckQRCodeDoubleDayUse" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="wsExtAlco_WebServiceAlco">
+    <port name="wsExtAlco_WebServiceAlcoSoap" binding="tns:wsExtAlco_WebServiceAlcoSoapBinding">
+      <documentation>
+        <wsi:Claim xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" conformsTo="http://ws-i.org/profiles/basic/1.1" />
+      </documentation>
+      <soapbind:address location="http://server1c/alco/ws/wsAlco.1cws" />
+    </port>
+    <port name="wsExtAlco_WebServiceAlcoSoap12" binding="tns:wsExtAlco_WebServiceAlcoSoap12Binding">
+      <soap12bind:address location="http://server1c/alco/ws/wsAlco.1cws" />
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="FCCIntegration.WPFControls.ctrlBaraban"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="100"
+             >
+    <Grid>
+        <Border  BorderBrush="LightGray" BorderThickness="1">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+        </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderThickness="1" BorderBrush="Gray" >
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="28" ></RowDefinition>
+                            <RowDefinition  Height="28" ></RowDefinition>
+                            <RowDefinition></RowDefinition>
+
+                        </Grid.RowDefinitions>
+
+                        <Label Name="lblName" Grid.Row="0" HorizontalAlignment="Stretch" Background="Beige" HorizontalContentAlignment="Center" FontSize="14" Content="Барабан"></Label>
+                        <Label Name="lblDenomValue"   Grid.Row="1" HorizontalAlignment="Stretch" Background="Beige" HorizontalContentAlignment="Center" FontSize="16" Margin="0,-5,0,0" Content=""></Label>
+                        <Label Name="lblMoneyColor" Background="LightCyan" Height="20"  Grid.Row="2" HorizontalAlignment="Stretch"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" VerticalAlignment="Bottom"   Padding="-3">0 банкнот</Label>
+                        <Label Name="lblMoneyValue"  Grid.Row="2" HorizontalAlignment="Stretch" Padding="0,40,0,0"  HorizontalContentAlignment="Center" Background="Transparent" FontSize="18" >
+                            <TextBlock FontSize="18"   Name="txtMoneyValue">4 р</TextBlock>
+                            
+                        </Label>
+                        <DockPanel   Grid.Row="2" Name="pnlBtns" Visibility="Hidden">
+                            <Button DockPanel.Dock="Top" Name="btnPlus" FontSize="25" Width="35" Height="35" Margin="0,7,0,0" Opacity="0.5" Padding="-10" Click="btnPlus_Click">+</Button>
+                            <Button DockPanel.Dock="Bottom" Name="btnMinus" FontSize="25" Width="35" Height="35" Margin="0,0,0,-5" Opacity="0.5" Padding="-10" Click="btnMinus_Click">-</Button>
+                        </DockPanel>
+                    </Grid>
+                </Border>
+                <Label Name="lblAddValue"  Grid.Row="1" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Center" FontSize="14" ></Label>
+      
+    </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="CustomerDisplay.ctrlShowMoney2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="70" d:DesignWidth="300" Height="65">
+    <Grid >
+        <Border Background="#A28A55" Name="MainBorder" CornerRadius="0" BorderBrush="#FFA5946B" BorderThickness="3" Margin="5,10,5,5">
+        <DockPanel >
+                <Label FontFamily="Museo Cyrl 500" DockPanel.Dock="Left" Name="lblName"  FontSize="22" VerticalContentAlignment="Top"></Label>
+                <Label FontFamily="Museo Cyrl 500" DockPanel.Dock="Right" Name="lblKop" Content="00" FontSize="15" VerticalContentAlignment="Top" Margin="0,5,20,00"></Label>
+                <Label FontFamily="Museo Cyrl 500" DockPanel.Dock="Right" Name="lblRub" Content="0" FontSize="28" VerticalContentAlignment="Top" HorizontalContentAlignment="Right" ></Label>
+
+        </DockPanel>
+</Border>
+    </Grid>
+</UserControl>

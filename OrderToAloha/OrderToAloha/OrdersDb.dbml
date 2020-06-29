@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AlohaGallery" Class="OrdersDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=s2010;Initial Catalog=AlohaGallery;User ID=v.piskov" SettingsObjectName="OrderToAloha.Properties.Settings" SettingsPropertyName="AlohaGalleryConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.OrderItems" Member="OrderItems">
+    <Type Name="OrderItem">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Deleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EntryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OriginalPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="Order_OrderItem" Member="Order" ThisKey="OrderId" OtherKey="Id" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Order]" Member="Orders">
+    <Type Name="Order">
+      <Column Name="StNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AlohaNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CompanyId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BortName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Summ" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="AlohaTable" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ComplexDisc" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="StDiscId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OpenTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TimeofShipping" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OrderDiscId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Closed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TimeOfClose" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Margin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_OrderItem" Member="OrderItems" ThisKey="Id" OtherKey="OrderId" Type="OrderItem" />
+    </Type>
+  </Table>
+</Database>

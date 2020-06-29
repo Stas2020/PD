@@ -1,0 +1,1537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://18.216.147.247/AlohaServiceStaging/AlohaService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="https://18.216.147.247/AlohaServiceStaging/AlohaService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="Payment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="FRSend" type="xs:long" />
+      <xs:element minOccurs="0" name="FiskalId" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsCash" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentGroupId" type="xs:long" />
+      <xs:element minOccurs="0" name="ToGo" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Payment" nillable="true" type="tns:Payment" />
+  <xs:complexType name="OperationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedObjectId" type="xs:long" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResult" nillable="true" type="tns:OperationResult" />
+  <xs:complexType name="OperationResultValueOfPaymentdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Payment" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:Payment" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfPaymentdi1iiSGT" nillable="true" type="tns:OperationResultValueOfPaymentdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfPaymentdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfPayment" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfPayment" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfPaymentdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfPaymentdi1iiSGT" />
+  <xs:complexType name="ArrayOfPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Payment" nillable="true" type="tns:Payment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPayment" nillable="true" type="tns:ArrayOfPayment" />
+  <xs:complexType name="PaymentGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sale" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentGroup" nillable="true" type="tns:PaymentGroup" />
+  <xs:complexType name="OperationResultValueOfPaymentGroupdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="PaymentGroup" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:PaymentGroup" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfPaymentGroupdi1iiSGT" nillable="true" type="tns:OperationResultValueOfPaymentGroupdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfPaymentGroupdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfPaymentGroup" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfPaymentGroup" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfPaymentGroupdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfPaymentGroupdi1iiSGT" />
+  <xs:complexType name="ArrayOfPaymentGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentGroup" nillable="true" type="tns:PaymentGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPaymentGroup" nillable="true" type="tns:ArrayOfPaymentGroup" />
+  <xs:complexType name="DishKitchenGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EnglishName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PositionForPrint" type="xs:long" />
+      <xs:element minOccurs="0" name="SHIdSh" type="xs:long" />
+      <xs:element minOccurs="0" name="SHIdToFly" type="xs:long" />
+      <xs:element minOccurs="0" name="SHIdToGo" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DishKitchenGroup" nillable="true" type="tns:DishKitchenGroup" />
+  <xs:complexType name="OperationResultValueOfDishKitchenGroupdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="DishKitchenGroup" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:DishKitchenGroup" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfDishKitchenGroupdi1iiSGT" nillable="true" type="tns:OperationResultValueOfDishKitchenGroupdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfDishKitchenGroupdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfDishKitchenGroup" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfDishKitchenGroup" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfDishKitchenGroupdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfDishKitchenGroupdi1iiSGT" />
+  <xs:complexType name="ArrayOfDishKitchenGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DishKitchenGroup" nillable="true" type="tns:DishKitchenGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDishKitchenGroup" nillable="true" type="tns:ArrayOfDishKitchenGroup" />
+  <xs:complexType name="DishLogicGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EnglishName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PositionForPrint" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DishLogicGroup" nillable="true" type="tns:DishLogicGroup" />
+  <xs:complexType name="OperationResultValueOfDishLogicGroupdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="DishLogicGroup" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:DishLogicGroup" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfDishLogicGroupdi1iiSGT" nillable="true" type="tns:OperationResultValueOfDishLogicGroupdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfDishLogicGroupdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfDishLogicGroup" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfDishLogicGroup" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfDishLogicGroupdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfDishLogicGroupdi1iiSGT" />
+  <xs:complexType name="ArrayOfDishLogicGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DishLogicGroup" nillable="true" type="tns:DishLogicGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDishLogicGroup" nillable="true" type="tns:ArrayOfDishLogicGroup" />
+  <xs:simpleType name="OrderStatus">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="1" />
+          <xs:enumeration value="2" />
+          <xs:enumeration value="4" />
+          <xs:enumeration value="8" />
+          <xs:enumeration value="16" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="OrderStatus" nillable="true" type="tns:OrderStatus" />
+  <xs:complexType name="OperationResultValueOfdecimal">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="decimal" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfdecimal" nillable="true" type="tns:OperationResultValueOfdecimal" />
+  <xs:complexType name="OperationResultValueOfArrayOfLogItemdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfLogItem" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfLogItem" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfLogItemdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfLogItemdi1iiSGT" />
+  <xs:complexType name="ArrayOfLogItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LogItem" nillable="true" type="tns:LogItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLogItem" nillable="true" type="tns:ArrayOfLogItem" />
+  <xs:complexType name="LogItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActionDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ActionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="CreationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="MethodName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateAfter" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateBefore" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LogItem" nillable="true" type="tns:LogItem" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordSalt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegistrationStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SequrityAnswer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SequrityQuestion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserRole" type="tns:UserRole" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:simpleType name="UserRole">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="1">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="2">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="UserRole" nillable="true" type="tns:UserRole" />
+  <xs:complexType name="UserInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegistrationStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SequrityAnswer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SequrityQuestion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserRole" type="tns:UserRole" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserInfo" nillable="true" type="tns:UserInfo" />
+  <xs:complexType name="OperationResultValueOfUserdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="User" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfUserdi1iiSGT" nillable="true" type="tns:OperationResultValueOfUserdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfUserdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfUser" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfUser" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfUserdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfUserdi1iiSGT" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="AirCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Code1C" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DiscountId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="DiscountType" nillable="true" type="tns:Discount" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IataCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IkaoCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Inn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name1C" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="PaymentType" nillable="true" type="tns:Payment" />
+      <xs:element minOccurs="0" name="RussianCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SHId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AirCompany" nillable="true" type="tns:AirCompany" />
+  <xs:complexType name="Discount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ranges" nillable="true" type="tns:ArrayOfDiscountRange" />
+      <xs:element minOccurs="0" name="ToGo" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Discount" nillable="true" type="tns:Discount" />
+  <xs:complexType name="ArrayOfDiscountRange">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DiscountRange" nillable="true" type="tns:DiscountRange" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDiscountRange" nillable="true" type="tns:ArrayOfDiscountRange" />
+  <xs:complexType name="DiscountRange">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DiscountPercent" type="xs:decimal" />
+      <xs:element minOccurs="0" name="End" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Start" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DiscountRange" nillable="true" type="tns:DiscountRange" />
+  <xs:complexType name="OperationResultValueOfAirCompanydi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="AirCompany" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:AirCompany" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfAirCompanydi1iiSGT" nillable="true" type="tns:OperationResultValueOfAirCompanydi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfAirCompanydi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfAirCompany" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfAirCompany" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfAirCompanydi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfAirCompanydi1iiSGT" />
+  <xs:complexType name="ArrayOfAirCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AirCompany" nillable="true" type="tns:AirCompany" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAirCompany" nillable="true" type="tns:ArrayOfAirCompany" />
+  <xs:complexType name="OperationResultValueOfArrayOfstringuHEDJ7Dj">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfstring" Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Result" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfstringuHEDJ7Dj" nillable="true" type="tns:OperationResultValueOfArrayOfstringuHEDJ7Dj" />
+  <xs:complexType name="ContactPerson">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SecondName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContactPerson" nillable="true" type="tns:ContactPerson" />
+  <xs:complexType name="OperationResultValueOfContactPersondi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ContactPerson" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ContactPerson" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfContactPersondi1iiSGT" nillable="true" type="tns:OperationResultValueOfContactPersondi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfContactPersondi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfContactPerson" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfContactPerson" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfContactPersondi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfContactPersondi1iiSGT" />
+  <xs:complexType name="ArrayOfContactPerson">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactPerson" nillable="true" type="tns:ContactPerson" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContactPerson" nillable="true" type="tns:ArrayOfContactPerson" />
+  <xs:complexType name="Curier">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Curier" nillable="true" type="tns:Curier" />
+  <xs:complexType name="OperationResultValueOfCurierdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Curier" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:Curier" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfCurierdi1iiSGT" nillable="true" type="tns:OperationResultValueOfCurierdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfCurierdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfCurier" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfCurier" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfCurierdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfCurierdi1iiSGT" />
+  <xs:complexType name="ArrayOfCurier">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Curier" nillable="true" type="tns:Curier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCurier" nillable="true" type="tns:ArrayOfCurier" />
+  <xs:complexType name="ItemLabelInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Dish" nillable="true" type="tns:Dish" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NameEng" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NameRus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParenItemId" type="xs:long" />
+      <xs:element minOccurs="0" name="SerialNumber" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemLabelInfo" nillable="true" type="tns:ItemLabelInfo" />
+  <xs:complexType name="Dish">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Articul" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Barcode" type="xs:long" />
+      <xs:element minOccurs="0" name="DishKitсhenGroup" nillable="true" type="tns:DishKitchenGroup" />
+      <xs:element minOccurs="0" name="DishKitсhenGroupId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="DishLogicGroup" nillable="true" type="tns:DishLogicGroup" />
+      <xs:element minOccurs="0" name="DishLogicGroupId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="EnglishName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsAlcohol" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsTemporary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsToGo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LabelEnglishName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LabelRussianName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NeedPrintInMenu" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PriceForDelivery" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PriceForFlight" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RussianName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SHId" type="xs:long" />
+      <xs:element minOccurs="0" name="SHIdNewBase" type="xs:long" />
+      <xs:element minOccurs="0" name="ToFlyLabelSeriesCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ToGoLabelSeriesCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Unit" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Dish" nillable="true" type="tns:Dish" />
+  <xs:complexType name="OperationResultValueOfItemLabelInfodi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ItemLabelInfo" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ItemLabelInfo" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfItemLabelInfodi1iiSGT" nillable="true" type="tns:OperationResultValueOfItemLabelInfodi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfItemLabelInfodi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfItemLabelInfo" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfItemLabelInfo" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfItemLabelInfodi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfItemLabelInfodi1iiSGT" />
+  <xs:complexType name="ArrayOfItemLabelInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemLabelInfo" nillable="true" type="tns:ItemLabelInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfItemLabelInfo" nillable="true" type="tns:ArrayOfItemLabelInfo" />
+  <xs:complexType name="DeliveryPerson">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeliveryPerson" nillable="true" type="tns:DeliveryPerson" />
+  <xs:complexType name="OperationResultValueOfDeliveryPersondi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="DeliveryPerson" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:DeliveryPerson" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfDeliveryPersondi1iiSGT" nillable="true" type="tns:OperationResultValueOfDeliveryPersondi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfDeliveryPersondi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfDeliveryPerson" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfDeliveryPerson" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfDeliveryPersondi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfDeliveryPersondi1iiSGT" />
+  <xs:complexType name="ArrayOfDeliveryPerson">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DeliveryPerson" nillable="true" type="tns:DeliveryPerson" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDeliveryPerson" nillable="true" type="tns:ArrayOfDeliveryPerson" />
+  <xs:complexType name="DeliveryPlace">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeliveryPlace" nillable="true" type="tns:DeliveryPlace" />
+  <xs:complexType name="OperationResultValueOfDeliveryPlacedi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="DeliveryPlace" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:DeliveryPlace" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfDeliveryPlacedi1iiSGT" nillable="true" type="tns:OperationResultValueOfDeliveryPlacedi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfDeliveryPlacedi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfDeliveryPlace" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfDeliveryPlace" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfDeliveryPlacedi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfDeliveryPlacedi1iiSGT" />
+  <xs:complexType name="ArrayOfDeliveryPlace">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DeliveryPlace" nillable="true" type="tns:DeliveryPlace" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDeliveryPlace" nillable="true" type="tns:ArrayOfDeliveryPlace" />
+  <xs:complexType name="MarketingChannel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MarketingChannel" nillable="true" type="tns:MarketingChannel" />
+  <xs:complexType name="OperationResultValueOfMarketingChanneldi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="MarketingChannel" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:MarketingChannel" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfMarketingChanneldi1iiSGT" nillable="true" type="tns:OperationResultValueOfMarketingChanneldi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfMarketingChanneldi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfMarketingChannel" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfMarketingChannel" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfMarketingChanneldi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfMarketingChanneldi1iiSGT" />
+  <xs:complexType name="ArrayOfMarketingChannel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MarketingChannel" nillable="true" type="tns:MarketingChannel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMarketingChannel" nillable="true" type="tns:ArrayOfMarketingChannel" />
+  <xs:complexType name="OperationResultValueOfDishdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Dish" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:Dish" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfDishdi1iiSGT" nillable="true" type="tns:OperationResultValueOfDishdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfDishdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfDish" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfDish" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfDishdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfDishdi1iiSGT" />
+  <xs:complexType name="ArrayOfDish">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Dish" nillable="true" type="tns:Dish" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDish" nillable="true" type="tns:ArrayOfDish" />
+  <xs:complexType name="DishFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FlightPriceEnd" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="FlightPriceStart" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IsActive" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsAlcohol" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsTemporary" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RussianNameLike" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DishFilter" nillable="true" type="tns:DishFilter" />
+  <xs:complexType name="PageInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Skip" type="xs:int" />
+      <xs:element minOccurs="0" name="Take" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PageInfo" nillable="true" type="tns:PageInfo" />
+  <xs:complexType name="Driver">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Driver" nillable="true" type="tns:Driver" />
+  <xs:complexType name="OperationResultValueOfDriverdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Driver" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:Driver" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfDriverdi1iiSGT" nillable="true" type="tns:OperationResultValueOfDriverdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfDriverdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfDriver" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfDriver" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfDriverdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfDriverdi1iiSGT" />
+  <xs:complexType name="ArrayOfDriver">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Driver" nillable="true" type="tns:Driver" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDriver" nillable="true" type="tns:ArrayOfDriver" />
+  <xs:complexType name="DishPackageFlightOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Dish" nillable="true" type="tns:Dish" />
+      <xs:element minOccurs="0" name="DishId" type="xs:long" />
+      <xs:element minOccurs="0" name="DishName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="OrderFlight" nillable="true" type="tns:OrderFlight" />
+      <xs:element minOccurs="0" name="OrderFlightId" type="xs:long" />
+      <xs:element minOccurs="0" name="PassageNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="PositionInOrder" type="xs:long" />
+      <xs:element minOccurs="0" name="TotalPrice" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DishPackageFlightOrder" nillable="true" type="tns:DishPackageFlightOrder" />
+  <xs:complexType name="OrderFlight">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AirCompany" nillable="true" type="tns:AirCompany" />
+      <xs:element minOccurs="0" name="AirCompanyId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="AlohaGuidId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="Closed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContactPerson" nillable="true" type="tns:ContactPerson" />
+      <xs:element minOccurs="0" name="ContactPersonId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="CreatedById" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="CreationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeliveryAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeliveryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeliveryPlace" nillable="true" type="tns:DeliveryPlace" />
+      <xs:element minOccurs="0" name="DeliveryPlaceId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="DiscountSumm" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DishPackages" nillable="true" type="tns:ArrayOfDishPackageFlightOrder" />
+      <xs:element minOccurs="0" name="Driver" nillable="true" type="tns:Driver" />
+      <xs:element minOccurs="0" name="DriverId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ExportTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExtraCharge" type="xs:decimal" />
+      <xs:element minOccurs="0" name="FRPrinted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FlightNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsSHSent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NeedPrintFR" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NeedPrintPrecheck" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NumberOfBoxes" type="xs:int" />
+      <xs:element minOccurs="0" name="OrderComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderStatus" type="tns:OrderStatus" />
+      <xs:element minOccurs="0" name="PaymentId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="PaymentType" nillable="true" type="tns:Payment" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PreCheckPrinted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReadyTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SendBy" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="SendById" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="WhoDeliveredPersonPerson" nillable="true" type="tns:DeliveryPerson" />
+      <xs:element minOccurs="0" name="WhoDeliveredPersonPersonId" nillable="true" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderFlight" nillable="true" type="tns:OrderFlight" />
+  <xs:complexType name="ArrayOfDishPackageFlightOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DishPackageFlightOrder" nillable="true" type="tns:DishPackageFlightOrder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDishPackageFlightOrder" nillable="true" type="tns:ArrayOfDishPackageFlightOrder" />
+  <xs:complexType name="OperationResultValueOfDishPackageFlightOrderdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="DishPackageFlightOrder" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:DishPackageFlightOrder" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfDishPackageFlightOrderdi1iiSGT" nillable="true" type="tns:OperationResultValueOfDishPackageFlightOrderdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfDishPackageFlightOrderdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfDishPackageFlightOrder" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfDishPackageFlightOrder" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfDishPackageFlightOrderdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfDishPackageFlightOrderdi1iiSGT" />
+  <xs:complexType name="DishPackageToGoOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Dish" nillable="true" type="tns:Dish" />
+      <xs:element minOccurs="0" name="DishId" type="xs:long" />
+      <xs:element minOccurs="0" name="DishName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="OrderToGo" nillable="true" type="tns:OrderToGo" />
+      <xs:element minOccurs="0" name="OrderToGoId" type="xs:long" />
+      <xs:element minOccurs="0" name="PositionInOrder" type="xs:long" />
+      <xs:element minOccurs="0" name="TotalPrice" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DishPackageToGoOrder" nillable="true" type="tns:DishPackageToGoOrder" />
+  <xs:complexType name="OrderToGo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AddressId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="Closed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CommentKitchen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="CreatedById" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="CreationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeliveryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeliveryPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountPercent" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DishPackages" nillable="true" type="tns:ArrayOfDishPackageToGoOrder" />
+      <xs:element minOccurs="0" name="Driver" nillable="true" type="tns:Driver" />
+      <xs:element minOccurs="0" name="DriverId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ExportTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FRPrinted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsSHSent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MarketingChannel" nillable="true" type="tns:MarketingChannel" />
+      <xs:element minOccurs="0" name="MarketingChannelId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="NeedPrintFR" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NeedPrintPrecheck" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OldId" type="xs:long" />
+      <xs:element minOccurs="0" name="OrderComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderCustomer" nillable="true" type="tns:OrderCustomer" />
+      <xs:element minOccurs="0" name="OrderCustomerId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderStatus" type="tns:OrderStatus" />
+      <xs:element minOccurs="0" name="PaymentId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="PaymentType" nillable="true" type="tns:Payment" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PreCheckPrinted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReadyTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Summ" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderToGo" nillable="true" type="tns:OrderToGo" />
+  <xs:complexType name="ArrayOfDishPackageToGoOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DishPackageToGoOrder" nillable="true" type="tns:DishPackageToGoOrder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDishPackageToGoOrder" nillable="true" type="tns:ArrayOfDishPackageToGoOrder" />
+  <xs:complexType name="OrderCustomer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Addresses" nillable="true" type="tns:ArrayOfOrderCustomerAddress" />
+      <xs:element minOccurs="0" name="Comments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DiscountPercent" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OldId" type="xs:long" />
+      <xs:element minOccurs="0" name="Phones" nillable="true" type="tns:ArrayOfOrderCustomerPhone" />
+      <xs:element minOccurs="0" name="SecondName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderCustomer" nillable="true" type="tns:OrderCustomer" />
+  <xs:complexType name="ArrayOfOrderCustomerAddress">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderCustomerAddress" nillable="true" type="tns:OrderCustomerAddress" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderCustomerAddress" nillable="true" type="tns:ArrayOfOrderCustomerAddress" />
+  <xs:complexType name="OrderCustomerAddress">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPrimary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MapUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NeedUpdate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OldId" type="xs:long" />
+      <xs:element minOccurs="0" name="OrderCustomerId" type="xs:long" />
+      <xs:element minOccurs="0" name="SubWay" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZoneId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderCustomerAddress" nillable="true" type="tns:OrderCustomerAddress" />
+  <xs:complexType name="ArrayOfOrderCustomerPhone">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderCustomerPhone" nillable="true" type="tns:OrderCustomerPhone" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderCustomerPhone" nillable="true" type="tns:ArrayOfOrderCustomerPhone" />
+  <xs:complexType name="OrderCustomerPhone">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPrimary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NeedUpdate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OrderCustomerId" type="xs:long" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderCustomerPhone" nillable="true" type="tns:OrderCustomerPhone" />
+  <xs:complexType name="OperationResultValueOfDishPackageToGoOrderdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="DishPackageToGoOrder" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:DishPackageToGoOrder" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfDishPackageToGoOrderdi1iiSGT" nillable="true" type="tns:OperationResultValueOfDishPackageToGoOrderdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfDishPackageToGoOrderdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfDishPackageToGoOrder" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfDishPackageToGoOrder" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfDishPackageToGoOrderdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfDishPackageToGoOrderdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfOrderCustomerdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="OrderCustomer" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:OrderCustomer" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfOrderCustomerdi1iiSGT" nillable="true" type="tns:OperationResultValueOfOrderCustomerdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfOrderCustomerdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfOrderCustomer" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfOrderCustomer" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfOrderCustomerdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfOrderCustomerdi1iiSGT" />
+  <xs:complexType name="ArrayOfOrderCustomer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderCustomer" nillable="true" type="tns:OrderCustomer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderCustomer" nillable="true" type="tns:ArrayOfOrderCustomer" />
+  <xs:complexType name="OperationResultValueOfArrayOfOrderCustomerAddressdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfOrderCustomerAddress" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfOrderCustomerAddress" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfOrderCustomerAddressdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfOrderCustomerAddressdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfOrderCustomerPhonedi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfOrderCustomerPhone" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfOrderCustomerPhone" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfOrderCustomerPhonedi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfOrderCustomerPhonedi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfOrderFlightdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="OrderFlight" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:OrderFlight" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfOrderFlightdi1iiSGT" nillable="true" type="tns:OperationResultValueOfOrderFlightdi1iiSGT" />
+  <xs:complexType name="OrderFlightFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AirCompanyId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContactPersonId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="CreatedById" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="CreationDateEnd" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreationDateStart" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeliveryDateEnd" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeliveryDateStart" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeliveryPlaceId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="DriverId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ExportTimeEnd" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExportTimeStart" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExtraCharge" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="FlightNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumberOfBoxes" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OrderComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderStatus" nillable="true" type="tns:OrderStatus" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReadyTimeEnd" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReadyTimeStart" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WhoDeliveredPersonPersonId" nillable="true" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderFlightFilter" nillable="true" type="tns:OrderFlightFilter" />
+  <xs:complexType name="OperationResultValueOfArrayOfOrderFlightdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfOrderFlight" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfOrderFlight" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfOrderFlightdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfOrderFlightdi1iiSGT" />
+  <xs:complexType name="ArrayOfOrderFlight">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderFlight" nillable="true" type="tns:OrderFlight" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderFlight" nillable="true" type="tns:ArrayOfOrderFlight" />
+  <xs:complexType name="OperationResultValueOfOrderToGodi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="OrderToGo" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:OrderToGo" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfOrderToGodi1iiSGT" nillable="true" type="tns:OperationResultValueOfOrderToGodi1iiSGT" />
+  <xs:complexType name="OrderToGoFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedById" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="CreationDateEnd" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreationDateStart" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CurierId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="DeliveryDateEnd" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeliveryDateStart" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeliveryPlaceId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ExportTimeEnd" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExportTimeStart" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExtraCharge" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MarketingChannel" nillable="true" type="tns:MarketingChannel" />
+      <xs:element minOccurs="0" name="NumberOfBoxes" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OrderComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderCustomerId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderStatus" nillable="true" type="tns:OrderStatus" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReadyTimeEnd" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReadyTimeStart" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WhoDeliveredPersonPersonId" nillable="true" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderToGoFilter" nillable="true" type="tns:OrderToGoFilter" />
+  <xs:complexType name="OperationResultValueOfArrayOfOrderToGodi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfOrderToGo" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfOrderToGo" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfOrderToGodi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfOrderToGodi1iiSGT" />
+  <xs:complexType name="ArrayOfOrderToGo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderToGo" nillable="true" type="tns:OrderToGo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderToGo" nillable="true" type="tns:ArrayOfOrderToGo" />
+  <xs:complexType name="UserGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserGroup" nillable="true" type="tns:UserGroup" />
+  <xs:complexType name="OperationResultValueOfArrayOfUserGroupdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfUserGroup" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfUserGroup" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfUserGroupdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfUserGroupdi1iiSGT" />
+  <xs:complexType name="ArrayOfUserGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserGroup" nillable="true" type="tns:UserGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserGroup" nillable="true" type="tns:ArrayOfUserGroup" />
+  <xs:complexType name="UserFunc">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserFunc" nillable="true" type="tns:UserFunc" />
+  <xs:complexType name="OperationResultValueOfUserFuncdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="UserFunc" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:UserFunc" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfUserFuncdi1iiSGT" nillable="true" type="tns:OperationResultValueOfUserFuncdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfUserFuncdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfUserFunc" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfUserFunc" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfUserFuncdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfUserFuncdi1iiSGT" />
+  <xs:complexType name="ArrayOfUserFunc">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserFunc" nillable="true" type="tns:UserFunc" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserFunc" nillable="true" type="tns:ArrayOfUserFunc" />
+  <xs:complexType name="OperationResultValueOfArrayOfUserGroupAccessdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfUserGroupAccess" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfUserGroupAccess" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfUserGroupAccessdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfUserGroupAccessdi1iiSGT" />
+  <xs:complexType name="ArrayOfUserGroupAccess">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserGroupAccess" nillable="true" type="tns:UserGroupAccess" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserGroupAccess" nillable="true" type="tns:ArrayOfUserGroupAccess" />
+  <xs:complexType name="UserGroupAccess">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FuncAccessType" type="tns:FuncAccessType" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="UserFunc" nillable="true" type="tns:UserFunc" />
+      <xs:element minOccurs="0" name="UserFuncId" type="xs:long" />
+      <xs:element minOccurs="0" name="UserGroupId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserGroupAccess" nillable="true" type="tns:UserGroupAccess" />
+  <xs:simpleType name="FuncAccessType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="0">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="1">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="FuncAccessType" nillable="true" type="tns:FuncAccessType" />
+  <xs:complexType name="OperationResultValueOfDiscountRangedi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="DiscountRange" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:DiscountRange" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfDiscountRangedi1iiSGT" nillable="true" type="tns:OperationResultValueOfDiscountRangedi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfDiscountRangedi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfDiscountRange" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfDiscountRange" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfDiscountRangedi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfDiscountRangedi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfDiscountdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Discount" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:Discount" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfDiscountdi1iiSGT" nillable="true" type="tns:OperationResultValueOfDiscountdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfDiscountdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfDiscount" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfDiscount" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfDiscountdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfDiscountdi1iiSGT" />
+  <xs:complexType name="ArrayOfDiscount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Discount" nillable="true" type="tns:Discount" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDiscount" nillable="true" type="tns:ArrayOfDiscount" />
+  <xs:complexType name="Alert">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="End" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Period" type="xs:int" />
+      <xs:element minOccurs="0" name="Start" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Alert" nillable="true" type="tns:Alert" />
+  <xs:complexType name="OperationResultValueOfAlertdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Alert" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:Alert" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfAlertdi1iiSGT" nillable="true" type="tns:OperationResultValueOfAlertdi1iiSGT" />
+  <xs:complexType name="OperationResultValueOfArrayOfAlertdi1iiSGT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResultValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfAlert" Namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ArrayOfAlert" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResultValueOfArrayOfAlertdi1iiSGT" nillable="true" type="tns:OperationResultValueOfArrayOfAlertdi1iiSGT" />
+  <xs:complexType name="ArrayOfAlert">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Alert" nillable="true" type="tns:Alert" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAlert" nillable="true" type="tns:ArrayOfAlert" />
+</xs:schema>

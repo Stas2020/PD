@@ -1,0 +1,2070 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://18.216.147.247/AlohaServiceStaging/AlohaService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+  <xs:import schemaLocation="https://18.216.147.247/AlohaServiceStaging/AlohaService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AlohaService" />
+  <xs:element name="CreatePayment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="payment" nillable="true" type="q1:Payment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreatePaymentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreatePaymentResult" nillable="true" type="q2:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPayment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="paymentId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPaymentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetPaymentResult" nillable="true" type="q3:OperationResultValueOfPaymentdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePayment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="payment" nillable="true" type="q4:Payment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePaymentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdatePaymentResult" nillable="true" type="q5:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPaymentList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPaymentListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetPaymentListResult" nillable="true" type="q6:OperationResultValueOfArrayOfPaymentdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePayment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="paymentId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePaymentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeletePaymentResult" nillable="true" type="q7:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreatePaymentGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="payment" nillable="true" type="q8:PaymentGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreatePaymentGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreatePaymentGroupResult" nillable="true" type="q9:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPaymentGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="paymentId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPaymentGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetPaymentGroupResult" nillable="true" type="q10:OperationResultValueOfPaymentGroupdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePaymentGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="payment" nillable="true" type="q11:PaymentGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePaymentGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdatePaymentGroupResult" nillable="true" type="q12:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPaymentGroupList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPaymentGroupListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetPaymentGroupListResult" nillable="true" type="q13:OperationResultValueOfArrayOfPaymentGroupdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePaymentGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="paymentGroupId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePaymentGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeletePaymentGroupResult" nillable="true" type="q14:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDishKitchenGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="dishKitchenGroup" nillable="true" type="q15:DishKitchenGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDishKitchenGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateDishKitchenGroupResult" nillable="true" type="q16:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishKitchenGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dishKitchenGroupId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishKitchenGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishKitchenGroupResult" nillable="true" type="q17:OperationResultValueOfDishKitchenGroupdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDishKitchenGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="dishKitchenGroup" nillable="true" type="q18:DishKitchenGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDishKitchenGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateDishKitchenGroupResult" nillable="true" type="q19:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDishKitchenGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dishKitchenGroupId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDishKitchenGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteDishKitchenGroupResult" nillable="true" type="q20:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishKitсhenGroupsList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishKitсhenGroupsListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishKitсhenGroupsListResult" nillable="true" type="q21:OperationResultValueOfArrayOfDishKitchenGroupdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDishLogicGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="dishLogicGroup" nillable="true" type="q22:DishLogicGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDishLogicGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateDishLogicGroupResult" nillable="true" type="q23:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishLogicGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dishLogicGroupId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishLogicGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishLogicGroupResult" nillable="true" type="q24:OperationResultValueOfDishLogicGroupdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDishLogicGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="dishLogicGroup" nillable="true" type="q25:DishLogicGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDishLogicGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateDishLogicGroupResult" nillable="true" type="q26:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDishLogicGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dishLogicGroupId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDishLogicGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteDishLogicGroupResult" nillable="true" type="q27:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishLogicGroupsList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishLogicGroupsListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishLogicGroupsListResult" nillable="true" type="q28:OperationResultValueOfArrayOfDishLogicGroupdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSumByDates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dateFrom" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="dateTo" type="xs:dateTime" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="status" type="q29:OrderStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSumByDatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetSumByDatesResult" nillable="true" type="q30:OperationResultValueOfdecimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLogItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dateFrom" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="dateTo" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLogItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetLogItemsResult" nillable="true" type="q31:OperationResultValueOfArrayOfLogItemdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="value" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDataResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataUsingDataContract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/AlohaService" minOccurs="0" name="composite" nillable="true" type="q32:CompositeType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataUsingDataContractResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/AlohaService" minOccurs="0" name="GetDataUsingDataContractResult" nillable="true" type="q33:CompositeType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="userInfo" nillable="true" type="q34:UserInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateUserResult" nillable="true" type="q35:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetUserResult" nillable="true" type="q36:OperationResultValueOfUserdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="user" nillable="true" type="q37:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateUserResult" nillable="true" type="q38:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteUserResult" nillable="true" type="q39:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="loginOrEmail" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="LoginUserResult" nillable="true" type="q40:OperationResultValueOfUserdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetUserListResult" nillable="true" type="q41:OperationResultValueOfArrayOfUserdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateAirCompany">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="airCompany" nillable="true" type="q42:AirCompany" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateAirCompanyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateAirCompanyResult" nillable="true" type="q43:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirCompany">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="airCompanyId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirCompanyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetAirCompanyResult" nillable="true" type="q44:OperationResultValueOfAirCompanydi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAirCompany">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="airCompany" nillable="true" type="q45:AirCompany" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAirCompanyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateAirCompanyResult" nillable="true" type="q46:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAirCompany">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="airCompanyId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAirCompanyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteAirCompanyResult" nillable="true" type="q47:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirCompanyList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirCompanyListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetAirCompanyListResult" nillable="true" type="q48:OperationResultValueOfArrayOfAirCompanydi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFlightCodes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="airCompanyId" type="xs:long" />
+        <xs:element minOccurs="0" name="startsWith" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFlightCodesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetFlightCodesResult" nillable="true" type="q49:OperationResultValueOfArrayOfstringuHEDJ7Dj" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateContactPerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="contactPerson" nillable="true" type="q50:ContactPerson" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateContactPersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateContactPersonResult" nillable="true" type="q51:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetContactPerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contactPersonId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetContactPersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetContactPersonResult" nillable="true" type="q52:OperationResultValueOfContactPersondi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateContactPerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="contactPerson" nillable="true" type="q53:ContactPerson" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateContactPersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateContactPersonResult" nillable="true" type="q54:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteContactPerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contactPersonId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteContactPersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteContactPersonResult" nillable="true" type="q55:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetContactPersonList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetContactPersonListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetContactPersonListResult" nillable="true" type="q56:OperationResultValueOfArrayOfContactPersondi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCurier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="curier" nillable="true" type="q57:Curier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCurierResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateCurierResult" nillable="true" type="q58:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="curierId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurierResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetCurierResult" nillable="true" type="q59:OperationResultValueOfCurierdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCurier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="curier" nillable="true" type="q60:Curier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCurierResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateCurierResult" nillable="true" type="q61:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCurier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="curierId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCurierResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteCurierResult" nillable="true" type="q62:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurierList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurierListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetCurierListResult" nillable="true" type="q63:OperationResultValueOfArrayOfCurierdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateItemLabelInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="itemLabelInfo" nillable="true" type="q64:ItemLabelInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateItemLabelInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateItemLabelInfoResult" nillable="true" type="q65:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetItemLabelInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="itemLabelInfoId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetItemLabelInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetItemLabelInfoResult" nillable="true" type="q66:OperationResultValueOfItemLabelInfodi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateItemLabelInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="itemLabelInfo" nillable="true" type="q67:ItemLabelInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateItemLabelInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateItemLabelInfoResult" nillable="true" type="q68:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteItemLabelInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="itemLabelInfoId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteItemLabelInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteItemLabelInfoResult" nillable="true" type="q69:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetItemLabelInfoList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetItemLabelInfoListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetItemLabelInfoListResult" nillable="true" type="q70:OperationResultValueOfArrayOfItemLabelInfodi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDeliveryPerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="deliveryPerson" nillable="true" type="q71:DeliveryPerson" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDeliveryPersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateDeliveryPersonResult" nillable="true" type="q72:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeliveryPerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="deliveryPersonId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeliveryPersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q73="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDeliveryPersonResult" nillable="true" type="q73:OperationResultValueOfDeliveryPersondi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDeliveryPerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="deliveryPersonId" nillable="true" type="q74:DeliveryPerson" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDeliveryPersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateDeliveryPersonResult" nillable="true" type="q75:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDeliveryPerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="deliveryPerson" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDeliveryPersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteDeliveryPersonResult" nillable="true" type="q76:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeliveryPersonList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeliveryPersonListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDeliveryPersonListResult" nillable="true" type="q77:OperationResultValueOfArrayOfDeliveryPersondi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDeliveryPlace">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="deliveryPlace" nillable="true" type="q78:DeliveryPlace" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDeliveryPlaceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q79="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateDeliveryPlaceResult" nillable="true" type="q79:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeliveryPlace">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="deliveryPlaceId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeliveryPlaceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q80="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDeliveryPlaceResult" nillable="true" type="q80:OperationResultValueOfDeliveryPlacedi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDeliveryPlace">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q81="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="deliveryPlace" nillable="true" type="q81:DeliveryPlace" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDeliveryPlaceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q82="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateDeliveryPlaceResult" nillable="true" type="q82:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDeliveryPlace">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="deliveryPlaceId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDeliveryPlaceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q83="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteDeliveryPlaceResult" nillable="true" type="q83:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeliveryPlaceList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeliveryPlaceListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q84="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDeliveryPlaceListResult" nillable="true" type="q84:OperationResultValueOfArrayOfDeliveryPlacedi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateMarketingChannel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q85="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="MarketingChannel" nillable="true" type="q85:MarketingChannel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateMarketingChannelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q86="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateMarketingChannelResult" nillable="true" type="q86:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMarketingChannel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MarketingChannelId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMarketingChannelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q87="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetMarketingChannelResult" nillable="true" type="q87:OperationResultValueOfMarketingChanneldi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMarketingChannel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q88="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="MarketingChannel" nillable="true" type="q88:MarketingChannel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMarketingChannelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q89="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateMarketingChannelResult" nillable="true" type="q89:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteMarketingChannel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MarketingChannelId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteMarketingChannelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q90="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteMarketingChannelResult" nillable="true" type="q90:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMarketingChannelList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMarketingChannelListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetMarketingChannelListResult" nillable="true" type="q91:OperationResultValueOfArrayOfMarketingChanneldi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDish">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q92="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="dish" nillable="true" type="q92:Dish" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDishResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q93="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateDishResult" nillable="true" type="q93:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDish">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dishId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q94="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishResult" nillable="true" type="q94:OperationResultValueOfDishdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDish">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q95="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="dish" nillable="true" type="q95:Dish" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDishResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q96="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateDishResult" nillable="true" type="q96:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDish">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dishId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDishResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q97="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteDishResult" nillable="true" type="q97:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q98="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishListResult" nillable="true" type="q98:OperationResultValueOfArrayOfDishdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishListIntelliSense">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="startsWith" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishListIntelliSenseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q99="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishListIntelliSenseResult" nillable="true" type="q99:OperationResultValueOfArrayOfDishdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishPage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q100="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="filter" nillable="true" type="q100:DishFilter" />
+        <xs:element xmlns:q101="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="page" nillable="true" type="q101:PageInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishPageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q102="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishPageResult" nillable="true" type="q102:OperationResultValueOfArrayOfDishdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDriver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q103="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="driver" nillable="true" type="q103:Driver" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDriverResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q104="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateDriverResult" nillable="true" type="q104:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDriver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="driverId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDriverResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q105="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDriverResult" nillable="true" type="q105:OperationResultValueOfDriverdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDriver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q106="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="driver" nillable="true" type="q106:Driver" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDriverResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q107="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateDriverResult" nillable="true" type="q107:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDriver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="driverId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDriverResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q108="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteDriverResult" nillable="true" type="q108:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDriverList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDriverListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q109="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDriverListResult" nillable="true" type="q109:OperationResultValueOfArrayOfDriverdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDishPackageFlightOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q110="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="dishPackageFlightOrder" nillable="true" type="q110:DishPackageFlightOrder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDishPackageFlightOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q111="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateDishPackageFlightOrderResult" nillable="true" type="q111:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishPackageFlightOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dishPackageFlightOrderId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishPackageFlightOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q112="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishPackageFlightOrderResult" nillable="true" type="q112:OperationResultValueOfDishPackageFlightOrderdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDishPackageFlightOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q113="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="dishPackageFlightOrder" nillable="true" type="q113:DishPackageFlightOrder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDishPackageFlightOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q114="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateDishPackageFlightOrderResult" nillable="true" type="q114:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDishPackageFlightOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dishPackageFlightOrderId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDishPackageFlightOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q115="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteDishPackageFlightOrderResult" nillable="true" type="q115:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishPackageFlightOrderList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderFlightId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishPackageFlightOrderListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q116="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishPackageFlightOrderListResult" nillable="true" type="q116:OperationResultValueOfArrayOfDishPackageFlightOrderdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDishPackageToGoOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q117="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="dishPackageToGoOrder" nillable="true" type="q117:DishPackageToGoOrder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDishPackageToGoOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q118="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateDishPackageToGoOrderResult" nillable="true" type="q118:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishPackageToGoOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dishPackageToGoOrderId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishPackageToGoOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q119="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishPackageToGoOrderResult" nillable="true" type="q119:OperationResultValueOfDishPackageToGoOrderdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDishPackageToGoOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q120="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="dishPackageToGoOrder" nillable="true" type="q120:DishPackageToGoOrder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDishPackageToGoOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q121="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateDishPackageToGoOrderResult" nillable="true" type="q121:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDishPackageToGoOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dishPackageToGoOrderId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDishPackageToGoOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q122="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteDishPackageToGoOrderResult" nillable="true" type="q122:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishPackageToGoOrderList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderToGoId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDishPackageToGoOrderListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q123="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDishPackageToGoOrderListResult" nillable="true" type="q123:OperationResultValueOfArrayOfDishPackageToGoOrderdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrderCustomer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q124="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="orderCustomer" nillable="true" type="q124:OrderCustomer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrderCustomerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q125="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateOrderCustomerResult" nillable="true" type="q125:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderCustomer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderCustomerId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderCustomerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q126="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetOrderCustomerResult" nillable="true" type="q126:OperationResultValueOfOrderCustomerdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOrderCustomer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q127="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="orderCustomer" nillable="true" type="q127:OrderCustomer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOrderCustomerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q128="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateOrderCustomerResult" nillable="true" type="q128:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOrderCustomer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderCustomerId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOrderCustomerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q129="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteOrderCustomerResult" nillable="true" type="q129:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderCustomerList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderCustomerListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q130="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetOrderCustomerListResult" nillable="true" type="q130:OperationResultValueOfArrayOfOrderCustomerdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrderCustomerAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q131="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="orderCustomerAddress" nillable="true" type="q131:OrderCustomerAddress" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrderCustomerAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q132="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateOrderCustomerAddressResult" nillable="true" type="q132:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderCustomerAddressList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderCustomerAddressListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q133="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetOrderCustomerAddressListResult" nillable="true" type="q133:OperationResultValueOfArrayOfOrderCustomerAddressdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOrderCustomerAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q134="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="orderCustomerAddress" nillable="true" type="q134:OrderCustomerAddress" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOrderCustomerAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q135="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateOrderCustomerAddressResult" nillable="true" type="q135:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOrderCustomerAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderCustomerAddressId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOrderCustomerAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q136="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteOrderCustomerAddressResult" nillable="true" type="q136:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrderCustomerPhone">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q137="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="orderCustomerPhone" nillable="true" type="q137:OrderCustomerPhone" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrderCustomerPhoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q138="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateOrderCustomerPhoneResult" nillable="true" type="q138:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderCustomerPhoneList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderCustomerPhoneListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q139="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetOrderCustomerPhoneListResult" nillable="true" type="q139:OperationResultValueOfArrayOfOrderCustomerPhonedi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOrderCustomerPhone">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q140="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="orderCustomerPhone" nillable="true" type="q140:OrderCustomerPhone" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOrderCustomerPhoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q141="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateOrderCustomerPhoneResult" nillable="true" type="q141:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOrderCustomerPhone">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderCustomerPhoneId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOrderCustomerPhoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q142="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteOrderCustomerPhoneResult" nillable="true" type="q142:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrderFlight">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q143="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="orderFlight" nillable="true" type="q143:OrderFlight" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrderFlightResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q144="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateOrderFlightResult" nillable="true" type="q144:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertOrderFlightFromAloha">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q145="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="orderFlight" nillable="true" type="q145:OrderFlight" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertOrderFlightFromAlohaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InsertOrderFlightFromAlohaResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderFlight">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderFlightId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderFlightResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q146="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetOrderFlightResult" nillable="true" type="q146:OperationResultValueOfOrderFlightdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderFlightByCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderCode" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderFlightByCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q147="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetOrderFlightByCodeResult" nillable="true" type="q147:OperationResultValueOfOrderFlightdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOrderFlight">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q148="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="orderFlight" nillable="true" type="q148:OrderFlight" />
+        <xs:element minOccurs="0" name="userId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOrderFlightResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q149="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateOrderFlightResult" nillable="true" type="q149:OperationResultValueOfOrderFlightdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOrderFlight">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderFlightId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOrderFlightResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q150="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteOrderFlightResult" nillable="true" type="q150:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderFlightList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q151="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="filter" nillable="true" type="q151:OrderFlightFilter" />
+        <xs:element xmlns:q152="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="page" nillable="true" type="q152:PageInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderFlightListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q153="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetOrderFlightListResult" nillable="true" type="q153:OperationResultValueOfArrayOfOrderFlightdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderFlightListNeedToFR">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderFlightListNeedToFRResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q154="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetOrderFlightListNeedToFRResult" nillable="true" type="q154:OperationResultValueOfArrayOfOrderFlightdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportToExcel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportToExcelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExportToExcelResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrderToGo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q155="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="orderToGo" nillable="true" type="q155:OrderToGo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrderToGoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q156="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateOrderToGoResult" nillable="true" type="q156:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderToGo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderToGoId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderToGoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q157="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetOrderToGoResult" nillable="true" type="q157:OperationResultValueOfOrderToGodi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOrderToGo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q158="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="orderToGo" nillable="true" type="q158:OrderToGo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOrderToGoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q159="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateOrderToGoResult" nillable="true" type="q159:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOrderToGo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderToGoId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOrderToGoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q160="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteOrderToGoResult" nillable="true" type="q160:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderToGoList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q161="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="filter" nillable="true" type="q161:OrderToGoFilter" />
+        <xs:element xmlns:q162="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="page" nillable="true" type="q162:PageInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderToGoListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q163="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetOrderToGoListResult" nillable="true" type="q163:OperationResultValueOfArrayOfOrderToGodi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderToGoListNeedToFR">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderToGoListNeedToFRResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q164="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetOrderToGoListNeedToFRResult" nillable="true" type="q164:OperationResultValueOfArrayOfOrderToGodi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateUserGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q165="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="userGroup" nillable="true" type="q165:UserGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateUserGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q166="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateUserGroupResult" nillable="true" type="q166:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userGroupId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q167="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteUserGroupResult" nillable="true" type="q167:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserGroupList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserGroupListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q168="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetUserGroupListResult" nillable="true" type="q168:OperationResultValueOfArrayOfUserGroupdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateUserFunc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q169="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="userFunc" nillable="true" type="q169:UserFunc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateUserFuncResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q170="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateUserFuncResult" nillable="true" type="q170:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserFunc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userFuncId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserFuncResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q171="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetUserFuncResult" nillable="true" type="q171:OperationResultValueOfUserFuncdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserFunc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q172="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="userFunc" nillable="true" type="q172:UserFunc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserFuncResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q173="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateUserFuncResult" nillable="true" type="q173:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserFunc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userFuncId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserFuncResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q174="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteUserFuncResult" nillable="true" type="q174:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserFuncList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserFuncListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q175="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetUserFuncListResult" nillable="true" type="q175:OperationResultValueOfArrayOfUserFuncdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserToGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:long" />
+        <xs:element minOccurs="0" name="usrGroupId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserToGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q176="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="AddUserToGroupResult" nillable="true" type="q176:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUserFromGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:long" />
+        <xs:element minOccurs="0" name="usrGroupId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUserFromGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q177="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="RemoveUserFromGroupResult" nillable="true" type="q177:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllUserGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllUserGroupsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q178="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetAllUserGroupsResult" nillable="true" type="q178:OperationResultValueOfArrayOfUserGroupdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllGroupFuncs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllGroupFuncsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q179="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetAllGroupFuncsResult" nillable="true" type="q179:OperationResultValueOfArrayOfUserGroupAccessdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddFuncToGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="funcId" type="xs:long" />
+        <xs:element minOccurs="0" name="usrGroupId" type="xs:long" />
+        <xs:element xmlns:q180="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="accessType" type="q180:FuncAccessType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddFuncToGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q181="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="AddFuncToGroupResult" nillable="true" type="q181:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveFuncFromGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="funcId" type="xs:long" />
+        <xs:element minOccurs="0" name="usrGroupId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveFuncFromGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q182="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="RemoveFuncFromGroupResult" nillable="true" type="q182:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveAllFuncsFromDb">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveAllFuncsFromDbResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q183="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="RemoveAllFuncsFromDbResult" nillable="true" type="q183:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveAllUserGroupsFromDb">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveAllUserGroupsFromDbResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q184="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="RemoveAllUserGroupsFromDbResult" nillable="true" type="q184:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDiscountRange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q185="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="discountRange" nillable="true" type="q185:DiscountRange" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDiscountRangeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q186="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateDiscountRangeResult" nillable="true" type="q186:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscountRange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discountRangeId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscountRangeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q187="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDiscountRangeResult" nillable="true" type="q187:OperationResultValueOfDiscountRangedi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDiscountRange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q188="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="discountRange" nillable="true" type="q188:DiscountRange" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDiscountRangeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q189="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateDiscountRangeResult" nillable="true" type="q189:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDiscountRange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discountRangeId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDiscountRangeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q190="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteDiscountRangeResult" nillable="true" type="q190:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscountRangesList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscountRangesListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q191="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDiscountRangesListResult" nillable="true" type="q191:OperationResultValueOfArrayOfDiscountRangedi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDiscount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q192="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="discount" nillable="true" type="q192:Discount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDiscountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q193="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateDiscountResult" nillable="true" type="q193:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discountId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q194="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDiscountResult" nillable="true" type="q194:OperationResultValueOfDiscountdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDiscount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q195="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="discount" nillable="true" type="q195:Discount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDiscountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q196="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateDiscountResult" nillable="true" type="q196:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDiscount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discountId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDiscountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q197="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteDiscountResult" nillable="true" type="q197:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscountList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscountListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q198="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetDiscountListResult" nillable="true" type="q198:OperationResultValueOfArrayOfDiscountdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRangeToDiscount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discountId" type="xs:long" />
+        <xs:element minOccurs="0" name="discountRangeId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRangeToDiscountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q199="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="AddRangeToDiscountResult" nillable="true" type="q199:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveRangeFromDiscount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discountId" type="xs:long" />
+        <xs:element minOccurs="0" name="discountRangeId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveRangeFromDiscountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q200="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="RemoveRangeFromDiscountResult" nillable="true" type="q200:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateAlert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q201="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="alert" nillable="true" type="q201:Alert" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateAlertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q202="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="CreateAlertResult" nillable="true" type="q202:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAlert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="alertId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAlertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q203="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetAlertResult" nillable="true" type="q203:OperationResultValueOfAlertdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAlert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q204="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="alert" nillable="true" type="q204:Alert" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAlertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q205="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="UpdateAlertResult" nillable="true" type="q205:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAlert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="alertId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAlertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q206="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="DeleteAlertResult" nillable="true" type="q206:OperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAlertList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAlertListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q207="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetAlertListResult" nillable="true" type="q207:OperationResultValueOfArrayOfAlertdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAlertListByDateRange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="from" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="to" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAlertListByDateRangeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q208="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" minOccurs="0" name="GetAlertListByDateRangeResult" nillable="true" type="q208:OperationResultValueOfArrayOfAlertdi1iiSGT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

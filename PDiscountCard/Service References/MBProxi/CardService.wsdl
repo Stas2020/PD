@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CardService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_ICardService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://192.168.254.139/CardService/CardService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.254.139/CardService/CardService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.254.139/CardService/CardService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CardService" />
+      <xsd:import schemaLocation="http://192.168.254.139/CardService/CardService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CardService.Classes" />
+      <xsd:import schemaLocation="http://192.168.254.139/CardService/CardService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICardService_Online_InputMessage">
+    <wsdl:part name="parameters" element="tns:Online" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_Online_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OnlineResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CardProcessing_InputMessage">
+    <wsdl:part name="parameters" element="tns:CardProcessing" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CardProcessing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CardProcessingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CardProcessingNew_InputMessage">
+    <wsdl:part name="parameters" element="tns:CardProcessingNew" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CardProcessingNew_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CardProcessingNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CardProcessingV3_InputMessage">
+    <wsdl:part name="parameters" element="tns:CardProcessingV3" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CardProcessingV3_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CardProcessingV3Response" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_InternalCardProcessing_InputMessage">
+    <wsdl:part name="parameters" element="tns:InternalCardProcessing" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_InternalCardProcessing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InternalCardProcessingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_VisitChangerForTechSupport_InputMessage">
+    <wsdl:part name="parameters" element="tns:VisitChangerForTechSupport" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_VisitChangerForTechSupport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VisitChangerForTechSupportResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CardActivateOneClick_InputMessage">
+    <wsdl:part name="parameters" element="tns:CardActivateOneClick" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CardActivateOneClick_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CardActivateOneClickResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CardActivateOneClickCustom_InputMessage">
+    <wsdl:part name="parameters" element="tns:CardActivateOneClickCustom" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CardActivateOneClickCustom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CardActivateOneClickCustomResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CustomerFinder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerFinder" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_CustomerFinder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerFinderResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_PBCustomerAuth_InputMessage">
+    <wsdl:part name="parameters" element="tns:PBCustomerAuth" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_PBCustomerAuth_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PBCustomerAuthResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_PBAvailableBonus_InputMessage">
+    <wsdl:part name="parameters" element="tns:PBAvailableBonus" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_PBAvailableBonus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PBAvailableBonusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_PBPostOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:PBPostOrder" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_PBPostOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PBPostOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_PBCancelOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:PBCancelOrder" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_PBCancelOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PBCancelOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_PBApprovedOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:PBApprovedOrder" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_PBApprovedOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PBApprovedOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_GetSettingsForTerm_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSettingsForTerm" />
+  </wsdl:message>
+  <wsdl:message name="ICardService_GetSettingsForTerm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSettingsForTermResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICardService">
+    <wsdl:operation name="Online">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/Online" message="tns:ICardService_Online_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/OnlineResponse" message="tns:ICardService_Online_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CardProcessing">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/CardProcessing" message="tns:ICardService_CardProcessing_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/CardProcessingResponse" message="tns:ICardService_CardProcessing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CardProcessingNew">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/CardProcessingNew" message="tns:ICardService_CardProcessingNew_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/CardProcessingNewResponse" message="tns:ICardService_CardProcessingNew_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CardProcessingV3">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/CardProcessingV3" message="tns:ICardService_CardProcessingV3_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/CardProcessingV3Response" message="tns:ICardService_CardProcessingV3_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InternalCardProcessing">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/InternalCardProcessing" message="tns:ICardService_InternalCardProcessing_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/InternalCardProcessingResponse" message="tns:ICardService_InternalCardProcessing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VisitChangerForTechSupport">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/VisitChangerForTechSupport" message="tns:ICardService_VisitChangerForTechSupport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/VisitChangerForTechSupportResponse" message="tns:ICardService_VisitChangerForTechSupport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CardActivateOneClick">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/CardActivateOneClick" message="tns:ICardService_CardActivateOneClick_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/CardActivateOneClickResponse" message="tns:ICardService_CardActivateOneClick_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CardActivateOneClickCustom">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/CardActivateOneClickCustom" message="tns:ICardService_CardActivateOneClickCustom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/CardActivateOneClickCustomResponse" message="tns:ICardService_CardActivateOneClickCustom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerFinder">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/CustomerFinder" message="tns:ICardService_CustomerFinder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/CustomerFinderResponse" message="tns:ICardService_CustomerFinder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PBCustomerAuth">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/PBCustomerAuth" message="tns:ICardService_PBCustomerAuth_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/PBCustomerAuthResponse" message="tns:ICardService_PBCustomerAuth_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PBAvailableBonus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/PBAvailableBonus" message="tns:ICardService_PBAvailableBonus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/PBAvailableBonusResponse" message="tns:ICardService_PBAvailableBonus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PBPostOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/PBPostOrder" message="tns:ICardService_PBPostOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/PBPostOrderResponse" message="tns:ICardService_PBPostOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PBCancelOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/PBCancelOrder" message="tns:ICardService_PBCancelOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/PBCancelOrderResponse" message="tns:ICardService_PBCancelOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PBApprovedOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/PBApprovedOrder" message="tns:ICardService_PBApprovedOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/PBApprovedOrderResponse" message="tns:ICardService_PBApprovedOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSettingsForTerm">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/GetSettingsForTerm" message="tns:ICardService_GetSettingsForTerm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/GetSettingsForTermResponse" message="tns:ICardService_GetSettingsForTerm_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_ICardService" type="tns:ICardService">
+    <wsp:PolicyReference URI="#NetTcpBinding_ICardService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Online">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/Online" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardProcessing">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/CardProcessing" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardProcessingNew">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/CardProcessingNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardProcessingV3">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/CardProcessingV3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InternalCardProcessing">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/InternalCardProcessing" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VisitChangerForTechSupport">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/VisitChangerForTechSupport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardActivateOneClick">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/CardActivateOneClick" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardActivateOneClickCustom">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/CardActivateOneClickCustom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerFinder">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/CustomerFinder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PBCustomerAuth">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/PBCustomerAuth" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PBAvailableBonus">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/PBAvailableBonus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PBPostOrder">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/PBPostOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PBCancelOrder">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/PBCancelOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PBApprovedOrder">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/PBApprovedOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSettingsForTerm">
+      <soap12:operation soapAction="http://tempuri.org/ICardService/GetSettingsForTerm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CardService">
+    <wsdl:port name="NetTcpBinding_ICardService" binding="tns:NetTcpBinding_ICardService">
+      <soap12:address location="net.tcp://s2010/CardService/CardService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://s2010/CardService/CardService.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Spn>host/S2010</Spn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

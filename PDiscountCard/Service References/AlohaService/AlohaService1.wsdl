@@ -1,0 +1,2911 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AlohaService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="DefaultEndpoint_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10 />
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:Wss10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss10>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="https://18.216.147.247/AlohaServiceStaging/AlohaService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="https://18.216.147.247/AlohaServiceStaging/AlohaService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://18.216.147.247/AlohaServiceStaging/AlohaService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AlohaService.ServiceDataContracts" />
+      <xsd:import schemaLocation="https://18.216.147.247/AlohaServiceStaging/AlohaService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AlohaService" />
+      <xsd:import schemaLocation="https://18.216.147.247/AlohaServiceStaging/AlohaService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAlohaService_CreatePayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePayment" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreatePayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayment" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdatePayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePayment" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdatePayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetPaymentList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetPaymentList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeletePayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePayment" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeletePayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreatePaymentGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePaymentGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreatePaymentGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePaymentGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetPaymentGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetPaymentGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdatePaymentGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePaymentGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdatePaymentGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePaymentGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetPaymentGroupList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentGroupList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetPaymentGroupList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentGroupListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeletePaymentGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePaymentGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeletePaymentGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePaymentGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDishKitchenGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDishKitchenGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDishKitchenGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDishKitchenGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishKitchenGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishKitchenGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishKitchenGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishKitchenGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDishKitchenGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDishKitchenGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDishKitchenGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDishKitchenGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDishKitchenGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDishKitchenGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDishKitchenGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDishKitchenGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishKitсhenGroupsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishKitсhenGroupsList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishKitсhenGroupsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishKitсhenGroupsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDishLogicGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDishLogicGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDishLogicGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDishLogicGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishLogicGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishLogicGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishLogicGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishLogicGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDishLogicGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDishLogicGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDishLogicGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDishLogicGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDishLogicGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDishLogicGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDishLogicGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDishLogicGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishLogicGroupsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishLogicGroupsList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishLogicGroupsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishLogicGroupsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetSumByDates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSumByDates" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetSumByDates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSumByDatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetLogItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogItems" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetLogItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_LoginUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUser" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_LoginUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetUserList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetUserList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateAirCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAirCompany" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateAirCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAirCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAirCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirCompany" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAirCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateAirCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAirCompany" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateAirCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAirCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteAirCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAirCompany" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteAirCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAirCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAirCompanyList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirCompanyList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAirCompanyList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirCompanyListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetFlightCodes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlightCodes" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetFlightCodes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlightCodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateContactPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateContactPerson" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateContactPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateContactPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetContactPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactPerson" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetContactPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateContactPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateContactPerson" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateContactPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateContactPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteContactPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteContactPerson" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteContactPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteContactPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetContactPersonList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactPersonList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetContactPersonList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactPersonListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateCurier_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCurier" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateCurier_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCurierResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetCurier_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurier" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetCurier_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurierResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateCurier_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCurier" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateCurier_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCurierResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteCurier_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCurier" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteCurier_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCurierResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetCurierList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurierList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetCurierList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurierListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateItemLabelInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateItemLabelInfo" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateItemLabelInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateItemLabelInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetItemLabelInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemLabelInfo" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetItemLabelInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemLabelInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateItemLabelInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateItemLabelInfo" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateItemLabelInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateItemLabelInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteItemLabelInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemLabelInfo" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteItemLabelInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemLabelInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetItemLabelInfoList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemLabelInfoList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetItemLabelInfoList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemLabelInfoListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDeliveryPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDeliveryPerson" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDeliveryPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDeliveryPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDeliveryPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryPerson" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDeliveryPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDeliveryPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeliveryPerson" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDeliveryPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeliveryPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDeliveryPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDeliveryPerson" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDeliveryPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDeliveryPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDeliveryPersonList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryPersonList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDeliveryPersonList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryPersonListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDeliveryPlace_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDeliveryPlace" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDeliveryPlace_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDeliveryPlaceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDeliveryPlace_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryPlace" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDeliveryPlace_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryPlaceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDeliveryPlace_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeliveryPlace" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDeliveryPlace_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeliveryPlaceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDeliveryPlace_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDeliveryPlace" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDeliveryPlace_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDeliveryPlaceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDeliveryPlaceList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryPlaceList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDeliveryPlaceList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryPlaceListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateMarketingChannel_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMarketingChannel" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateMarketingChannel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMarketingChannelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetMarketingChannel_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMarketingChannel" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetMarketingChannel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMarketingChannelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateMarketingChannel_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMarketingChannel" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateMarketingChannel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMarketingChannelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteMarketingChannel_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMarketingChannel" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteMarketingChannel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMarketingChannelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetMarketingChannelList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMarketingChannelList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetMarketingChannelList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMarketingChannelListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDish_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDish" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDish_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDish" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDish_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDish" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDish_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDish" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishListIntelliSense_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishListIntelliSense" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishListIntelliSense_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishListIntelliSenseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishPage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishPage" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishPage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDriver_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDriver" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDriver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDriver_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDriver" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDriver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDriver_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDriver" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDriver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDriver_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDriver" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDriver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDriverList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDriverList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDriverList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDriverListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDishPackageFlightOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDishPackageFlightOrder" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDishPackageFlightOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDishPackageFlightOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishPackageFlightOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishPackageFlightOrder" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishPackageFlightOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishPackageFlightOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDishPackageFlightOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDishPackageFlightOrder" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDishPackageFlightOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDishPackageFlightOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDishPackageFlightOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDishPackageFlightOrder" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDishPackageFlightOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDishPackageFlightOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishPackageFlightOrderList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishPackageFlightOrderList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishPackageFlightOrderList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishPackageFlightOrderListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDishPackageToGoOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDishPackageToGoOrder" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDishPackageToGoOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDishPackageToGoOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishPackageToGoOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishPackageToGoOrder" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishPackageToGoOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishPackageToGoOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDishPackageToGoOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDishPackageToGoOrder" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDishPackageToGoOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDishPackageToGoOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDishPackageToGoOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDishPackageToGoOrder" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDishPackageToGoOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDishPackageToGoOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishPackageToGoOrderList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishPackageToGoOrderList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDishPackageToGoOrderList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDishPackageToGoOrderListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateOrderCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrderCustomer" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateOrderCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrderCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderCustomer" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateOrderCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderCustomer" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateOrderCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteOrderCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderCustomer" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteOrderCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderCustomerList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderCustomerList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderCustomerList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderCustomerListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateOrderCustomerAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrderCustomerAddress" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateOrderCustomerAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrderCustomerAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderCustomerAddressList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderCustomerAddressList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderCustomerAddressList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderCustomerAddressListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateOrderCustomerAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderCustomerAddress" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateOrderCustomerAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderCustomerAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteOrderCustomerAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderCustomerAddress" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteOrderCustomerAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderCustomerAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateOrderCustomerPhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrderCustomerPhone" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateOrderCustomerPhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrderCustomerPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderCustomerPhoneList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderCustomerPhoneList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderCustomerPhoneList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderCustomerPhoneListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateOrderCustomerPhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderCustomerPhone" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateOrderCustomerPhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderCustomerPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteOrderCustomerPhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderCustomerPhone" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteOrderCustomerPhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderCustomerPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateOrderFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrderFlight" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateOrderFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrderFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_InsertOrderFlightFromAloha_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrderFlightFromAloha" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_InsertOrderFlightFromAloha_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOrderFlightFromAlohaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderFlight" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderFlightByCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderFlightByCode" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderFlightByCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderFlightByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateOrderFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderFlight" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateOrderFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteOrderFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderFlight" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteOrderFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderFlightList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderFlightList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderFlightList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderFlightListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderFlightListNeedToFR_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderFlightListNeedToFR" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderFlightListNeedToFR_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderFlightListNeedToFRResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_ExportToExcel_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportToExcel" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_ExportToExcel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportToExcelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateOrderToGo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrderToGo" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateOrderToGo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrderToGoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderToGo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderToGo" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderToGo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderToGoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateOrderToGo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderToGo" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateOrderToGo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderToGoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteOrderToGo_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderToGo" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteOrderToGo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderToGoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderToGoList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderToGoList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderToGoList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderToGoListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderToGoListNeedToFR_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderToGoListNeedToFR" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetOrderToGoListNeedToFR_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderToGoListNeedToFRResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateUserGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateUserGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteUserGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteUserGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetUserGroupList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserGroupList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetUserGroupList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserGroupListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateUserFunc_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserFunc" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateUserFunc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserFuncResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetUserFunc_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserFunc" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetUserFunc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserFuncResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateUserFunc_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserFunc" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateUserFunc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserFuncResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteUserFunc_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserFunc" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteUserFunc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserFuncResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetUserFuncList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserFuncList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetUserFuncList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserFuncListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_AddUserToGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_AddUserToGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_RemoveUserFromGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserFromGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_RemoveUserFromGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserFromGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAllUserGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUserGroups" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAllUserGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUserGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAllGroupFuncs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroupFuncs" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAllGroupFuncs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroupFuncsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_AddFuncToGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFuncToGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_AddFuncToGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFuncToGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_RemoveFuncFromGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFuncFromGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_RemoveFuncFromGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFuncFromGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_RemoveAllFuncsFromDb_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAllFuncsFromDb" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_RemoveAllFuncsFromDb_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAllFuncsFromDbResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_RemoveAllUserGroupsFromDb_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAllUserGroupsFromDb" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_RemoveAllUserGroupsFromDb_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAllUserGroupsFromDbResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDiscountRange_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDiscountRange" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDiscountRange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDiscountRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDiscountRange_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountRange" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDiscountRange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDiscountRange_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDiscountRange" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDiscountRange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDiscountRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDiscountRange_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDiscountRange" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDiscountRange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDiscountRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDiscountRangesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountRangesList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDiscountRangesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountRangesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDiscount_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDiscount" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateDiscount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDiscountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDiscount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscount" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDiscount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDiscount_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDiscount" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateDiscount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDiscountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDiscount_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDiscount" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteDiscount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDiscountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDiscountList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetDiscountList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_AddRangeToDiscount_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRangeToDiscount" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_AddRangeToDiscount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRangeToDiscountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_RemoveRangeFromDiscount_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveRangeFromDiscount" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_RemoveRangeFromDiscount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveRangeFromDiscountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateAlert_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAlert" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_CreateAlert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAlert_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlert" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAlert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateAlert_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAlert" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_UpdateAlert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteAlert_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAlert" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_DeleteAlert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAlertList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertList" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAlertList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAlertListByDateRange_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertListByDateRange" />
+  </wsdl:message>
+  <wsdl:message name="IAlohaService_GetAlertListByDateRange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertListByDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAlohaService">
+    <wsdl:operation name="CreatePayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreatePayment" message="tns:IAlohaService_CreatePayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreatePaymentResponse" message="tns:IAlohaService_CreatePayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetPayment" message="tns:IAlohaService_GetPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetPaymentResponse" message="tns:IAlohaService_GetPayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdatePayment" message="tns:IAlohaService_UpdatePayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdatePaymentResponse" message="tns:IAlohaService_UpdatePayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetPaymentList" message="tns:IAlohaService_GetPaymentList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetPaymentListResponse" message="tns:IAlohaService_GetPaymentList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeletePayment" message="tns:IAlohaService_DeletePayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeletePaymentResponse" message="tns:IAlohaService_DeletePayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreatePaymentGroup" message="tns:IAlohaService_CreatePaymentGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreatePaymentGroupResponse" message="tns:IAlohaService_CreatePaymentGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetPaymentGroup" message="tns:IAlohaService_GetPaymentGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetPaymentGroupResponse" message="tns:IAlohaService_GetPaymentGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePaymentGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdatePaymentGroup" message="tns:IAlohaService_UpdatePaymentGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdatePaymentGroupResponse" message="tns:IAlohaService_UpdatePaymentGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentGroupList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetPaymentGroupList" message="tns:IAlohaService_GetPaymentGroupList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetPaymentGroupListResponse" message="tns:IAlohaService_GetPaymentGroupList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePaymentGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeletePaymentGroup" message="tns:IAlohaService_DeletePaymentGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeletePaymentGroupResponse" message="tns:IAlohaService_DeletePaymentGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDishKitchenGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateDishKitchenGroup" message="tns:IAlohaService_CreateDishKitchenGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateDishKitchenGroupResponse" message="tns:IAlohaService_CreateDishKitchenGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDishKitchenGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDishKitchenGroup" message="tns:IAlohaService_GetDishKitchenGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishKitchenGroupResponse" message="tns:IAlohaService_GetDishKitchenGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDishKitchenGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateDishKitchenGroup" message="tns:IAlohaService_UpdateDishKitchenGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateDishKitchenGroupResponse" message="tns:IAlohaService_UpdateDishKitchenGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDishKitchenGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteDishKitchenGroup" message="tns:IAlohaService_DeleteDishKitchenGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteDishKitchenGroupResponse" message="tns:IAlohaService_DeleteDishKitchenGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDishKitсhenGroupsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDishKitсhenGroupsList" message="tns:IAlohaService_GetDishKitсhenGroupsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishKitсhenGroupsListResponse" message="tns:IAlohaService_GetDishKitсhenGroupsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDishLogicGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateDishLogicGroup" message="tns:IAlohaService_CreateDishLogicGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateDishLogicGroupResponse" message="tns:IAlohaService_CreateDishLogicGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDishLogicGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDishLogicGroup" message="tns:IAlohaService_GetDishLogicGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishLogicGroupResponse" message="tns:IAlohaService_GetDishLogicGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDishLogicGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateDishLogicGroup" message="tns:IAlohaService_UpdateDishLogicGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateDishLogicGroupResponse" message="tns:IAlohaService_UpdateDishLogicGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDishLogicGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteDishLogicGroup" message="tns:IAlohaService_DeleteDishLogicGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteDishLogicGroupResponse" message="tns:IAlohaService_DeleteDishLogicGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDishLogicGroupsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDishLogicGroupsList" message="tns:IAlohaService_GetDishLogicGroupsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishLogicGroupsListResponse" message="tns:IAlohaService_GetDishLogicGroupsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSumByDates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetSumByDates" message="tns:IAlohaService_GetSumByDates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetSumByDatesResponse" message="tns:IAlohaService_GetSumByDates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetLogItems" message="tns:IAlohaService_GetLogItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetLogItemsResponse" message="tns:IAlohaService_GetLogItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetData" message="tns:IAlohaService_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDataResponse" message="tns:IAlohaService_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDataUsingDataContract" message="tns:IAlohaService_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDataUsingDataContractResponse" message="tns:IAlohaService_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateUser" message="tns:IAlohaService_CreateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateUserResponse" message="tns:IAlohaService_CreateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetUser" message="tns:IAlohaService_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetUserResponse" message="tns:IAlohaService_GetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateUser" message="tns:IAlohaService_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateUserResponse" message="tns:IAlohaService_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteUser" message="tns:IAlohaService_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteUserResponse" message="tns:IAlohaService_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/LoginUser" message="tns:IAlohaService_LoginUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/LoginUserResponse" message="tns:IAlohaService_LoginUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetUserList" message="tns:IAlohaService_GetUserList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetUserListResponse" message="tns:IAlohaService_GetUserList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAirCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateAirCompany" message="tns:IAlohaService_CreateAirCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateAirCompanyResponse" message="tns:IAlohaService_CreateAirCompany_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAirCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetAirCompany" message="tns:IAlohaService_GetAirCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetAirCompanyResponse" message="tns:IAlohaService_GetAirCompany_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAirCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateAirCompany" message="tns:IAlohaService_UpdateAirCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateAirCompanyResponse" message="tns:IAlohaService_UpdateAirCompany_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAirCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteAirCompany" message="tns:IAlohaService_DeleteAirCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteAirCompanyResponse" message="tns:IAlohaService_DeleteAirCompany_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAirCompanyList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetAirCompanyList" message="tns:IAlohaService_GetAirCompanyList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetAirCompanyListResponse" message="tns:IAlohaService_GetAirCompanyList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlightCodes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetFlightCodes" message="tns:IAlohaService_GetFlightCodes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetFlightCodesResponse" message="tns:IAlohaService_GetFlightCodes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateContactPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateContactPerson" message="tns:IAlohaService_CreateContactPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateContactPersonResponse" message="tns:IAlohaService_CreateContactPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetContactPerson" message="tns:IAlohaService_GetContactPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetContactPersonResponse" message="tns:IAlohaService_GetContactPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateContactPerson" message="tns:IAlohaService_UpdateContactPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateContactPersonResponse" message="tns:IAlohaService_UpdateContactPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContactPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteContactPerson" message="tns:IAlohaService_DeleteContactPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteContactPersonResponse" message="tns:IAlohaService_DeleteContactPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactPersonList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetContactPersonList" message="tns:IAlohaService_GetContactPersonList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetContactPersonListResponse" message="tns:IAlohaService_GetContactPersonList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCurier">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateCurier" message="tns:IAlohaService_CreateCurier_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateCurierResponse" message="tns:IAlohaService_CreateCurier_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurier">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetCurier" message="tns:IAlohaService_GetCurier_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetCurierResponse" message="tns:IAlohaService_GetCurier_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCurier">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateCurier" message="tns:IAlohaService_UpdateCurier_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateCurierResponse" message="tns:IAlohaService_UpdateCurier_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCurier">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteCurier" message="tns:IAlohaService_DeleteCurier_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteCurierResponse" message="tns:IAlohaService_DeleteCurier_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurierList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetCurierList" message="tns:IAlohaService_GetCurierList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetCurierListResponse" message="tns:IAlohaService_GetCurierList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateItemLabelInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateItemLabelInfo" message="tns:IAlohaService_CreateItemLabelInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateItemLabelInfoResponse" message="tns:IAlohaService_CreateItemLabelInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemLabelInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetItemLabelInfo" message="tns:IAlohaService_GetItemLabelInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetItemLabelInfoResponse" message="tns:IAlohaService_GetItemLabelInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItemLabelInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateItemLabelInfo" message="tns:IAlohaService_UpdateItemLabelInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateItemLabelInfoResponse" message="tns:IAlohaService_UpdateItemLabelInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemLabelInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteItemLabelInfo" message="tns:IAlohaService_DeleteItemLabelInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteItemLabelInfoResponse" message="tns:IAlohaService_DeleteItemLabelInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemLabelInfoList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetItemLabelInfoList" message="tns:IAlohaService_GetItemLabelInfoList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetItemLabelInfoListResponse" message="tns:IAlohaService_GetItemLabelInfoList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDeliveryPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateDeliveryPerson" message="tns:IAlohaService_CreateDeliveryPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateDeliveryPersonResponse" message="tns:IAlohaService_CreateDeliveryPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDeliveryPerson" message="tns:IAlohaService_GetDeliveryPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDeliveryPersonResponse" message="tns:IAlohaService_GetDeliveryPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeliveryPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateDeliveryPerson" message="tns:IAlohaService_UpdateDeliveryPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateDeliveryPersonResponse" message="tns:IAlohaService_UpdateDeliveryPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDeliveryPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteDeliveryPerson" message="tns:IAlohaService_DeleteDeliveryPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteDeliveryPersonResponse" message="tns:IAlohaService_DeleteDeliveryPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryPersonList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDeliveryPersonList" message="tns:IAlohaService_GetDeliveryPersonList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDeliveryPersonListResponse" message="tns:IAlohaService_GetDeliveryPersonList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDeliveryPlace">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateDeliveryPlace" message="tns:IAlohaService_CreateDeliveryPlace_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateDeliveryPlaceResponse" message="tns:IAlohaService_CreateDeliveryPlace_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryPlace">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDeliveryPlace" message="tns:IAlohaService_GetDeliveryPlace_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDeliveryPlaceResponse" message="tns:IAlohaService_GetDeliveryPlace_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeliveryPlace">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateDeliveryPlace" message="tns:IAlohaService_UpdateDeliveryPlace_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateDeliveryPlaceResponse" message="tns:IAlohaService_UpdateDeliveryPlace_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDeliveryPlace">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteDeliveryPlace" message="tns:IAlohaService_DeleteDeliveryPlace_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteDeliveryPlaceResponse" message="tns:IAlohaService_DeleteDeliveryPlace_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryPlaceList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDeliveryPlaceList" message="tns:IAlohaService_GetDeliveryPlaceList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDeliveryPlaceListResponse" message="tns:IAlohaService_GetDeliveryPlaceList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMarketingChannel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateMarketingChannel" message="tns:IAlohaService_CreateMarketingChannel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateMarketingChannelResponse" message="tns:IAlohaService_CreateMarketingChannel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMarketingChannel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetMarketingChannel" message="tns:IAlohaService_GetMarketingChannel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetMarketingChannelResponse" message="tns:IAlohaService_GetMarketingChannel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMarketingChannel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateMarketingChannel" message="tns:IAlohaService_UpdateMarketingChannel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateMarketingChannelResponse" message="tns:IAlohaService_UpdateMarketingChannel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMarketingChannel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteMarketingChannel" message="tns:IAlohaService_DeleteMarketingChannel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteMarketingChannelResponse" message="tns:IAlohaService_DeleteMarketingChannel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMarketingChannelList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetMarketingChannelList" message="tns:IAlohaService_GetMarketingChannelList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetMarketingChannelListResponse" message="tns:IAlohaService_GetMarketingChannelList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateDish" message="tns:IAlohaService_CreateDish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateDishResponse" message="tns:IAlohaService_CreateDish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDish" message="tns:IAlohaService_GetDish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishResponse" message="tns:IAlohaService_GetDish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateDish" message="tns:IAlohaService_UpdateDish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateDishResponse" message="tns:IAlohaService_UpdateDish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteDish" message="tns:IAlohaService_DeleteDish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteDishResponse" message="tns:IAlohaService_DeleteDish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDishList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDishList" message="tns:IAlohaService_GetDishList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishListResponse" message="tns:IAlohaService_GetDishList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDishListIntelliSense">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDishListIntelliSense" message="tns:IAlohaService_GetDishListIntelliSense_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishListIntelliSenseResponse" message="tns:IAlohaService_GetDishListIntelliSense_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDishPage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDishPage" message="tns:IAlohaService_GetDishPage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishPageResponse" message="tns:IAlohaService_GetDishPage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDriver">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateDriver" message="tns:IAlohaService_CreateDriver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateDriverResponse" message="tns:IAlohaService_CreateDriver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriver">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDriver" message="tns:IAlohaService_GetDriver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDriverResponse" message="tns:IAlohaService_GetDriver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDriver">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateDriver" message="tns:IAlohaService_UpdateDriver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateDriverResponse" message="tns:IAlohaService_UpdateDriver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDriver">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteDriver" message="tns:IAlohaService_DeleteDriver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteDriverResponse" message="tns:IAlohaService_DeleteDriver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDriverList" message="tns:IAlohaService_GetDriverList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDriverListResponse" message="tns:IAlohaService_GetDriverList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDishPackageFlightOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateDishPackageFlightOrder" message="tns:IAlohaService_CreateDishPackageFlightOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateDishPackageFlightOrderResponse" message="tns:IAlohaService_CreateDishPackageFlightOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDishPackageFlightOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDishPackageFlightOrder" message="tns:IAlohaService_GetDishPackageFlightOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishPackageFlightOrderResponse" message="tns:IAlohaService_GetDishPackageFlightOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDishPackageFlightOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateDishPackageFlightOrder" message="tns:IAlohaService_UpdateDishPackageFlightOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateDishPackageFlightOrderResponse" message="tns:IAlohaService_UpdateDishPackageFlightOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDishPackageFlightOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteDishPackageFlightOrder" message="tns:IAlohaService_DeleteDishPackageFlightOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteDishPackageFlightOrderResponse" message="tns:IAlohaService_DeleteDishPackageFlightOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDishPackageFlightOrderList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDishPackageFlightOrderList" message="tns:IAlohaService_GetDishPackageFlightOrderList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishPackageFlightOrderListResponse" message="tns:IAlohaService_GetDishPackageFlightOrderList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDishPackageToGoOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateDishPackageToGoOrder" message="tns:IAlohaService_CreateDishPackageToGoOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateDishPackageToGoOrderResponse" message="tns:IAlohaService_CreateDishPackageToGoOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDishPackageToGoOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDishPackageToGoOrder" message="tns:IAlohaService_GetDishPackageToGoOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishPackageToGoOrderResponse" message="tns:IAlohaService_GetDishPackageToGoOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDishPackageToGoOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateDishPackageToGoOrder" message="tns:IAlohaService_UpdateDishPackageToGoOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateDishPackageToGoOrderResponse" message="tns:IAlohaService_UpdateDishPackageToGoOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDishPackageToGoOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteDishPackageToGoOrder" message="tns:IAlohaService_DeleteDishPackageToGoOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteDishPackageToGoOrderResponse" message="tns:IAlohaService_DeleteDishPackageToGoOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDishPackageToGoOrderList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDishPackageToGoOrderList" message="tns:IAlohaService_GetDishPackageToGoOrderList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDishPackageToGoOrderListResponse" message="tns:IAlohaService_GetDishPackageToGoOrderList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateOrderCustomer" message="tns:IAlohaService_CreateOrderCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateOrderCustomerResponse" message="tns:IAlohaService_CreateOrderCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetOrderCustomer" message="tns:IAlohaService_GetOrderCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetOrderCustomerResponse" message="tns:IAlohaService_GetOrderCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateOrderCustomer" message="tns:IAlohaService_UpdateOrderCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateOrderCustomerResponse" message="tns:IAlohaService_UpdateOrderCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteOrderCustomer" message="tns:IAlohaService_DeleteOrderCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteOrderCustomerResponse" message="tns:IAlohaService_DeleteOrderCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderCustomerList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetOrderCustomerList" message="tns:IAlohaService_GetOrderCustomerList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetOrderCustomerListResponse" message="tns:IAlohaService_GetOrderCustomerList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderCustomerAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateOrderCustomerAddress" message="tns:IAlohaService_CreateOrderCustomerAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateOrderCustomerAddressResponse" message="tns:IAlohaService_CreateOrderCustomerAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderCustomerAddressList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetOrderCustomerAddressList" message="tns:IAlohaService_GetOrderCustomerAddressList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetOrderCustomerAddressListResponse" message="tns:IAlohaService_GetOrderCustomerAddressList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderCustomerAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateOrderCustomerAddress" message="tns:IAlohaService_UpdateOrderCustomerAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateOrderCustomerAddressResponse" message="tns:IAlohaService_UpdateOrderCustomerAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderCustomerAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteOrderCustomerAddress" message="tns:IAlohaService_DeleteOrderCustomerAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteOrderCustomerAddressResponse" message="tns:IAlohaService_DeleteOrderCustomerAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderCustomerPhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateOrderCustomerPhone" message="tns:IAlohaService_CreateOrderCustomerPhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateOrderCustomerPhoneResponse" message="tns:IAlohaService_CreateOrderCustomerPhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderCustomerPhoneList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetOrderCustomerPhoneList" message="tns:IAlohaService_GetOrderCustomerPhoneList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetOrderCustomerPhoneListResponse" message="tns:IAlohaService_GetOrderCustomerPhoneList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderCustomerPhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateOrderCustomerPhone" message="tns:IAlohaService_UpdateOrderCustomerPhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateOrderCustomerPhoneResponse" message="tns:IAlohaService_UpdateOrderCustomerPhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderCustomerPhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteOrderCustomerPhone" message="tns:IAlohaService_DeleteOrderCustomerPhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteOrderCustomerPhoneResponse" message="tns:IAlohaService_DeleteOrderCustomerPhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateOrderFlight" message="tns:IAlohaService_CreateOrderFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateOrderFlightResponse" message="tns:IAlohaService_CreateOrderFlight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrderFlightFromAloha">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/InsertOrderFlightFromAloha" message="tns:IAlohaService_InsertOrderFlightFromAloha_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/InsertOrderFlightFromAlohaResponse" message="tns:IAlohaService_InsertOrderFlightFromAloha_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetOrderFlight" message="tns:IAlohaService_GetOrderFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetOrderFlightResponse" message="tns:IAlohaService_GetOrderFlight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderFlightByCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetOrderFlightByCode" message="tns:IAlohaService_GetOrderFlightByCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetOrderFlightByCodeResponse" message="tns:IAlohaService_GetOrderFlightByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateOrderFlight" message="tns:IAlohaService_UpdateOrderFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateOrderFlightResponse" message="tns:IAlohaService_UpdateOrderFlight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteOrderFlight" message="tns:IAlohaService_DeleteOrderFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteOrderFlightResponse" message="tns:IAlohaService_DeleteOrderFlight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderFlightList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetOrderFlightList" message="tns:IAlohaService_GetOrderFlightList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetOrderFlightListResponse" message="tns:IAlohaService_GetOrderFlightList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderFlightListNeedToFR">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetOrderFlightListNeedToFR" message="tns:IAlohaService_GetOrderFlightListNeedToFR_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetOrderFlightListNeedToFRResponse" message="tns:IAlohaService_GetOrderFlightListNeedToFR_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportToExcel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/ExportToExcel" message="tns:IAlohaService_ExportToExcel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/ExportToExcelResponse" message="tns:IAlohaService_ExportToExcel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderToGo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateOrderToGo" message="tns:IAlohaService_CreateOrderToGo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateOrderToGoResponse" message="tns:IAlohaService_CreateOrderToGo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderToGo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetOrderToGo" message="tns:IAlohaService_GetOrderToGo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetOrderToGoResponse" message="tns:IAlohaService_GetOrderToGo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderToGo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateOrderToGo" message="tns:IAlohaService_UpdateOrderToGo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateOrderToGoResponse" message="tns:IAlohaService_UpdateOrderToGo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderToGo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteOrderToGo" message="tns:IAlohaService_DeleteOrderToGo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteOrderToGoResponse" message="tns:IAlohaService_DeleteOrderToGo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderToGoList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetOrderToGoList" message="tns:IAlohaService_GetOrderToGoList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetOrderToGoListResponse" message="tns:IAlohaService_GetOrderToGoList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderToGoListNeedToFR">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetOrderToGoListNeedToFR" message="tns:IAlohaService_GetOrderToGoListNeedToFR_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetOrderToGoListNeedToFRResponse" message="tns:IAlohaService_GetOrderToGoListNeedToFR_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUserGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateUserGroup" message="tns:IAlohaService_CreateUserGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateUserGroupResponse" message="tns:IAlohaService_CreateUserGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteUserGroup" message="tns:IAlohaService_DeleteUserGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteUserGroupResponse" message="tns:IAlohaService_DeleteUserGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroupList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetUserGroupList" message="tns:IAlohaService_GetUserGroupList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetUserGroupListResponse" message="tns:IAlohaService_GetUserGroupList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUserFunc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateUserFunc" message="tns:IAlohaService_CreateUserFunc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateUserFuncResponse" message="tns:IAlohaService_CreateUserFunc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFunc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetUserFunc" message="tns:IAlohaService_GetUserFunc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetUserFuncResponse" message="tns:IAlohaService_GetUserFunc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserFunc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateUserFunc" message="tns:IAlohaService_UpdateUserFunc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateUserFuncResponse" message="tns:IAlohaService_UpdateUserFunc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserFunc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteUserFunc" message="tns:IAlohaService_DeleteUserFunc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteUserFuncResponse" message="tns:IAlohaService_DeleteUserFunc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFuncList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetUserFuncList" message="tns:IAlohaService_GetUserFuncList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetUserFuncListResponse" message="tns:IAlohaService_GetUserFuncList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/AddUserToGroup" message="tns:IAlohaService_AddUserToGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/AddUserToGroupResponse" message="tns:IAlohaService_AddUserToGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserFromGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/RemoveUserFromGroup" message="tns:IAlohaService_RemoveUserFromGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/RemoveUserFromGroupResponse" message="tns:IAlohaService_RemoveUserFromGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserGroups">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetAllUserGroups" message="tns:IAlohaService_GetAllUserGroups_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetAllUserGroupsResponse" message="tns:IAlohaService_GetAllUserGroups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroupFuncs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetAllGroupFuncs" message="tns:IAlohaService_GetAllGroupFuncs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetAllGroupFuncsResponse" message="tns:IAlohaService_GetAllGroupFuncs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFuncToGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/AddFuncToGroup" message="tns:IAlohaService_AddFuncToGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/AddFuncToGroupResponse" message="tns:IAlohaService_AddFuncToGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFuncFromGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/RemoveFuncFromGroup" message="tns:IAlohaService_RemoveFuncFromGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/RemoveFuncFromGroupResponse" message="tns:IAlohaService_RemoveFuncFromGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAllFuncsFromDb">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/RemoveAllFuncsFromDb" message="tns:IAlohaService_RemoveAllFuncsFromDb_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/RemoveAllFuncsFromDbResponse" message="tns:IAlohaService_RemoveAllFuncsFromDb_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAllUserGroupsFromDb">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/RemoveAllUserGroupsFromDb" message="tns:IAlohaService_RemoveAllUserGroupsFromDb_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/RemoveAllUserGroupsFromDbResponse" message="tns:IAlohaService_RemoveAllUserGroupsFromDb_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDiscountRange">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateDiscountRange" message="tns:IAlohaService_CreateDiscountRange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateDiscountRangeResponse" message="tns:IAlohaService_CreateDiscountRange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountRange">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDiscountRange" message="tns:IAlohaService_GetDiscountRange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDiscountRangeResponse" message="tns:IAlohaService_GetDiscountRange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDiscountRange">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateDiscountRange" message="tns:IAlohaService_UpdateDiscountRange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateDiscountRangeResponse" message="tns:IAlohaService_UpdateDiscountRange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDiscountRange">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteDiscountRange" message="tns:IAlohaService_DeleteDiscountRange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteDiscountRangeResponse" message="tns:IAlohaService_DeleteDiscountRange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountRangesList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDiscountRangesList" message="tns:IAlohaService_GetDiscountRangesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDiscountRangesListResponse" message="tns:IAlohaService_GetDiscountRangesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDiscount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateDiscount" message="tns:IAlohaService_CreateDiscount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateDiscountResponse" message="tns:IAlohaService_CreateDiscount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDiscount" message="tns:IAlohaService_GetDiscount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDiscountResponse" message="tns:IAlohaService_GetDiscount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDiscount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateDiscount" message="tns:IAlohaService_UpdateDiscount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateDiscountResponse" message="tns:IAlohaService_UpdateDiscount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDiscount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteDiscount" message="tns:IAlohaService_DeleteDiscount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteDiscountResponse" message="tns:IAlohaService_DeleteDiscount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetDiscountList" message="tns:IAlohaService_GetDiscountList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetDiscountListResponse" message="tns:IAlohaService_GetDiscountList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRangeToDiscount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/AddRangeToDiscount" message="tns:IAlohaService_AddRangeToDiscount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/AddRangeToDiscountResponse" message="tns:IAlohaService_AddRangeToDiscount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRangeFromDiscount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/RemoveRangeFromDiscount" message="tns:IAlohaService_RemoveRangeFromDiscount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/RemoveRangeFromDiscountResponse" message="tns:IAlohaService_RemoveRangeFromDiscount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAlert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/CreateAlert" message="tns:IAlohaService_CreateAlert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/CreateAlertResponse" message="tns:IAlohaService_CreateAlert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetAlert" message="tns:IAlohaService_GetAlert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetAlertResponse" message="tns:IAlohaService_GetAlert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/UpdateAlert" message="tns:IAlohaService_UpdateAlert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/UpdateAlertResponse" message="tns:IAlohaService_UpdateAlert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAlert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/DeleteAlert" message="tns:IAlohaService_DeleteAlert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/DeleteAlertResponse" message="tns:IAlohaService_DeleteAlert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetAlertList" message="tns:IAlohaService_GetAlertList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetAlertListResponse" message="tns:IAlohaService_GetAlertList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertListByDateRange">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlohaService/GetAlertListByDateRange" message="tns:IAlohaService_GetAlertListByDateRange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlohaService/GetAlertListByDateRangeResponse" message="tns:IAlohaService_GetAlertListByDateRange_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultEndpoint" type="tns:IAlohaService">
+    <wsp:PolicyReference URI="#DefaultEndpoint_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreatePayment">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreatePayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayment">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePayment">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdatePayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetPaymentList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePayment">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeletePayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreatePaymentGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetPaymentGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePaymentGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdatePaymentGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentGroupList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetPaymentGroupList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePaymentGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeletePaymentGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDishKitchenGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateDishKitchenGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDishKitchenGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDishKitchenGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDishKitchenGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateDishKitchenGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDishKitchenGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteDishKitchenGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDishKitсhenGroupsList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDishKitсhenGroupsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDishLogicGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateDishLogicGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDishLogicGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDishLogicGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDishLogicGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateDishLogicGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDishLogicGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteDishLogicGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDishLogicGroupsList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDishLogicGroupsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSumByDates">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetSumByDates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogItems">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetLogItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/LoginUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetUserList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAirCompany">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateAirCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAirCompany">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetAirCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAirCompany">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateAirCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAirCompany">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteAirCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAirCompanyList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetAirCompanyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlightCodes">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetFlightCodes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateContactPerson">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateContactPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactPerson">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetContactPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactPerson">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateContactPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContactPerson">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteContactPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactPersonList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetContactPersonList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCurier">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateCurier" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurier">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetCurier" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCurier">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateCurier" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCurier">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteCurier" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurierList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetCurierList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateItemLabelInfo">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateItemLabelInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemLabelInfo">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetItemLabelInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItemLabelInfo">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateItemLabelInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemLabelInfo">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteItemLabelInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemLabelInfoList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetItemLabelInfoList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDeliveryPerson">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateDeliveryPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryPerson">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDeliveryPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeliveryPerson">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateDeliveryPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDeliveryPerson">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteDeliveryPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryPersonList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDeliveryPersonList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDeliveryPlace">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateDeliveryPlace" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryPlace">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDeliveryPlace" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeliveryPlace">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateDeliveryPlace" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDeliveryPlace">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteDeliveryPlace" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryPlaceList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDeliveryPlaceList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMarketingChannel">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateMarketingChannel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMarketingChannel">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetMarketingChannel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMarketingChannel">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateMarketingChannel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMarketingChannel">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteMarketingChannel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMarketingChannelList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetMarketingChannelList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDish">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateDish" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDish">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDish" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDish">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateDish" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDish">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteDish" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDishList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDishList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDishListIntelliSense">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDishListIntelliSense" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDishPage">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDishPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDriver">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriver">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDriver">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDriver">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDriverList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDishPackageFlightOrder">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateDishPackageFlightOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDishPackageFlightOrder">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDishPackageFlightOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDishPackageFlightOrder">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateDishPackageFlightOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDishPackageFlightOrder">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteDishPackageFlightOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDishPackageFlightOrderList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDishPackageFlightOrderList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDishPackageToGoOrder">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateDishPackageToGoOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDishPackageToGoOrder">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDishPackageToGoOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDishPackageToGoOrder">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateDishPackageToGoOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDishPackageToGoOrder">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteDishPackageToGoOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDishPackageToGoOrderList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDishPackageToGoOrderList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderCustomer">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateOrderCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderCustomer">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetOrderCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderCustomer">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateOrderCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderCustomer">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteOrderCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderCustomerList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetOrderCustomerList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderCustomerAddress">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateOrderCustomerAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderCustomerAddressList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetOrderCustomerAddressList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderCustomerAddress">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateOrderCustomerAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderCustomerAddress">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteOrderCustomerAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderCustomerPhone">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateOrderCustomerPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderCustomerPhoneList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetOrderCustomerPhoneList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderCustomerPhone">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateOrderCustomerPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderCustomerPhone">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteOrderCustomerPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderFlight">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateOrderFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOrderFlightFromAloha">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/InsertOrderFlightFromAloha" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderFlight">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetOrderFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderFlightByCode">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetOrderFlightByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderFlight">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateOrderFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderFlight">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteOrderFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderFlightList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetOrderFlightList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderFlightListNeedToFR">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetOrderFlightListNeedToFR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportToExcel">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/ExportToExcel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderToGo">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateOrderToGo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderToGo">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetOrderToGo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderToGo">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateOrderToGo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderToGo">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteOrderToGo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderToGoList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetOrderToGoList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderToGoListNeedToFR">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetOrderToGoListNeedToFR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUserGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateUserGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteUserGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserGroupList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetUserGroupList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUserFunc">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateUserFunc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFunc">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetUserFunc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserFunc">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateUserFunc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserFunc">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteUserFunc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFuncList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetUserFuncList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/AddUserToGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserFromGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/RemoveUserFromGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserGroups">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetAllUserGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroupFuncs">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetAllGroupFuncs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFuncToGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/AddFuncToGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFuncFromGroup">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/RemoveFuncFromGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAllFuncsFromDb">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/RemoveAllFuncsFromDb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAllUserGroupsFromDb">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/RemoveAllUserGroupsFromDb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDiscountRange">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateDiscountRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountRange">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDiscountRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDiscountRange">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateDiscountRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDiscountRange">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteDiscountRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountRangesList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDiscountRangesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDiscount">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateDiscount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscount">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDiscount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDiscount">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateDiscount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDiscount">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteDiscount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetDiscountList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRangeToDiscount">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/AddRangeToDiscount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRangeFromDiscount">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/RemoveRangeFromDiscount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAlert">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/CreateAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlert">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlert">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/UpdateAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAlert">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/DeleteAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertList">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetAlertList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertListByDateRange">
+      <soap:operation soapAction="http://tempuri.org/IAlohaService/GetAlertListByDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AlohaService">
+    <wsdl:port name="DefaultEndpoint" binding="tns:DefaultEndpoint">
+      <soap:address location="https://18.216.147.247/AlohaServiceStaging/AlohaService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

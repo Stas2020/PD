@@ -1,0 +1,74 @@
+﻿<UserControl xmlns:my="clr-namespace:PDiscountCard.PrintOrder"  x:Class="PDiscountCard.PrintOrder.CtrlCheckPrintTemplateTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="140" d:DesignWidth="240">
+    <Grid Margin="-1,5,0,5" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel   Name="StPMain" Orientation="Vertical" >
+            
+            <Grid Margin="5,-3,-3,0" Width="290">
+                <Grid.LayoutTransform>
+                    <ScaleTransform ScaleX="0.71"/>
+                </Grid.LayoutTransform>
+                <TextBlock Text="Чек 1" FontSize="13" HorizontalAlignment="Left" TextAlignment="Left" TextWrapping="NoWrap"/>
+            </Grid>
+            <Grid Margin="5,-3,-3,0" Width="290">
+                <Grid.LayoutTransform>
+                    <ScaleTransform ScaleX="0.71"/>
+                </Grid.LayoutTransform>
+                <TextBlock Text="Упаковал Василий" FontSize="13" HorizontalAlignment="Left" TextAlignment="Left" TextWrapping="NoWrap"/>
+            </Grid>
+            <Grid Margin="5,-3,-3,0" Width="290">
+                <Grid.LayoutTransform>
+                    <ScaleTransform ScaleX="0.71"/>
+                </Grid.LayoutTransform>
+                <TextBlock Text="Блюдо Суп много букв" FontSize="14" HorizontalAlignment="Left" TextAlignment="Left" TextWrapping="NoWrap"/>
+            </Grid>
+<Grid Margin="5,-3,-3,0" Width="290">
+                <Grid.LayoutTransform>
+                    <ScaleTransform ScaleX="0.71"/>
+                </Grid.LayoutTransform>
+                <TextBlock Text="Срок хранения (час): 72" FontSize="13" HorizontalAlignment="Left" TextAlignment="Left" TextWrapping="NoWrap"/>
+            </Grid>
+            <Grid Margin="5,-3,-3,0" Width="290">
+                <Grid.LayoutTransform>
+                    <ScaleTransform ScaleX="0.71"/>
+                </Grid.LayoutTransform>
+                <TextBlock Text="+2°C - +6°C" FontSize="13" HorizontalAlignment="Left" TextAlignment="Left" TextWrapping="NoWrap"/>
+            </Grid>
+            <Grid Margin="5,-3,-3,0" Width="290">
+                <Grid.LayoutTransform>
+                    <ScaleTransform ScaleX="0.71"/>
+                </Grid.LayoutTransform>
+                <TextBlock Text="Использовать до: утра" FontSize="13" HorizontalAlignment="Left" TextAlignment="Left" TextWrapping="NoWrap"/>
+            </Grid>
+            </StackPanel>
+            <Grid Height="20" Grid.Row="1">
+                <Grid Margin="5,3,-3,0" Width="200" >
+                    <Grid.LayoutTransform>
+                        <ScaleTransform ScaleX="0.71"/>
+                    </Grid.LayoutTransform>
+<my:TextBlockFilled  Text="Состав:\r\n Щеки телячьи, лук репчатый,говядина на кости, морковь, лук репчатый, масло растительное," Background="Black" Foreground="White" />                    
+                  
+                   
+
+                </Grid>
+            </Grid>
+
+        </Grid>
+        <Image HorizontalAlignment="Center" Visibility="Collapsed"  Grid.Row="1" VerticalAlignment="Top" Margin="-40,-5,0,0"  Width="120" Height="120" Name="QrImg" />
+    </Grid>
+</UserControl>
