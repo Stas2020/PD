@@ -1068,7 +1068,6 @@ namespace PDiscountCard
                     }
                     else
                     {
-                        //DSumm += (decimal)Math.Round(d.Priceone * (double)d.Count * (double)d.QUANTITY * (double)d.QtyQUANTITY, 2, MidpointRounding.ToEven) + d.ServiceChargeSumm;
                         DSumm += (decimal)Math.Round(d.Priceone * (double)d.Count * (double)d.QUANTITY * (double)d.QtyQUANTITY, 2, MidpointRounding.ToEven) + d.ServiceChargeSumm;
                     }
 
@@ -1088,22 +1087,6 @@ namespace PDiscountCard
                     if (Math.Abs(Delta) > 0.05 * Chs)
                     {
                         Ch.ServiceChargeSumm = Math.Abs((decimal)Delta);
-                        /*
-                        decimal D2 = (decimal)Math.Round(Delta / Tmp.Count, MidpointRounding.ToEven);
-                        decimal NewDelta = (decimal)Delta;
-                        foreach (Dish d in Tmp)
-                        {
-                            if (Math.Abs(NewDelta) < Math.Abs(D2))
-                            {
-                                D2 = NewDelta;
-                            }
-                            NewDelta -= D2;
-                            MaxDish.Price = MaxDish.Price + D2;
-                            MaxDish.Delta = D2;
-                            Utils.ToCardLog("Добавил разницу сумм: " + Delta.ToString() + " к блюду :" + MaxDish.Name);
-                        }
-                         * */
-
 
                     }
                     else
@@ -1302,7 +1285,7 @@ namespace PDiscountCard
 
         }
 
-        private static int GetModLikeThis(string ModName, List<StopListService.AlohaMod>  mods, int letters )
+        private static int GetModLikeThis(string ModName, List<StopListService.AlohaMod> mods, int letters)
         {
             if (ModName.Length <= letters)
             {
@@ -1310,7 +1293,7 @@ namespace PDiscountCard
             }
             foreach (var mod in mods)
             {
-                if (ModName.Substring(0, ModName.Length - letters).Trim().ToLower()==mod.Name.Trim().ToLower())
+                if (ModName.Substring(0, ModName.Length - letters).Trim().ToLower() == mod.Name.Trim().ToLower())
                 {
                     return mod.BarCode;
                 }
@@ -1318,8 +1301,8 @@ namespace PDiscountCard
             return 0;
         }
 
-        
-        static internal int GetModificatorOfDishByName(int dishBarCode,string name)
+
+        static internal int GetModificatorOfDishByName(int dishBarCode, string name)
         {
             //  Utils.ToLog("GetModificatorsGropeOfDish " + DishBarCode.ToString (), 0);
 
@@ -1338,7 +1321,7 @@ namespace PDiscountCard
                     {
                         int miModLengft = 5;
                         var mods = GetModificatorsOfModGrope(MCode, out string GroupeName, shortName: false);
-                        for (int l = 0; l < name.Length - miModLengft;l++)
+                        for (int l = 0; l < name.Length - miModLengft; l++)
                         {
                             var res = GetModLikeThis(name, mods, l);
                             if (res != 0)
@@ -1368,7 +1351,7 @@ namespace PDiscountCard
             return -1;
         }
 
-        
+
 
         /*
         static internal List<StopListService.AlohaModGroupe> GetModificatorsGropeOfDish(IberObject Dish)
@@ -1416,7 +1399,7 @@ namespace PDiscountCard
 
         static public CModificatorsDishCashe ModificatorsDishCashe = new CModificatorsDishCashe();
 
-        static public List<StopListService.AlohaMod> GetModificatorsOfModGrope(int GroupeNum, out string GroupeName, bool shortName=true)
+        static public List<StopListService.AlohaMod> GetModificatorsOfModGrope(int GroupeNum, out string GroupeName, bool shortName = true)
         {
             List<StopListService.AlohaMod> Tmp = new List<StopListService.AlohaMod>();
             string s = "ITEM";
@@ -3958,9 +3941,9 @@ namespace PDiscountCard
         }
 
 
-      static  private int GetUnknownMod(int modId, int dishId)
+        static private int GetUnknownMod(int modId, int dishId)
         {
-            return 0; 
+            return 0;
         }
 
 
@@ -3989,9 +3972,25 @@ namespace PDiscountCard
                                 return;
                             }
                         }
-                        else if (Request.TableRangeId == 2)//Филиас онлайн
+                        else if (Request.TableRangeId == 2)//Филиас онлайн авто
                         {
-                            for (int i = 180; i < 200; i++)
+                            for (int i = 185; i < 196; i++)
+                            {
+                                Tables.Add(i);
+                            }
+
+                        }
+                        else if (Request.TableRangeId == 3)//Филиас онлайн пешком
+                        {
+                            for (int i = 180; i < 185; i++)
+                            {
+                                Tables.Add(i);
+                            }
+
+                        }
+                        else if (Request.TableRangeId == 4)//Филиас онлайн пешком
+                        {
+                            for (int i = 196; i < 200; i++)
                             {
                                 Tables.Add(i);
                             }
@@ -4080,8 +4079,8 @@ namespace PDiscountCard
                                                     modOk = false;
                                                 }
                                             }
-                                           
-                                            if (itm.Comment?.Length>0)
+
+                                            if (itm.Comment?.Length > 0)
                                             {
                                                 var chunkSize = 14;
                                                 var result = (from Match m in Regex.Matches(itm.Comment, @".{1," + chunkSize + "}")
@@ -4109,8 +4108,8 @@ namespace PDiscountCard
                                                 itm.ErrorMsg = "Не смог добавить модификаторы";
                                                 Resp.ErrorItems.Add(itm);
                                             }
-                                            
-                                            
+
+
                                         }
                                         catch (Exception e)
                                         {
@@ -4137,8 +4136,8 @@ namespace PDiscountCard
                                         }
                                     }
 
-                                        LogOut();
-                                        return;
+                                    LogOut();
+                                    return;
 
                                 }
                             }
@@ -6316,11 +6315,6 @@ namespace PDiscountCard
                     Utils.ToCardLog("Error. При считывании стола " + e.Message);
                 }
 
-
-
-
-
-
                 try
                 {
                     Utils.ToLog("Запрос текущего состояния.", 6);
@@ -6357,6 +6351,7 @@ namespace PDiscountCard
                 */
                 bool _IsNal = true;
                 IberObjectClass PayMent = null;
+                double NeedDiscountForCert = 0;
                 try
                 {
                     //Ch2.Oplata = 0;
@@ -6380,12 +6375,18 @@ namespace PDiscountCard
                         Ch2.PaymentsIds.Add(mPayMent.GetLongVal("ID"));
                         //Ch2.Oplata += Convert.ToDecimal(mPayMent.GetDoubleVal("AMOUNT"));
 
+
+
                         AlohaTender Tndr = new AlohaTender()
                         {
                             AlohaTenderId = mPayMent.GetLongVal("TENDER_ID"),
                             Summ = mPayMent.GetDoubleVal("AMOUNT"),
                             SummWithOverpayment = mPayMent.GetDoubleVal("AMOUNT"),
                         };
+
+                       
+
+
                         if (Tndr.AlohaTenderId == 22)
                         {
                             Tndr.AlohaTenderId = 21;
@@ -6407,6 +6408,17 @@ namespace PDiscountCard
                         Tndr.Name = GetTenderName(Tndr.TenderId);
                         Utils.ToCardLog(String.Format("PayMent ID: {0}, Name: {1}, AUTH_CODE:{2}, IDENT:{3}, NR:{4}, GCTYPE:{5}, GCAMOUNT:{6}, GCREDEEM:{7} ",
                             Tndr.TenderId, Tndr.Name, Tndr.AuthId, Tndr.Ident, Tndr.NR, Tndr.GCTYPE, Tndr.GCAMOUNT, Tndr.GCREDEEM));
+
+
+                     //   if (Tndr.AlohaTenderId == 68)
+                            if ((Tndr.AlohaTenderId == 25) && ((Tndr.CardPrefix== "77277")|| (Tndr.CardPrefix == "NzcyN")))
+                            {
+
+                            NeedDiscountForCert += Tndr.Summ;
+                            continue;
+                        }
+
+
                         Ch2.Tenders.Add(Tndr);
                     }
 
@@ -6622,7 +6634,7 @@ namespace PDiscountCard
                 {
                     Utils.ToLog("Скидок на столе нет ", 3);
                 }
-
+               
                 if ((Ch2.Comp == 0) && (PromoAmmount > 0))
                 {
 
@@ -6652,12 +6664,14 @@ namespace PDiscountCard
                     Utils.ToCardLog("[Error] Ошибка во время получения параметров блюд в чеке " + e.Message);
                 }
 
+                CheckCertifDiscount(Ch2, (decimal)NeedDiscountForCert);
+
+
                 if (AlohaTSClass.GetDiscountAttr(Ch2.AlohaCheckNum) != "")
                 {
                     Ch2.DiscountCard = AlohaTSClass.GetDiscountAttr(Ch2.AlohaCheckNum);
                 }
-
-
+                
                 Loyalty.LoyaltyBasik.InsertASVCardInfo(Ch2);
 
 
@@ -6711,45 +6725,96 @@ namespace PDiscountCard
             }
         }
 
-        /*
-        static private void CorrectChkSumm(Check chk)
-        { 
-         try
+
+
+
+
+        static private void CheckCertifDiscount(Check Ch2, decimal NeedDiscountForCert)
+        {
+            Utils.ToLog("CheckCertifDiscount " + NeedDiscountForCert.ToString(), 6);
+            double Chs = GetCheckSum(Ch2.AlohaCheckNum);
+            if (NeedDiscountForCert > 0 && Ch2.Dishez != null)
             {
-                decimal DSumm = 0;
-                Dish MaxDish = null;
-                decimal MaxSumm = 0;
-                foreach (Dish d in chk.Dishez)
+                try
                 {
-                    if (d.BarCode == 999901) continue;
-                    DSumm += (decimal)Math.Round(d.Priceone * (double)d.Count * (double)d.QUANTITY * (double)d.QtyQUANTITY, 2, MidpointRounding.ToEven);
-                    if (Math.Abs(MaxSumm) < Math.Abs(d.Price))
+                    Utils.ToLog("NeedDiscountForCert    ", 6);
+                    if ((decimal)Chs <=NeedDiscountForCert)
                     {
-                        MaxSumm = d.Price;
-                        MaxDish = d;
+                        foreach (var d in Ch2.Dishez)
+                        {
+                            d.Priceone = 0;
+                            d.Price = 0;
+                        }
+                        Ch2.Summ = 0;
                     }
+                    else
+                    {
+                        var k = 1-((double)NeedDiscountForCert) / Chs;
+                        foreach (var d in Ch2.Dishez)
+                        {
+                            d.Priceone *= (double)k;
+                            d.Price *= (decimal)k;
+                        }
+                        Ch2.Summ *= (decimal)k;
+                        try
+                        {
+                            decimal DSumm = 0;
+                            Dish MaxDish = null;
+                            decimal MaxSumm = 0;
+                            foreach (Dish d in Ch2.Dishez)
+                            {
+                                if (d.BarCode == 999901) continue;
 
+                                if (iniFile.FRPriceFromDisplay)
+                                {
+                                    DSumm += (decimal)Math.Round(d.Price, 2, MidpointRounding.ToEven) + d.ServiceChargeSumm;
+                                }
+                                else
+                                {
+                                    DSumm += (decimal)Math.Round(d.Priceone * (double)d.Count * (double)d.QUANTITY * (double)d.QtyQUANTITY, 2, MidpointRounding.ToEven) + d.ServiceChargeSumm;
+                                }
+
+                                if (Math.Abs(MaxSumm) < Math.Abs(d.Price))
+                                {
+                                    MaxSumm = d.Price;
+                                    MaxDish = d;
+                                }
+                            }
+
+                            double Delta = Chs - (double)DSumm;
+                            if (Math.Abs(Delta) >= 0.005)
+                            {
+                                if (Math.Abs(Delta) > 0.05 * Chs)
+                                {
+                                    Ch2.ServiceChargeSumm = Math.Abs((decimal)Delta);
+
+                                }
+                                else
+                                {
+                                    MaxDish.Price = MaxDish.Price + (decimal)Delta;
+                                    MaxDish.Delta = (decimal)Delta;
+                                    Utils.ToCardLog("Добавил разницу сумм: " + Delta.ToString() + " к блюду :" + MaxDish.Name);
+                                }
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Utils.ToCardLog("[Error] Коррекция разницы суммы по блюдам и суммы чека " + e.Message);
+                        }
+                    }
                 }
-
-                double PSumm =chk.Tenders.Sum(a=>a.Summ);
-                //double CardSumm = chk.ca
-
-
-                double Delta = PSumm - (double)DSumm;
-                if (Math.Abs(Delta) >= 0.005)
+                catch (Exception e)
                 {
-                    //MaxDish.Price = MaxDish.Price + (decimal)Delta;
-                    MaxDish.Delta = (decimal)Delta;
-                    Utils.ToCardLog("Добавил разницу сумм: " + Delta.ToString() + " к блюду :" + MaxDish.Name);
+
                 }
+
+
             }
-            catch (Exception e)
-            {
-                Utils.ToCardLog("[Error] Коррекция разницы суммы по блюдам и суммы чека " + e.Message);
-            }
-        
+
         }
-        */
+
+
+
         static private void FixOverPayment(Check chk)
         {
             if (chk.Vozvr) return;

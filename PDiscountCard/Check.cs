@@ -90,6 +90,7 @@ namespace PDiscountCard
         {
             get
             {
+                if (Ident.Length <= 5) return "";
                 try { return Ident.Trim().Substring(0, 5); }
                 catch { return ""; }
             }

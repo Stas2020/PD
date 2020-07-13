@@ -31,6 +31,34 @@ namespace PDiscountCard.RemoteSrvs
                 }
             }
         }
+
+        private Gestory.Ges3ServicesObjClient StasClient
+        {
+            get
+            {
+                try
+                {
+                    Utils.ToCardLog(String.Format("GesData GetStatClient "));
+                    System.ServiceModel.Channels.Binding binding = new System.ServiceModel.BasicHttpBinding();
+                    ((System.ServiceModel.BasicHttpBinding)binding).MaxReceivedMessageSize = 1024 * 1024;
+                    System.ServiceModel.EndpointAddress remoteAddress = new System.ServiceModel.EndpointAddress(@"http://vfiliasesb0:2580/process/Ges3ServicesUTF8Proc");
+                    Gestory.Ges3ServicesObjClient GesCl = new Gestory.Ges3ServicesObjClient(binding, remoteAddress);
+
+                    GesCl.InnerChannel.OperationTimeout = new TimeSpan(0, 10, 0);
+                    return GesCl;
+                }
+                catch (Exception e)
+                {
+                    Utils.ToCardLog(String.Format("GesData GetClient error {0}", e.Message));
+                    return null;
+                }
+            }
+        }
+
+
+      
+
+
         public Dictionary<int,int> GetItemExp(List<int> barcodes, out string err)
         {
             err = "";
@@ -145,8 +173,7 @@ namespace PDiscountCard.RemoteSrvs
                         if (!res.TryGetValue(Convert.ToInt32(rec.bar_cod), out m))
                         {
                             string s = rec.sostav;
-                            byte[] textAsBytes = Encoding.GetEncoding(1251).GetBytes(s) ;
-                    //return Encoding.UTF8.GetString(textAsBytes);
+                            byte[] textAsBytes = Encoding.GetEncoding(1251).GetBytes(s);
                             s = Encoding.UTF8.GetString(textAsBytes);
                             res.Add(Convert.ToInt32(rec.bar_cod), s);
                         }
