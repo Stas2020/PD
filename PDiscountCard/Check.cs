@@ -648,6 +648,9 @@ namespace PDiscountCard
 
         //internal List<AlohaClientCard> 
 
+        public List<AlohaClientCard> AlohaClientCardListCertifDisk = new List<AlohaClientCard>();
+        
+
         internal List<AlohaClientCard> AlohaClientCardList
         {
             get
@@ -680,8 +683,12 @@ namespace PDiscountCard
                     Tmp.Add(CC);
                 }
 
+                if (AlohaClientCardListCertifDisk != null && AlohaClientCardListCertifDisk.Count > 0)
+                {
+                    Tmp.AddRange(AlohaClientCardListCertifDisk);
+                    Utils.ToCardLog("Addd to AlohaClientCardList from AlohaClientCardListCertifDisk ");
+                }
                 return Tmp;
-
             }
         }
 

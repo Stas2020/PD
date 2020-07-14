@@ -12,6 +12,7 @@ using System.IO;
 using System.Windows.Media.Imaging;
 using System.Web;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace PDiscountCard
 {
@@ -6359,9 +6360,6 @@ namespace PDiscountCard
                     Utils.ToLog("Получил PayMentsEnum ", 6);
                     // IberObjectClass PayMent = (IberObjectClass)PayMentsEnum.First();
 
-
-
-
                     PayMent = GetLast(PayMentsEnum);
                     Utils.ToLog("Получил PayMent ", 6);
                     int Tender = PayMent.GetLongVal("TENDER_ID");
@@ -6375,17 +6373,12 @@ namespace PDiscountCard
                         Ch2.PaymentsIds.Add(mPayMent.GetLongVal("ID"));
                         //Ch2.Oplata += Convert.ToDecimal(mPayMent.GetDoubleVal("AMOUNT"));
 
-
-
                         AlohaTender Tndr = new AlohaTender()
                         {
                             AlohaTenderId = mPayMent.GetLongVal("TENDER_ID"),
                             Summ = mPayMent.GetDoubleVal("AMOUNT"),
                             SummWithOverpayment = mPayMent.GetDoubleVal("AMOUNT"),
                         };
-
-                       
-
 
                         if (Tndr.AlohaTenderId == 22)
                         {
@@ -6410,11 +6403,23 @@ namespace PDiscountCard
                             Tndr.TenderId, Tndr.Name, Tndr.AuthId, Tndr.Ident, Tndr.NR, Tndr.GCTYPE, Tndr.GCAMOUNT, Tndr.GCREDEEM));
 
 
-                     //   if (Tndr.AlohaTenderId == 68)
+                       // if (Tndr.AlohaTenderId == 68)
                             if ((Tndr.AlohaTenderId == 25) && ((Tndr.CardPrefix== "77277")|| (Tndr.CardPrefix == "NzcyN")))
                             {
-
                             NeedDiscountForCert += Tndr.Summ;
+                            var cc = new AlohaClientCard()
+                            {
+                                TypeId = "03",
+                                Number = Tndr.CardNumber,
+                                Prefix = Tndr.CardPrefix,
+                                Payment = Convert.ToInt32(Tndr.Summ * 100),
+                                BonusRemove = Convert.ToInt32(Tndr.Summ * 100),
+                            };
+
+                            Ch2.AlohaClientCardListCertifDisk.Add(cc);
+                            Utils.ToCardLog("Addd to AlohaClientCardListCertifDisk " + cc.Prefix + " " + cc.Number);
+
+                           Ch2.Summ -= (decimal)Tndr.Summ;
                             continue;
                         }
 
@@ -6755,7 +6760,7 @@ namespace PDiscountCard
                             d.Priceone *= (double)k;
                             d.Price *= (decimal)k;
                         }
-                        Ch2.Summ *= (decimal)k;
+                       // Ch2.Summ *= (decimal)k;
                         try
                         {
                             decimal DSumm = 0;
