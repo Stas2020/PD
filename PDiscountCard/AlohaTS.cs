@@ -4003,7 +4003,15 @@ namespace PDiscountCard
                             try
                             {
                                 Utils.ToCardLog("TableNum=" + TableNum);
-                                Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, TableNum, Request.TableName, Request.NumGuest);
+                                try
+                                {
+                                    Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, TableNum, Request.TableName, Request.NumGuest);
+                                }
+                                catch(Exception e)
+                                {
+                                    Utils.ToCardLog("Error AddTable" + e.Message);
+                                    Request.AlohaTableId = 0;
+                                }
                                 if (Request.AlohaTableId > 0)
                                 {
                                     try
@@ -4048,39 +4056,41 @@ namespace PDiscountCard
                                         {
                                             int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
                                             bool modOk = true;
-                                            foreach (var mod in itm.Mods)
+                                            if (itm.Mods != null)
                                             {
-                                                if (mod.Barcode == 0)
+                                                foreach (var mod in itm.Mods)
                                                 {
-                                                    mod.Barcode = GetModificatorOfDishByName(itm.Barcode, mod.Name);
-                                                    if (mod.Barcode == -1)
+                                                    if (mod.Barcode == 0)
                                                     {
+                                                        mod.Barcode = GetModificatorOfDishByName(itm.Barcode, mod.Name);
+                                                        if (mod.Barcode == -1)
+                                                        {
+                                                            modOk = false;
+                                                            break;
+                                                        }
+                                                    }
+
+                                                    double mPrice = (double)mod.Price;
+                                                    if (mPrice == -1)
+                                                    {
+                                                        mPrice = -999999999.0;
+                                                    }
+                                                    try
+                                                    {
+                                                        AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, mod.Barcode, "", Price, 0);
+                                                    }
+                                                    catch (Exception ee)
+                                                    {
+                                                        Resp.Success = false;
+                                                        itm.Success = false;
+                                                        var err = new CAlohaErrors(ee.Message);
+                                                        mod.AlohaErrorCode = err.Val;
+                                                        mod.ErrorMsg = err.ValStr;
+                                                        Resp.ErrorItems.Add(mod);
                                                         modOk = false;
-                                                        break;
                                                     }
                                                 }
-
-                                                double mPrice = (double)mod.Price;
-                                                if (mPrice == -1)
-                                                {
-                                                    mPrice = -999999999.0;
-                                                }
-                                                try
-                                                {
-                                                    AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, mod.Barcode, "", Price, 0);
-                                                }
-                                                catch (Exception ee)
-                                                {
-                                                    Resp.Success = false;
-                                                    itm.Success = false;
-                                                    var err = new CAlohaErrors(ee.Message);
-                                                    mod.AlohaErrorCode = err.Val;
-                                                    mod.ErrorMsg = err.ValStr;
-                                                    Resp.ErrorItems.Add(mod);
-                                                    modOk = false;
-                                                }
                                             }
-
                                             if (itm.Comment?.Length > 0)
                                             {
                                                 var chunkSize = 14;
@@ -6761,6 +6771,8 @@ namespace PDiscountCard
                             d.Price *= (decimal)k;
                         }
                        // Ch2.Summ *= (decimal)k;
+
+                        //Все что ниже - это борьба с копейкой
                         try
                         {
                             decimal DSumm = 0;
