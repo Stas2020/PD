@@ -462,7 +462,7 @@ namespace PDiscountCard
                 PaymentsCount =
                     Convert.ToByte(iniFile.FCCEnable) +
                     Convert.ToByte((iniFile.InPasEnabled) || (CreditCardAlohaIntegration.CreditCardConnectorEnabled)) * 2 +
-                    Convert.ToByte(iniFile.CreditCloseByWiterEnabled && (Chk.TableNumber >= 169)) * 4;
+                    Convert.ToByte(iniFile.CreditCloseByWiterEnabled && (Chk.TableNumber >= 163)) * 4;
 
                 Utils.ToCardLog("AskPaymentsCount PaymentsCount= " + PaymentsCount.ToString());
                 //BitArray Ba = new BitArray(new byte[] { PaymentsCount });

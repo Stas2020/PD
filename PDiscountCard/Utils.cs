@@ -793,7 +793,7 @@ namespace PDiscountCard
                         try
                         {
                             k = Convert.ToInt32(iniFile.Read("PrivilegedKey", Prefix + Num));
-                            Utils.ToLog("Привелигированая карта: тип:" + k + " карта:" + (Prefix + Num).ToString());
+                            //Utils.ToLog("Привелигированая карта: тип:" + k + " карта:" + (Prefix + Num).ToString());
                         }
                         catch
                         {

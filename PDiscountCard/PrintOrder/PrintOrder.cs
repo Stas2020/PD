@@ -12,6 +12,7 @@ using System.Threading;
 using System.Collections.Concurrent;
 
 using System.Web;
+using System.Runtime.InteropServices;
 
 namespace PDiscountCard.PrintOrder
 {
@@ -112,6 +113,7 @@ namespace PDiscountCard.PrintOrder
                 
 
             }
+                CutPrint(iniFile.LabelPrinterName);
             return res;
             }
             catch(Exception e)
@@ -182,6 +184,24 @@ namespace PDiscountCard.PrintOrder
         }
 
 
+
+        //[DllImport(@"c:\aloha\alohats\bin\westreport.dll", CharSet = CharSet.Unicode)]
+        [DllImport(@"westreport.dll", CharSet = CharSet.Unicode)]
+        static extern void Cut(String Fs);
+
+
+        public void CutPrint(string PrName)
+        {
+            Utils.ToCardLog("CutPrint PrName " + PrName);
+            //RawPrinterHelper.SendStringToPrinter(PrName, "CUT");
+            Cut(PrName);
+            /*
+            openport(PrName);
+            sendcommand("CUT");
+            closeport();
+            */
+        }
+
         bool PrintDoc3(UserControl vis, int TryCount, string PrName, int W, int H)
         {
             //   int W = 268;
@@ -197,9 +217,9 @@ namespace PDiscountCard.PrintOrder
                 PrintServer Ps = new PrintServer();
                 PrintQueue PQ = new PrintQueue(Ps, PrName);
                 Pd.PrintQueue = PQ;
-                // Pd.ShowDialog();
+             
                 PrintTicket Pt = Pd.PrintTicket;
-                //Pt.PageMediaSize = new PageMediaSize(W, 11349);
+              
                 Pt.PageMediaSize = new PageMediaSize(W, H);
                 Pt.PageBorderless = PageBorderless.Borderless;
                 Pt.PageResolution = new PageResolution(203, 203);
@@ -207,16 +227,11 @@ namespace PDiscountCard.PrintOrder
                 Pt.TrueTypeFontMode = TrueTypeFontMode.DownloadAsRasterFont;
 
                 Size pageSize = new Size(W - 10, Pd.PrintableAreaHeight);
-                //pageSize = new Size(W, H);
+               
                 ((UserControl)vis).Measure(pageSize);
                 ((UserControl)vis).Arrange(new Rect(0, 0, W - 10, ((UserControl)vis).Height));
-                //((UserControl)vis).Arrange(new Rect(0, 0, W, H));
-                /*
-                if (iniFile.FRSSaveCheckToImg2)
-                {
-                    SaveCheckVisualToFile(vis, W, Convert.ToInt32(((UserControl)vis).Height));
-                }
-                 * */
+
+                
                 Pd.PrintVisual(vis, "Hello");
                 Ps.Dispose();
                 Pd.PrintQueue.Dispose();

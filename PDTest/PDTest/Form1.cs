@@ -757,10 +757,15 @@ namespace PDTest
 
         private void button13_Click(object sender, EventArgs e)
         {
+            /*
             var gd = new PDiscountCard.RemoteSrvs.GesData();
             string err="";
           var res =  gd.GetItemDescription(new List<int>() { 841810 }, out err);
           var res2 = gd.GetItemExp2(new List<int>() { 841539 }, out err);
+          */
+
+            
+            PDiscountCard.PrintOrder.PrintOrder.Instanse.CutPrint(@"TSC TC200");
 
 
         }

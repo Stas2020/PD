@@ -1573,86 +1573,97 @@ namespace PDiscountCard
 
                                 try
                                 {
-                                    if (CurentCard.Prefix == "80827")
+                                if (CurentCard.Prefix == "80827")
+                                {
+                                    Utils.ToLog("[RegCard]  Распознал  супервип");
+                                    if (k == -1)
                                     {
-                                        Utils.ToLog("[RegCard]  Распознал  супервип");
-                                        if (k == -1)
+                                        AlohaTSClass.ShowMessage("Нет связи с базой данных. Рекомендую применить скидку");
+                                        compId = 8;
+                                    }
+                                    else
+                                    {
+                                        if (VisitCount == -1)
                                         {
-                                            AlohaTSClass.ShowMessage("Нет связи с базой данных. Рекомендую применить скидку");
-                                            compId = 8;
+                                            AlohaTSClass.ShowMessage("Карта не активна для данного подразделения. Скидки не будет.");
+                                            return 1;
                                         }
-                                        else 
+                                        else if (VisitCount == -5)
                                         {
-                                            if (VisitCount == -1)
-                                            {
-                                                AlohaTSClass.ShowMessage("Карта не активна для данного подразделения. Скидки не будет.");
-                                                return 1;
-                                            }
-                                            else if (VisitCount == -5)
-                                            {
-                                                AlohaTSClass.ShowMessage("Карта заблокирована для данного подразделения. Скидки не будет.");
-                                                return 1;
-                                            }
-                                            else
-                                            {
-                                                Utils.ToCardLog("[RegCard]  Положительный ответ от сервера. Будет применена скидка");
-                                            }
-                                        }
-
-                                        string Emess2 = "";
-                                        int CompRes2 = AlohaTSClass.ApplyCompManagerOverride(compId, out Emess2);
-                                        Utils.ToLog("[RegCard] Результат успешного наложения скидки: " + CompRes2.ToString());
-
-                                        if (CompRes2 == 0)
-                                        {
-
-                                            AlohaTSClass.ShowMessage("Cкидка не применена.");
-                                            AlohaTSClass.WriteToDebout("Cкидка не применена  тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum + " Причина: " + Emess2);
+                                            AlohaTSClass.ShowMessage("Карта заблокирована для данного подразделения. Скидки не будет.");
+                                            return 1;
                                         }
                                         else
                                         {
-                                            //  AlohaTSClass.SetDiscountAttr((int)AlohaTSClass.AlohaCurentState.CheckId, CurentCard.Prefix + " " + CurentCard.Num, false, 0, 0);
-                                            AlohaTSClass.WriteToDebout("Применена скидка тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum);
-                                            AlohaTSClass.ShowMessage("Применена скидка.");
+                                            Utils.ToCardLog("[RegCard]  Положительный ответ от сервера. Будет применена скидка");
                                         }
-                                        CurentfrmCardMoover.SetOk();
-                                        return 1;
-
-
                                     }
-                                    else if (CurentCard.DiscountType != 8 && CurentCard.Prefix == "VIP" && Convert.ToInt64(CurentCard.Num) < 2500)
+
+                                    string Emess2 = "";
+                                    int CompRes2 = AlohaTSClass.ApplyCompManagerOverride(compId, out Emess2);
+                                    Utils.ToLog("[RegCard] Результат успешного наложения скидки: " + CompRes2.ToString());
+
+                                    if (CompRes2 == 0)
                                     {
-                                        Utils.ToLog("Вип карта первой сотни. n=" + CurentCard.Num + ". Надо проверить на неотключенность");
-                                        if (k == -1)
-                                        {
-                                            AlohaTSClass.ShowMessage("Нет связи с базой данных. Скидки не будет.");
-                                            return 1;
-                                        }
 
-                                        if (VisitCount < 0)
-                                        {
-                                            AlohaTSClass.ShowMessage("Карта заблокирована либо не активна для данного подразделения. Скидки не будет.");
-                                            return 1;
-                                        }
+                                        AlohaTSClass.ShowMessage("Cкидка не применена.");
+                                        AlohaTSClass.WriteToDebout("Cкидка не применена  тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum + " Причина: " + Emess2);
                                     }
-                                    /* Вернуть, когда появится инструмент добавления карт
-                                else if(CurentCard.DiscountType != 8 )
+                                    else
+                                    {
+                                        //  AlohaTSClass.SetDiscountAttr((int)AlohaTSClass.AlohaCurentState.CheckId, CurentCard.Prefix + " " + CurentCard.Num, false, 0, 0);
+                                        AlohaTSClass.WriteToDebout("Применена скидка тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum);
+                                        AlohaTSClass.ShowMessage("Применена скидка.");
+                                    }
+                                    CurentfrmCardMoover.SetOk();
+                                    return 1;
+
+
+                                }
+                                else if (CurentCard.DiscountType != 8 && CurentCard.Prefix == "VIP" && Convert.ToInt64(CurentCard.Num) < 2500)
                                 {
-                                    if (VisitCount == -5)
+                                    Utils.ToLog("Вип карта первой сотни. n=" + CurentCard.Num + ". Надо проверить на неотключенность");
+                                    if (k == -1)
                                     {
-                                        AlohaTSClass.ShowMessage("Карта не зарегистрирована.");
-                                            
+                                        AlohaTSClass.ShowMessage("Нет связи с базой данных. Скидки не будет.");
                                         return 1;
                                     }
-                                    if (VisitCount == -1)
+
+                                    if (VisitCount < 0)
                                     {
-                                        AlohaTSClass.ShowMessage("Карта заблокирована.");
-                                            
+                                        AlohaTSClass.ShowMessage("Карта заблокирована либо не активна для данного подразделения. Скидки не будет.");
                                         return 1;
                                     }
                                 }
-                                     * */
+
+
+                                else if ((CurentCard.DiscountType == 1)|| (CurentCard.DiscountType == 4))
+                                {
+                                    if (VisitCount == -7)
+                                    {
+                                        AlohaTSClass.ShowMessage("Не прошло необходимое время с момента последнего визита.");
+                                        
+                                        return 1;
+                                    }
                                 }
+                                /* Вернуть, когда появится инструмент добавления карт
+                            else if(CurentCard.DiscountType != 8 )
+                            {
+                                if (VisitCount == -5)
+                                {
+                                    AlohaTSClass.ShowMessage("Карта не зарегистрирована.");
+
+                                    return 1;
+                                }
+                                if (VisitCount == -1)
+                                {
+                                    AlohaTSClass.ShowMessage("Карта заблокирована.");
+
+                                    return 1;
+                                }
+                            }
+                                 * */
+                            }
                                 catch (Exception e)
                                 {
                                     Utils.ToLog("Error проверки первой сотни. " + e.Message);

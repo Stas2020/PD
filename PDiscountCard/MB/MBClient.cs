@@ -50,6 +50,11 @@ namespace PDiscountCard.MB
                 return -1;
             }
             compId = res.Result.CompId;
+            if (res.Result.TemporarilyInactive)
+            {//"Карта временно заблокирована."
+                CountV = -7;
+                return 1;
+            }
             if (!res.Result.CardRegistered)
             {//"Карта не зарег.."
                 CountV = -5;
@@ -61,7 +66,7 @@ namespace PDiscountCard.MB
                 CountV = -1;
                 return 1;
             }
-
+            
             if (!res.Result.PurchaseIsRegistered || !res.Result.VisitCounterIncreased)
             {
                 CountV = -3;
