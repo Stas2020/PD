@@ -693,13 +693,15 @@ namespace PDiscountCard
             if (MainClass.TimeTic.AddSeconds(300) < DateTime.Now)
             {
                 MainClass.TimeTic = DateTime.Now;
+                /*
                 if (iniFile.StopListOff)
                 {
                     return;
                 }
+                */
                 if ((MainClass.CurentMaster != -1)||MainClass.IamIsMaster ) 
                 {
-                    if ((MainClass.CurentMaster == AlohaTSClass.GetTermNum())||MainClass.IamIsMaster )
+                    if ((MainClass.CurentMaster == AlohaTSClass.GetTermNum())||MainClass.IamIsMaster)
                     {
                         MainClass.WHThreadThreadStopList.Set();
   

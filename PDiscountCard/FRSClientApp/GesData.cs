@@ -23,7 +23,7 @@ namespace PDiscountCard.FRSClientApp
 
                 System.ServiceModel.Channels.Binding binding = new System.ServiceModel.BasicHttpBinding();
                 ((System.ServiceModel.BasicHttpBinding)binding).MaxReceivedMessageSize = 1024 * 1024;
-                System.ServiceModel.EndpointAddress remoteAddress = new System.ServiceModel.EndpointAddress(@"http://vfiliasesb0:2580/process/Ges3ServicesProc");
+                System.ServiceModel.EndpointAddress remoteAddress = new System.ServiceModel.EndpointAddress(@"http://app:8000/process/process/wsdl?targetURI=urn:coffeemania:Ges3Services");
                 //System.ServiceModel.EndpointAddress remoteAddress = new System.ServiceModel.EndpointAddress(iniFile.FRSSRVPath.Trim());
 
 

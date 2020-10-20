@@ -85,9 +85,10 @@ namespace PDiscountCard.PrintOrder
                 res = false;
             }
 
-            
-            foreach (Dish itm in chk.Dishez.Where(a=>a.Level==0 && a.Price>0))
-            {
+                var butterList = new List<int> { 864007, 864008, 864009, 864010 };
+                //  foreach (Dish itm in chk.Dishez.Where(a=>a.Level==0 && a.Price>0))
+                foreach (Dish itm in chk.Dishez.Where(a => a.BarCode<933000 && !butterList.Contains(a.BarCode)))
+                {
                 var expT = new Tuple<int,string>(24,"");
                 string dDescr = "";
                 
@@ -113,6 +114,31 @@ namespace PDiscountCard.PrintOrder
                 
 
             }
+                
+                //Приборы
+                if (chk.Dishez.Any(a => a.BarCode == 977222))
+                {
+                    if (!PrintFreeStringLabel("Приборы"))
+                    {
+                        err += "Ошибка печати на принтере блюда Приборы" ;
+                        res = false;
+                    }
+                }
+
+                //Хлеб
+
+                
+                if (chk.Dishez.Any(a => butterList.Contains(a.BarCode)))
+                {
+                    if (!PrintFreeStringLabel("Хлеб"))
+                    {
+                        err += "Ошибка печати на принтере блюда Хлеб";
+                        res = false;
+                    }
+
+                }
+
+
                 CutPrint(iniFile.LabelPrinterName);
             return res;
             }
@@ -141,6 +167,27 @@ namespace PDiscountCard.PrintOrder
         }
 
 
+
+
+        private bool PrintFreeStringLabel(string descr)
+        {
+            
+            var toGoStrs = new List<FiscalCheckVisualString>() {
+                new FiscalCheckVisualString(" ",true,true ),
+                new FiscalCheckVisualString(" ",true,true ),
+             new FiscalCheckVisualString(descr,false,true )
+            
+
+            };
+
+            var vis = new CtrlCheckPrintTemplate();
+            
+            vis.CreateCheck(toGoStrs, "");
+
+            return PrintDoc3(vis, 0, iniFile.LabelPrinterName, 270, 190); //200
+
+        }
+
         private bool PrintToGoDishLabel(Dish itm, string WaterName, int expirationHours, int chId, string descr,string saveDescr)
         {
             string expirationName = "час";
@@ -160,10 +207,7 @@ namespace PDiscountCard.PrintOrder
             {
                 expirationName = "суток";
                 expirationHours = expirationHours / 24;
-            }
-
-
-          
+            }          
 
             var toGoStrs = new List<FiscalCheckVisualString>() { 
              new FiscalCheckVisualString(String.Format("Чек {0}",chId))

@@ -63,47 +63,187 @@ namespace PDiscountCard.Gestory {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services")]
-    public partial class chek_biznes_data_tmp2Row : object, System.ComponentModel.INotifyPropertyChanged {
+    public partial class AllMenuForSite_T_barcRow : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private System.Nullable<decimal> summaField;
+        private string bar_codField;
         
-        private System.Nullable<System.DateTime> dtField;
+        private string nAMEField;
         
-        private System.Nullable<int> cshField;
+        private System.Nullable<int> belkiField;
+        
+        private System.Nullable<int> zhiriField;
+        
+        private System.Nullable<int> uglevField;
+        
+        private System.Nullable<int> kalorField;
+        
+        private System.Nullable<int> dostavkaField;
+        
+        private string list_priceField;
+        
+        private string list_shopsField;
+        
+        private System.Nullable<int> nDSField;
+        
+        private System.Nullable<int> prigTimeField;
+        
+        private string weightField;
+        
+        private System.Nullable<int> vesovoyField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
-        public System.Nullable<decimal> summa {
+        public string bar_cod {
             get {
-                return this.summaField;
+                return this.bar_codField;
             }
             set {
-                this.summaField = value;
-                this.RaisePropertyChanged("summa");
+                this.bar_codField = value;
+                this.RaisePropertyChanged("bar_cod");
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true, Order=1)]
-        public System.Nullable<System.DateTime> dt {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+        public string NAME {
             get {
-                return this.dtField;
+                return this.nAMEField;
             }
             set {
-                this.dtField = value;
-                this.RaisePropertyChanged("dt");
+                this.nAMEField = value;
+                this.RaisePropertyChanged("NAME");
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
-        public System.Nullable<int> csh {
+        public System.Nullable<int> Belki {
             get {
-                return this.cshField;
+                return this.belkiField;
             }
             set {
-                this.cshField = value;
-                this.RaisePropertyChanged("csh");
+                this.belkiField = value;
+                this.RaisePropertyChanged("Belki");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
+        public System.Nullable<int> Zhiri {
+            get {
+                return this.zhiriField;
+            }
+            set {
+                this.zhiriField = value;
+                this.RaisePropertyChanged("Zhiri");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        public System.Nullable<int> Uglev {
+            get {
+                return this.uglevField;
+            }
+            set {
+                this.uglevField = value;
+                this.RaisePropertyChanged("Uglev");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
+        public System.Nullable<int> Kalor {
+            get {
+                return this.kalorField;
+            }
+            set {
+                this.kalorField = value;
+                this.RaisePropertyChanged("Kalor");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=6)]
+        public System.Nullable<int> Dostavka {
+            get {
+                return this.dostavkaField;
+            }
+            set {
+                this.dostavkaField = value;
+                this.RaisePropertyChanged("Dostavka");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=7)]
+        public string List_price {
+            get {
+                return this.list_priceField;
+            }
+            set {
+                this.list_priceField = value;
+                this.RaisePropertyChanged("List_price");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=8)]
+        public string List_shops {
+            get {
+                return this.list_shopsField;
+            }
+            set {
+                this.list_shopsField = value;
+                this.RaisePropertyChanged("List_shops");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=9)]
+        public System.Nullable<int> NDS {
+            get {
+                return this.nDSField;
+            }
+            set {
+                this.nDSField = value;
+                this.RaisePropertyChanged("NDS");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=10)]
+        public System.Nullable<int> PrigTime {
+            get {
+                return this.prigTimeField;
+            }
+            set {
+                this.prigTimeField = value;
+                this.RaisePropertyChanged("PrigTime");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=11)]
+        public string weight {
+            get {
+                return this.weightField;
+            }
+            set {
+                this.weightField = value;
+                this.RaisePropertyChanged("weight");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=12)]
+        public System.Nullable<int> vesovoy {
+            get {
+                return this.vesovoyField;
+            }
+            set {
+                this.vesovoyField = value;
+                this.RaisePropertyChanged("vesovoy");
             }
         }
         
@@ -120,6 +260,12 @@ namespace PDiscountCard.Gestory {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="urn:coffeemania:Ges3Services", ConfigurationName="Gestory.Ges3ServicesObj")]
     public interface Ges3ServicesObj {
+        
+        // CODEGEN: Generating message contract since the wrapper namespace (urn:coffeemania:Ges3Services:Ges3Services) of message AllMenuForSiteRequest does not match the default value (urn:coffeemania:Ges3Services)
+        [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PDiscountCard.Gestory.FaultDetail), Action="", Name="FaultDetail", Namespace="urn:soap-fault:details")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        PDiscountCard.Gestory.AllMenuForSiteResponse AllMenuForSite(PDiscountCard.Gestory.AllMenuForSiteRequest request);
         
         // CODEGEN: Generating message contract since the wrapper namespace (urn:coffeemania:Ges3Services:Ges3Services) of message chek_biznes_dataRequest does not match the default value (urn:coffeemania:Ges3Services)
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
@@ -193,11 +339,29 @@ namespace PDiscountCard.Gestory {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         PDiscountCard.Gestory.get_podr_chekResponse get_podr_chek(PDiscountCard.Gestory.get_podr_chekRequest request);
         
+        // CODEGEN: Generating message contract since the wrapper namespace (urn:coffeemania:Ges3Services:Ges3Services) of message get_present_cardsRequest does not match the default value (urn:coffeemania:Ges3Services)
+        [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PDiscountCard.Gestory.FaultDetail), Action="", Name="FaultDetail", Namespace="urn:soap-fault:details")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        PDiscountCard.Gestory.get_present_cardsResponse get_present_cards(PDiscountCard.Gestory.get_present_cardsRequest request);
+        
+        // CODEGEN: Generating message contract since the wrapper namespace (urn:coffeemania:Ges3Services:Ges3Services) of message GetGes3FirmCodesListRequest does not match the default value (urn:coffeemania:Ges3Services)
+        [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PDiscountCard.Gestory.FaultDetail), Action="", Name="FaultDetail", Namespace="urn:soap-fault:details")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        PDiscountCard.Gestory.GetGes3FirmCodesListResponse GetGes3FirmCodesList(PDiscountCard.Gestory.GetGes3FirmCodesListRequest request);
+        
         // CODEGEN: Generating message contract since the wrapper namespace (urn:coffeemania:Ges3Services:Ges3Services) of message GestoriGoodCalculationWithQuantityRequest does not match the default value (urn:coffeemania:Ges3Services)
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
         [System.ServiceModel.FaultContractAttribute(typeof(PDiscountCard.Gestory.FaultDetail), Action="", Name="FaultDetail", Namespace="urn:soap-fault:details")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         PDiscountCard.Gestory.GestoriGoodCalculationWithQuantityResponse GestoriGoodCalculationWithQuantity(PDiscountCard.Gestory.GestoriGoodCalculationWithQuantityRequest request);
+        
+        // CODEGEN: Generating message contract since the wrapper namespace (urn:coffeemania:Ges3Services:Ges3Services) of message get_ML_recipeRequest does not match the default value (urn:coffeemania:Ges3Services)
+        [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PDiscountCard.Gestory.FaultDetail), Action="", Name="FaultDetail", Namespace="urn:soap-fault:details")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        PDiscountCard.Gestory.get_ML_recipeResponse get_ML_recipe(PDiscountCard.Gestory.get_ML_recipeRequest request);
         
         // CODEGEN: Generating message contract since the wrapper namespace (urn:coffeemania:Ges3Services:Ges3Services) of message GetGes3FirmDetailsRequest does not match the default value (urn:coffeemania:Ges3Services)
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
@@ -330,6 +494,100 @@ namespace PDiscountCard.Gestory {
         [System.ServiceModel.FaultContractAttribute(typeof(PDiscountCard.Gestory.FaultDetail), Action="", Name="FaultDetail", Namespace="urn:soap-fault:details")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         PDiscountCard.Gestory.virt_objResponse virt_obj(PDiscountCard.Gestory.virt_objRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AllMenuForSite", WrapperNamespace="urn:coffeemania:Ges3Services:Ges3Services", IsWrapped=true)]
+    public partial class AllMenuForSiteRequest {
+        
+        public AllMenuForSiteRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AllMenuForSiteResponse", WrapperNamespace="urn:coffeemania:Ges3Services:Ges3Services", IsWrapped=true)]
+    public partial class AllMenuForSiteResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string result;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=1)]
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("T_barcRow", IsNullable=false)]
+        public PDiscountCard.Gestory.AllMenuForSite_T_barcRow[] T_barc;
+        
+        public AllMenuForSiteResponse() {
+        }
+        
+        public AllMenuForSiteResponse(string result, PDiscountCard.Gestory.AllMenuForSite_T_barcRow[] T_barc) {
+            this.result = result;
+            this.T_barc = T_barc;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services")]
+    public partial class chek_biznes_data_tmp2Row : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.Nullable<decimal> summaField;
+        
+        private System.Nullable<System.DateTime> dtField;
+        
+        private System.Nullable<int> cshField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+        public System.Nullable<decimal> summa {
+            get {
+                return this.summaField;
+            }
+            set {
+                this.summaField = value;
+                this.RaisePropertyChanged("summa");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true, Order=1)]
+        public System.Nullable<System.DateTime> dt {
+            get {
+                return this.dtField;
+            }
+            set {
+                this.dtField = value;
+                this.RaisePropertyChanged("dt");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+        public System.Nullable<int> csh {
+            get {
+                return this.cshField;
+            }
+            set {
+                this.cshField = value;
+                this.RaisePropertyChanged("csh");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2151,6 +2409,249 @@ namespace PDiscountCard.Gestory {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services")]
+    public partial class get_present_cards_t_cardsRow : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.Nullable<int> k_typeField;
+        
+        private string prefField;
+        
+        private System.Nullable<int> k_numbField;
+        
+        private System.Nullable<System.DateTime> dtField;
+        
+        private System.Nullable<int> cod_shField;
+        
+        private string cheknumField;
+        
+        private System.Nullable<decimal> summ_nField;
+        
+        private System.Nullable<decimal> summ_oField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+        public System.Nullable<int> k_type {
+            get {
+                return this.k_typeField;
+            }
+            set {
+                this.k_typeField = value;
+                this.RaisePropertyChanged("k_type");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+        public string pref {
+            get {
+                return this.prefField;
+            }
+            set {
+                this.prefField = value;
+                this.RaisePropertyChanged("pref");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+        public System.Nullable<int> k_numb {
+            get {
+                return this.k_numbField;
+            }
+            set {
+                this.k_numbField = value;
+                this.RaisePropertyChanged("k_numb");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true, Order=3)]
+        public System.Nullable<System.DateTime> dt {
+            get {
+                return this.dtField;
+            }
+            set {
+                this.dtField = value;
+                this.RaisePropertyChanged("dt");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        public System.Nullable<int> cod_sh {
+            get {
+                return this.cod_shField;
+            }
+            set {
+                this.cod_shField = value;
+                this.RaisePropertyChanged("cod_sh");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
+        public string cheknum {
+            get {
+                return this.cheknumField;
+            }
+            set {
+                this.cheknumField = value;
+                this.RaisePropertyChanged("cheknum");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=6)]
+        public System.Nullable<decimal> summ_n {
+            get {
+                return this.summ_nField;
+            }
+            set {
+                this.summ_nField = value;
+                this.RaisePropertyChanged("summ_n");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=7)]
+        public System.Nullable<decimal> summ_o {
+            get {
+                return this.summ_oField;
+            }
+            set {
+                this.summ_oField = value;
+                this.RaisePropertyChanged("summ_o");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="get_present_cards", WrapperNamespace="urn:coffeemania:Ges3Services:Ges3Services", IsWrapped=true)]
+    public partial class get_present_cardsRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true)]
+        public System.Nullable<System.DateTime> dt1;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true)]
+        public System.Nullable<System.DateTime> dt2;
+        
+        public get_present_cardsRequest() {
+        }
+        
+        public get_present_cardsRequest(System.Nullable<System.DateTime> dt1, System.Nullable<System.DateTime> dt2) {
+            this.dt1 = dt1;
+            this.dt2 = dt2;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="get_present_cardsResponse", WrapperNamespace="urn:coffeemania:Ges3Services:Ges3Services", IsWrapped=true)]
+    public partial class get_present_cardsResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string result;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=1)]
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("t_cardsRow", IsNullable=false)]
+        public PDiscountCard.Gestory.get_present_cards_t_cardsRow[] t_cards;
+        
+        public get_present_cardsResponse() {
+        }
+        
+        public get_present_cardsResponse(string result, PDiscountCard.Gestory.get_present_cards_t_cardsRow[] t_cards) {
+            this.result = result;
+            this.t_cards = t_cards;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services")]
+    public partial class GetGes3FirmCodesList_temp2Row : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.Nullable<int> cfirmField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+        public System.Nullable<int> cfirm {
+            get {
+                return this.cfirmField;
+            }
+            set {
+                this.cfirmField = value;
+                this.RaisePropertyChanged("cfirm");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetGes3FirmCodesList", WrapperNamespace="urn:coffeemania:Ges3Services:Ges3Services", IsWrapped=true)]
+    public partial class GetGes3FirmCodesListRequest {
+        
+        public GetGes3FirmCodesListRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetGes3FirmCodesListResponse", WrapperNamespace="urn:coffeemania:Ges3Services:Ges3Services", IsWrapped=true)]
+    public partial class GetGes3FirmCodesListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string result;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=1)]
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("temp2Row", IsNullable=false)]
+        public PDiscountCard.Gestory.GetGes3FirmCodesList_temp2Row[] temp2;
+        
+        public GetGes3FirmCodesListResponse() {
+        }
+        
+        public GetGes3FirmCodesListResponse(string result, PDiscountCard.Gestory.GetGes3FirmCodesList_temp2Row[] temp2) {
+            this.result = result;
+            this.temp2 = temp2;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services")]
     public partial class GestoriGoodCalculationWithQuantity_CalculationGoodsRow : object, System.ComponentModel.INotifyPropertyChanged {
         
         private System.Nullable<int> comp_CodeField;
@@ -2273,6 +2774,328 @@ namespace PDiscountCard.Gestory {
             this.result = result;
             this.Error_String = Error_String;
             this.CalculationGoods = CalculationGoods;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services")]
+    public partial class get_ML_recipe_RecipeHeaderRow : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.Nullable<int> depIdField;
+        
+        private System.Nullable<decimal> recipeNumberField;
+        
+        private System.Nullable<decimal> recipeIdField;
+        
+        private string recipeNameField;
+        
+        private System.Nullable<int> categoryIdField;
+        
+        private string categoryField;
+        
+        private System.Nullable<System.DateTime> startRecipeDateField;
+        
+        private string recipeStandartUnitField;
+        
+        private System.Nullable<decimal> recipeMakesAmountField;
+        
+        private string recipePLUField;
+        
+        private System.Nullable<decimal> recipeSalesPriceField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+        public System.Nullable<int> DepId {
+            get {
+                return this.depIdField;
+            }
+            set {
+                this.depIdField = value;
+                this.RaisePropertyChanged("DepId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+        public System.Nullable<decimal> RecipeNumber {
+            get {
+                return this.recipeNumberField;
+            }
+            set {
+                this.recipeNumberField = value;
+                this.RaisePropertyChanged("RecipeNumber");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+        public System.Nullable<decimal> RecipeId {
+            get {
+                return this.recipeIdField;
+            }
+            set {
+                this.recipeIdField = value;
+                this.RaisePropertyChanged("RecipeId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
+        public string RecipeName {
+            get {
+                return this.recipeNameField;
+            }
+            set {
+                this.recipeNameField = value;
+                this.RaisePropertyChanged("RecipeName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        public System.Nullable<int> CategoryId {
+            get {
+                return this.categoryIdField;
+            }
+            set {
+                this.categoryIdField = value;
+                this.RaisePropertyChanged("CategoryId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
+        public string Category {
+            get {
+                return this.categoryField;
+            }
+            set {
+                this.categoryField = value;
+                this.RaisePropertyChanged("Category");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true, Order=6)]
+        public System.Nullable<System.DateTime> StartRecipeDate {
+            get {
+                return this.startRecipeDateField;
+            }
+            set {
+                this.startRecipeDateField = value;
+                this.RaisePropertyChanged("StartRecipeDate");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=7)]
+        public string RecipeStandartUnit {
+            get {
+                return this.recipeStandartUnitField;
+            }
+            set {
+                this.recipeStandartUnitField = value;
+                this.RaisePropertyChanged("RecipeStandartUnit");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=8)]
+        public System.Nullable<decimal> RecipeMakesAmount {
+            get {
+                return this.recipeMakesAmountField;
+            }
+            set {
+                this.recipeMakesAmountField = value;
+                this.RaisePropertyChanged("RecipeMakesAmount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=9)]
+        public string RecipePLU {
+            get {
+                return this.recipePLUField;
+            }
+            set {
+                this.recipePLUField = value;
+                this.RaisePropertyChanged("RecipePLU");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=10)]
+        public System.Nullable<decimal> RecipeSalesPrice {
+            get {
+                return this.recipeSalesPriceField;
+            }
+            set {
+                this.recipeSalesPriceField = value;
+                this.RaisePropertyChanged("RecipeSalesPrice");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services")]
+    public partial class get_ML_recipe_RecipeDetailsRow : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.Nullable<decimal> recipeNumberField;
+        
+        private System.Nullable<decimal> recipeIdField;
+        
+        private System.Nullable<decimal> rawMaterialItemIDField;
+        
+        private string rawMaterialNameField;
+        
+        private string ingredientUnitsField;
+        
+        private System.Nullable<decimal> quantityField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+        public System.Nullable<decimal> RecipeNumber {
+            get {
+                return this.recipeNumberField;
+            }
+            set {
+                this.recipeNumberField = value;
+                this.RaisePropertyChanged("RecipeNumber");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+        public System.Nullable<decimal> RecipeId {
+            get {
+                return this.recipeIdField;
+            }
+            set {
+                this.recipeIdField = value;
+                this.RaisePropertyChanged("RecipeId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+        public System.Nullable<decimal> RawMaterialItemID {
+            get {
+                return this.rawMaterialItemIDField;
+            }
+            set {
+                this.rawMaterialItemIDField = value;
+                this.RaisePropertyChanged("RawMaterialItemID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
+        public string RawMaterialName {
+            get {
+                return this.rawMaterialNameField;
+            }
+            set {
+                this.rawMaterialNameField = value;
+                this.RaisePropertyChanged("RawMaterialName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        public string IngredientUnits {
+            get {
+                return this.ingredientUnitsField;
+            }
+            set {
+                this.ingredientUnitsField = value;
+                this.RaisePropertyChanged("IngredientUnits");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
+        public System.Nullable<decimal> Quantity {
+            get {
+                return this.quantityField;
+            }
+            set {
+                this.quantityField = value;
+                this.RaisePropertyChanged("Quantity");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="get_ML_recipe", WrapperNamespace="urn:coffeemania:Ges3Services:Ges3Services", IsWrapped=true)]
+    public partial class get_ML_recipeRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true)]
+        public System.Nullable<System.DateTime> dt1;
+        
+        public get_ML_recipeRequest() {
+        }
+        
+        public get_ML_recipeRequest(System.Nullable<System.DateTime> dt1) {
+            this.dt1 = dt1;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="get_ML_recipeResponse", WrapperNamespace="urn:coffeemania:Ges3Services:Ges3Services", IsWrapped=true)]
+    public partial class get_ML_recipeResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string result;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=1)]
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("RecipeHeaderRow", IsNullable=false)]
+        public PDiscountCard.Gestory.get_ML_recipe_RecipeHeaderRow[] RecipeHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:coffeemania:Ges3Services:Ges3Services", Order=2)]
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("RecipeDetailsRow", IsNullable=false)]
+        public PDiscountCard.Gestory.get_ML_recipe_RecipeDetailsRow[] RecipeDetails;
+        
+        public get_ML_recipeResponse() {
+        }
+        
+        public get_ML_recipeResponse(string result, PDiscountCard.Gestory.get_ML_recipe_RecipeHeaderRow[] RecipeHeader, PDiscountCard.Gestory.get_ML_recipe_RecipeDetailsRow[] RecipeDetails) {
+            this.result = result;
+            this.RecipeHeader = RecipeHeader;
+            this.RecipeDetails = RecipeDetails;
         }
     }
     
@@ -4777,6 +5600,18 @@ namespace PDiscountCard.Gestory {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PDiscountCard.Gestory.AllMenuForSiteResponse PDiscountCard.Gestory.Ges3ServicesObj.AllMenuForSite(PDiscountCard.Gestory.AllMenuForSiteRequest request) {
+            return base.Channel.AllMenuForSite(request);
+        }
+        
+        public string AllMenuForSite(out PDiscountCard.Gestory.AllMenuForSite_T_barcRow[] T_barc) {
+            PDiscountCard.Gestory.AllMenuForSiteRequest inValue = new PDiscountCard.Gestory.AllMenuForSiteRequest();
+            PDiscountCard.Gestory.AllMenuForSiteResponse retVal = ((PDiscountCard.Gestory.Ges3ServicesObj)(this)).AllMenuForSite(inValue);
+            T_barc = retVal.T_barc;
+            return retVal.result;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         PDiscountCard.Gestory.chek_biznes_dataResponse PDiscountCard.Gestory.Ges3ServicesObj.chek_biznes_data(PDiscountCard.Gestory.chek_biznes_dataRequest request) {
             return base.Channel.chek_biznes_data(request);
         }
@@ -4999,6 +5834,32 @@ namespace PDiscountCard.Gestory {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PDiscountCard.Gestory.get_present_cardsResponse PDiscountCard.Gestory.Ges3ServicesObj.get_present_cards(PDiscountCard.Gestory.get_present_cardsRequest request) {
+            return base.Channel.get_present_cards(request);
+        }
+        
+        public string get_present_cards(System.Nullable<System.DateTime> dt1, System.Nullable<System.DateTime> dt2, out PDiscountCard.Gestory.get_present_cards_t_cardsRow[] t_cards) {
+            PDiscountCard.Gestory.get_present_cardsRequest inValue = new PDiscountCard.Gestory.get_present_cardsRequest();
+            inValue.dt1 = dt1;
+            inValue.dt2 = dt2;
+            PDiscountCard.Gestory.get_present_cardsResponse retVal = ((PDiscountCard.Gestory.Ges3ServicesObj)(this)).get_present_cards(inValue);
+            t_cards = retVal.t_cards;
+            return retVal.result;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PDiscountCard.Gestory.GetGes3FirmCodesListResponse PDiscountCard.Gestory.Ges3ServicesObj.GetGes3FirmCodesList(PDiscountCard.Gestory.GetGes3FirmCodesListRequest request) {
+            return base.Channel.GetGes3FirmCodesList(request);
+        }
+        
+        public string GetGes3FirmCodesList(out PDiscountCard.Gestory.GetGes3FirmCodesList_temp2Row[] temp2) {
+            PDiscountCard.Gestory.GetGes3FirmCodesListRequest inValue = new PDiscountCard.Gestory.GetGes3FirmCodesListRequest();
+            PDiscountCard.Gestory.GetGes3FirmCodesListResponse retVal = ((PDiscountCard.Gestory.Ges3ServicesObj)(this)).GetGes3FirmCodesList(inValue);
+            temp2 = retVal.temp2;
+            return retVal.result;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         PDiscountCard.Gestory.GestoriGoodCalculationWithQuantityResponse PDiscountCard.Gestory.Ges3ServicesObj.GestoriGoodCalculationWithQuantity(PDiscountCard.Gestory.GestoriGoodCalculationWithQuantityRequest request) {
             return base.Channel.GestoriGoodCalculationWithQuantity(request);
         }
@@ -5011,6 +5872,20 @@ namespace PDiscountCard.Gestory {
             PDiscountCard.Gestory.GestoriGoodCalculationWithQuantityResponse retVal = ((PDiscountCard.Gestory.Ges3ServicesObj)(this)).GestoriGoodCalculationWithQuantity(inValue);
             Error_String = retVal.Error_String;
             CalculationGoods = retVal.CalculationGoods;
+            return retVal.result;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PDiscountCard.Gestory.get_ML_recipeResponse PDiscountCard.Gestory.Ges3ServicesObj.get_ML_recipe(PDiscountCard.Gestory.get_ML_recipeRequest request) {
+            return base.Channel.get_ML_recipe(request);
+        }
+        
+        public string get_ML_recipe(System.Nullable<System.DateTime> dt1, out PDiscountCard.Gestory.get_ML_recipe_RecipeHeaderRow[] RecipeHeader, out PDiscountCard.Gestory.get_ML_recipe_RecipeDetailsRow[] RecipeDetails) {
+            PDiscountCard.Gestory.get_ML_recipeRequest inValue = new PDiscountCard.Gestory.get_ML_recipeRequest();
+            inValue.dt1 = dt1;
+            PDiscountCard.Gestory.get_ML_recipeResponse retVal = ((PDiscountCard.Gestory.Ges3ServicesObj)(this)).get_ML_recipe(inValue);
+            RecipeHeader = retVal.RecipeHeader;
+            RecipeDetails = retVal.RecipeDetails;
             return retVal.result;
         }
         

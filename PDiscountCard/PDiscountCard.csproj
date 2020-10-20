@@ -761,7 +761,10 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\FRSSrv\RemoteData1.wsdl" />
-    <None Include="Service References\Gestory\Ges3Services.wsdl" />
+    <None Include="Service References\Gestory\Ges3Services1.wsdl" />
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.AllMenuForSite_T_barcRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Gestory\PDiscountCard.Gestory.chek_biznes_data_tmp2Row.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -786,6 +789,9 @@
     <None Include="Service References\Gestory\PDiscountCard.Gestory.GestoriGoodCalculationWithQuantity_CalculationGoodsRow.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.GetGes3FirmCodesList_temp2Row.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Gestory\PDiscountCard.Gestory.GetGestoriBalanceAll_ResultGoodsRow.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -795,7 +801,16 @@
     <None Include="Service References\Gestory\PDiscountCard.Gestory.get_GestoriGoods_T_GestoriGoodsRow.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.get_ML_recipe_RecipeDetailsRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.get_ML_recipe_RecipeHeaderRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Gestory\PDiscountCard.Gestory.get_podr_chek_T_cheksRow.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Gestory\PDiscountCard.Gestory.get_present_cards_t_cardsRow.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Gestory\PDiscountCard.Gestory.GoodsOfFiliasPurchase_T_rezultsRow.datasource">

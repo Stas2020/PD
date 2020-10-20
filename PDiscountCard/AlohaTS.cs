@@ -4007,7 +4007,7 @@ namespace PDiscountCard
                                 {
                                     Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, TableNum, Request.TableName, Request.NumGuest);
                                 }
-                                catch(Exception e)
+                                catch (Exception e)
                                 {
                                     Utils.ToCardLog("Error AddTable" + e.Message);
                                     Request.AlohaTableId = 0;
@@ -4047,6 +4047,7 @@ namespace PDiscountCard
 
                                     foreach (AlohaExternal.AlohaItemInfo itm in Request.Items)
                                     {
+                                        Utils.ToCardLog("AddDish " + itm.Barcode + " " + itm.Name);
                                         double Price = (double)itm.Price;
                                         if (Price == -1)
                                         {
@@ -4058,8 +4059,10 @@ namespace PDiscountCard
                                             bool modOk = true;
                                             if (itm.Mods != null)
                                             {
-                                                foreach (var mod in itm.Mods)
+                                                foreach (var mod in itm.Mods.Where(a => a.Barcode > 0))
                                                 {
+                                                    Utils.ToCardLog("AddMod " + mod.Barcode + " " + mod.Name);
+                                                    /*
                                                     if (mod.Barcode == 0)
                                                     {
                                                         mod.Barcode = GetModificatorOfDishByName(itm.Barcode, mod.Name);
@@ -4069,6 +4072,8 @@ namespace PDiscountCard
                                                             break;
                                                         }
                                                     }
+                                                    */
+
 
                                                     double mPrice = (double)mod.Price;
                                                     if (mPrice == -1)
@@ -4077,7 +4082,7 @@ namespace PDiscountCard
                                                     }
                                                     try
                                                     {
-                                                        AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, mod.Barcode, "", Price, 0);
+                                                        AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, mod.Barcode, "", mPrice, 0);
                                                     }
                                                     catch (Exception ee)
                                                     {
@@ -4088,12 +4093,25 @@ namespace PDiscountCard
                                                         mod.ErrorMsg = err.ValStr;
                                                         Resp.ErrorItems.Add(mod);
                                                         modOk = false;
+                                                        Utils.ToCardLog("Error AddModd " + mod.Barcode + " " + ee.Message);
                                                     }
                                                 }
                                             }
+
+                                            var chunkSize = 14;
+                                            foreach (var mod in itm.Mods.Where(a => a.Barcode == 0))
+                                            {
+                                                var result = (from Match m in Regex.Matches(mod.Name, @".{1," + chunkSize + "}")
+                                                              select m.Value).ToList();
+                                                foreach (string ss in result)
+                                                {
+                                                    AlohaFuncs.ModItem(GetTermNum(), pId, 999902, ss, -999999999.000000, 0);
+                                                }
+                                            }
+
                                             if (itm.Comment?.Length > 0)
                                             {
-                                                var chunkSize = 14;
+
                                                 var result = (from Match m in Regex.Matches(itm.Comment, @".{1," + chunkSize + "}")
                                                               select m.Value).ToList();
 
@@ -4130,6 +4148,7 @@ namespace PDiscountCard
                                             itm.AlohaErrorCode = err.Val;
                                             itm.ErrorMsg = err.ValStr;
                                             Resp.ErrorItems.Add(itm);
+                                            Utils.ToCardLog("Error AddDish " + itm.Barcode + " " + e.Message);
                                         }
                                     }
 
@@ -4156,13 +4175,18 @@ namespace PDiscountCard
                             {
 
                                 var err = new CAlohaErrors(e.Message);
-
-                                if (err.Val != AlohaErrEnum.ErrCOM_TableInUse)
+                                if ((e.Message.Length < 3) || (e.Message.Substring(e.Message.Length - 2, 2) != "32"))
+                                //if (err.Val != AlohaErrEnum.ErrCOM_TableInUse)
                                 {
-                                    Utils.ToCardLog("Error AddTable" + e.Message);
+                                    Utils.ToCardLog("Error no one AddTables " + e.Message);
                                     Resp.ErrorMsg = err.ValStr;
                                     Resp.AlohaErrorCode = err.Val;
                                     return;
+                                }
+                                else
+                                {
+                                    Utils.ToCardLog("Error AddTable " + e.Message);
+
                                 }
 
                             }
@@ -6413,9 +6437,9 @@ namespace PDiscountCard
                             Tndr.TenderId, Tndr.Name, Tndr.AuthId, Tndr.Ident, Tndr.NR, Tndr.GCTYPE, Tndr.GCAMOUNT, Tndr.GCREDEEM));
 
 
-                       // if (Tndr.AlohaTenderId == 68)
-                            if ((Tndr.AlohaTenderId == 25) && ((Tndr.CardPrefix== "77277")|| (Tndr.CardPrefix == "NzcyN")))
-                            {
+                        // if (Tndr.AlohaTenderId == 68)
+                        if ((Tndr.AlohaTenderId == 25) && ((Tndr.CardPrefix == "77277") || (Tndr.CardPrefix == "NzcyN")))
+                        {
                             NeedDiscountForCert += Tndr.Summ;
                             var cc = new AlohaClientCard()
                             {
@@ -6429,7 +6453,7 @@ namespace PDiscountCard
                             Ch2.AlohaClientCardListCertifDisk.Add(cc);
                             Utils.ToCardLog("Addd to AlohaClientCardListCertifDisk " + cc.Prefix + " " + cc.Number);
 
-                           Ch2.Summ -= (decimal)Tndr.Summ;
+                            Ch2.Summ -= (decimal)Tndr.Summ;
                             continue;
                         }
 
@@ -6649,7 +6673,7 @@ namespace PDiscountCard
                 {
                     Utils.ToLog("Скидок на столе нет ", 3);
                 }
-               
+
                 if ((Ch2.Comp == 0) && (PromoAmmount > 0))
                 {
 
@@ -6686,7 +6710,7 @@ namespace PDiscountCard
                 {
                     Ch2.DiscountCard = AlohaTSClass.GetDiscountAttr(Ch2.AlohaCheckNum);
                 }
-                
+
                 Loyalty.LoyaltyBasik.InsertASVCardInfo(Ch2);
 
 
@@ -6753,7 +6777,7 @@ namespace PDiscountCard
                 try
                 {
                     Utils.ToLog("NeedDiscountForCert    ", 6);
-                    if ((decimal)Chs <=NeedDiscountForCert)
+                    if ((decimal)Chs <= NeedDiscountForCert)
                     {
                         foreach (var d in Ch2.Dishez)
                         {
@@ -6764,13 +6788,13 @@ namespace PDiscountCard
                     }
                     else
                     {
-                        var k = 1-((double)NeedDiscountForCert) / Chs;
+                        var k = 1 - ((double)NeedDiscountForCert) / Chs;
                         foreach (var d in Ch2.Dishez)
                         {
                             d.Priceone *= (double)k;
                             d.Price *= (decimal)k;
                         }
-                       // Ch2.Summ *= (decimal)k;
+                        // Ch2.Summ *= (decimal)k;
 
                         //Все что ниже - это борьба с копейкой
                         try

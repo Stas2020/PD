@@ -18,7 +18,10 @@ namespace PDiscountCard.RemoteSrvs
                     Utils.ToCardLog(String.Format("GesData GetClient "));
                     System.ServiceModel.Channels.Binding binding = new System.ServiceModel.BasicHttpBinding();
                     ((System.ServiceModel.BasicHttpBinding)binding).MaxReceivedMessageSize = 1024 * 1024;
-                    System.ServiceModel.EndpointAddress remoteAddress = new System.ServiceModel.EndpointAddress(@"http://vfiliasesb0:2580/process/Ges3ServicesProc");
+                  //  System.ServiceModel.EndpointAddress remoteAddress = new System.ServiceModel.EndpointAddress(@"http://vfiliasesb0:2580/process/Ges3ServicesProc");
+                    System.ServiceModel.EndpointAddress remoteAddress = new System.ServiceModel.EndpointAddress(@"http://app:8000/process/process");
+
+                
                     Gestory.Ges3ServicesObjClient GesCl = new Gestory.Ges3ServicesObjClient(binding, remoteAddress);
                     
                     GesCl.InnerChannel.OperationTimeout = new TimeSpan(0, 10, 0);

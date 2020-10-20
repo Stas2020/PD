@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:coffeemania:Ges3Services" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:S1="urn:soap-fault:details" xmlns:S2="urn:coffeemania:Ges3Services:Ges3Services" xmlns="http://schemas.xmlsoap.org/wsdl/" name="Ges3Services" targetNamespace="urn:coffeemania:Ges3Services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Author=Volkov, EncodingType=DOC_LITERAL, Proxygen_Product=Progress Version 10.1C</wsdl:documentation>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:coffeemania:Ges3Services" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:S2="urn:coffeemania:Ges3Services:Ges3Services" xmlns:S1="urn:soap-fault:details" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" name="Ges3Services" targetNamespace="urn:coffeemania:Ges3Services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>Author=Volkov, EncodingType=DOC_LITERAL, WSA_Product=11.7.4 - Wed Oct 10 18:13:07 EDT 2018</wsdl:documentation>
   <wsdl:types>
     <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="urn:soap-fault:details">
       <xsd:element name="FaultDetail">
@@ -13,6 +13,28 @@
       </xsd:element>
     </xsd:schema>
     <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:coffeemania:Ges3Services:Ges3Services">
+      <xsd:complexType name="AllMenuForSite_T_barcRow">
+        <xsd:sequence>
+          <xsd:element name="bar_cod" nillable="true" type="xsd:string" />
+          <xsd:element name="NAME" nillable="true" type="xsd:string" />
+          <xsd:element name="Belki" nillable="true" type="xsd:int" />
+          <xsd:element name="Zhiri" nillable="true" type="xsd:int" />
+          <xsd:element name="Uglev" nillable="true" type="xsd:int" />
+          <xsd:element name="Kalor" nillable="true" type="xsd:int" />
+          <xsd:element name="Dostavka" nillable="true" type="xsd:int" />
+          <xsd:element name="List_price" nillable="true" type="xsd:string" />
+          <xsd:element name="List_shops" nillable="true" type="xsd:string" />
+          <xsd:element name="NDS" nillable="true" type="xsd:int" />
+          <xsd:element name="PrigTime" nillable="true" type="xsd:int" />
+          <xsd:element name="weight" nillable="true" type="xsd:string" />
+          <xsd:element name="vesovoy" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AllMenuForSite_T_barcParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_barcRow" type="S2:AllMenuForSite_T_barcRow" />
+        </xsd:sequence>
+      </xsd:complexType>
       <xsd:complexType name="chek_biznes_data_tmp2Row">
         <xsd:sequence>
           <xsd:element name="summa" nillable="true" type="xsd:decimal" />
@@ -194,6 +216,33 @@
           <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_cheksRow" type="S2:get_podr_chek_T_cheksRow" />
         </xsd:sequence>
       </xsd:complexType>
+      <xsd:complexType name="get_present_cards_t_cardsRow">
+        <xsd:sequence>
+          <xsd:element name="k_type" nillable="true" type="xsd:int" />
+          <xsd:element name="pref" nillable="true" type="xsd:string" />
+          <xsd:element name="k_numb" nillable="true" type="xsd:int" />
+          <xsd:element name="dt" nillable="true" type="xsd:date" />
+          <xsd:element name="cod_sh" nillable="true" type="xsd:int" />
+          <xsd:element name="cheknum" nillable="true" type="xsd:string" />
+          <xsd:element name="summ_n" nillable="true" type="xsd:decimal" />
+          <xsd:element name="summ_o" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="get_present_cards_t_cardsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="t_cardsRow" type="S2:get_present_cards_t_cardsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetGes3FirmCodesList_temp2Row">
+        <xsd:sequence>
+          <xsd:element name="cfirm" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetGes3FirmCodesList_temp2Param">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="temp2Row" type="S2:GetGes3FirmCodesList_temp2Row" />
+        </xsd:sequence>
+      </xsd:complexType>
       <xsd:complexType name="GestoriGoodCalculationWithQuantity_CalculationGoodsRow">
         <xsd:sequence>
           <xsd:element name="comp_Code" nillable="true" type="xsd:int" />
@@ -205,6 +254,41 @@
       <xsd:complexType name="GestoriGoodCalculationWithQuantity_CalculationGoodsParam">
         <xsd:sequence>
           <xsd:element minOccurs="0" maxOccurs="unbounded" name="CalculationGoodsRow" type="S2:GestoriGoodCalculationWithQuantity_CalculationGoodsRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="get_ML_recipe_RecipeHeaderRow">
+        <xsd:sequence>
+          <xsd:element name="DepId" nillable="true" type="xsd:int" />
+          <xsd:element name="RecipeNumber" nillable="true" type="xsd:decimal" />
+          <xsd:element name="RecipeId" nillable="true" type="xsd:decimal" />
+          <xsd:element name="RecipeName" nillable="true" type="xsd:string" />
+          <xsd:element name="CategoryId" nillable="true" type="xsd:int" />
+          <xsd:element name="Category" nillable="true" type="xsd:string" />
+          <xsd:element name="StartRecipeDate" nillable="true" type="xsd:date" />
+          <xsd:element name="RecipeStandartUnit" nillable="true" type="xsd:string" />
+          <xsd:element name="RecipeMakesAmount" nillable="true" type="xsd:decimal" />
+          <xsd:element name="RecipePLU" nillable="true" type="xsd:string" />
+          <xsd:element name="RecipeSalesPrice" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="get_ML_recipe_RecipeHeaderParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="RecipeHeaderRow" type="S2:get_ML_recipe_RecipeHeaderRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="get_ML_recipe_RecipeDetailsRow">
+        <xsd:sequence>
+          <xsd:element name="RecipeNumber" nillable="true" type="xsd:decimal" />
+          <xsd:element name="RecipeId" nillable="true" type="xsd:decimal" />
+          <xsd:element name="RawMaterialItemID" nillable="true" type="xsd:decimal" />
+          <xsd:element name="RawMaterialName" nillable="true" type="xsd:string" />
+          <xsd:element name="IngredientUnits" nillable="true" type="xsd:string" />
+          <xsd:element name="Quantity" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="get_ML_recipe_RecipeDetailsParam">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="RecipeDetailsRow" type="S2:get_ML_recipe_RecipeDetailsRow" />
         </xsd:sequence>
       </xsd:complexType>
       <xsd:complexType name="GetGestoriBalanceAll_GoodsRow">
@@ -462,6 +546,19 @@
           <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_shopsRow" type="S2:virt_obj_T_shopsRow" />
         </xsd:sequence>
       </xsd:complexType>
+      <xsd:element name="AllMenuForSite">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AllMenuForSiteResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="T_barc" nillable="true" type="S2:AllMenuForSite_T_barcParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="chek_biznes_data">
         <xsd:complexType>
           <xsd:sequence>
@@ -685,6 +782,35 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="get_present_cards">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="dt1" nillable="true" type="xsd:date" />
+            <xsd:element name="dt2" nillable="true" type="xsd:date" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="get_present_cardsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="t_cards" nillable="true" type="S2:get_present_cards_t_cardsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGes3FirmCodesList">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGes3FirmCodesListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="temp2" nillable="true" type="S2:GetGes3FirmCodesList_temp2Param" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="GestoriGoodCalculationWithQuantity">
         <xsd:complexType>
           <xsd:sequence>
@@ -700,6 +826,22 @@
             <xsd:element name="result" nillable="true" type="xsd:string" />
             <xsd:element name="Error_String" nillable="true" type="xsd:string" />
             <xsd:element name="CalculationGoods" nillable="true" type="S2:GestoriGoodCalculationWithQuantity_CalculationGoodsParam" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="get_ML_recipe">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="dt1" nillable="true" type="xsd:date" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="get_ML_recipeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string" />
+            <xsd:element name="RecipeHeader" nillable="true" type="S2:get_ML_recipe_RecipeHeaderParam" />
+            <xsd:element name="RecipeDetails" nillable="true" type="S2:get_ML_recipe_RecipeDetailsParam" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -1081,220 +1223,249 @@
       </xsd:element>
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="Ges3Services_GestoriGetZakazQuantityResponse">
-    <wsdl:part name="parameters" element="S2:GestoriGetZakazQuantityResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_ReturnDocumentListResponse">
-    <wsdl:part name="parameters" element="S2:ReturnDocumentListResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_RecommendedPriceResponse">
-    <wsdl:part name="parameters" element="S2:RecommendedPriceResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_ExportReturnDocumentForNumber">
-    <wsdl:part name="parameters" element="S2:ExportReturnDocumentForNumber" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GetGestoriBalanceResponse">
-    <wsdl:part name="parameters" element="S2:GetGestoriBalanceResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_storage_times">
-    <wsdl:part name="parameters" element="S2:storage_times" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_SouseLost">
-    <wsdl:part name="parameters" element="S2:SouseLost" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_sostav_goods">
-    <wsdl:part name="parameters" element="S2:sostav_goods" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GestoriGetZakazGoodsResponse">
-    <wsdl:part name="parameters" element="S2:GestoriGetZakazGoodsResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GestoriGetZakazGoods">
-    <wsdl:part name="parameters" element="S2:GestoriGetZakazGoods" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GoodsOfFiliasPurchase">
-    <wsdl:part name="parameters" element="S2:GoodsOfFiliasPurchase" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GoodsOfFiliasPurchaseResponse">
-    <wsdl:part name="parameters" element="S2:GoodsOfFiliasPurchaseResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_OpenGestoriDocument">
-    <wsdl:part name="parameters" element="S2:OpenGestoriDocument" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GestoriCustomerSalesByMonth">
-    <wsdl:part name="parameters" element="S2:GestoriCustomerSalesByMonth" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_RecommendedPrice">
-    <wsdl:part name="parameters" element="S2:RecommendedPrice" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GestoriGoodCalculationWithQuantity">
-    <wsdl:part name="parameters" element="S2:GestoriGoodCalculationWithQuantity" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_ExportReturnDocumentForNumberResponse">
-    <wsdl:part name="parameters" element="S2:ExportReturnDocumentForNumberResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GestoriGetQuantityAndZakazResponse">
-    <wsdl:part name="parameters" element="S2:GestoriGetQuantityAndZakazResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_get_podr_chekResponse">
-    <wsdl:part name="parameters" element="S2:get_podr_chekResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_sostav_barc">
-    <wsdl:part name="parameters" element="S2:sostav_barc" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_PutOrderInGestoriNewResponse">
-    <wsdl:part name="parameters" element="S2:PutOrderInGestoriNewResponse" />
+  <wsdl:message name="Ges3Services_GetGes3FirmCodesListResponse">
+    <wsdl:part name="parameters" element="S2:GetGes3FirmCodesListResponse" />
   </wsdl:message>
   <wsdl:message name="Ges3Services_ShopsGoodTime">
     <wsdl:part name="parameters" element="S2:ShopsGoodTime" />
   </wsdl:message>
-  <wsdl:message name="Ges3Services_GoodsOfFiliasVozvratResponse">
-    <wsdl:part name="parameters" element="S2:GoodsOfFiliasVozvratResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GetGes3FirmDetails">
-    <wsdl:part name="parameters" element="S2:GetGes3FirmDetails" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_storage_times2Response">
-    <wsdl:part name="parameters" element="S2:storage_times2Response" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GetGes3FirmDetailsResponse">
-    <wsdl:part name="parameters" element="S2:GetGes3FirmDetailsResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_ExportDataForSubdivisions">
-    <wsdl:part name="parameters" element="S2:ExportDataForSubdivisions" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_chek_biznes_data">
-    <wsdl:part name="parameters" element="S2:chek_biznes_data" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_obj_virtResponse">
-    <wsdl:part name="parameters" element="S2:obj_virtResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_ReturnDocumentList">
-    <wsdl:part name="parameters" element="S2:ReturnDocumentList" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_storage_times2">
-    <wsdl:part name="parameters" element="S2:storage_times2" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GestoriCashByDay">
-    <wsdl:part name="parameters" element="S2:GestoriCashByDay" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_virt_objResponse">
-    <wsdl:part name="parameters" element="S2:virt_objResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GestoriCustomerSalesByMonthResponse">
-    <wsdl:part name="parameters" element="S2:GestoriCustomerSalesByMonthResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_chek_biznes_dataResponse">
-    <wsdl:part name="parameters" element="S2:chek_biznes_dataResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_ExportWriteOffForSubdivisions">
-    <wsdl:part name="parameters" element="S2:ExportWriteOffForSubdivisions" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_PrihAndSpisTable">
-    <wsdl:part name="parameters" element="S2:PrihAndSpisTable" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_RealShops">
-    <wsdl:part name="parameters" element="S2:RealShops" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GestoriGoodCalculationWithQuantityResponse">
-    <wsdl:part name="parameters" element="S2:GestoriGoodCalculationWithQuantityResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GestoriCashByDayResponse">
-    <wsdl:part name="parameters" element="S2:GestoriCashByDayResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_storage_timesResponse">
-    <wsdl:part name="parameters" element="S2:storage_timesResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_ShopsGoodTimeResponse">
-    <wsdl:part name="parameters" element="S2:ShopsGoodTimeResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_get_GestoriGoods">
-    <wsdl:part name="parameters" element="S2:get_GestoriGoods" />
-  </wsdl:message>
-  <wsdl:message name="FaultDetailMessage">
-    <wsdl:part name="FaultDetail" element="S1:FaultDetail" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_transferForSubdivisions">
-    <wsdl:part name="parameters" element="S2:transferForSubdivisions" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GoodsOfFiliasReturnResponse">
-    <wsdl:part name="parameters" element="S2:GoodsOfFiliasReturnResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_get_podr_chek">
-    <wsdl:part name="parameters" element="S2:get_podr_chek" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GestoriGetZakazQuantity">
-    <wsdl:part name="parameters" element="S2:GestoriGetZakazQuantity" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_get_check_sales_by_codeResponse">
-    <wsdl:part name="parameters" element="S2:get_check_sales_by_codeResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_obj_virt">
-    <wsdl:part name="parameters" element="S2:obj_virt" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_ExportDataForSubdivisionsResponse">
-    <wsdl:part name="parameters" element="S2:ExportDataForSubdivisionsResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_NewMenuAlohaResponse">
-    <wsdl:part name="parameters" element="S2:NewMenuAlohaResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GoodsOfFiliasReturn">
-    <wsdl:part name="parameters" element="S2:GoodsOfFiliasReturn" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_PutOrderInGestoriNew">
-    <wsdl:part name="parameters" element="S2:PutOrderInGestoriNew" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_get_check_sales_by_code">
-    <wsdl:part name="parameters" element="S2:get_check_sales_by_code" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GetGestoriBalance">
-    <wsdl:part name="parameters" element="S2:GetGestoriBalance" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_virt_obj">
-    <wsdl:part name="parameters" element="S2:virt_obj" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_SouseLostResponse">
-    <wsdl:part name="parameters" element="S2:SouseLostResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_transferForSubdivisionsResponse">
-    <wsdl:part name="parameters" element="S2:transferForSubdivisionsResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_NewMenuAloha">
-    <wsdl:part name="parameters" element="S2:NewMenuAloha" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GetGestoriBalanceAllResponse">
-    <wsdl:part name="parameters" element="S2:GetGestoriBalanceAllResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GetGestoriBalanceAll">
-    <wsdl:part name="parameters" element="S2:GetGestoriBalanceAll" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GestoriGetQuantityAndZakaz">
-    <wsdl:part name="parameters" element="S2:GestoriGetQuantityAndZakaz" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_GoodsOfFiliasVozvrat">
-    <wsdl:part name="parameters" element="S2:GoodsOfFiliasVozvrat" />
-  </wsdl:message>
   <wsdl:message name="Ges3Services_sostav_barcResponse">
     <wsdl:part name="parameters" element="S2:sostav_barcResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_sostav_goodsResponse">
-    <wsdl:part name="parameters" element="S2:sostav_goodsResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_RealShopsResponse">
-    <wsdl:part name="parameters" element="S2:RealShopsResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_PrihAndSpisTableResponse">
-    <wsdl:part name="parameters" element="S2:PrihAndSpisTableResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_OpenGestoriDocumentResponse">
-    <wsdl:part name="parameters" element="S2:OpenGestoriDocumentResponse" />
-  </wsdl:message>
-  <wsdl:message name="Ges3Services_get_GestoriGoodsResponse">
-    <wsdl:part name="parameters" element="S2:get_GestoriGoodsResponse" />
   </wsdl:message>
   <wsdl:message name="Ges3Services_ExportWriteOffForSubdivisionsResponse">
     <wsdl:part name="parameters" element="S2:ExportWriteOffForSubdivisionsResponse" />
   </wsdl:message>
+  <wsdl:message name="Ges3Services_ExportWriteOffForSubdivisions">
+    <wsdl:part name="parameters" element="S2:ExportWriteOffForSubdivisions" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_podr_chekResponse">
+    <wsdl:part name="parameters" element="S2:get_podr_chekResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ReturnDocumentList">
+    <wsdl:part name="parameters" element="S2:ReturnDocumentList" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasReturn">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasReturn" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_obj_virtResponse">
+    <wsdl:part name="parameters" element="S2:obj_virtResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_GestoriGoods">
+    <wsdl:part name="parameters" element="S2:get_GestoriGoods" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_SouseLostResponse">
+    <wsdl:part name="parameters" element="S2:SouseLostResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGes3FirmDetails">
+    <wsdl:part name="parameters" element="S2:GetGes3FirmDetails" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_podr_chek">
+    <wsdl:part name="parameters" element="S2:get_podr_chek" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_NewMenuAlohaResponse">
+    <wsdl:part name="parameters" element="S2:NewMenuAlohaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriCustomerSalesByMonthResponse">
+    <wsdl:part name="parameters" element="S2:GestoriCustomerSalesByMonthResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_check_sales_by_code">
+    <wsdl:part name="parameters" element="S2:get_check_sales_by_code" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_sostav_barc">
+    <wsdl:part name="parameters" element="S2:sostav_barc" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasVozvratResponse">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasVozvratResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGetZakazQuantity">
+    <wsdl:part name="parameters" element="S2:GestoriGetZakazQuantity" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGoodCalculationWithQuantity">
+    <wsdl:part name="parameters" element="S2:GestoriGoodCalculationWithQuantity" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGes3FirmCodesList">
+    <wsdl:part name="parameters" element="S2:GetGes3FirmCodesList" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasPurchase">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasPurchase" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGoodCalculationWithQuantityResponse">
+    <wsdl:part name="parameters" element="S2:GestoriGoodCalculationWithQuantityResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasReturnResponse">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasReturnResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGestoriBalanceAll">
+    <wsdl:part name="parameters" element="S2:GetGestoriBalanceAll" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ShopsGoodTimeResponse">
+    <wsdl:part name="parameters" element="S2:ShopsGoodTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="FaultDetailMessage">
+    <wsdl:part name="FaultDetail" element="S1:FaultDetail" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGetZakazGoods">
+    <wsdl:part name="parameters" element="S2:GestoriGetZakazGoods" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasVozvrat">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasVozvrat" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_sostav_goods">
+    <wsdl:part name="parameters" element="S2:sostav_goods" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_NewMenuAloha">
+    <wsdl:part name="parameters" element="S2:NewMenuAloha" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_storage_times2">
+    <wsdl:part name="parameters" element="S2:storage_times2" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_PutOrderInGestoriNew">
+    <wsdl:part name="parameters" element="S2:PutOrderInGestoriNew" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ExportDataForSubdivisionsResponse">
+    <wsdl:part name="parameters" element="S2:ExportDataForSubdivisionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_storage_times">
+    <wsdl:part name="parameters" element="S2:storage_times" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_GestoriGoodsResponse">
+    <wsdl:part name="parameters" element="S2:get_GestoriGoodsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_present_cards">
+    <wsdl:part name="parameters" element="S2:get_present_cards" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_storage_timesResponse">
+    <wsdl:part name="parameters" element="S2:storage_timesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ExportReturnDocumentForNumberResponse">
+    <wsdl:part name="parameters" element="S2:ExportReturnDocumentForNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGestoriBalanceAllResponse">
+    <wsdl:part name="parameters" element="S2:GetGestoriBalanceAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_ML_recipeResponse">
+    <wsdl:part name="parameters" element="S2:get_ML_recipeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_PutOrderInGestoriNewResponse">
+    <wsdl:part name="parameters" element="S2:PutOrderInGestoriNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_PrihAndSpisTable">
+    <wsdl:part name="parameters" element="S2:PrihAndSpisTable" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_chek_biznes_data">
+    <wsdl:part name="parameters" element="S2:chek_biznes_data" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriCashByDayResponse">
+    <wsdl:part name="parameters" element="S2:GestoriCashByDayResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_virt_obj">
+    <wsdl:part name="parameters" element="S2:virt_obj" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_present_cardsResponse">
+    <wsdl:part name="parameters" element="S2:get_present_cardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_virt_objResponse">
+    <wsdl:part name="parameters" element="S2:virt_objResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGestoriBalance">
+    <wsdl:part name="parameters" element="S2:GetGestoriBalance" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_RealShops">
+    <wsdl:part name="parameters" element="S2:RealShops" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGes3FirmDetailsResponse">
+    <wsdl:part name="parameters" element="S2:GetGes3FirmDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_PrihAndSpisTableResponse">
+    <wsdl:part name="parameters" element="S2:PrihAndSpisTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_storage_times2Response">
+    <wsdl:part name="parameters" element="S2:storage_times2Response" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_AllMenuForSite">
+    <wsdl:part name="parameters" element="S2:AllMenuForSite" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_RealShopsResponse">
+    <wsdl:part name="parameters" element="S2:RealShopsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_AllMenuForSiteResponse">
+    <wsdl:part name="parameters" element="S2:AllMenuForSiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_transferForSubdivisions">
+    <wsdl:part name="parameters" element="S2:transferForSubdivisions" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_chek_biznes_dataResponse">
+    <wsdl:part name="parameters" element="S2:chek_biznes_dataResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_sostav_goodsResponse">
+    <wsdl:part name="parameters" element="S2:sostav_goodsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_transferForSubdivisionsResponse">
+    <wsdl:part name="parameters" element="S2:transferForSubdivisionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_RecommendedPrice">
+    <wsdl:part name="parameters" element="S2:RecommendedPrice" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriCustomerSalesByMonth">
+    <wsdl:part name="parameters" element="S2:GestoriCustomerSalesByMonth" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ExportReturnDocumentForNumber">
+    <wsdl:part name="parameters" element="S2:ExportReturnDocumentForNumber" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_OpenGestoriDocumentResponse">
+    <wsdl:part name="parameters" element="S2:OpenGestoriDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_obj_virt">
+    <wsdl:part name="parameters" element="S2:obj_virt" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGetZakazQuantityResponse">
+    <wsdl:part name="parameters" element="S2:GestoriGetZakazQuantityResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ExportDataForSubdivisions">
+    <wsdl:part name="parameters" element="S2:ExportDataForSubdivisions" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_OpenGestoriDocument">
+    <wsdl:part name="parameters" element="S2:OpenGestoriDocument" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_RecommendedPriceResponse">
+    <wsdl:part name="parameters" element="S2:RecommendedPriceResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriCashByDay">
+    <wsdl:part name="parameters" element="S2:GestoriCashByDay" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGetQuantityAndZakazResponse">
+    <wsdl:part name="parameters" element="S2:GestoriGetQuantityAndZakazResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_ML_recipe">
+    <wsdl:part name="parameters" element="S2:get_ML_recipe" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_SouseLost">
+    <wsdl:part name="parameters" element="S2:SouseLost" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GoodsOfFiliasPurchaseResponse">
+    <wsdl:part name="parameters" element="S2:GoodsOfFiliasPurchaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_get_check_sales_by_codeResponse">
+    <wsdl:part name="parameters" element="S2:get_check_sales_by_codeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GetGestoriBalanceResponse">
+    <wsdl:part name="parameters" element="S2:GetGestoriBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_ReturnDocumentListResponse">
+    <wsdl:part name="parameters" element="S2:ReturnDocumentListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGetQuantityAndZakaz">
+    <wsdl:part name="parameters" element="S2:GestoriGetQuantityAndZakaz" />
+  </wsdl:message>
+  <wsdl:message name="Ges3Services_GestoriGetZakazGoodsResponse">
+    <wsdl:part name="parameters" element="S2:GestoriGetZakazGoodsResponse" />
+  </wsdl:message>
   <wsdl:portType name="Ges3ServicesObj">
+    <wsdl:operation name="AllMenuForSite">
+      <wsdl:input message="tns:Ges3Services_AllMenuForSite" />
+      <wsdl:output message="tns:Ges3Services_AllMenuForSiteResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
     <wsdl:operation name="chek_biznes_data">
       <wsdl:input message="tns:Ges3Services_chek_biznes_data" />
       <wsdl:output message="tns:Ges3Services_chek_biznes_dataResponse" />
@@ -1355,9 +1526,24 @@
       <wsdl:output message="tns:Ges3Services_get_podr_chekResponse" />
       <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
     </wsdl:operation>
+    <wsdl:operation name="get_present_cards">
+      <wsdl:input message="tns:Ges3Services_get_present_cards" />
+      <wsdl:output message="tns:Ges3Services_get_present_cardsResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGes3FirmCodesList">
+      <wsdl:input message="tns:Ges3Services_GetGes3FirmCodesList" />
+      <wsdl:output message="tns:Ges3Services_GetGes3FirmCodesListResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GestoriGoodCalculationWithQuantity">
       <wsdl:input message="tns:Ges3Services_GestoriGoodCalculationWithQuantity" />
       <wsdl:output message="tns:Ges3Services_GestoriGoodCalculationWithQuantityResponse" />
+      <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_ML_recipe">
+      <wsdl:input message="tns:Ges3Services_get_ML_recipe" />
+      <wsdl:output message="tns:Ges3Services_get_ML_recipeResponse" />
       <wsdl:fault name="Ges3ServicesFault" message="tns:FaultDetailMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetGes3FirmDetails">
@@ -1473,6 +1659,18 @@
   </wsdl:portType>
   <wsdl:binding name="Ges3ServicesObj" type="tns:Ges3ServicesObj">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AllMenuForSite">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="chek_biznes_data">
       <soap:operation soapAction="" style="document" />
       <wsdl:input>
@@ -1617,7 +1815,43 @@
         <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="get_present_cards">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetGes3FirmCodesList">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="GestoriGoodCalculationWithQuantity">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Ges3ServicesFault">
+        <soap:fault use="literal" name="Ges3ServicesFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="get_ML_recipe">
       <soap:operation soapAction="" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
@@ -1896,8 +2130,9 @@
   </wsdl:binding>
   <wsdl:service name="Ges3ServicesService">
     <wsdl:port name="Ges3ServicesObj" binding="tns:Ges3ServicesObj">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" />
-      <soap:address location="http://vfiliasesb0:2580/process/Ges3ServicesProc" />
+      <wsdl:documentation>
+      </wsdl:documentation>
+      <soap:address location="http://app:8000/process/process" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
