@@ -26,7 +26,7 @@ namespace PDiscountCard.FRSClientApp
 
         static public void PrintDoc2(PrintDocArgs Args, int TryCount)
         {
-            int W = 268;
+            int W = 268; //268
             double H = 5000;
             ctrlCheckVisual vis = new ctrlCheckVisual();
             if (Args.FStrs != null)

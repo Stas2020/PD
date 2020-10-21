@@ -13,6 +13,7 @@ namespace PDiscountCard
     {
 
         static internal Thread CloseCheckThread;
+        static internal Thread CloseCheckFRSThread;
         static internal Thread JMSSendThread;
 
         static bool mExitCloseCheckThread = false;
@@ -29,7 +30,7 @@ namespace PDiscountCard
 
         static internal void StartCloseCheckQuere()
         {
-            if ((!iniFile.HamsterDisabled)&&(!iniFile.FRSEnabled))
+            if ((!iniFile.HamsterDisabled) && (!iniFile.FRSEnabled))
             {
                 try
                 {
@@ -44,6 +45,13 @@ namespace PDiscountCard
             }
             CloseCheckThread = new Thread(CloseCheckQuere);
             CloseCheckThread.Start();
+
+            CloseCheckFRSThread = new Thread(CloseCheckFRSQuere);
+            CloseCheckFRSThread.Start();
+
+            
+
+            
         }
 
         static internal void StartJMSSEndQuere()
@@ -67,7 +75,7 @@ namespace PDiscountCard
             Utils.ToCardLog("CheckUnClosedChecks");
             frmAllertMessage Mf = new frmAllertMessage("Существуют незакрытые чеки. Будет произведена попытка закрытия чеков. После этого снова запустите отчет.");
             Mf.ShowDialog();
-           
+
 
             if (!Shtrih2.QuereIsEmpty())
             {
@@ -75,30 +83,26 @@ namespace PDiscountCard
                 Mf2.ShowDialog();
                 return false;
             }
-            
+
             foreach (FileInfo fi in Di.GetFiles("*.1"))
             {
-                Utils.ToCardLog("CheckUnClosedChecks "+fi.Name);
+                Utils.ToCardLog("CheckUnClosedChecks " + fi.Name);
                 try
                 {
                     Check Ch = ReadCheckFromTmp(fi.FullName);
                     Ch.FiskalFileName = fi.FullName;
                     ToShtrih.CloseCheck2(Ch);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
-                    Utils.ToCardLog("[Error] CheckUnClosedChecks " +e.Message);
+                    Utils.ToCardLog("[Error] CheckUnClosedChecks " + e.Message);
                 }
             }
             return false;
         }
 
 
-
-      internal static EventWaitHandle CreateCloseCheckFileEventWaitHandle = new AutoResetEvent(true);
-      internal static EventWaitHandle WriteCheck2FileEventWaitHandle = new AutoResetEvent(true);
-
-        static void CloseCheckQuere()
+        static void CloseCheckFRSQuere()
         {
             try
             {
@@ -157,10 +161,99 @@ namespace PDiscountCard
                                             Utils.ToCardLog("Переименовываю в  " + State2FileName);
                                             fi.MoveTo(State2FileName); //Нужен грамотный lock
                                         }
-                                        catch(Exception ee)
+                                        catch (Exception ee)
                                         {
-                                            Utils.ToCardLog("Error Переименовываю в  " + State2FileName+ " " +ee.Message);
+                                            Utils.ToCardLog("Error Переименовываю в  " + State2FileName + " " + ee.Message);
                                         }
+                                    }
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                        catch
+                        { }
+                        CreateCloseCheckFileEventWaitHandle.Set();
+                    }
+                    catch
+                    { }
+
+                    Thread.Sleep(1000);
+                }
+            }
+            catch
+            { }
+        }
+
+
+      internal static EventWaitHandle CreateCloseCheckFileEventWaitHandle = new AutoResetEvent(true);
+        internal static EventWaitHandle WriteCheck2FileEventWaitHandle = new AutoResetEvent(true);
+
+        static void CloseCheckQuere()
+        {
+            try
+            {
+                DirectoryInfo Di = new DirectoryInfo(ChecksPath);
+                if (!Di.Exists) Di.Create();
+
+                while (!mExitCloseCheckThread)
+                {
+                    try
+                    {
+                      //  CreateCloseCheckFileEventWaitHandle.WaitOne();
+                        try
+                        {
+                            foreach (FileInfo fi in Di.GetFiles("*.0"))
+                            {
+                                try
+                                {
+                                    Utils.ToCardLog("Очередь на фискальник. Файл " + fi.Name);
+                                    String State1FileName = fi.FullName.Substring(0, fi.FullName.Length - 1) + "1";
+                                    String State2FileName = fi.FullName.Substring(0, fi.FullName.Length - 1) + "2";
+                                    Check Ch = ReadCheckFromTmp(fi.FullName);
+
+                                    if (iniFile.FRSEnabled)
+                                    {
+                                        /*
+                                        try
+                                        {
+                                            Utils.ToCardLog("FRSEnabled");
+                                            if (Ch.GuidId == null) { Ch.GuidId = Guid.NewGuid(); }
+
+                                            String State5FileName = fi.FullName.Substring(0, fi.FullName.Length - 2) + Ch.GuidId.ToString() + ".5"; //FRS
+                                            Utils.ToCardLog("State5FileName: " + State5FileName);
+                                            if (File.Exists(State5FileName))
+                                            {
+                                                Utils.ToCardLog("Exist. Delete: ");
+                                                File.Delete(State5FileName);
+                                            }
+                                            fi.CopyTo(State5FileName);
+
+                                            try
+                                            {
+                                                Utils.ToCardLog("fi.MoveTo(State2FileName): " + State2FileName);
+                                                fi.MoveTo(State2FileName);
+                                            }
+                                            catch (Exception e)
+                                            {
+                                                Utils.ToCardLog("Error fi.MoveTo(State2FileName):  " + e.Message);
+                                            }
+                                            continue;
+                                        }
+                                        catch (Exception e)
+                                        {
+                                            Utils.ToCardLog("Error FRSEnabled " + e.Message);
+                                        }
+                                        try
+                                        {
+                                            Utils.ToCardLog("Переименовываю в  " + State2FileName);
+                                            fi.MoveTo(State2FileName); //Нужен грамотный lock
+                                        }
+                                        catch (Exception ee)
+                                        {
+                                            Utils.ToCardLog("Error Переименовываю в  " + State2FileName + " " + ee.Message);
+                                        }
+                                        */
                                     }
                                     else
                                     {
@@ -230,7 +323,7 @@ namespace PDiscountCard
                         }
                         catch
                         { }
-                        CreateCloseCheckFileEventWaitHandle.Set();
+                      //  CreateCloseCheckFileEventWaitHandle.Set();
 
                         WriteCheck2FileEventWaitHandle.WaitOne();
                         try
@@ -283,13 +376,13 @@ namespace PDiscountCard
                                         fi.MoveTo(State3FileName);
                                     }
                                 }
-                                catch(Exception e)
+                                catch (Exception e)
                                 {
                                     Utils.ToCardLog("Error2  *.2 Find " + fi.FullName);
                                 }
                             }
                         }
-                        catch(Exception e)
+                        catch (Exception e)
                         {
                             Utils.ToCardLog("Error *.2 Find " + e.Message);
                         }
@@ -298,7 +391,7 @@ namespace PDiscountCard
                         foreach (FileInfo fi in Di.GetFiles("*.3"))
                         {
                             //if ()
-                            
+
                             if (!iniFile.HamsterDisabled)
                             {
                                 Check Ch = ReadCheckFromTmp(fi.FullName);
@@ -408,7 +501,7 @@ namespace PDiscountCard
         static List<int> SuperCardsZAV = new List<int>() { 11691, 11598 };
 
         static string FileName = @"C:\Aloha\check\Fisk.xml";
-        public  static string ChecksPath = @"C:\aloha\check\discount\tmp\check";
+        public static string ChecksPath = @"C:\aloha\check\discount\tmp\check";
         static public string BugChecksPath = @"C:\aloha\check\discount\tmp\check\bugs\";
 
         static public AllChecks myAllChecks = new AllChecks();
@@ -790,11 +883,11 @@ namespace PDiscountCard
                 }
                 catch { }
                 //Ch.FrStringsAfter.AddRange(Strs);
-                    
+
 
             }
 
-            
+
 
             /*
             if ((iniFile.AlcDivide) && (!Ch.Vozvr))
@@ -959,7 +1052,7 @@ namespace PDiscountCard
                 //XmlSerializer XS = new XmlSerializer(typeof(CardMooverInfo));
                 AllChecks CMI = (AllChecks)XS.Deserialize(XR);
                 XR.Close();
-                
+
                 return CMI;
             }
             catch
@@ -993,7 +1086,7 @@ namespace PDiscountCard
                     Directory.CreateDirectory(ChecksPath);
                 }
                 String Fname = ChecksPath + @"\ch" + Ch.CheckNum + ".xml" + "." + State.ToString();
-                
+
                 try
                 {
                     if (File.Exists(Fname))
@@ -1027,8 +1120,8 @@ namespace PDiscountCard
             XmlSerializer XS = new XmlSerializer(typeof(Check));
             XS.Serialize(XWriter, chk);
             XWriter.Close();
-            
-        
+
+
         }
 
         static internal Check ReadCheckFromTmp(string FileName)
@@ -1040,7 +1133,7 @@ namespace PDiscountCard
 
             }
 
-            int TryCount=0;
+            int TryCount = 0;
             while (TryCount < 5)
             {
                 TryCount++;
@@ -1049,16 +1142,16 @@ namespace PDiscountCard
                 {
                     XmlSerializer XS = new XmlSerializer(typeof(Check));
                     Check CMI = (Check)XS.Deserialize(XR);
-                    
+
                     XR.Close();
                     return CMI;
                 }
                 catch
                 {
                     XR.Close();
-                    
+
                 }
-                
+
                 Thread.Sleep(500);
             }
             return null;

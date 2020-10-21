@@ -117,7 +117,7 @@ namespace PDiscountCard.Hamster
         {
             try
             {
-                Utils.ToCardLog("Init ZRep ");
+                //Utils.ToCardLog("Init ZRep ");
 
                 System.ServiceModel.Channels.Binding binding = new System.ServiceModel.BasicHttpBinding();
                 ((System.ServiceModel.BasicHttpBinding)binding).MaxReceivedMessageSize = 1024 * 1024;
