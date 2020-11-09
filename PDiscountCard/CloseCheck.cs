@@ -214,6 +214,7 @@ namespace PDiscountCard
 
                                     if (iniFile.FRSEnabled)
                                     {
+                                        continue;
                                         /*
                                         try
                                         {
