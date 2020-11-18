@@ -21,32 +21,14 @@ namespace PDiscountCard.AlohaExternal
                 selfHost = new ServiceHost(typeof(AlohaExternal), baseAddress);
                 try
                 {
-
-
-                    // Step 3 of the hosting procedure: Add a service endpoint.
                     selfHost.AddServiceEndpoint(typeof(IAlohaExternal), new BasicHttpBinding(), "AlohaExternal");
-                    //var webHttp = new WebHttpBinding();
-
-                    //var ep =  selfHost.AddServiceEndpoint(typeof(IAlohaExternal), new WebHttpBinding(), "AlohaExternal");
-
-                    // ep.Behaviors.Add(new WebHttpBehavior());
-
-                    // Step 4 of the hosting procedure: Enable metadata exchange.
                     ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                     smb.HttpGetEnabled = true;
-
                     selfHost.Description.Behaviors.Add(smb);
-
-
-                    // Step 5 of the hosting procedure: Start (and then stop) the service.
                     selfHost.Open();
                     Utils.ToCardLog("AlohaExternal The service is ready. " + baseAddress);
-
-
-
-                    // Close the ServiceHostBase to shutdown the service.
-
                 }
+
                 catch (CommunicationException ce)
                 {
                     Utils.ToCardLog(String.Format("An exception occurred: {0}", ce.Message));
@@ -55,6 +37,7 @@ namespace PDiscountCard.AlohaExternal
 
 
                 selfHostJSON = new ServiceHost(typeof(AlohaExternal), baseAddressJSON);
+                
                 try
                 {
                     // Step 3 of the hosting procedure: Add a service endpoint.

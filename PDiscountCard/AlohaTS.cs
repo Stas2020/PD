@@ -4101,23 +4101,36 @@ namespace PDiscountCard
                                             var chunkSize = 14;
                                             foreach (var mod in itm.Mods.Where(a => a.Barcode == 0))
                                             {
-                                                var result = (from Match m in Regex.Matches(mod.Name, @".{1," + chunkSize + "}")
-                                                              select m.Value).ToList();
-                                                foreach (string ss in result)
+                                                try
                                                 {
-                                                    AlohaFuncs.ModItem(GetTermNum(), pId, 999902, ss, -999999999.000000, 0);
+                                                    var result = (from Match m in Regex.Matches(mod.Name, @".{1," + chunkSize + "}")
+                                                                  select m.Value).ToList();
+                                                    foreach (string ss in result)
+                                                    {
+                                                        AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, 999902, ss, -999999999.000000, 0);
+                                                    }
+                                                }
+                                                catch(Exception eM)
+                                                {
+                                                    Utils.ToCardLog("Error AddDish in itm.Mods " + itm.Barcode + " "+ eM.Message);
                                                 }
                                             }
 
                                             if (itm.Comment?.Length > 0)
                                             {
-
-                                                var result = (from Match m in Regex.Matches(itm.Comment, @".{1," + chunkSize + "}")
-                                                              select m.Value).ToList();
-
-                                                foreach (string ss in result)
+                                                try
                                                 {
-                                                    AlohaFuncs.ModItem(GetTermNum(), pId, 999902, ss, -999999999.000000, 0);
+                                                    var result = (from Match m in Regex.Matches(itm.Comment, @".{1," + chunkSize + "}")
+                                                                  select m.Value).ToList();
+
+                                                    foreach (string ss in result)
+                                                    {
+                                                        AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, 999902, ss, -999999999.000000, 0);
+                                                    }
+                                                }
+                                                catch(Exception eM)
+                                                {
+                                                    Utils.ToCardLog("Error AddDish in Comment " + itm.Barcode + " " + eM.Message);
                                                 }
                                             }
                                             itm.Success = modOk;
@@ -4129,6 +4142,7 @@ namespace PDiscountCard
                                             }
                                             else
                                             {
+                                                
                                                 itm.ErrorMsg = "Не смог добавить модификаторы";
                                                 Resp.Success = false;
                                                 itm.Success = false;
@@ -4136,6 +4150,7 @@ namespace PDiscountCard
                                                 //itm.AlohaErrorCode = -5;
                                                 itm.ErrorMsg = "Не смог добавить модификаторы";
                                                 Resp.ErrorItems.Add(itm);
+                                                Utils.ToCardLog("Error AddDish " + itm.Barcode + " Не смог добавить модификаторы " );
                                             }
 
 
@@ -4229,8 +4244,16 @@ namespace PDiscountCard
 
             if (Request.AlohaTableId == 0)
             {
+                if (!LoginExternal(Resp))
+                {
+                    Resp.Success = false;
+                    return;
+                }
+
                 try
                 {
+                    Utils.ToCardLog($"OpenTableFromExternal AddTable iniFile.ExternalInterfaceTerminal: {iniFile.ExternalInterfaceTerminal}, " +
+                        $"Request.QueueId:{Request.QueueId}, Request.TableNumber:{Request.TableNumber}, Request.TableName:{Request.TableName}, Request.NumGuest:{Request.TableName}");
 
                     Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, Request.TableNumber, Request.TableName, Request.NumGuest);
                 }
@@ -4242,12 +4265,15 @@ namespace PDiscountCard
                     return;
                 }
             }
+
             try
             {
+                Utils.ToCardLog($"OpenTableFromExternal AddCheck iniFile.ExternalInterfaceTerminal: {iniFile.ExternalInterfaceTerminal}; Request.AlohaTableId:{Request.AlohaTableId}");
                 Request.AlohaCheckId = AlohaFuncs.AddCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId);
             }
             catch (Exception e)
             {
+                Utils.ToCardLog($"Error OpenTableFromExternal.AlohaFuncs.AddCheck {e.Message}");
                 Resp.Success = false;
                 Resp.AlohaErrorCode = CAlohaErrors.GetAlohaErrorVal(e.Message);
                 Resp.ErrorMsg = e.Message;
@@ -4256,6 +4282,7 @@ namespace PDiscountCard
 
             foreach (AlohaExternal.AlohaItemInfo itm in Request.Items)
             {
+                
                 double Price = (double)itm.Price;
                 if (Price == -1)
                 {
@@ -4263,6 +4290,8 @@ namespace PDiscountCard
                 }
                 try
                 {
+                    Utils.ToCardLog($"OpenTableFromExternal AddCheck AlohaFuncs.BeginItem iniFile.ExternalInterfaceTerminal:{iniFile.ExternalInterfaceTerminal}," +
+                        $" Request.AlohaCheckId:{Request.AlohaCheckId}, itm.Barcode:{itm.Barcode}, Price:{Price}");
                     AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
                     AlohaFuncs.EndItem(iniFile.ExternalInterfaceTerminal);
                     itm.Success = true;
@@ -4270,6 +4299,7 @@ namespace PDiscountCard
                 }
                 catch (Exception e)
                 {
+                    Utils.ToCardLog($"Error OpenTableFromExternal.AlohaFuncs.BeginItem {e.Message}");
                     Resp.Success = false;
                     itm.Success = false;
                     itm.AlohaErrorCode = CAlohaErrors.GetAlohaErrorVal(e.Message);
