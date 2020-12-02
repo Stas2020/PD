@@ -57,6 +57,9 @@ namespace PDiscountCard.AlohaExternal
             AlohaCheckInfo Tmp = new AlohaCheckInfo()
             {
                 AlohaId = Chk.AlohaCheckNum,
+                CheckId = Chk.AlohaCheckNum,
+                TableId = Chk.TableId,
+                TableNum = Chk.TableNumber,
                 Summ = Chk.Summ,
                 IsClosed =Chk.IsClosed,
                 TimeOfOpen = Chk.SystemDateOfOpen,
@@ -65,6 +68,7 @@ namespace PDiscountCard.AlohaExternal
                 WaiterName = AlohaTSClass.GetWaterName(Chk.Waiter),
                 DiscountSumm = Chk.Comp,
                 NumberInTable = Chk.NumberInTable
+
             };
             foreach (Dish D in Chk.Dishez)
             {
@@ -172,9 +176,11 @@ namespace PDiscountCard.AlohaExternal
 
         public bool PrepareCommand(AddEntityRequest Request, CommandResponse Resp)
         {
+            Utils.ToCardLog("PrepareCommand ");
             Resp.Success = true;
             if (!UniversalHost.AddRecivedCommand(Resp))
             {
+                Utils.ToCardLog("PrepareCommand Command allready recived");
                 Resp.Success = false;
                 Resp.ErrorMsg = String.Format("Command allready recived", Request.TableNumber);
                 Resp.IntegrationErrorCode = -1;
@@ -274,6 +280,7 @@ namespace PDiscountCard.AlohaExternal
             AlohaCheckInfoResponse ChInfo = new AlohaCheckInfoResponse ();
             ChInfo.CheckId = CheckId;
             ChInfo.Success=true;
+
             ChInfo.Check= GetAlohaCheckInfo(AlohaTSClass.GetCheckByIdExternal(ChInfo));
             return ChInfo;
         }

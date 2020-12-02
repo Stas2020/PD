@@ -1620,7 +1620,20 @@ namespace PDiscountCard
 
 
                                 }
-                                else if (CurentCard.DiscountType != 8 && CurentCard.Prefix == "VIP" && Convert.ToInt64(CurentCard.Num) < 2500)
+                                //else if (CurentCard.DiscountType != 8 && CurentCard.Prefix == "VIP" && Convert.ToInt64(CurentCard.Num) < 2500)
+                                
+
+
+                                else if ((CurentCard.DiscountType == 1)|| (CurentCard.DiscountType == 4))
+                                {
+                                    if (VisitCount == -7)
+                                    {
+                                        AlohaTSClass.ShowMessage("Не прошло необходимое время с момента последнего визита.");
+                                        
+                                        return 1;
+                                    }
+                                }
+                                else
                                 {
                                     Utils.ToLog("Вип карта первой сотни. n=" + CurentCard.Num + ". Надо проверить на неотключенность");
                                     if (k == -1)
@@ -1637,15 +1650,6 @@ namespace PDiscountCard
                                 }
 
 
-                                else if ((CurentCard.DiscountType == 1)|| (CurentCard.DiscountType == 4))
-                                {
-                                    if (VisitCount == -7)
-                                    {
-                                        AlohaTSClass.ShowMessage("Не прошло необходимое время с момента последнего визита.");
-                                        
-                                        return 1;
-                                    }
-                                }
                                 /* Вернуть, когда появится инструмент добавления карт
                             else if(CurentCard.DiscountType != 8 )
                             {

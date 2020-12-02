@@ -279,6 +279,24 @@ namespace PDiscountCard.AlohaExternal
         /// Список отклоненных блюд
         /// </summary>
         public List<AlohaItemInfo> ErrorItems = new List<AlohaItemInfo>();
+
+
+        /// <summary>
+        /// Id созданного чека
+        /// </summary>
+        public int CheckId { set; get; }
+        /// <summary>
+        /// Id созданного стола
+        /// </summary>
+        public int TableId { set; get; }
+        /// <summary>
+        /// Номер стола
+        /// </summary>
+        public int TableNum { set; get; }
+
+
+
+
     }
 
     public class CommandRequest
@@ -382,8 +400,17 @@ namespace PDiscountCard.AlohaExternal
         public String WaiterName { set; get; }
         public decimal DiscountSumm { set; get; }
         public int NumberInTable { set; get; }
-        public int TableNum { set; get; }
+        /// <summary>
+        /// Id созданного чека
+        /// </summary>
+        public int CheckId { set; get; }
+        /// <summary>
+        /// Id созданного стола
+        /// </summary>
+        public int TableId { set; get; }
 
+        public int TableNum { set; get; }
+        
 
         public List<AlohaItemInfo> Dishez = new List<AlohaItemInfo>();
         public List<AlohaDiscountInfo> Comps = new List<AlohaDiscountInfo>();

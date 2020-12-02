@@ -698,7 +698,7 @@ namespace PDiscountCard
             }
             else if (Prefix.ToUpper() == "26610" || Prefix.ToUpper() == "26605" || Prefix.ToUpper() == "26603"
                 || Prefix.ToUpper() == "266"
-                || Prefix.ToUpper() == "267" || Prefix.ToUpper() == "26720" || Prefix.ToUpper() == "26750")
+                || Prefix.ToUpper() == "267" || Prefix.ToUpper() == "26720" || Prefix.ToUpper() == "26750" || Prefix.ToUpper() == "77577")
             {
                 Utils.ToLog("Pod cart");
                 return CardTypes.PodKarta;

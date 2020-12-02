@@ -10,7 +10,7 @@ namespace PDiscountCard.Loyalty
        static public List<string> BonusPrefix = new List<string> { "11115", "26530" };
        static public List<int> PresentCardBCs = new List<int> { 999903, 999905, 999910, 999803, 999805, 999810 };
        static public List<int> SVMyPresentCardBCs = new List<int> { 999803, 999805, 999810 };
-       static public List<string> PresentCardPrefix = new List<string> { "11116", "11117", "11118", "26603", "26605", "26610" };
+       static public List<string> PresentCardPrefix = new List<string> { "11116", "11117", "11118", "26603", "26605", "26610", "77577" };
        static string PresCard = "Подарочная карта"; 
        static public Dictionary<int, string> PaymentCardDescr = new Dictionary<int, string> { 
            {11116, PresCard},
@@ -18,6 +18,7 @@ namespace PDiscountCard.Loyalty
            {11118, PresCard},
            {26603, PresCard},
            {26605, PresCard},
+           {77577, PresCard},
            {26610, PresCard}
        };
 
