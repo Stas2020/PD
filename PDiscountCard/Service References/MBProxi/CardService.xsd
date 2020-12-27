@@ -149,10 +149,10 @@
   <xs:complexType name="PBCustomerInfo">
     <xs:sequence>
       <xs:element minOccurs="0" name="Auth" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Balance" type="xs:int" />
-      <xs:element minOccurs="0" name="BalanceAccumulated" type="xs:int" />
-      <xs:element minOccurs="0" name="BalanceAction" type="xs:int" />
-      <xs:element minOccurs="0" name="BalancePresent" type="xs:int" />
+      <xs:element minOccurs="0" name="Balance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BalanceAccumulated" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BalanceAction" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BalancePresent" type="xs:decimal" />
       <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="BlockedFlag" type="xs:boolean" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />

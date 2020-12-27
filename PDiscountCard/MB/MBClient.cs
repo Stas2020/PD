@@ -66,7 +66,12 @@ namespace PDiscountCard.MB
                 CountV = -1;
                 return 1;
             }
-            
+            if (!res.Result.Block)
+            {//"Карта заблокирована."
+                CountV = -1;
+                return 1;
+            }
+
             if (!res.Result.PurchaseIsRegistered || !res.Result.VisitCounterIncreased)
             {
                 CountV = -3;

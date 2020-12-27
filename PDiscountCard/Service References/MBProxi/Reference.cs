@@ -2189,16 +2189,16 @@ namespace PDiscountCard.MBProxi {
         private bool AuthField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BalanceField;
+        private decimal BalanceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BalanceAccumulatedField;
+        private decimal BalanceAccumulatedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BalanceActionField;
+        private decimal BalanceActionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BalancePresentField;
+        private decimal BalancePresentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string BirthDateField;
@@ -2257,7 +2257,7 @@ namespace PDiscountCard.MBProxi {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Balance {
+        public decimal Balance {
             get {
                 return this.BalanceField;
             }
@@ -2270,7 +2270,7 @@ namespace PDiscountCard.MBProxi {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BalanceAccumulated {
+        public decimal BalanceAccumulated {
             get {
                 return this.BalanceAccumulatedField;
             }
@@ -2283,7 +2283,7 @@ namespace PDiscountCard.MBProxi {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BalanceAction {
+        public decimal BalanceAction {
             get {
                 return this.BalanceActionField;
             }
@@ -2296,7 +2296,7 @@ namespace PDiscountCard.MBProxi {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BalancePresent {
+        public decimal BalancePresent {
             get {
                 return this.BalancePresentField;
             }
