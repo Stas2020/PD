@@ -57,8 +57,10 @@
   <xs:complexType name="MyCardInfo">
     <xs:sequence>
       <xs:element minOccurs="0" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Blocked" type="xs:boolean" />
       <xs:element minOccurs="0" name="CardRegistered" type="xs:boolean" />
       <xs:element minOccurs="0" name="CompId" type="xs:int" />
+      <xs:element minOccurs="0" name="DataConfirmed" type="xs:boolean" />
       <xs:element minOccurs="0" name="DaysLeft" type="xs:int" />
       <xs:element minOccurs="0" name="Discount" type="xs:int" />
       <xs:element minOccurs="0" name="FirstVisitDate" nillable="true" type="xs:dateTime" />

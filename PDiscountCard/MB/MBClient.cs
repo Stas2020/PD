@@ -34,21 +34,23 @@ namespace PDiscountCard.MB
         }
 
 
-        public int GetFrendConvertCodeCardProcessing(Check check, string prefix, string number, out int CountV, out int CountD, out int VisitTotal, out int DayTotal, out int compId)
+        public int GetFrendConvertCodeCardProcessing(Check check, string prefix, string number, out int CountV, out int CountD, out int VisitTotal, out int DayTotal, out int compId, out bool showValidateMess)
         {
             VisitTotal = 100;
             DayTotal = 365+60;
             CountV = 0;
             CountD = 0;
             compId = 0;
-           // VisitTotal = 0;
+            showValidateMess = false;
+            // VisitTotal = 0;
             //DayTotal = 0;
             var res = CardProcessing(check,prefix, number);
-
+            
             if (res == null || res.Result == null)
             {
                 return -1;
             }
+            showValidateMess = !res.Result.DataConfirmed;
             compId = res.Result.CompId;
             if (res.Result.TemporarilyInactive)
             {//"Карта временно заблокирована."
@@ -66,12 +68,13 @@ namespace PDiscountCard.MB
                 CountV = -1;
                 return 1;
             }
+            /*
             if (!res.Result.Block)
             {//"Карта заблокирована."
                 CountV = -1;
                 return 1;
             }
-
+            */
             if (!res.Result.PurchaseIsRegistered || !res.Result.VisitCounterIncreased)
             {
                 CountV = -3;

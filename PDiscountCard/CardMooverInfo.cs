@@ -40,13 +40,14 @@ namespace PDiscountCard
             int s5;
 
             int s6;
+            bool s7;
             //return ToBase.DoVizit2(Prefix, CardNum, CodSh, CheckNum, TermNum, Summ, CDT, true, out s1, out s2, out s3, out s4, out s5, Count);
             try
             {
                 MB.MBClient mbClient = new MB.MBClient();
                 if (mbClient.UsingMB())
                 {
-                    return mbClient.GetFrendConvertCodeCardProcessing(null,Prefix, CardNum, out  s1, out s2, out  s3, out s4,out s6);
+                    return mbClient.GetFrendConvertCodeCardProcessing(null,Prefix, CardNum, out  s1, out s2, out  s3, out s4,out s6, out s7);
                 }
                 else
                 {

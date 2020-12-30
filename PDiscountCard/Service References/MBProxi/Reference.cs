@@ -489,10 +489,16 @@ namespace PDiscountCard.MBProxi {
         private bool ActiveField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool BlockedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool CardRegisteredField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int CompIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool DataConfirmedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int DaysLeftField;
@@ -545,6 +551,19 @@ namespace PDiscountCard.MBProxi {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Blocked {
+            get {
+                return this.BlockedField;
+            }
+            set {
+                if ((this.BlockedField.Equals(value) != true)) {
+                    this.BlockedField = value;
+                    this.RaisePropertyChanged("Blocked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool CardRegistered {
             get {
                 return this.CardRegisteredField;
@@ -566,6 +585,19 @@ namespace PDiscountCard.MBProxi {
                 if ((this.CompIdField.Equals(value) != true)) {
                     this.CompIdField = value;
                     this.RaisePropertyChanged("CompId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool DataConfirmed {
+            get {
+                return this.DataConfirmedField;
+            }
+            set {
+                if ((this.DataConfirmedField.Equals(value) != true)) {
+                    this.DataConfirmedField = value;
+                    this.RaisePropertyChanged("DataConfirmed");
                 }
             }
         }

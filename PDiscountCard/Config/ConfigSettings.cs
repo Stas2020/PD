@@ -73,6 +73,27 @@ namespace PDiscountCard.Config
             }
         }
 
+        public static bool ShowCardNeedCheckMessage
+        {
+            get
+            {
+                /*
+                if (Settings == null)
+                {
+                    SetSettings();
+                }
+                if (Settings == null)
+                {
+                    return false;
+                }
+                Utils.ToLog("Settings.Precheck.ShowCardNeedCheckMessage= " + Settings.Precheck.ShowCardNeedCheckMessage);
+                return Settings.Precheck.ShowCardNeedCheckMessage;
+                */
+                return false;
+            }
+        }
+
+
 
         private static MBProxi.MyTermSettings GetSettings()
         {

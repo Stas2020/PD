@@ -44,15 +44,15 @@ namespace PDiscountCard.MB
             }
         }
 
-        public int Balance { get; set; }
+        public decimal Balance { get; set; }
 
         
-        public int BalanceAccumulated{ get; set; }
+        public decimal BalanceAccumulated { get; set; }
 
 
-        public int BalancePresent { get; set; }
+        public decimal BalancePresent { get; set; }
 
-        public int BalanceAction { get; set; }
+        public decimal BalanceAction { get; set; }
 
         private ICommand _commandCancel;
         public ICommand CommandCancel => _commandCancel ?? ( _commandCancel = new RelayCommand( rc => { CloseAction(); }, _ => { return !(CloseAction == null || BlockedFlag); }));
