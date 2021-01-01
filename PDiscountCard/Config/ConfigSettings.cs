@@ -89,7 +89,7 @@ namespace PDiscountCard.Config
                 Utils.ToLog("Settings.Precheck.ShowCardNeedCheckMessage= " + Settings.Precheck.ShowCardNeedCheckMessage);
                 return Settings.Precheck.ShowCardNeedCheckMessage;
                 */
-                return false;
+                return true;
             }
         }
 

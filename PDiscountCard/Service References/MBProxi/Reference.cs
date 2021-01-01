@@ -2503,6 +2503,9 @@ namespace PDiscountCard.MBProxi {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PDiscountCard.MBProxi.MyTermSettingsAlert AlertField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private PDiscountCard.MBProxi.MyTermSettingsPrecheck PrecheckField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2515,6 +2518,19 @@ namespace PDiscountCard.MBProxi {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PDiscountCard.MBProxi.MyTermSettingsAlert Alert {
+            get {
+                return this.AlertField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AlertField, value) != true)) {
+                    this.AlertField = value;
+                    this.RaisePropertyChanged("Alert");
+                }
             }
         }
         
@@ -2540,6 +2556,51 @@ namespace PDiscountCard.MBProxi {
                 if ((object.ReferenceEquals(this.StopListField, value) != true)) {
                     this.StopListField = value;
                     this.RaisePropertyChanged("StopList");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MyTermSettingsAlert", Namespace="http://schemas.datacontract.org/2004/07/CardService")]
+    [System.SerializableAttribute()]
+    public partial class MyTermSettingsAlert : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool NeedShowCardValidateAlertField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool NeedShowCardValidateAlert {
+            get {
+                return this.NeedShowCardValidateAlertField;
+            }
+            set {
+                if ((this.NeedShowCardValidateAlertField.Equals(value) != true)) {
+                    this.NeedShowCardValidateAlertField = value;
+                    this.RaisePropertyChanged("NeedShowCardValidateAlert");
                 }
             }
         }

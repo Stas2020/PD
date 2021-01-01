@@ -274,11 +274,18 @@
   <xs:element name="OperationResultOfMyTermSettings" nillable="true" type="tns:OperationResultOfMyTermSettings" />
   <xs:complexType name="MyTermSettings">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Alert" nillable="true" type="tns:MyTermSettingsAlert" />
       <xs:element minOccurs="0" name="Precheck" nillable="true" type="tns:MyTermSettingsPrecheck" />
       <xs:element minOccurs="0" name="StopList" nillable="true" type="tns:MyTermSettingsStopList" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MyTermSettings" nillable="true" type="tns:MyTermSettings" />
+  <xs:complexType name="MyTermSettingsAlert">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NeedShowCardValidateAlert" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyTermSettingsAlert" nillable="true" type="tns:MyTermSettingsAlert" />
   <xs:complexType name="MyTermSettingsPrecheck">
     <xs:sequence>
       <xs:element minOccurs="0" name="QrPrint" type="xs:boolean" />
