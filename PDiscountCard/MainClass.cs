@@ -1388,7 +1388,7 @@ namespace PDiscountCard
                              AlohaTSClass.AlohaCurentState.TerminalId, Ch.Summ, DateTime.Now, out  VisitCount, out DayCount, out  VisitTotal, out DayTotal, out Gold, 0);
                             }
 
-                        //}
+                    //}
                     /*
                         else
                         {
@@ -1398,7 +1398,12 @@ namespace PDiscountCard
                         */
                     //}
 
+                    string validDataMess = "";
 
+                    if ((ShowValidMess) && (Config.ConfigSettings.ShowCardNeedCheckMessage))
+                    {
+                        validDataMess = Environment.NewLine + "Необходимо проверить данные карты";
+                    }
                     if (k == -1)
                     {
                         AlohaTSClass.ShowMessage("Нет связи с базой данных. Посещение зафиксировано.");
@@ -1422,25 +1427,25 @@ namespace PDiscountCard
                         PrintFriendInfo("Карта заблокирована.");
                         return 1;
                     }
-
+                    /*
                     if ((ShowValidMess) && (Config.ConfigSettings.ShowCardNeedCheckMessage))
                     {
                         AlohaTSClass.ShowMessage("Необходимо проверить данные карты");
                         //PrintFriendInfo("Карта не зарегистрирована.");
                         //return 1;
                     }
-
+                    */
 
                     if (VisitCount == -4)
                     {
-                        AlohaTSClass.ShowMessage("Визит по этому чеку уже зарегистрирован.");
+                        AlohaTSClass.ShowMessage("Визит по этому чеку уже зарегистрирован."+validDataMess);
                         PrintFriendInfo("Визит по этому чеку уже зарегистрирован.");
                         return 1;
                     }
 
-                    if (VisitCount == -3)
+                    if ((VisitCount == -3)||(VisitCount == -7))
                     {
-                        AlohaTSClass.ShowMessage("Не прошло необходимое время с момента последнего визита.");
+                        AlohaTSClass.ShowMessage("Не прошло необходимое время с момента последнего визита." + validDataMess);
                         PrintFriendInfo(-3);
                         return 1;
                     }
@@ -1448,7 +1453,7 @@ namespace PDiscountCard
                     {
                         string Mess = "Истекло время отведенное на совершения посещений." + Environment.NewLine
                                 + " Посещения обнулены. Осталось посещений: " + (VisitTotal).ToString() + " Осталось дней: " + DayCount.ToString();
-                        AlohaTSClass.ShowMessage(Mess);
+                        AlohaTSClass.ShowMessage(Mess + validDataMess);
                         PrintFriendInfo(Mess);
                         CurentfrmCardMoover.SetOk();
                         return 1;
@@ -1475,7 +1480,7 @@ namespace PDiscountCard
                             Utils.ToCardLog("[ERROR]не удалось наложить аттрибут " + e.Message);
                         }
                         PrintFriendInfo((VisitCount), DayCount, gold, AlohaTSClass.GetCheckById(Convert.ToInt32(AlohaTSClass.AlohaCurentState.CheckId)).TableNumber, CurentCard.Prefix + " " + CurentCard.Num, VisCount);
-                        AlohaTSClass.ShowMessage("Осталось посещений: " + (VisitCount).ToString() + " Осталось дней: " + DayCount.ToString());
+                        AlohaTSClass.ShowMessage("Осталось посещений: " + (VisitCount).ToString() + " Осталось дней: " + DayCount.ToString() + validDataMess);
                         CurentfrmCardMoover.SetOk();
                         return 1;
                     }
@@ -1566,7 +1571,7 @@ namespace PDiscountCard
                                     return 1;
                                 }
                             }
-
+                        bool ShowValidMess = false;
                             try
                             {
                                 int k = 0;
@@ -1574,7 +1579,7 @@ namespace PDiscountCard
                                 MB.MBClient mbClient = new MB.MBClient();
                                 //if (mbClient.UsingMB())
                                 //{
-                                    k = mbClient.GetFrendConvertCodeCardProcessing(Ch, CurentCard.Prefix, CurentCard.Num, out  VisitCount, out DayCount, out  VisitTotal, out DayTotal,out compId, out bool ShowValidMess);
+                                    k = mbClient.GetFrendConvertCodeCardProcessing(Ch, CurentCard.Prefix, CurentCard.Num, out  VisitCount, out DayCount, out  VisitTotal, out DayTotal,out compId, out ShowValidMess);
                                 //}
                                 /*
                                 else
@@ -1693,8 +1698,6 @@ namespace PDiscountCard
                             if ((ShowValidMess)&& ( Config.ConfigSettings.ShowCardNeedCheckMessage))
                             {
                                 AlohaTSClass.ShowMessage("Необходимо проверить данные карты");
-                                //PrintFriendInfo("Карта не зарегистрирована.");
-                                //return 1;
                             }
 
                         }
@@ -1708,21 +1711,25 @@ namespace PDiscountCard
 
 
                         string Emess = "";
-                            //int CompRes = AlohaTSClass.ApplyComp(CurentCard.DiscountType, out Emess);
-
-                            int CompRes = AlohaTSClass.ApplyCompManagerOverride(CurentCard.DiscountType, out Emess);
+                        string validDataMess = "";
+                        
+                        if ((ShowValidMess) && (Config.ConfigSettings.ShowCardNeedCheckMessage))
+                        {
+                            validDataMess = Environment.NewLine+ "Необходимо проверить данные карты";
+                        }
+                        int CompRes = AlohaTSClass.ApplyCompManagerOverride(CurentCard.DiscountType, out Emess);
                             Utils.ToLog("[RegCard] Результат успешного наложения скидки: " + CompRes.ToString());
                             if (CompRes == 0)
                             {
 
-                                AlohaTSClass.ShowMessage("Cкидка не применена.");
+                                AlohaTSClass.ShowMessage("Cкидка не применена."+ validDataMess);
                                 AlohaTSClass.WriteToDebout("Cкидка не применена  тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum + " Причина: " + Emess);
                             }
                             else
                             {
                                 //  AlohaTSClass.SetDiscountAttr((int)AlohaTSClass.AlohaCurentState.CheckId, CurentCard.Prefix + " " + CurentCard.Num, false, 0, 0);
                                 AlohaTSClass.WriteToDebout("Применена скидка тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum);
-                                AlohaTSClass.ShowMessage("Применена скидка.");
+                                AlohaTSClass.ShowMessage("Применена скидка."+ validDataMess);
                             }
                             CurentfrmCardMoover.SetOk();
                             return 1;
