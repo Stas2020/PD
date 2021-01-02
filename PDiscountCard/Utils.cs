@@ -663,7 +663,7 @@ namespace PDiscountCard
         private CardTypes GetmType()
         {
             Utils.ToLog("Prefix.ToUpper() == " + Prefix.ToUpper());
-            if (Prefix.ToUpper() == "20189")
+            if ((Prefix.ToUpper() == "20189")||(Prefix.ToUpper() == "20180"))
             {
                 return CardTypes.Sber;
             }
@@ -861,7 +861,7 @@ namespace PDiscountCard
                 if (Track1.Length == 0 && Track2.Length > 3)
                 {
                     Utils.ToLog("вся информация записана на второй дорожке карты");
-                    if (Track2.Substring(0, 5) == "20189")
+                    if ((Track2.Substring(0, 5) == "20189")||((Track2.Substring(0, 5) == "20180")))
                     {
                         Track1 = Track2.Substring(0, 5);
                         Track2 = Track2.Substring(5);

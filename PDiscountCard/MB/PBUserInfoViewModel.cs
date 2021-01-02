@@ -190,6 +190,9 @@ namespace PDiscountCard.MB
                         case "20189":
                             result = "Sber10 " + numStr.Substring(numStr.Length - 6);
                             break;
+                        case "20180":
+                            result = "Sber10 " + numStr.Substring(numStr.Length - 6);
+                            break;
                         case "86738":
                             result = "Pre " + numStr.Substring(5).TrimStart('0'); ;
                             break;
