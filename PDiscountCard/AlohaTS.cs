@@ -2802,7 +2802,7 @@ namespace PDiscountCard
                     s += "<PRINTLEFTRIGHT><LEFT>Кассир: " + GetWaterName(Ch.Cassir) + "</LEFT>";
                     s += "<RIGHT></RIGHT></PRINTLEFTRIGHT>";
                 }
-
+                
                 if (Ch.Vozvr)
                 {
                     s += "<PRINTSTYLE><CPI>1</CPI><STYLE>1</STYLE></PRINTSTYLE>";
@@ -2939,10 +2939,20 @@ namespace PDiscountCard
                 s += "<PRINTLEFTRIGHT><LEFT>Подытог: </LEFT>";
                 s += "<RIGHT>" + PodIt.ToString("0.00") + "</RIGHT></PRINTLEFTRIGHT>";
                 decimal sum = PodIt - Discount + Ch.ServiceChargeSumm;
+                if(Ch.CompId == 77)
+                {
+                    sum = PodIt - Ch.Comp;
+                }
                 if (Ch.Comp != 0)
                 {
+                    string comp_name = Ch.CompName;
+                    if (Ch.CompId == 77)
+                    {
+                        comp_name = "БАЛЛЫ";
+                    }
+                    
                     s += "<LINEFEED>1</LINEFEED>";
-                    s += "<PRINTLEFTRIGHT><LEFT>" + Ch.CompName + " </LEFT>";
+                    s += "<PRINTLEFTRIGHT><LEFT>" + comp_name + " </LEFT>";
                     s += "<RIGHT> -" + Discount.ToString("0.00") + "</RIGHT></PRINTLEFTRIGHT>";
                     if ((Ch.CompId > 9) && (Ch.CompId < 25))
                     {
@@ -2953,7 +2963,7 @@ namespace PDiscountCard
                     s += "<RIGHT>" + sum.ToString("0.00") + "</RIGHT></PRINTLEFTRIGHT>";
                 }
                 //decimal  sum=  PodIt-Ch.Comp;
-                if (Ch.ServiceChargeSumm > 0)
+                if (Ch.CompId != 77 && Ch.ServiceChargeSumm > 0 )
                 {
                     s += "<LINEFEED>1</LINEFEED>";
                     s += "<PRINTLEFTRIGHT><LEFT>" + Ch.ServiceChargeName + " </LEFT>";
@@ -2987,6 +2997,41 @@ namespace PDiscountCard
                     s += "<PRINTLEFTRIGHT><LEFT>Сдача: </LEFT>";
                     s += "<RIGHT> " + (-sum + Oplata).ToString("0.00") + "</RIGHT></PRINTLEFTRIGHT>";
                 }
+
+
+                //TODO: Печать информации о баллах
+                if(Ch.CompId == 77)
+                {
+                    string point_total_str = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "points_total");
+           
+                    int points_total = 0;
+                    if (point_total_str.Length != 0)
+                    {
+                        points_total = int.Parse(point_total_str);
+                    }
+
+                    int percent = GetPercentOfPayment(PodIt, Ch.Comp);
+                    if (percent < 15)
+                    {
+                        s += "<PRINTLEFTRIGHT><LEFT>Баллов на счету: </LEFT>";
+                        s += "<RIGHT> " + points_total.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
+
+                        s += "<PRINTLEFTRIGHT><LEFT>Скидка баллами: </LEFT>";
+                        s += "<RIGHT> " + Ch.Comp.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
+                    }
+                    if(percent >= 15)
+                    {
+                        s += "<PRINTLEFTRIGHT><LEFT>Баллов на счету: </LEFT>";
+                        s += "<RIGHT> " + points_total.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
+
+                        s += "<PRINTLEFTRIGHT><LEFT>Скидка баллами: -"+ percent .ToString()+ "% </LEFT>";
+                        s += "<RIGHT> " + Ch.Comp.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
+                    }
+       
+                }
+                
+
+
 
                 if (!String.IsNullOrWhiteSpace(Ch.PMSGuestName))
                 {
@@ -3176,7 +3221,13 @@ namespace PDiscountCard
                 return "";
             }
         }
+        static private int GetPercentOfPayment(decimal total, decimal points_payment)
+        {
+            
+            int result = (int)Math.Round((points_payment * 100)/total);
+            return result;
 
+        }
 
         static private string GetVisitsStr(int CheckId)
         {
