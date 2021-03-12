@@ -2506,6 +2506,9 @@ namespace PDiscountCard.MBProxi {
         private PDiscountCard.MBProxi.MyTermSettingsAlert AlertField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PDiscountCard.MBProxi.MainTermSettings MainField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private PDiscountCard.MBProxi.MyTermSettingsPrecheck PrecheckField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2530,6 +2533,19 @@ namespace PDiscountCard.MBProxi {
                 if ((object.ReferenceEquals(this.AlertField, value) != true)) {
                     this.AlertField = value;
                     this.RaisePropertyChanged("Alert");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PDiscountCard.MBProxi.MainTermSettings Main {
+            get {
+                return this.MainField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MainField, value) != true)) {
+                    this.MainField = value;
+                    this.RaisePropertyChanged("Main");
                 }
             }
         }
@@ -2601,6 +2617,51 @@ namespace PDiscountCard.MBProxi {
                 if ((this.NeedShowCardValidateAlertField.Equals(value) != true)) {
                     this.NeedShowCardValidateAlertField = value;
                     this.RaisePropertyChanged("NeedShowCardValidateAlert");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MainTermSettings", Namespace="http://schemas.datacontract.org/2004/07/CardService")]
+    [System.SerializableAttribute()]
+    public partial class MainTermSettings : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AlohaManagerPassField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AlohaManagerPass {
+            get {
+                return this.AlohaManagerPassField;
+            }
+            set {
+                if ((this.AlohaManagerPassField.Equals(value) != true)) {
+                    this.AlohaManagerPassField = value;
+                    this.RaisePropertyChanged("AlohaManagerPass");
                 }
             }
         }

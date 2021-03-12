@@ -275,6 +275,7 @@
   <xs:complexType name="MyTermSettings">
     <xs:sequence>
       <xs:element minOccurs="0" name="Alert" nillable="true" type="tns:MyTermSettingsAlert" />
+      <xs:element minOccurs="0" name="Main" nillable="true" type="tns:MainTermSettings" />
       <xs:element minOccurs="0" name="Precheck" nillable="true" type="tns:MyTermSettingsPrecheck" />
       <xs:element minOccurs="0" name="StopList" nillable="true" type="tns:MyTermSettingsStopList" />
     </xs:sequence>
@@ -286,6 +287,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MyTermSettingsAlert" nillable="true" type="tns:MyTermSettingsAlert" />
+  <xs:complexType name="MainTermSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlohaManagerPass" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MainTermSettings" nillable="true" type="tns:MainTermSettings" />
   <xs:complexType name="MyTermSettingsPrecheck">
     <xs:sequence>
       <xs:element minOccurs="0" name="QrPrint" type="xs:boolean" />

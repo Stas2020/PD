@@ -1146,30 +1146,7 @@ namespace PDiscountCard
                     }
 
                     Ch.SystemDate = DateTime.Now;
-                    /*
-                    if (iniFile.SpoolEnabled)
-                    {
-                        if (Ch.ConSolidateSpoolDishez.Count > 0)
-                        {
-                            Spool.SpoolCreator.AddToSpoolFile(Ch);
-                        }
-                    }
-                    if (iniFile.JMSEnable)
-                    {
-                        if (Ch.ConSolidateSpoolDishez.Count > 0)
-                        {
-                            Thread th = new Thread(SendJms);
-                            th.Start(Ch);
-                        }
-                    }
-                     * */
-                    /*
-                    if (Ch.Summ == 0)
-                    {
-                        Utils.ToLog("Сумма 0. Выхожу", 5);
-                        return;
-                    }
-                    */
+                    
                     PDiscountCard.CloseCheck.mCloseCheck(Ch);
                     Utils.ToLog("Чек закрыл. Выхожу", 2);
 

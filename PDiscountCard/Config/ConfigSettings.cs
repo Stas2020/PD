@@ -73,6 +73,25 @@ namespace PDiscountCard.Config
             }
         }
 
+
+        public static int ManagerPass
+        {
+            get
+            {
+                int def = 15273;
+                if (Settings == null)
+                {
+                    SetSettings();
+                }
+                if (Settings == null)
+                {
+                    return def;
+                }
+                return Settings.Main.AlohaManagerPass;
+            }
+        }
+
+
         public static bool ShowCardNeedCheckMessage
         {
             get

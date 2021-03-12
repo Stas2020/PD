@@ -86,8 +86,15 @@ namespace PDiscountCard.AlohaExternal
                 Barcode = D.BarCode,
                 Name = D.Name,
                 Price = D.Price,
-                
+                Mods = new List<AlohaItemInfo>()
             };
+            if (D.CurentModificators != null && D.CurentModificators.Count > 0)
+            {
+                foreach (var m in D.CurentModificators)
+                {
+                    Tmp.Mods.Add(GetAlohaDishInfo(m));
+                }
+            }
             return Tmp;
         }
 
@@ -273,6 +280,8 @@ namespace PDiscountCard.AlohaExternal
             return TInfo;
         }
 
+        
+
 
         public AlohaCheckInfoResponse GetCheckInfo(int CheckId)
         {
@@ -284,8 +293,7 @@ namespace PDiscountCard.AlohaExternal
             ChInfo.Check= GetAlohaCheckInfo(AlohaTSClass.GetCheckByIdExternal(ChInfo));
             return ChInfo;
         }
-
-
+        
 
         public NewOrderResponse NewOrder(NewOrderRequest Request)
         {
@@ -455,7 +463,12 @@ namespace PDiscountCard.AlohaExternal
 
         }
 
-
-        
+        public GetEmloyeeListResponse GetEmployeeList()
+        {
+            Utils.ToCardLog("GetEmployeeList from ext");
+            var res = new GetEmloyeeListResponse();
+            res.Empls = AlohaTSClass.GetEmplListExternal();
+            return res;
+        }
     }
 }
