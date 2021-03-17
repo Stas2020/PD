@@ -987,7 +987,13 @@ namespace PDiscountCard
                             Utils.ToCardLog("Correct DiscAmount > 0 Old Price" + d.LongName + "  " + d.Price);
                             decimal MaxDiscSumm = Math.Min(d.Price, Math.Round(d.Price * DiscPrecent, 2));
                             MaxDiscSumm = Math.Min(MaxDiscSumm, DiscAmount - DiscAmountAlreadySumm);
-                            d.Price = d.Price - MaxDiscSumm;
+                            //d.Price = d.Price - MaxDiscSumm;
+                            //d.Priceone = d.Priceone - (double)MaxDiscSumm;
+
+                            d.Price = (decimal)Math.Round((double)d.OPrice * (1 - (double)DiscPrecent), 2, MidpointRounding.ToEven);
+                            d.Priceone = (double)d.OPriceone * (1 - (double)DiscPrecent);
+
+
                             DiscAmountAlreadySumm += MaxDiscSumm;
                             if (DMaxPrice.Price < d.Price)
                             {
@@ -998,6 +1004,7 @@ namespace PDiscountCard
                         if (DiscAmountAlreadySumm < DiscAmount)
                         {
                             DMaxPrice.Price = Math.Max(0, DMaxPrice.Price - (DiscAmount - DiscAmountAlreadySumm));
+                            DMaxPrice.Priceone = (double)DMaxPrice.Price;
                             Utils.ToCardLog("Correct DiscAmount Last  " + DMaxPrice.LongName + "  " + DMaxPrice.Price);
                         }
 
@@ -6435,6 +6442,7 @@ Delivery club самовывоз - 208 - 209
                 IberEnumClass CmpsEnum = (IberEnumClass)Depot.GetEnum(FILE_CMP);
                 IberObject Cmp = CmpsEnum.FindFromLongAttr("ID", Id);
                 int CompType = Cmp.GetBoolVal("ENTERAMT");
+                //Utils.ToCardLog($"GetCompType Id{}")
                 return CompType;
             }
             catch
