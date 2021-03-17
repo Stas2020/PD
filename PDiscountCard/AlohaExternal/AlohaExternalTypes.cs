@@ -10,6 +10,21 @@ namespace PDiscountCard.AlohaExternal
     [ServiceContract(Namespace = "http://Aloha.USrv")]
     public interface IAlohaExternal
     {
+
+
+        /// <summary>
+        /// Возвращает список туго блюд
+        /// </summary>
+        /// <param name="Request"></param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                 ResponseFormat = WebMessageFormat.Json
+            , UriTemplate = "json/GetEmployeeList"
+                 )]
+        GetEmloyeeListResponse GetEmployeeList();
+
+
         /// <summary>
         /// Возвращает список туго блюд
         /// </summary>
@@ -171,6 +186,11 @@ namespace PDiscountCard.AlohaExternal
 
         public int TableRangeId { set; get; }
         public int DiscountId { set; get; }
+
+        /// <summary>
+        /// Официант
+        /// </summary>
+        public int EmplId { set; get; }
 
     }
 
@@ -381,6 +401,12 @@ namespace PDiscountCard.AlohaExternal
 
         public List<AlohaCheckInfo> Checks = new List<AlohaCheckInfo>();
     }
+    public class GetEmloyeeListResponse : CommandResponse
+    {
+
+
+        public List<AlohaEmployeeInfo> Empls = new List<AlohaEmployeeInfo>();
+    }
 
     public class AlohaTableInfoResponse : CommandResponse
     {
@@ -389,7 +415,15 @@ namespace PDiscountCard.AlohaExternal
         public List<AlohaCheckInfo> Checks = new List<AlohaCheckInfo>();
     }
 
-    public class AlohaCheckInfo
+
+    public class AlohaEmployeeInfo
+    {
+        public int Id { set; get; }
+        public string FirstName { set; get; }
+        public string SecondName { set; get; }
+    }
+
+        public class AlohaCheckInfo
     {
         public int AlohaId { set; get; }
         public decimal Summ { set; get; }

@@ -789,21 +789,16 @@ namespace PDiscountCard
                 {
                     Color = GetCheckColor(Ch);
                 }
-                Utils.ToLog("Определил цвет чека.", 6);
+               
                 if (Color)
                 {
-                    Ch.OpenTimem = 1; //Белый
+                    Ch.OpenTimem = 1; 
                 }
                 else
                 {
                     Ch.OpenTimem = 0;
                 }
-                /*
-                if (AlohaTSClass.GetDiscountAttr(Ch.AlohaCheckNum) != "")
-                {
-                    Ch.DiscountCard = AlohaTSClass.GetDiscountAttr(Ch.AlohaCheckNum);
-                }
-                */
+               
             }
             //  Ch.SystemDate = DateTime.Now.AddMonths(1);
             Ch.SystemDate = DateTime.Now;
@@ -888,63 +883,8 @@ namespace PDiscountCard
 
             }
 
-
-
-            /*
-            if ((iniFile.AlcDivide) && (!Ch.Vozvr))
-            {
-                if ((Ch.Dishez.Select(a => a.BarCode).Intersect(AlohaTSClass.AlcList).Count() > 0) && (Ch.Dishez.Select(a => a.BarCode).Intersect(AlohaTSClass.AlcList).Count() != Ch.Dishez.Count))
-                {
-                    Utils.ToLog("Чек содержит алкоголь. Делим", 6);
-
-                    Check Ch2 = (Check)Ch.Clone();
-                    Ch2.Dishez.Clear();
-                    foreach (Dish d in Ch.Dishez)
-                    {
-                        if (AlohaTSClass.AlcList.Contains(d.BarCode))
-                        {
-                            Ch2.Dishez.Add(d.Clone());
-                        }
-                    }
-                    for (int i = Ch.Dishez.Count - 1; i >= 0; i--)
-                    {
-                        if (AlohaTSClass.AlcList.Contains(Ch.Dishez[i].BarCode))
-                        { Ch.Dishez.Remove(Ch.Dishez[i]); }
-                    }
-
-                    Ch2.Summ = Ch2.Dishez.Sum(D => Math.Abs((decimal)D.Price) + Math.Abs((decimal)D.ServiceChargeSumm));
-                    if (Ch.Tenders.Count == 1)
-                    {
-
-                        Ch.Tenders[0].Summ = (double)Ch.Summ;
-                        Ch.Tenders[0].SummWithOverpayment -= (double)Ch2.Summ;
-                        Ch2.Tenders[0].Summ = (double)Ch2.Summ;
-                    }
-                    Ch2.AlohaCheckNum = Ch
-
-                    CreateCloseCheckFileEventWaitHandle.WaitOne();
-                    try
-                    {
-                        Utils.ToLog("Записываю чек в файл временный.", 6);
-                        WriteCheck(Ch, 0);
-                        WriteCheck(Ch2, 0);
-                    }
-                    catch
-                    {
-                        Utils.ToLog("[Error] Ошибка записи чека в файл временный.", 1);
-                    }
-                    CreateCloseCheckFileEventWaitHandle.Set();
-
-
-
-
-    
-
-                }
-            }
-            else
-    */
-            {
+                       
+            
 
 
                 CreateCloseCheckFileEventWaitHandle.WaitOne();
@@ -958,7 +898,7 @@ namespace PDiscountCard
                     Utils.ToLog("[Error] Ошибка записи чека в файл временный.", 1);
                 }
                 CreateCloseCheckFileEventWaitHandle.Set();
-            }
+            
         }
 
         /*

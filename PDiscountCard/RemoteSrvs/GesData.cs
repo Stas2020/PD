@@ -176,8 +176,8 @@ namespace PDiscountCard.RemoteSrvs
                         if (!res.TryGetValue(Convert.ToInt32(rec.bar_cod), out m))
                         {
                             string s = rec.sostav;
-                            byte[] textAsBytes = Encoding.GetEncoding(1251).GetBytes(s);
-                            s = Encoding.UTF8.GetString(textAsBytes);
+                            //byte[] textAsBytes = Encoding.GetEncoding(1251).GetBytes(s);
+                            //s = Encoding.UTF8.GetString(textAsBytes);
                             res.Add(Convert.ToInt32(rec.bar_cod), s);
                         }
                     }

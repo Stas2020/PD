@@ -236,7 +236,8 @@ namespace PDiscountCard
                     {
                         AlohaFuncs.SelectEntry(AlohaCurentState.TerminalId, (int)AlohaCurentState.CheckId, dish.AlohaNum);
                     }
-                    AlohaFuncs.AuthorizeOverrideMgr(AlohaCurentState.TerminalId, 99921, "", "");
+                    int pass = Config.ConfigSettings.ManagerPass;
+                    AlohaFuncs.AuthorizeOverrideMgr(AlohaCurentState.TerminalId, 99921, pass.ToString(), "");
                     AlohaFuncs.VoidSelectedItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.CheckId, 0);
                     AlohaFuncs.DeselectAllEntries(AlohaCurentState.TerminalId);
                     Utils.ToCardLog($"TryDeleteItemOnCurentCheck Ok - #{itmBarcode}");
@@ -1941,7 +1942,7 @@ namespace PDiscountCard
                     //  Printstr = Printstr.Replace("0xDF", "   ");
 
 
-                    if (Printstr.Contains("0xDA"))
+                    if ((Printstr.Contains("0xDA")|| (Printstr.Contains("0xDF"))))
                     {
                         Printstr = Printstr.Replace("0xDA", "");
 
@@ -2326,6 +2327,7 @@ namespace PDiscountCard
                 string wName = GetWaterName(Ch.Waiter);
                 if ((Config.ConfigSettings.QRPrinting) && ((Ch.IsClosed) ^ (IsTableServise())))
                 {
+                    
                     string fName = SaveQREmpInfo(wName);
                     s += "<LINEFEED>1</LINEFEED>";
                     s += "<PRINTCENTERED>Оставьте, пожалуйста, комментарий</PRINTCENTERED> ";
@@ -2494,7 +2496,7 @@ namespace PDiscountCard
             if (iniFile.DifferentPredcheckSaleGroupe == 0)
             {
                 s += AlohaTSClass.FormStringPrintPredcheck(Ch, true, null, false, PrintAll, Checks, innerStr, Closed, false);
-                if (IsAlohaTS() && Ch.TableNumber >= 146 && Ch.TableNumber < 255 && !Closed)
+                if (IsAlohaTS() && ((Ch.TableNumber >= 146 && Ch.TableNumber < 255) ||(Ch.TableNumber >= 900 && Ch.TableNumber<=999))  && !Closed)
                 {
                     s += "<LINEFEED>4</LINEFEED> ";
                     s += "<CUT>PARTIAL</CUT>";
@@ -4001,7 +4003,7 @@ namespace PDiscountCard
 
         static internal void OpenTableFromRangeExternal(AlohaExternal.NewOrderRequest Request, AlohaExternal.NewOrderResponse Resp)
         {
-            Utils.ToCardLog("TOpenTableFromRangeExternal");
+            Utils.ToCardLog($"TOpenTableFromRangeExternal {Request?.TableRangeId}");
             if (!LoginExternal(Resp))
             {
                 Resp.Success = false;
@@ -4024,9 +4026,14 @@ namespace PDiscountCard
                                 return;
                             }
                         }
-                        else if (Request.TableRangeId == 2)//Филиас онлайн авто
+                        else if (Request.TableRangeId == 2)//Филиас онлайн авто 
                         {
+
                             for (int i = 185; i < 196; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                            for (int i = 920; i < 930; i++)
                             {
                                 Tables.Add(i);
                             }
@@ -4038,16 +4045,73 @@ namespace PDiscountCard
                             {
                                 Tables.Add(i);
                             }
+                            /*
+                            for (int i = 925; i < 928; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                            */
 
                         }
-                        else if (Request.TableRangeId == 4)//Филиас онлайн пешком
+                        else if (Request.TableRangeId == 4)//Филиас онлайн самовынос
                         {
                             for (int i = 196; i < 200; i++)
                             {
                                 Tables.Add(i);
                             }
+                            /*
+                            for (int i = 928; i < 930; i++)
+                            {
+                                Tables.Add(i);
+                            }
+
+                                */
+                        }
+                        /*
+                        Delivery club -200 - 207
+Delivery club самовывоз - 208 - 209
+Яндекс - еда - 231 - 240; 169 - 173
+Яндекс - еда самовынос  163 – 168
+*/
+                        else if (Request.TableRangeId == 5)//Яндекс
+                        {
+                            for (int i = 231; i <= 240; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                            for (int i = 169; i <= 173; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                            for (int i = 900; i <= 910; i++)
+                            {
+                                Tables.Add(i);
+                            }
 
                         }
+                        else if (Request.TableRangeId == 6)//Яндекс самовынос
+                        {
+                            for (int i = 163; i <= 168; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                        }
+                        else if (Request.TableRangeId == 7)//Delivery club 
+                        {
+                            for (int i = 200; i <= 207; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                        }
+
+                        else if (Request.TableRangeId == 8)//Delivery club самовынос
+                        {
+                            for (int i = 208; i <= 209; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                        }
+
 
                         foreach (int TableNum in Tables)
                         {
@@ -4149,9 +4213,9 @@ namespace PDiscountCard
                                                         AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, 999902, ss, -999999999.000000, 0);
                                                     }
                                                 }
-                                                catch(Exception eM)
+                                                catch (Exception eM)
                                                 {
-                                                    Utils.ToCardLog("Error AddDish in itm.Mods " + itm.Barcode + " "+ eM.Message);
+                                                    Utils.ToCardLog("Error AddDish in itm.Mods " + itm.Barcode + " " + eM.Message);
                                                 }
                                             }
 
@@ -4167,7 +4231,7 @@ namespace PDiscountCard
                                                         AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, 999902, ss, -999999999.000000, 0);
                                                     }
                                                 }
-                                                catch(Exception eM)
+                                                catch (Exception eM)
                                                 {
                                                     Utils.ToCardLog("Error AddDish in Comment " + itm.Barcode + " " + eM.Message);
                                                 }
@@ -4181,7 +4245,7 @@ namespace PDiscountCard
                                             }
                                             else
                                             {
-                                                
+
                                                 itm.ErrorMsg = "Не смог добавить модификаторы";
                                                 Resp.Success = false;
                                                 itm.Success = false;
@@ -4189,7 +4253,7 @@ namespace PDiscountCard
                                                 //itm.AlohaErrorCode = -5;
                                                 itm.ErrorMsg = "Не смог добавить модификаторы";
                                                 Resp.ErrorItems.Add(itm);
-                                                Utils.ToCardLog("Error AddDish " + itm.Barcode + " Не смог добавить модификаторы " );
+                                                Utils.ToCardLog("Error AddDish " + itm.Barcode + " Не смог добавить модификаторы ");
                                             }
 
 
@@ -4283,7 +4347,7 @@ namespace PDiscountCard
 
             if (Request.AlohaTableId == 0)
             {
-                if (!LoginExternal(Resp))
+                if (!LoginExternal(Resp,Request.EmplId))
                 {
                     Resp.Success = false;
                     return;
@@ -5676,10 +5740,14 @@ namespace PDiscountCard
             }
         }
 
-        static internal bool LoginExternal(AlohaExternal.ICommandResponse Resp)
+        static internal bool LoginExternal(AlohaExternal.ICommandResponse Resp, int empId=0)
         {
             int TermNum = iniFile.ExternalInterfaceTerminal;
             int EmpId = iniFile.ExternalInterfaceEmployee;
+            if (empId != 0)
+            {
+                EmpId = empId;
+            }
             Utils.ToLog(String.Format("LogInExternal TermNum: {0}, EmpId: {1}", TermNum, EmpId));
 
             try
@@ -6074,6 +6142,32 @@ namespace PDiscountCard
 
         }
 
+        static public List<AlohaExternal.AlohaEmployeeInfo> GetEmplListExternal()
+        {
+            var res = new List<AlohaExternal.AlohaEmployeeInfo>();
+            Utils.ToCardLog("GetEmplListExternal");
+            IberEnum QEmpls = Depot.GetEnum(INTERNAL_EMPLOYEES);
+            foreach (IberObject Empl in QEmpls)
+            {
+                try
+                {
+                    res.Add(new AlohaExternal.AlohaEmployeeInfo()
+                    {
+                        Id = Empl.GetLongVal("USERNUMBER"),
+                        FirstName = Empl.GetStringVal("FIRSTNAME"),
+                        SecondName = Empl.GetStringVal("LASTNAME")
+                    });
+                }
+                catch (Exception e)
+                {
+                    Utils.ToCardLog($"Erorr GetEmplListExternal {e.Message}");
+                }
+            }
+
+
+            return res;
+        }
+
 
         static List<int> yandexEatTbls = new List<int>() { 231, 232, 233, 234, 235, 236, 237, 238, 239, 240 };
         static List<int> delEatTbls = new List<int>() { 200, 201, 202, 203, 204, 205, 206, 207, 208, 209 };
@@ -6112,7 +6206,7 @@ namespace PDiscountCard
                             int tn = tbl.GetLongVal("TABLEDEF_ID");
                             Utils.ToCardLog("GetToGoOrdersExternal find open table " + tn);
                             //if (yandexEatTbls.Contains(tn) || delEatTbls.Contains(tn) || podnesTbls.Contains(tn) || toGo.Contains(tn) || SobsttoGo.Contains(tn) || ((tn >= 180) && (tn <= 199)))
-                            if (tn >= 146 && tn <= 255)
+                            if ((tn >= 146 && tn <= 255) ||(tn >= 900 && tn <= 999))
                             {
                                 Utils.ToCardLog("GetToGoOrdersExternal find open table in togo " + tn);
                                 IberEnum chks = tbl.GetEnum(INTERNAL_TABLES_OPEN_CHECKS);
@@ -6739,8 +6833,7 @@ namespace PDiscountCard
                         Utils.ToCardLog(String.Format("PayMent ID: {0}, Name: {1}, AUTH_CODE:{2}, IDENT:{3}, NR:{4}, GCTYPE:{5}, GCAMOUNT:{6}, GCREDEEM:{7} ",
                             Tndr.TenderId, Tndr.Name, Tndr.AuthId, Tndr.Ident, Tndr.NR, Tndr.GCTYPE, Tndr.GCAMOUNT, Tndr.GCREDEEM));
 
-
-                        // if (Tndr.AlohaTenderId == 68)
+                        
                         if ((Tndr.AlohaTenderId == 25) && ((Tndr.CardPrefix == "77277") || (Tndr.CardPrefix == "NzcyN")))
                         {
                             NeedDiscountForCert += Tndr.Summ;
@@ -7697,8 +7790,9 @@ namespace PDiscountCard
                 int AuthorizeOverrideMgrRes = AlohaCurentState.WaterId;
                 try
                 {
-                    AuthorizeOverrideMgrRes = AlohaFuncs.AuthorizeOverrideMgr(AlohaCurentState.TerminalId, 99921, "13795", "");
-                    Utils.ToLog("AuthorizeOverrideMgrRes = " + AuthorizeOverrideMgrRes);
+                    int pass = Config.ConfigSettings.ManagerPass;
+                    AuthorizeOverrideMgrRes = AlohaFuncs.AuthorizeOverrideMgr(AlohaCurentState.TerminalId, 99921, pass.ToString(), "");
+                    Utils.ToLog($"AuthorizeOverrideMgrRes = {AuthorizeOverrideMgrRes}, pass={pass}" );
                 }
                 catch (Exception e)
                 {
