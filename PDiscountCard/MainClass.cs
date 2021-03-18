@@ -1214,7 +1214,7 @@ namespace PDiscountCard
 
         static internal int RegCard(string bstrTrack1Info, string bstrTrack2Info, string bstrTrack3Info)
         {
-            Utils.ToCardLog("Проведена карта " + bstrTrack1Info + bstrTrack2Info);
+            Utils.ToCardLog("Проведена карта bstrTrack1Info:" + bstrTrack1Info + "bstrTrack2Info:" +bstrTrack2Info);
             foreach (RegCardSubScriberdelegate d in RegCardSubScribers)
             {
                 Utils.ToCardLog("Отправляю магридер во внешнюю процедуру");
