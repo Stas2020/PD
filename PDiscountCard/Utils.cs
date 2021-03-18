@@ -8,8 +8,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Diagnostics;
 using System.Linq;
-
-
+using FCCIntegration.FCCSrv2;
 
 namespace PDiscountCard
 {
@@ -619,7 +618,7 @@ namespace PDiscountCard
 
     }
 
-    internal enum CardTypes { Manager, Discount, Friend, SM, NonFind, PodKarta,Sber,None }
+    internal enum CardTypes { Manager, Discount, Friend, SM, NonFind, PodKarta,Sber, NewLoyCard,None }
 
     internal class MCard
     {
@@ -663,6 +662,12 @@ namespace PDiscountCard
         private CardTypes GetmType()
         {
             Utils.ToLog("Prefix.ToUpper() == " + Prefix.ToUpper());
+            if (Prefix == "83857")
+            {
+                return CardTypes.NewLoyCard;
+            }
+
+
             if ((Prefix.ToUpper() == "20189")||(Prefix.ToUpper() == "20180"))
             {
                 return CardTypes.Sber;
@@ -870,7 +875,16 @@ namespace PDiscountCard
                         Prefix = Track1;
                         return;
                     }
-                    
+
+                    if ((Track2.Substring(0, 5) == "83857"))
+                    {
+                        Track1 = Track2.Substring(0, 5);
+                        Track2 = Track2.Substring(5);
+                        return;
+                    }
+
+
+
                     if ((Track2.Substring(0,5) == "80830")||
                         (Track2.Substring(0, 5) == "86738")||
                         (Track2.Substring(0, 5) == "80827") ||

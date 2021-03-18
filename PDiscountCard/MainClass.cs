@@ -8,6 +8,7 @@ using System.Threading;
 using AlohaFOHLib;
 
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace PDiscountCard
 {
@@ -94,7 +95,7 @@ namespace PDiscountCard
             RemoteCommands.CustomerDisplayEventSender.CustomerDisplayEventSenderStop();
             mStopAllThreads = true;
             WHThreadThreadStopList.Set();
-            
+
 
 
         }
@@ -125,13 +126,13 @@ namespace PDiscountCard
             }
 
         }
-        
+
 
         static AlohaFlyExport.AlohaFlyExportHelper exp;
         static public void InitData()
         {
             //AppDomain.CurrentDomain.AppendPrivatePath(@"C:\Aloha\check\DualConnector");
-            
+
 
             MainThread = Thread.CurrentThread;
             LogTimer.Elapsed += new System.Timers.ElapsedEventHandler(LogTimer_Elapsed);
@@ -153,7 +154,7 @@ namespace PDiscountCard
             ThreadStopList.Priority = ThreadPriority.Lowest;
             ThreadStopList.Start();
 
-// ThreadLoyaltyCard.Start();
+            // ThreadLoyaltyCard.Start();
 
 
 
@@ -190,9 +191,9 @@ namespace PDiscountCard
                     Utils.ToCardLog("Инициализация SV");
                     SVSistem.Main.Init(AlohainiFile.DepNum, AlohaTSClass.GetTermNum());
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
-                    Utils.ToCardLog("Error Игициализации SV "+e.Message);
+                    Utils.ToCardLog("Error Игициализации SV " + e.Message);
                 }
 
                 if (iniFile.CloseCheck)
@@ -235,14 +236,14 @@ namespace PDiscountCard
                 }
 
 
-              
+
 
                 Hamster.HamsterWorker.SendOldHamster();
 
                 RemoteCloseCheck.Init();
 
 
-                Utils.ReadVisitsFromFile();  
+                Utils.ReadVisitsFromFile();
 
                 if (iniFile.CustomerDisplayEnabled)
                 {
@@ -296,7 +297,7 @@ namespace PDiscountCard
 
 
                 if (iniFile.CloseCheck || iniFile.JMSEnable || iniFile.SpoolEnabled)
-                { 
+                {
                     CloseCheck.StartJMSSEndQuere();
                     //if (!iniFile.NOLocalFR)
                     {
@@ -318,7 +319,7 @@ namespace PDiscountCard
 
                 try
                 {
-                    if (!iniFile.AsincSenderEventDisabled) 
+                    if (!iniFile.AsincSenderEventDisabled)
                     {
                         Utils.ToLog("Активирую ловца событий");
                         EventSenderClass.Init();
@@ -338,7 +339,7 @@ namespace PDiscountCard
                         Utils.ToLog("Активирую режим приема удаленных заказов с Туманного Альбиона");
                         try
                         {
-  
+
 
                             //CTG.Init();
                             //s2010Serv. += new PDiscountCard.RemoteOrderSrv.GetNewOrdersCompletedEventHandler(s2010Serv_GetNewOrdersCompleted);
@@ -350,7 +351,7 @@ namespace PDiscountCard
                         }
                     }
 
-                   
+
                     try
                     {
                         //  InterceptAlohaPrintingCreator.CreateInterface();
@@ -373,7 +374,7 @@ namespace PDiscountCard
 
                             // WinApi.CoGetClassObject (InterceptAlohaPeripheralsClass ) 
                             string Lic = "1T1X1W05575U1U0@4H2>185J4I5=5H4G2X4W0U3R0Y491D4R4<42051S5T5O3Z5A241O1:5<";
-                        //    string Lic = "4G0<5C5J3S2Q232B1T3N2P4O2W3;21353?0T054>4;2I3M3K3G4T3E1M452=510O4N5F3Y1T";
+                            //    string Lic = "4G0<5C5J3S2Q232B1T3N2P4O2W3;21353?0T054>4;2I3M3K3G4T3E1M452=510O4N5F3Y1T";
                             m_AlohaPeripherals = icf2.CreateInstanceLic(
             null, null, typeof(IInterceptAlohaPeripherals).GUID, Lic) as IInterceptAlohaPeripherals;
 
@@ -398,7 +399,7 @@ namespace PDiscountCard
                         exp = new AlohaFlyExport.AlohaFlyExportHelper();
                         exp.SendOrderFlightAsync(null);
                     }
-                    
+
                     if (!iniFile.FriendCardsDisabled)
                     {
                         Utils.ToLog("Активирую веб-сервис карт гостя");
@@ -492,7 +493,7 @@ namespace PDiscountCard
                     if (iniFile.Arcus2Enabled)
                     {
                         string s = "";
-                        if (   CreditCardAlohaIntegration.Init(CreditCardTerminalType.Arcus2, out s))
+                        if (CreditCardAlohaIntegration.Init(CreditCardTerminalType.Arcus2, out s))
                         {
                             Utils.ToLog("Активировал модуль приема оплаты пластиковых карт Arcus2");
                         }
@@ -543,7 +544,7 @@ namespace PDiscountCard
 
                     if (iniFile.GalleryOrderEnabled)
                     {
-                        
+
                         // GallerySrvs gs = new GallerySrvs();
                         //gs.StartOrderLisenter();
 
@@ -621,17 +622,17 @@ namespace PDiscountCard
         static Assembly CurrentDomain_ReflectionOnlyAssemblyResolve(object sender, ResolveEventArgs args)
         {
             Utils.ToLog("CurrentDomain_ReflectionOnlyAssemblyResolve Name: " + args.Name + "  RequestingAssembly: " + args.RequestingAssembly);
-            
+
             try
             {
                 var ass = Assembly.LoadFrom(@"C:\Aloha\check\DualConnector\DualConnector.dll");
-                
 
-               return   ass;
+
+                return ass;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Utils.ToLog("[ERROR] Assembly.LoadFrom "+e.Message);
+                Utils.ToLog("[ERROR] Assembly.LoadFrom " + e.Message);
                 return null;
             }
         }
@@ -990,11 +991,11 @@ namespace PDiscountCard
                 tmp.Add("21 – 30 апреля и получайте двойные");
                 tmp.Add("визиты при покупке напитков с матча!");
             }
-            
-            
 
-            
-            
+
+
+
+
 
             tmp.Add("Осталось " + Count.ToString() + " посещений за " + Days.ToString() + " " + Utils.GetDayWord(Days));
             /*
@@ -1199,34 +1200,65 @@ namespace PDiscountCard
         static internal frmCardMoover CurentfrmCardMoover = null;
         static internal bool CurentfrmCardMooverEnable = false;
 
-        
+        [System.Runtime.InteropServices.DllImport("SUROK.dll", CharSet = System.Runtime.InteropServices.CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        private static extern void ShowLoyalty(string card_code);
 
-        static internal int RegCard(string bstrTrack1Info,string bstrTrack2Info, string bstrTrack3Info)
+        internal static string PurgeNum(string Or)
         {
-            Utils.ToCardLog("Проведена карта "+bstrTrack1Info+bstrTrack2Info);
+            string s = Or.Replace(";", "");
+            s = s.Replace("%", "");
+            s = s.Replace("?", "");
+            return s;
+        }
+
+
+        static internal int RegCard(string bstrTrack1Info, string bstrTrack2Info, string bstrTrack3Info)
+        {
+            Utils.ToCardLog("Проведена карта " + bstrTrack1Info + bstrTrack2Info);
             foreach (RegCardSubScriberdelegate d in RegCardSubScribers)
             {
                 Utils.ToCardLog("Отправляю магридер во внешнюю процедуру");
-              bool res= d(bstrTrack1Info,bstrTrack2Info, bstrTrack3Info);
-              if (!res)
-              {
-                  return 1;
-              }
+                bool res = d(bstrTrack1Info, bstrTrack2Info, bstrTrack3Info);
+                if (!res)
+                {
+                    return 1;
+                }
             }
+
+            try
+            {
+                if (bstrTrack2Info.Length > 5)
+                {
+                    var ps = PurgeNum(bstrTrack2Info);
+                    if ((ps.Substring(0, 5) == "83857"))
+                    {
+                        Utils.ToCardLog("New card ShowLoyalty" + ps);
+                        ShowLoyalty(ps);
+                        return 1;
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                Utils.ToCardLog("Error new card "+ e.Message);
+            }
+
+
 
 
             try
             {
-                
+
                 if (AssignLoyaltiStateTimerEnabled)
                 {
                     Utils.ToCardLog("Не закончена предыдущая транзакция. Выхожу");
                     return 1;
                 }
-                
+
                 CurentCard = new MCard(bstrTrack1Info, bstrTrack2Info);
 
-                
+
                 if (CurentCard.bad)
                 {
                     AlohaTSClass.ShowMessage("Не могу прочитать карту. Проведите еще раз.");
@@ -1236,7 +1268,7 @@ namespace PDiscountCard
                     return 0;
                 }
 
-                
+
                 if (OldPrefix != "")
                 {
                     Utils.ToLog("OldPrefix");
@@ -1248,7 +1280,7 @@ namespace PDiscountCard
                     }
                 }
                 OldPrefix = "";
-               
+
                 if (CurentCard.mType == CardTypes.PodKarta)
                 {
                     Utils.ToCardLog("Подарочная карта");
@@ -1281,6 +1313,14 @@ namespace PDiscountCard
                 //                Utils.ToCardLog("((iniFile.CardEmulate) && (!iniFile.WinHook))");
 
                 Utils.ToCardLog(CurentCard.mType.ToString());
+
+                if (CurentCard.mType == CardTypes.NewLoyCard)
+                {
+                    AlohaTSClass.ShowMessage("Эта карта #КОФЕМАНИЯ3.0. Прокатываем её в меню не нажимая кнопку карта");
+
+                }
+
+
                 if (CurentCard.mType == CardTypes.SM)
                 {
                     Utils.ToCardLog("Вызов системы. Не поддерживаю");
@@ -1332,7 +1372,7 @@ namespace PDiscountCard
                         "Официант: " + AlohaTSClass.AlohaCurentState.WaterId +
                         "Чек: " + AlohaTSClass.AlohaCurentState.CheckId + "(" + AlohaTSClass.AlohaCurentState.CheckNum + ")");
 
-                   
+
                     if (Ch.OrderedDishez.Count == 0)
                     {
                         if (AlohaTSClass.IsTableServise())
@@ -1374,19 +1414,19 @@ namespace PDiscountCard
 
                     int VisCount = 1;
 
-               
 
-                        int compId = 0;
-                        MB.MBClient mbClient = new MB.MBClient();
-                        //if (mbClient.UsingMB())
-                        //{
-                            k = mbClient.GetFrendConvertCodeCardProcessing(Ch, CurentCard.Prefix, CurentCard.Num, out  VisitCount, out DayCount, out  VisitTotal, out DayTotal, out compId, out bool ShowValidMess);
-                            if (k == -1)
-                            {
-                                //Это чтобы карта записалась в файл, если MB недоступен.
-                                k = ToBase.DoVizit2(CurentCard.Prefix, CurentCard.Num.ToString(), AlohainiFile.DepNum, AlohaTSClass.AlohaCurentState.CheckNum,
-                             AlohaTSClass.AlohaCurentState.TerminalId, Ch.Summ, DateTime.Now, out  VisitCount, out DayCount, out  VisitTotal, out DayTotal, out Gold, 0);
-                            }
+
+                    int compId = 0;
+                    MB.MBClient mbClient = new MB.MBClient();
+                    //if (mbClient.UsingMB())
+                    //{
+                    k = mbClient.GetFrendConvertCodeCardProcessing(Ch, CurentCard.Prefix, CurentCard.Num, out VisitCount, out DayCount, out VisitTotal, out DayTotal, out compId, out bool ShowValidMess);
+                    if (k == -1)
+                    {
+                        //Это чтобы карта записалась в файл, если MB недоступен.
+                        k = ToBase.DoVizit2(CurentCard.Prefix, CurentCard.Num.ToString(), AlohainiFile.DepNum, AlohaTSClass.AlohaCurentState.CheckNum,
+                     AlohaTSClass.AlohaCurentState.TerminalId, Ch.Summ, DateTime.Now, out VisitCount, out DayCount, out VisitTotal, out DayTotal, out Gold, 0);
+                    }
 
                     //}
                     /*
@@ -1413,7 +1453,7 @@ namespace PDiscountCard
                         return 1;
                     }
 
-                    
+
 
                     if (VisitCount == -5)
                     {
@@ -1438,12 +1478,12 @@ namespace PDiscountCard
 
                     if (VisitCount == -4)
                     {
-                        AlohaTSClass.ShowMessage("Визит по этому чеку уже зарегистрирован."+validDataMess);
+                        AlohaTSClass.ShowMessage("Визит по этому чеку уже зарегистрирован." + validDataMess);
                         PrintFriendInfo("Визит по этому чеку уже зарегистрирован.");
                         return 1;
                     }
 
-                    if ((VisitCount == -3)||(VisitCount == -7))
+                    if ((VisitCount == -3) || (VisitCount == -7))
                     {
                         AlohaTSClass.ShowMessage("Не прошло необходимое время с момента последнего визита." + validDataMess);
                         PrintFriendInfo(-3);
@@ -1509,10 +1549,10 @@ namespace PDiscountCard
                         try
                         {
                             int k = 0;
-                            int compId=0;
+                            int compId = 0;
                             MB.MBClient mbClient = new MB.MBClient();
 
-                            k = mbClient.GetFrendConvertCodeCardProcessing(Ch, CurentCard.Prefix, CurentCard.Num, out  VisitCount, out DayCount, out  VisitTotal, out DayTotal,out compId,out bool shw);
+                            k = mbClient.GetFrendConvertCodeCardProcessing(Ch, CurentCard.Prefix, CurentCard.Num, out VisitCount, out DayCount, out VisitTotal, out DayTotal, out compId, out bool shw);
 
 
 
@@ -1546,53 +1586,53 @@ namespace PDiscountCard
                 }
                 else
                     if (CurentCard.mType == CardTypes.Discount)
-                    {
-                        Utils.ToLog("[RegCard] Это скидочная карта");
-                        
-                        if (CurentCard.DiscountType == -1)
-                        {
-                            AlohaTSClass.ShowMessage("Карта не активна для данного подразделения");
-                            return 1;
+                {
+                    Utils.ToLog("[RegCard] Это скидочная карта");
 
-                        }
-                        
-                        if (AlohaTSClass.CheckWindow())
+                    if (CurentCard.DiscountType == -1)
+                    {
+                        AlohaTSClass.ShowMessage("Карта не активна для данного подразделения");
+                        return 1;
+
+                    }
+
+                    if (AlohaTSClass.CheckWindow())
+                    {
+                        if (AlohaTSClass.AlohaCurentState.CompIsAppled)
                         {
-                            if (AlohaTSClass.AlohaCurentState.CompIsAppled)
+                            AlohaTSClass.ShowMessage("Скидка уже применена");
+                            return 1;
+                        }
+                        if (CurentCard.DiscountType != 6)
+                        {
+                            if (AlohaTSClass.GetDiscountAttr((int)AlohaTSClass.AlohaCurentState.CheckId) != "")
                             {
-                                AlohaTSClass.ShowMessage("Скидка уже применена");
+                                AlohaTSClass.ShowMessage("Нельзя применить скидку на чек с зарегистрированным посещением. Совсем нельзя. ");
                                 return 1;
                             }
-                            if (CurentCard.DiscountType != 6)
-                            {
-                                if (AlohaTSClass.GetDiscountAttr((int)AlohaTSClass.AlohaCurentState.CheckId) != "")
-                                {
-                                    AlohaTSClass.ShowMessage("Нельзя применить скидку на чек с зарегистрированным посещением. Совсем нельзя. ");
-                                    return 1;
-                                }
-                            }
+                        }
                         bool ShowValidMess = false;
+                        try
+                        {
+                            int k = 0;
+                            int compId = 0;
+                            MB.MBClient mbClient = new MB.MBClient();
+                            //if (mbClient.UsingMB())
+                            //{
+                            k = mbClient.GetFrendConvertCodeCardProcessing(Ch, CurentCard.Prefix, CurentCard.Num, out VisitCount, out DayCount, out VisitTotal, out DayTotal, out compId, out ShowValidMess);
+                            //}
+                            /*
+                            else
+                            {
+
+                                k = ToBase.DoVizit(CurentCard.Prefix, CurentCard.Num, AlohainiFile.DepNum, AlohaTSClass.AlohaCurentState.CheckNum,
+                   AlohaTSClass.AlohaCurentState.TerminalId, DateTime.Now, out  VisitCount, out DayCount, out  VisitTotal, out DayTotal);
+                                Utils.ToLog("[RegCard] Отправил в базу информацию о скидке. Результат: " + k.ToString() + "Ответ базы: " + VisitCount.ToString());
+                            }
+                            */
+
                             try
                             {
-                                int k = 0;
-                                int compId=0;
-                                MB.MBClient mbClient = new MB.MBClient();
-                                //if (mbClient.UsingMB())
-                                //{
-                                    k = mbClient.GetFrendConvertCodeCardProcessing(Ch, CurentCard.Prefix, CurentCard.Num, out  VisitCount, out DayCount, out  VisitTotal, out DayTotal,out compId, out ShowValidMess);
-                                //}
-                                /*
-                                else
-                                {
-
-                                    k = ToBase.DoVizit(CurentCard.Prefix, CurentCard.Num, AlohainiFile.DepNum, AlohaTSClass.AlohaCurentState.CheckNum,
-                       AlohaTSClass.AlohaCurentState.TerminalId, DateTime.Now, out  VisitCount, out DayCount, out  VisitTotal, out DayTotal);
-                                    Utils.ToLog("[RegCard] Отправил в базу информацию о скидке. Результат: " + k.ToString() + "Ответ базы: " + VisitCount.ToString());
-                                }
-                                */
-
-                                try
-                                {
                                 if (CurentCard.Prefix == "80827")
                                 {
                                     Utils.ToLog("[RegCard]  Распознал  супервип");
@@ -1641,10 +1681,10 @@ namespace PDiscountCard
 
                                 }
                                 //else if (CurentCard.DiscountType != 8 && CurentCard.Prefix == "VIP" && Convert.ToInt64(CurentCard.Num) < 2500)
-                                
 
 
-                                else if ((CurentCard.DiscountType == 1)|| (CurentCard.DiscountType == 4))
+
+                                else if ((CurentCard.DiscountType == 1) || (CurentCard.DiscountType == 4))
                                 {
                                     if (VisitCount == -7)
                                     {
@@ -1657,7 +1697,7 @@ namespace PDiscountCard
                                         AlohaTSClass.ShowMessage("Карта заблокирована либо не активна для данного подразделения. Скидки не будет.");
                                         return 1;
                                     }
-                                    
+
                                 }
                                 else
                                 {
@@ -1668,7 +1708,7 @@ namespace PDiscountCard
                                         return 1;
                                     }
 
-                                    
+
                                 }
 
 
@@ -1690,55 +1730,55 @@ namespace PDiscountCard
                             }
                                  * */
                             }
-                                catch (Exception e)
-                                {
-                                    Utils.ToLog("Error проверки первой сотни. " + e.Message);
-                                }
+                            catch (Exception e)
+                            {
+                                Utils.ToLog("Error проверки первой сотни. " + e.Message);
+                            }
 
-                            if ((ShowValidMess)&& ( Config.ConfigSettings.ShowCardNeedCheckMessage))
+                            if ((ShowValidMess) && (Config.ConfigSettings.ShowCardNeedCheckMessage))
                             {
                                 AlohaTSClass.ShowMessage("Необходимо проверить данные карты");
                             }
 
                         }
-                            catch (Exception e)
-                            {
-                                Utils.ToLog("[ERROR] [RegCard] Ошибка Отправки в базу информацию о скидке. Результат: " + e.Message);
-                            }
+                        catch (Exception e)
+                        {
+                            Utils.ToLog("[ERROR] [RegCard] Ошибка Отправки в базу информацию о скидке. Результат: " + e.Message);
+                        }
 
 
-                       
+
 
 
                         string Emess = "";
                         string validDataMess = "";
-                        
+
                         if ((ShowValidMess) && (Config.ConfigSettings.ShowCardNeedCheckMessage))
                         {
-                            validDataMess = Environment.NewLine+ "Необходимо проверить данные карты";
+                            validDataMess = Environment.NewLine + "Необходимо проверить данные карты";
                         }
                         int CompRes = AlohaTSClass.ApplyCompManagerOverride(CurentCard.DiscountType, out Emess);
-                            Utils.ToLog("[RegCard] Результат успешного наложения скидки: " + CompRes.ToString());
-                            if (CompRes == 0)
-                            {
+                        Utils.ToLog("[RegCard] Результат успешного наложения скидки: " + CompRes.ToString());
+                        if (CompRes == 0)
+                        {
 
-                                AlohaTSClass.ShowMessage("Cкидка не применена."+ validDataMess);
-                                AlohaTSClass.WriteToDebout("Cкидка не применена  тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum + " Причина: " + Emess);
-                            }
-                            else
-                            {
-                                //  AlohaTSClass.SetDiscountAttr((int)AlohaTSClass.AlohaCurentState.CheckId, CurentCard.Prefix + " " + CurentCard.Num, false, 0, 0);
-                                AlohaTSClass.WriteToDebout("Применена скидка тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum);
-                                AlohaTSClass.ShowMessage("Применена скидка."+ validDataMess);
-                            }
-                            CurentfrmCardMoover.SetOk();
-                            return 1;
+                            AlohaTSClass.ShowMessage("Cкидка не применена." + validDataMess);
+                            AlohaTSClass.WriteToDebout("Cкидка не применена  тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum + " Причина: " + Emess);
                         }
                         else
                         {
-                            AlohaTSClass.ShowMessage("Не удалось прочесть параметры Aloha");
+                            //  AlohaTSClass.SetDiscountAttr((int)AlohaTSClass.AlohaCurentState.CheckId, CurentCard.Prefix + " " + CurentCard.Num, false, 0, 0);
+                            AlohaTSClass.WriteToDebout("Применена скидка тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum);
+                            AlohaTSClass.ShowMessage("Применена скидка." + validDataMess);
                         }
+                        CurentfrmCardMoover.SetOk();
+                        return 1;
                     }
+                    else
+                    {
+                        AlohaTSClass.ShowMessage("Не удалось прочесть параметры Aloha");
+                    }
+                }
                 Utils.ToLog("[RegCard] Не знаю такую карту.");
                 try
                 {
