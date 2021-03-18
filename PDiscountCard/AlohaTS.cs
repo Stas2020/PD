@@ -7796,15 +7796,15 @@ Delivery club самовывоз - 208 - 209
                 Utils.ToLog("[ApplyComp] Накладываю скидку ManagerOverride: Терминал: " + AlohaCurentState.TerminalId.ToString() + " Официант: " + AlohaCurentState.WaterId.ToString() + " Чек: " +
                    AlohaCurentState.CheckNum.ToString() + " Тип: " + CompTypeId.ToString());
                 int AuthorizeOverrideMgrRes = AlohaCurentState.WaterId;
+                int pass = Config.ConfigSettings.ManagerPass;
                 try
                 {
-                    int pass = Config.ConfigSettings.ManagerPass;
                     AuthorizeOverrideMgrRes = AlohaFuncs.AuthorizeOverrideMgr(AlohaCurentState.TerminalId, 99921, pass.ToString(), "");
                     Utils.ToLog($"AuthorizeOverrideMgrRes = {AuthorizeOverrideMgrRes}, pass={pass}" );
                 }
                 catch (Exception e)
                 {
-                    Utils.ToLog("Error [ApplyComp]  ManagerOverride " + e.Message);
+                    Utils.ToLog("Error [ApplyComp]  ManagerOverride " + e.Message + " pass: " + pass.ToString());
                 }
 
 

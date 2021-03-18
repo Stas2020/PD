@@ -87,7 +87,8 @@ namespace PDiscountCard.Config
                 {
                     return def;
                 }
-                return Settings.Main.AlohaManagerPass;
+                //return Settings.Main.AlohaManagerPass;
+                return def;
             }
         }
 
