@@ -3011,7 +3011,7 @@ namespace PDiscountCard
                 //TODO: Печать информации о баллах
                 if(Ch.CompId == 77)
                 {
-                    string point_total_str = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "points_total");
+                    string point_total_str = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "total_points");
            
                     int points_total = 0;
                     if (point_total_str.Length != 0)
@@ -3038,7 +3038,18 @@ namespace PDiscountCard
                     }
        
                 }
-                
+
+                string points_total_ = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "points_total");
+                string quantity_points_str = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "quantity_points");
+                string type = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "type");
+                if (type.Equals("accum"))
+                {
+                    s += "<PRINTLEFTRIGHT><LEFT>Баллов на счету: </LEFT>";
+                    s += "<RIGHT> " + points_total_ + "</RIGHT></PRINTLEFTRIGHT>";
+
+                    s += "<PRINTLEFTRIGHT><LEFT>Будет зачислено:  </LEFT>";
+                    s += "<RIGHT> " + quantity_points_str + "</RIGHT></PRINTLEFTRIGHT>";
+                }
 
 
 
