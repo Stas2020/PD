@@ -89,12 +89,26 @@
     </Reference>
     <Reference Include="DualConnector, Version=1.3.3.0, Culture=neutral, PublicKeyToken=c5588caae218f0db, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Windows\assembly\GAC_MSIL\DualConnector\1.3.3.0__c5588caae218f0db\DualConnector.dll</HintPath>
+      <HintPath>..\..\Aloha\AlohaTS\bin\DualConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.ARCCOMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>obj\Debug\Interop.ARCCOMLib.dll</HintPath>
     </Reference>
     <Reference Include="Interop.INTERCEPTACTIVITYLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\..\..\..\aloha\alohats\BIN\Interop.INTERCEPTACTIVITYLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.JMSCOMCLIENTLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>obj\Debug\Interop.JMSCOMCLIENTLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.SBRFSRV">
+      <HintPath>obj\Debug\Interop.SBRFSRV.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
