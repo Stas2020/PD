@@ -589,7 +589,6 @@ namespace PDiscountCard
 
                 ulong Ch1 = (ulong)AlohaCheckNum >> 20;
                 ulong Ch2 = (ulong)AlohaCheckNum & 0xFFFFF;
-
                 return Ch1.ToString() + BusinessDate.ToString("ddMMyy") + Ch2.ToString("0000");
 
             }
