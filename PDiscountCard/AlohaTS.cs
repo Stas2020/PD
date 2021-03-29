@@ -991,7 +991,7 @@ namespace PDiscountCard
                             //d.Priceone = d.Priceone - (double)MaxDiscSumm;
 
                             d.Price = (decimal)Math.Round((double)d.OPrice * (1 - (double)DiscPrecent), 2, MidpointRounding.ToEven);
-                            d.Priceone = (double)d.OPriceone * (1 - (double)DiscPrecent);
+                            d.Priceone = Math.Round((double)d.OPriceone * (1 - (double)DiscPrecent), 2, MidpointRounding.ToEven); 
 
 
                             DiscAmountAlreadySumm += MaxDiscSumm;
@@ -1037,7 +1037,7 @@ namespace PDiscountCard
                             {
 
                                 d.Price = (decimal)Math.Round((double)d.OPrice * (1 - CheckDiscValue), 2, MidpointRounding.ToEven);
-                                d.Priceone = (double)d.OPriceone * (1 - CheckDiscValue);
+                                d.Priceone = (double)Math.Round(d.OPriceone * (1 - CheckDiscValue), 2, MidpointRounding.ToEven);
                             }
                         }
                     }
