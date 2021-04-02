@@ -219,7 +219,10 @@ namespace PDiscountCard
                     ShowKeyboard("Комментарий");
                     //ShowEndQuestion();
                     break;
-                default:
+             case 26:
+                    ShowManagersSelector();
+                    break;
+             default:
                     break;
             }
         
@@ -411,11 +414,10 @@ namespace PDiscountCard
             DiscTypeSelector(25);
         }
 
-        
-
-      
-
-       
+        private void button1_Click_3(object sender, EventArgs e)
+        {
+            DiscTypeSelector(26);
+        }
     }
     
 }

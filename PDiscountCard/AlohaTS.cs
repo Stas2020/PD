@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Web;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace PDiscountCard
 {
@@ -960,6 +961,7 @@ namespace PDiscountCard
                             d.DISP_PRICE = d.DISP_PRICE - MaxDiscSumm;
                             d.Price = d.DISP_PRICE;
                             d.Priceone = (double)(d.DISP_PRICE / Count);
+                            Utils.ToLog("line 964  Priceone: " + d.Priceone.ToString() + "  DISP_PRICE: " + d.DISP_PRICE.ToString() + "  Count: " + Count.ToString());
                             DiscAmountAlreadySumm += MaxDiscSumm;
                             if (DMaxPrice.DISP_PRICE < d.DISP_PRICE)
                             {
@@ -991,8 +993,8 @@ namespace PDiscountCard
                             //d.Priceone = d.Priceone - (double)MaxDiscSumm;
 
                             d.Price = (decimal)Math.Round((double)d.OPrice * (1 - (double)DiscPrecent), 2, MidpointRounding.ToEven);
-                            d.Priceone = Math.Round((double)d.OPriceone * (1 - (double)DiscPrecent), 2, MidpointRounding.ToEven); 
-
+                            d.Priceone = Math.Round((double)d.OPriceone * (1 - (double)DiscPrecent), 2, MidpointRounding.ToEven);
+                            Utils.ToLog("line 996  Priceone: " + d.Priceone.ToString() + "  OPriceone: " + d.OPriceone.ToString() + "  DiscPrecent: " + DiscPrecent.ToString());
 
                             DiscAmountAlreadySumm += MaxDiscSumm;
                             if (DMaxPrice.Price < d.Price)
@@ -1004,7 +1006,8 @@ namespace PDiscountCard
                         if (DiscAmountAlreadySumm < DiscAmount)
                         {
                             DMaxPrice.Price = Math.Max(0, DMaxPrice.Price - (DiscAmount - DiscAmountAlreadySumm));
-                            DMaxPrice.Priceone = (double)DMaxPrice.Price;
+                            DMaxPrice.Priceone = (double)(DMaxPrice.Price / (DMaxPrice.Count * DMaxPrice.QUANTITY * DMaxPrice.QtyQUANTITY));
+
                             Utils.ToCardLog("Correct DiscAmount Last  " + DMaxPrice.LongName + "  " + DMaxPrice.Price);
                         }
 
@@ -1035,9 +1038,10 @@ namespace PDiscountCard
                         {
                             if (DishInDiscount(d.BarCode, CheckDiscCat))
                             {
-
                                 d.Price = (decimal)Math.Round((double)d.OPrice * (1 - CheckDiscValue), 2, MidpointRounding.ToEven);
                                 d.Priceone = (double)Math.Round(d.OPriceone * (1 - CheckDiscValue), 2, MidpointRounding.ToEven);
+                                Utils.ToLog("line 1041  Priceone: " + d.Priceone.ToString() + "  OPriceone: " + d.OPriceone.ToString() + "  CheckDiscValue: " + CheckDiscValue.ToString());
+
                             }
                         }
                     }
@@ -1057,9 +1061,9 @@ namespace PDiscountCard
 
             }
 
-            double Chs = GetCheckSum(CheckNum);
+            double CheckSum = GetCheckSum(CheckNum);
 
-
+            
 
             // Коррекция разницы суммы по блюдам и суммы чека
             try
@@ -1078,11 +1082,13 @@ namespace PDiscountCard
                     else
                     {
                         DSumm += (decimal)Math.Round(d.Priceone * (double)d.Count * (double)d.QUANTITY * (double)d.QtyQUANTITY, 2, MidpointRounding.ToEven) + d.ServiceChargeSumm;
+
+                        Utils.ToLog("line 1084  Priceone: " + d.Priceone.ToString() + "  Count: " + d.Count.ToString() + "  QUANTITY: " + d.QUANTITY.ToString() + "  QtyQUANTITY: " + d.QtyQUANTITY.ToString());
                     }
 
                     if (Math.Abs(MaxSumm) < Math.Abs(d.Price))
                     {
-                        MaxSumm = d.Price;
+                         MaxSumm = d.Price;
                         MaxDish = d;
                     }
 
@@ -1090,10 +1096,15 @@ namespace PDiscountCard
 
 
 
-                double Delta = Chs - (double)DSumm;
+                double Delta = CheckSum - (double)DSumm;
+                
+
+                Utils.ToLog("Delta: " + Delta.ToString() + "  Сумма чека CheckSum: " + CheckSum.ToString() +  "  DSumm: " + DSumm.ToString());
+
+
                 if (Math.Abs(Delta) >= 0.005)
                 {
-                    if (Math.Abs(Delta) > 0.05 * Chs)
+                    if (Math.Abs(Delta) > 0.05 * CheckSum)
                     {
                         Ch.ServiceChargeSumm = Math.Abs((decimal)Delta);
 
@@ -1105,6 +1116,8 @@ namespace PDiscountCard
                         Utils.ToCardLog("Добавил разницу сумм: " + Delta.ToString() + " к блюду :" + MaxDish.Name);
                     }
                 }
+
+
             }
             catch (Exception e)
             {
@@ -1128,7 +1141,7 @@ namespace PDiscountCard
                         else
                         {
                             decimal DSumm = (decimal)Math.Round(d.Priceone * (double)d.Count * (double)d.QUANTITY * (double)d.QtyQUANTITY, 2, MidpointRounding.ToEven);
-                            d.ServiceChargeSumm = Math.Round((DSumm / ((decimal)Chs - Ch.ServiceChargeSumm)) * Ch.ServiceChargeSumm, 2, MidpointRounding.ToEven);
+                            d.ServiceChargeSumm = Math.Round((DSumm / ((decimal)CheckSum - Ch.ServiceChargeSumm)) * Ch.ServiceChargeSumm, 2, MidpointRounding.ToEven);
 
                         }
                     }
@@ -2764,6 +2777,9 @@ namespace PDiscountCard
             return res;
         }
 
+        [DllImport("SUROK.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        private static extern void UpdateScopeInfo();
+
         static internal string FormStringPrintPredcheck(Check Ch, bool AllDishez, List<int> PrintableGropes, bool PrintableGropesPrint, bool PrintAll, List<int> Checks, string InnerString, bool Closed, bool needMods)
         {
             try
@@ -3039,11 +3055,14 @@ namespace PDiscountCard
        
                 }
 
-                string points_total_ = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "total_p");
-                string quantity_points_str = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "quant_p");
+
                 string type = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "type");
                 if (type.Equals("accum"))
                 {
+                    UpdateScopeInfo();
+                    string points_total_ = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "total_p");
+                    string quantity_points_str = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "quant_p");
+
                     s += "<PRINTLEFTRIGHT><LEFT>Баллов на счету: </LEFT>";
                     s += "<RIGHT> " + points_total_ + "</RIGHT></PRINTLEFTRIGHT>";
 

@@ -121,12 +121,16 @@ namespace PDiscountCard.Spool
 
             decimal ChOSumm = 0;
             int IsVosvr = (Chk.Vozvr) ? (-1) : 1;
+            Utils.ToCardLog("---------------------------------CreateSpoolStrings2-----------------------------------------");
+
             foreach (Dish d in Chk.ConSolidateSpoolDishez)
             {
                 decimal Count = d.Count * d.QUANTITY * d.QtyQUANTITY;
                 decimal CountRound = Math.Ceiling(d.Count * d.QUANTITY * d.QtyQUANTITY);
                 decimal OSummNetto = (decimal)Math.Round(d.OPriceone * (double)Count, 2, MidpointRounding.ToEven);
                 decimal SummNetto = (decimal)Math.Round(d.Priceone * (double)Count, 2, MidpointRounding.ToEven) + d.Delta + d.ServiceChargeSumm;
+
+                Utils.ToCardLog("SummNetto:" + SummNetto.ToString() + " " + d.LongName + " Priceone: " + d.Priceone.ToString() + " Delta:" + d.Delta.ToString() + "ServiceChargeSumm: " + d.ServiceChargeSumm.ToString());
 
                 ChOSumm += d.OPrice;
                 Tmp += GetStrWithOffcet(2, "12"); //тип строки
