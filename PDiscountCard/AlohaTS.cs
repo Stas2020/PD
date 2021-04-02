@@ -4126,6 +4126,7 @@ Delivery club самовывоз - 208 - 209
                                         }
                                         try
                                         {
+
                                             int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
                                             bool modOk = true;
                                             if (itm.Mods != null)
