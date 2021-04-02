@@ -14,7 +14,7 @@ namespace PDiscountCard.GuestCount
 
             var chk = AlohaTSClass.GetCheckByIdShort(checkId);
             int tId = chk.TableNumber;
-            if (tId >= 146 && tId <= 255) return;
+            if ((tId >= 146 && tId <= 255) || (tId >= 900)) return;
             if (chk.Summ <= 0) return;
             try
             {
