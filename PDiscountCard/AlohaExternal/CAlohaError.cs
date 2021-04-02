@@ -110,6 +110,7 @@ namespace PDiscountCard
         public static AlohaErrEnum GetAlohaErrorVal(String ErrorMessage)
         {
             AlohaErrEnum V = AlohaErrEnum.ErrCOM_Unknown;
+            
             string s = ErrorMessage.Substring(ErrorMessage.Length - 2, 2);
             try
             {
