@@ -39,7 +39,7 @@ namespace PDiscountCard.PrintOrder
                     tbSostavGrid.Height = 40;
                     descrScale = 2;
                 }
-                tbSostav.Text = "Состав: "+descr;
+                // tbSostav.Text = "Состав: "+descr;
             }
             StPMain.Children.Clear();
             QrImg.Height = 0;

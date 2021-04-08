@@ -313,9 +313,14 @@ namespace PDiscountCard.Spool
             decimal CountRound = Math.Ceiling(d.Count * d.QUANTITY * d.QtyQUANTITY);
             decimal Count = d.Count * d.QUANTITY * d.QtyQUANTITY;
             barcodt = d.BarCode;
-            i_price = (int)(Math.Abs(d.OPriceone) * 100);
+            i_price = (int)Math.Round((Math.Abs(d.OPriceone) * 100));
             i_quant = (int)((double)CountRound * 1000 * IsVosvr);
             i_summa = (int)Math.Round(((Math.Abs(d.Priceone * (double)Count) * IsVosvr)) * 100, MidpointRounding.ToEven) + (int)Math.Round(d.Delta * 100, MidpointRounding.ToEven) + (int)Math.Round(d.ServiceChargeSumm * 100, MidpointRounding.ToEven) * IsVosvr;
+
+            Utils.ToLog("-------------------------------JMS------------------------------------");
+            Utils.ToLog("OPriceone: " + d.OPriceone.ToString() + " Priceone:" + d.Priceone);
+            Utils.ToLog("i_price: " + i_price.ToString() + "  i_quant:" + i_quant + "  i_summa:" + i_summa);
+
 
             /*
             if ((i_quant % 1000) != 0)

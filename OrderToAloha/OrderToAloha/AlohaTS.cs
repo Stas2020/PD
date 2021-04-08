@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Xml;
 using AlohaFOHLib;
-using NLog;
+
 
 
 namespace OrderToAloha

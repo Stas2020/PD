@@ -21,13 +21,14 @@ namespace PDiscountCard.AlohaExternal
                 selfHost = new ServiceHost(typeof(AlohaExternal), baseAddress);
                 
                 try
-                {
+                {                                      
                     selfHost.AddServiceEndpoint(typeof(IAlohaExternal), new BasicHttpBinding()
                     {
                         MaxBufferPoolSize = 2147483647,
                         MaxReceivedMessageSize = 2147483647,
                         MaxBufferSize = 2147483647
                     }, "AlohaExternal");
+                    
                     ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                     smb.HttpGetEnabled = true;
                     selfHost.Description.Behaviors.Add(smb);
@@ -46,14 +47,14 @@ namespace PDiscountCard.AlohaExternal
                 
                 try
                 {
-                    // Step 3 of the hosting procedure: Add a service endpoint.
+                    // Step 3 of the hosting procedure: Add a service endpoint.                    
                     var ep2 = selfHostJSON.AddServiceEndpoint(typeof(IAlohaExternal), new WebHttpBinding()
                     {
                         MaxBufferPoolSize = 2147483647,
                         MaxReceivedMessageSize = 2147483647,
                         MaxBufferSize = 2147483647
                     }, "AlohaExternal");
-
+                    
                     // Step 4 of the hosting procedure: Enable metadata exchange.
 
                     ep2.Behaviors.Add(new WebHttpBehavior());

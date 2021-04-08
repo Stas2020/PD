@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlButtons = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.btn25 = new System.Windows.Forms.Button();
             this.btn24 = new System.Windows.Forms.Button();
             this.btn23 = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.btn21 = new System.Windows.Forms.Button();
             this.btn14 = new System.Windows.Forms.Button();
             this.btn13 = new System.Windows.Forms.Button();
-            this.btn12 = new System.Windows.Forms.Button();
             this.btn11 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -56,13 +56,14 @@
             this.ctrlDegustationsManagers1 = new PDiscountCard.CtrlDegustationsManagers();
             this.ctrlDegustationsWithKeys1 = new PDiscountCard.CtrlDegustationsWithKeys();
             this.ctrlHotelBreakfastCount1 = new PDiscountCard.CtrlHotelBreakfastCount();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.pnlButtons.SuspendLayout();
             this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlButtons
             // 
+            this.pnlButtons.Controls.Add(this.button2);
             this.pnlButtons.Controls.Add(this.button1);
             this.pnlButtons.Controls.Add(this.btn25);
             this.pnlButtons.Controls.Add(this.btn24);
@@ -76,7 +77,6 @@
             this.pnlButtons.Controls.Add(this.btn21);
             this.pnlButtons.Controls.Add(this.btn14);
             this.pnlButtons.Controls.Add(this.btn13);
-            this.pnlButtons.Controls.Add(this.btn12);
             this.pnlButtons.Controls.Add(this.btn11);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlButtons.Location = new System.Drawing.Point(10, 105);
@@ -85,13 +85,27 @@
             this.pnlButtons.Size = new System.Drawing.Size(860, 385);
             this.pnlButtons.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(10, 23);
+            this.button1.Margin = new System.Windows.Forms.Padding(20);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(10);
+            this.button1.Size = new System.Drawing.Size(123, 101);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Контроль качества руководством ";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_3);
+            // 
             // btn25
             // 
             this.btn25.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn25.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn25.Location = new System.Drawing.Point(667, 262);
+            this.btn25.Location = new System.Drawing.Point(710, 262);
             this.btn25.Name = "btn25";
-            this.btn25.Size = new System.Drawing.Size(150, 101);
+            this.btn25.Size = new System.Drawing.Size(134, 101);
             this.btn25.TabIndex = 13;
             this.btn25.Text = "Беспл. товар";
             this.btn25.UseVisualStyleBackColor = false;
@@ -101,9 +115,9 @@
             // 
             this.btn24.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn24.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn24.Location = new System.Drawing.Point(502, 261);
+            this.btn24.Location = new System.Drawing.Point(408, 262);
             this.btn24.Name = "btn24";
-            this.btn24.Size = new System.Drawing.Size(150, 101);
+            this.btn24.Size = new System.Drawing.Size(296, 101);
             this.btn24.TabIndex = 12;
             this.btn24.Text = "Представительские расходы";
             this.btn24.UseVisualStyleBackColor = false;
@@ -113,9 +127,9 @@
             // 
             this.btn23.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn23.Location = new System.Drawing.Point(344, 262);
+            this.btn23.Location = new System.Drawing.Point(282, 262);
             this.btn23.Name = "btn23";
-            this.btn23.Size = new System.Drawing.Size(140, 101);
+            this.btn23.Size = new System.Drawing.Size(120, 101);
             this.btn23.TabIndex = 11;
             this.btn23.Text = "Конкурс";
             this.btn23.UseVisualStyleBackColor = false;
@@ -124,12 +138,12 @@
             // btn22
             // 
             this.btn22.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btn22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn22.Location = new System.Drawing.Point(21, 261);
+            this.btn22.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btn22.Location = new System.Drawing.Point(10, 261);
             this.btn22.Margin = new System.Windows.Forms.Padding(20);
             this.btn22.Name = "btn22";
             this.btn22.Padding = new System.Windows.Forms.Padding(10);
-            this.btn22.Size = new System.Drawing.Size(140, 101);
+            this.btn22.Size = new System.Drawing.Size(123, 101);
             this.btn22.TabIndex = 10;
             this.btn22.Text = "Планерка";
             this.btn22.UseVisualStyleBackColor = false;
@@ -139,9 +153,9 @@
             // 
             this.button10.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button10.Location = new System.Drawing.Point(667, 143);
+            this.button10.Location = new System.Drawing.Point(710, 143);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(150, 101);
+            this.button10.Size = new System.Drawing.Size(134, 101);
             this.button10.TabIndex = 9;
             this.button10.Text = "Завтрак отель";
             this.button10.UseVisualStyleBackColor = false;
@@ -150,10 +164,10 @@
             // btn19
             // 
             this.btn19.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btn19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn19.Location = new System.Drawing.Point(667, 23);
+            this.btn19.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btn19.Location = new System.Drawing.Point(710, 25);
             this.btn19.Name = "btn19";
-            this.btn19.Size = new System.Drawing.Size(150, 100);
+            this.btn19.Size = new System.Drawing.Size(134, 100);
             this.btn19.TabIndex = 8;
             this.btn19.Text = "Комплимент гостю";
             this.btn19.UseVisualStyleBackColor = false;
@@ -163,7 +177,7 @@
             // 
             this.btn18.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn18.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn18.Location = new System.Drawing.Point(502, 143);
+            this.btn18.Location = new System.Drawing.Point(554, 144);
             this.btn18.Name = "btn18";
             this.btn18.Size = new System.Drawing.Size(150, 101);
             this.btn18.TabIndex = 7;
@@ -175,7 +189,7 @@
             // 
             this.btn17.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn17.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn17.Location = new System.Drawing.Point(344, 143);
+            this.btn17.Location = new System.Drawing.Point(408, 143);
             this.btn17.Name = "btn17";
             this.btn17.Size = new System.Drawing.Size(140, 101);
             this.btn17.TabIndex = 6;
@@ -187,9 +201,9 @@
             // 
             this.btn16.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn16.Location = new System.Drawing.Point(182, 143);
+            this.btn16.Location = new System.Drawing.Point(282, 142);
             this.btn16.Name = "btn16";
-            this.btn16.Size = new System.Drawing.Size(140, 101);
+            this.btn16.Size = new System.Drawing.Size(120, 101);
             this.btn16.TabIndex = 5;
             this.btn16.Text = "Отказ гостя";
             this.btn16.UseVisualStyleBackColor = false;
@@ -198,14 +212,14 @@
             // btn21
             // 
             this.btn21.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btn21.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn21.Location = new System.Drawing.Point(21, 143);
+            this.btn21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btn21.Location = new System.Drawing.Point(10, 143);
             this.btn21.Margin = new System.Windows.Forms.Padding(20);
             this.btn21.Name = "btn21";
             this.btn21.Padding = new System.Windows.Forms.Padding(10);
-            this.btn21.Size = new System.Drawing.Size(140, 101);
+            this.btn21.Size = new System.Drawing.Size(123, 101);
             this.btn21.TabIndex = 4;
-            this.btn21.Text = "Контроль качества на местах";
+            this.btn21.Text = "Бракераж";
             this.btn21.UseVisualStyleBackColor = false;
             this.btn21.Click += new System.EventHandler(this.button9_Click);
             // 
@@ -213,7 +227,7 @@
             // 
             this.btn14.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn14.Location = new System.Drawing.Point(502, 23);
+            this.btn14.Location = new System.Drawing.Point(554, 25);
             this.btn14.Name = "btn14";
             this.btn14.Size = new System.Drawing.Size(150, 100);
             this.btn14.TabIndex = 3;
@@ -225,7 +239,7 @@
             // 
             this.btn13.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn13.Location = new System.Drawing.Point(344, 23);
+            this.btn13.Location = new System.Drawing.Point(408, 25);
             this.btn13.Name = "btn13";
             this.btn13.Size = new System.Drawing.Size(140, 100);
             this.btn13.TabIndex = 2;
@@ -233,27 +247,15 @@
             this.btn13.UseVisualStyleBackColor = false;
             this.btn13.Click += new System.EventHandler(this.button4_Click);
             // 
-            // btn12
-            // 
-            this.btn12.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btn12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn12.Location = new System.Drawing.Point(182, 23);
-            this.btn12.Name = "btn12";
-            this.btn12.Size = new System.Drawing.Size(140, 100);
-            this.btn12.TabIndex = 1;
-            this.btn12.Text = "Контроль качества руководством ";
-            this.btn12.UseVisualStyleBackColor = false;
-            this.btn12.Click += new System.EventHandler(this.button3_Click);
-            // 
             // btn11
             // 
             this.btn11.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btn11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn11.Location = new System.Drawing.Point(182, 260);
+            this.btn11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btn11.Location = new System.Drawing.Point(146, 262);
             this.btn11.Margin = new System.Windows.Forms.Padding(20);
             this.btn11.Name = "btn11";
             this.btn11.Padding = new System.Windows.Forms.Padding(10);
-            this.btn11.Size = new System.Drawing.Size(140, 100);
+            this.btn11.Size = new System.Drawing.Size(120, 100);
             this.btn11.TabIndex = 0;
             this.btn11.Text = "Тренинг";
             this.btn11.UseVisualStyleBackColor = false;
@@ -391,19 +393,19 @@
             this.ctrlHotelBreakfastCount1.Size = new System.Drawing.Size(861, 247);
             this.ctrlHotelBreakfastCount1.TabIndex = 11;
             // 
-            // button1
+            // button2
             // 
-            this.button1.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(23, 24);
-            this.button1.Margin = new System.Windows.Forms.Padding(20);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(10);
-            this.button1.Size = new System.Drawing.Size(140, 101);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Разработка новых блюд";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_3);
+            this.button2.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(146, 23);
+            this.button2.Margin = new System.Windows.Forms.Padding(20);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(10);
+            this.button2.Size = new System.Drawing.Size(123, 101);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "Контроль качества на местах";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // FDegustations
             // 
@@ -442,7 +444,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn14;
         private System.Windows.Forms.Button btn13;
-        private System.Windows.Forms.Button btn12;
         private System.Windows.Forms.Button btn11;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -467,5 +468,6 @@
         private System.Windows.Forms.Button btn22;
         private System.Windows.Forms.Button btn25;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

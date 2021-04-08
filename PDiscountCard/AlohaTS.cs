@@ -1040,7 +1040,7 @@ namespace PDiscountCard
                             {
                                 d.Price = (decimal)Math.Round((double)d.OPrice * (1 - CheckDiscValue), 2, MidpointRounding.ToEven);
                                 d.Priceone = (double)Math.Round(d.OPriceone * (1 - CheckDiscValue), 2, MidpointRounding.ToEven);
-                                Utils.ToLog("line 1041  Priceone: " + d.Priceone.ToString() + "  OPriceone: " + d.OPriceone.ToString() + "  CheckDiscValue: " + CheckDiscValue.ToString());
+                                Utils.ToLog("line 1043  Priceone: " + d.Priceone.ToString() + "  OPriceone: " + d.OPriceone.ToString() + "  CheckDiscValue: " + CheckDiscValue.ToString());
 
                             }
                         }
