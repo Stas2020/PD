@@ -101,11 +101,11 @@
   </wsdl:binding>
   <wsdl:service name="DeliveryHubConnectorService">
     <wsdl:port name="NetTcpBinding_IDeliveryHubConnectorService" binding="tns:NetTcpBinding_IDeliveryHubConnectorService">
-      <soap12:address location="net.tcp://s2020/DeliveryHubConnector/DeliveryHubConnectorService.svc" />
+      <soap12:address location="net.tcp://s2020.intra.coffeemania.ru/DeliveryHubConnector/DeliveryHubConnectorService.svc" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://s2020/DeliveryHubConnector/DeliveryHubConnectorService.svc</wsa10:Address>
+        <wsa10:Address>net.tcp://s2020.intra.coffeemania.ru/DeliveryHubConnector/DeliveryHubConnectorService.svc</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Spn>host/s2020</Spn>
+          <Spn>host/s2020.intra.coffeemania.ru</Spn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

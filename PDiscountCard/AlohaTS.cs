@@ -6146,9 +6146,6 @@ Delivery club самовывоз - 208 - 209
         {
             try
             {
-
-
-
                 IberEnumClass ChEnum = (IberEnumClass)Depot.FindObjectFromId(INTERNAL_CHECKS, ChId);
                 IberObjectClass Ch = (IberObjectClass)ChEnum.First();
                 int JobCodeN = GetJobCode(JCode);
@@ -8082,7 +8079,12 @@ Delivery club самовывоз - 208 - 209
 
         }
 
-
+        static public int GetCatByItem(int item)
+        {
+            IberObject itm = Depot.FindObjectFromId(INTERNAL_ITEMS, item).First();
+            int cat_id = itm.GetLongVal("CAT_ID");
+            return cat_id;
+        }
 
         static internal bool SelectedDishOnOtherTable(Check Ch)
         {

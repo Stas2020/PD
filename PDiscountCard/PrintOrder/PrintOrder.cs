@@ -13,6 +13,7 @@ using System.Collections.Concurrent;
 
 using System.Web;
 using System.Runtime.InteropServices;
+using PDiscountCard.StopListService;
 
 namespace PDiscountCard.PrintOrder
 {
@@ -87,33 +88,35 @@ namespace PDiscountCard.PrintOrder
 
                 var butterList = new List<int> { 864007, 864008, 864009, 864010 };
                 //  foreach (Dish itm in chk.Dishez.Where(a=>a.Level==0 && a.Price>0))
-                foreach (Dish itm in chk.Dishez.Where(a => a.BarCode<933000 && !butterList.Contains(a.BarCode)))
+                foreach (Dish itm in chk.Dishez.Where(a => a.BarCode < 933000 && !butterList.Contains(a.BarCode)))
                 {
-                var expT = new Tuple<int,string>(24,"");
-                string dDescr = "";
-                
-                
-                if (expTimes != null)
-                {
-                    expTimes.TryGetValue(itm.BarCode, out expT);
-                }
-                if (descr != null)
-                {
-                    descr.TryGetValue(itm.BarCode, out dDescr);
-                    if (dDescr != null && dDescr != "")
-                    {
-                        Utils.ToCardLog("PrintToGoDishLabel dESCR: "+dDescr);
-                    }
-                }
-             //   if (expT.Item1 == 0) expT.Item1  = 24;
-                if (!PrintToGoDishLabel(itm, wname, expT.Item1, chk.TableNumber, dDescr, expT.Item2))
-                {
-                    err += "Ошибка печати на принтере блюда "+itm.LongName + Environment.NewLine;
-                    res = false;
-                }
-                
+                    var expT = new Tuple<int, string>(24, "");
+                    string dDescr = "";
 
-            }
+
+                    if (expTimes != null)
+                    {
+                        expTimes.TryGetValue(itm.BarCode, out expT);
+                    }
+
+                    if (descr != null)
+                    {
+                        descr.TryGetValue(itm.BarCode, out dDescr);
+                        if (dDescr != null && dDescr != "")
+                        {
+                            Utils.ToCardLog("PrintToGoDishLabel dESCR: " + dDescr);
+                        }
+                    }
+
+                    //   if (expT.Item1 == 0) expT.Item1  = 24;
+
+                    if (!PrintToGoDishLabel(itm, wname, expT.Item1, chk.TableNumber, dDescr, expT.Item2))
+                    {
+                        err += "Ошибка печати на принтере блюда "+itm.LongName + Environment.NewLine;
+                        res = false;
+                    }
+                    
+                }
                 
                 //Приборы
                 if (chk.Dishez.Any(a => a.BarCode == 977222))

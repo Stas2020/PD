@@ -40,6 +40,7 @@ namespace PDiscountCard.PrintOrder
                     descrScale = 2;
                 }
                 // tbSostav.Text = "Состав: "+descr;
+                tbSostav.Text = ".   ";
             }
             StPMain.Children.Clear();
             QrImg.Height = 0;

@@ -770,7 +770,11 @@ namespace PDTest
 
         }
 
-            
+        private void button62_Click(object sender, EventArgs e)
+        {
+
+            int cat = PDiscountCard.AlohaTSClass.GetCatByItem(3147429);
+        }
     }
 
     
