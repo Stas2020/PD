@@ -9,6 +9,8 @@ using System.IO;
 using System.Windows.Forms;
 using System.Windows;
 using System.Net;
+using System.ServiceModel;
+using PDiscountCard.HubSrv;
 
 namespace PDTest
 {
@@ -773,7 +775,68 @@ namespace PDTest
         private void button62_Click(object sender, EventArgs e)
         {
 
-            int cat = PDiscountCard.AlohaTSClass.GetCatByItem(3147429);
+            NetTcpBinding binding = new NetTcpBinding(SecurityMode.Transport);
+
+            binding.Security.Message.ClientCredentialType = MessageCredentialType.Windows;
+            binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
+            binding.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
+
+            string uri = @"net.tcp://192.168.254.163/DeliveryHubConnector/DeliveryHubConnectorService.svc";
+
+            EndpointAddress endpoint = new EndpointAddress(new Uri(uri));
+
+            var _client = new PDiscountCard.HubSrv.DeliveryHubConnectorServiceClient(binding, endpoint);
+
+            _client.ClientCredentials.Windows.ClientCredential.Domain = "";
+            _client.ClientCredentials.Windows.ClientCredential.UserName = "aloha";
+            _client.ClientCredentials.Windows.ClientCredential.Password = "Fil123fil123";
+
+
+            var req = new PDiscountCard.HubSrv.OperationRequestFromPOSInfo()
+            {
+                DepNum = 999,
+                RequestData = new PDiscountCard.HubSrv.POSInfo()
+                {
+                    MainPOSFlag = true
+                }
+            };
+
+            _client.Hello(req);
+
+        }
+
+        private void button63_Click(object sender, EventArgs e)
+        {
+           
+            NetTcpBinding binding = new NetTcpBinding(SecurityMode.Transport);
+
+            binding.Security.Message.ClientCredentialType = MessageCredentialType.Windows;
+            binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
+            binding.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
+
+            string uri = @"net.tcp://192.168.254.163/DeliveryHubConnector/DeliveryHubConnectorService.svc";
+
+            EndpointAddress endpoint = new EndpointAddress(new Uri(uri));
+
+            var _client = new PDiscountCard.HubSrv.DeliveryHubConnectorServiceClient(binding, endpoint);
+
+            _client.ClientCredentials.Windows.ClientCredential.Domain = "";
+            _client.ClientCredentials.Windows.ClientCredential.UserName = "aloha";
+            _client.ClientCredentials.Windows.ClientCredential.Password = "Fil123fil123";
+
+
+            var req = new PDiscountCard.HubSrv.OperationRequestFromPOSInfo()
+            {
+                DepNum = 999,
+                RequestData = new PDiscountCard.HubSrv.POSInfo()
+                {
+                    MainPOSFlag = true
+                }
+            };
+
+            _client.Hello(req);
+
+
         }
     }
 
