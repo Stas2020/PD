@@ -160,6 +160,7 @@ namespace PDiscountCard.AlohaExternal
         /// Список товаров
         /// </summary>
         public List<AlohaItemInfo> Items { set; get; }
+        public int SendToKitchenOrderType { set; get; }
     }
 
     public class NewOrderRequest : AddEntityRequest
@@ -191,6 +192,8 @@ namespace PDiscountCard.AlohaExternal
         /// Официант
         /// </summary>
         public int EmplId { set; get; }
+
+        public int SendToKitchenOrderType { set; get; }
 
     }
 
