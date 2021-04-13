@@ -4441,6 +4441,22 @@ Delivery club самовывоз - 208 - 209
                         Utils.ToCardLog("Error AddDish " + itm.Barcode + " Не смог добавить модификаторы ");
                     }
 
+                    try
+                    {
+                        Utils.ToCardLog("Request.SendToKitchenOrderType  " + Request.SendToKitchenOrderType );
+                        if (Request.SendToKitchenOrderType > 0)
+                        {
+                            AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
+                            AlohaFuncs.OrderItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                            AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
+                        }
+                    }
+                    catch(Exception ee)
+                    {
+                        Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
+                    }
+                    
+
 
                 }
                 catch (Exception e)
@@ -4593,6 +4609,21 @@ Delivery club самовывоз - 208 - 209
                         itm.ErrorMsg = "Не смог добавить модификаторы";
                         Resp.ErrorItems.Add(itm);
                         Utils.ToCardLog("Error AddDish " + itm.Barcode + " Не смог добавить модификаторы ");
+                    }
+
+                    try
+                    {
+                        Utils.ToCardLog("Request.SendToKitchenOrderType  " + Request.SendToKitchenOrderType);
+                        if (Request.SendToKitchenOrderType > 0)
+                        {
+                            AlohaFuncs.SelectEntryAndChildren(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, pId);
+                            AlohaFuncs.OrderItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                            AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
+                        }
+                    }
+                    catch (Exception ee)
+                    {
+                        Utils.ToCardLog("Error AddDishFromExternal OrderItems " + ee.Message);
                     }
 
 
