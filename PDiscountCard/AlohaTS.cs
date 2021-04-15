@@ -4077,6 +4077,8 @@ Delivery club самовывоз - 208 - 209
                                 try
                                 {
                                     Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, TableNum, Request.TableName, Request.NumGuest);
+                                    Request.TableNumber = TableNum;
+                                    Resp.TableNum = TableNum;
                                 }
                                 catch (Exception e)
                                 {
