@@ -4264,7 +4264,26 @@ Delivery club самовывоз - 208 - 209
                                             }
                                         }
 
-                                        LogOut();
+
+                                    try
+                                    {
+                                        Utils.ToCardLog("Request.SendToKitchenOrderType  " + Request.SendToKitchenOrderType);
+                                        if (!IsAlohaTS())
+                                        {
+                                            AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
+                                            AlohaFuncs.OrderItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                                            AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
+                                        }
+                                    }
+                                    catch (Exception ee)
+                                    {
+                                        Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
+                                    }
+
+
+
+
+                                    LogOut();
                                         return;
 
                                     }
