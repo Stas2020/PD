@@ -4046,6 +4046,7 @@ namespace PDiscountCard
                 Resp.Success = false;
                 return;
             }
+
             if (Request.TableRangeId > 0)
             {
                 try
@@ -4063,6 +4064,20 @@ namespace PDiscountCard
                                 return;
                             }
                         }
+                        else if  (!AlohaTSClass.IsAlohaTS())                            
+                        {
+
+
+                            var QueueId = GetQueue(GetTermNum());
+                            Utils.ToLog("TOpenTableFromRangeExternal QS QueueId = " + QueueId);
+                            var TableNumber = GetLastQueue(AlohaTSClass.GetTermNum()) + 1;
+                            Tables.Add(TableNumber);
+                            Utils.ToLog("TOpenTableFromRangeExternal QS TableNumber= " + TableNumber);
+                            //var TableName = TableNumber.ToString();
+                            //Utils.ToLog("OpenEmptyCheck TableName = " + TableName);
+                           // UnikNum = AlohaFuncs.AddTable(GetTermNum(), QueueId, TableNumber, TableName, 1);
+                        }
+
                         else if (Request.TableRangeId == 2)//Филиас онлайн авто 
                         {
 
@@ -4149,206 +4164,232 @@ Delivery club самовывоз - 208 - 209
                             }
                         }
 
-
-                        foreach (int TableNum in Tables)
-                        {
-                            try
+                       
+                            foreach (int TableNum in Tables)
                             {
-                                Utils.ToCardLog("TableNum=" + TableNum);
                                 try
                                 {
-                                    Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, TableNum, Request.TableName, Request.NumGuest);
-                                    Request.TableNumber = TableNum;
-                                    Resp.TableNum = TableNum;
-                                }
-                                catch (Exception e)
-                                {
-                                    Utils.ToCardLog("Error AddTable" + e.Message);
-                                    Request.AlohaTableId = 0;
-                                }
-                                if (Request.AlohaTableId > 0)
-                                {
+                                    Utils.ToCardLog("TableNum=" + TableNum);
                                     try
                                     {
 
-                                        Request.AlohaCheckId = AlohaFuncs.AddCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId);
-                                        Resp.AlohaId = Request.AlohaCheckId;
+                                    if (!IsAlohaTS())
+                                    {
+                                         Request.TableName = TableNum.ToString();
+                                    }
+
+                                        Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, TableNum, Request.TableName, Request.NumGuest);
+                                        Request.TableNumber = TableNum;
+                                        Resp.TableNum = TableNum;
                                     }
                                     catch (Exception e)
                                     {
-                                        Utils.ToCardLog("Error AddCheck" + e.Message);
-                                        Resp.Success = false;
-                                        Resp.AlohaErrorCode = CAlohaErrors.GetAlohaErrorVal(e.Message);
-                                        Resp.ErrorMsg = e.Message;
-                                        return;
+                                        Utils.ToCardLog("Error AddTable" + e.Message);
+                                        Request.AlohaTableId = 0;
                                     }
-                                    if (Request.TableRangeId == 1)
+                                    if (Request.AlohaTableId > 0)
                                     {
                                         try
                                         {
-                                            int rsi = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, iniFile.ExternalInterfaceRange1BarCode, iniFile.ExternalInterfaceRange1Name + " " + Request.TableName, -999999999.0);
-                                            AlohaFuncs.EndItem(iniFile.ExternalInterfaceTerminal);
-                                            AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
-                                            AlohaFuncs.SelectEntry(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, rsi);
-                                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId, iniFile.ExternalInterfaceRange1OrderMode);
-                                            AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
+
+                                            Request.AlohaCheckId = AlohaFuncs.AddCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId);
+                                            Resp.AlohaId = Request.AlohaCheckId;
                                         }
                                         catch (Exception e)
                                         {
-                                            Utils.ToCardLog("Error AddRoomSrv dish " + e.Message);
+                                            Utils.ToCardLog("Error AddCheck" + e.Message);
+                                            Resp.Success = false;
+                                            Resp.AlohaErrorCode = CAlohaErrors.GetAlohaErrorVal(e.Message);
+                                            Resp.ErrorMsg = e.Message;
+                                            return;
                                         }
-                                    }
-
-                                    foreach (AlohaExternal.AlohaItemInfo itm in Request.Items)
-                                    {
-                                        Utils.ToCardLog("AddDish " + itm.Barcode + " " + itm.Name);
-                                        double Price = (double)itm.Price;
-                                        if (Price == -1)
+                                        if (Request.TableRangeId == 1)
                                         {
-                                            Price = -999999999.0;
-                                        }
-                                        try
-                                        {
-
-                                            int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
-                                            bool modOk = true;
-                                            if (itm.Mods != null)
+                                            try
                                             {
-                                                foreach (var mod in itm.Mods.Where(a => a.Barcode > 0))
-                                                {
-                                                    Utils.ToCardLog("AddMod " + mod.Barcode + " " + mod.Name);
+                                                int rsi = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, iniFile.ExternalInterfaceRange1BarCode, iniFile.ExternalInterfaceRange1Name + " " + Request.TableName, -999999999.0);
+                                                AlohaFuncs.EndItem(iniFile.ExternalInterfaceTerminal);
+                                                AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
+                                                AlohaFuncs.SelectEntry(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, rsi);
+                                                AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId, iniFile.ExternalInterfaceRange1OrderMode);
+                                                AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
+                                            }
+                                            catch (Exception e)
+                                            {
+                                                Utils.ToCardLog("Error AddRoomSrv dish " + e.Message);
+                                            }
+                                        }
 
-                                                    double mPrice = (double)mod.Price;
-                                                    if (mPrice == -1)
+                                        foreach (AlohaExternal.AlohaItemInfo itm in Request.Items)
+                                        {
+                                            Utils.ToCardLog("AddDish " + itm.Barcode + " " + itm.Name);
+                                            double Price = (double)itm.Price;
+                                            if (Price == -1)
+                                            {
+                                                Price = -999999999.0;
+                                            }
+                                            try
+                                            {
+
+                                                int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
+                                                bool modOk = true;
+                                                if (itm.Mods != null)
+                                                {
+                                                    foreach (var mod in itm.Mods.Where(a => a.Barcode > 0))
                                                     {
-                                                        mPrice = -999999999.0;
+                                                        Utils.ToCardLog("AddMod " + mod.Barcode + " " + mod.Name);
+
+                                                        double mPrice = (double)mod.Price;
+                                                        if (mPrice == -1)
+                                                        {
+                                                            mPrice = -999999999.0;
+                                                        }
+                                                        try
+                                                        {
+                                                            AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, mod.Barcode, "", mPrice, 0);
+                                                        }
+                                                        catch (Exception ee)
+                                                        {
+                                                            Resp.Success = false;
+                                                            itm.Success = false;
+                                                            var err = new CAlohaErrors(ee.Message);
+                                                            mod.AlohaErrorCode = err.Val;
+                                                            mod.ErrorMsg = err.ValStr;
+                                                            Resp.ErrorItems.Add(mod);
+                                                            modOk = false;
+                                                            Utils.ToCardLog("Error AddModd " + mod.Barcode + " " + ee.Message);
+                                                        }
                                                     }
+                                                }
+
+                                                var chunkSize = 14;
+                                                foreach (var mod in itm.Mods.Where(a => a.Barcode == 0))
+                                                {
                                                     try
                                                     {
-                                                        AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, mod.Barcode, "", mPrice, 0);
+                                                        var result = (from Match m in Regex.Matches(mod.Name, @".{1," + chunkSize + "}")
+                                                                      select m.Value).ToList();
+                                                        foreach (string ss in result)
+                                                        {
+                                                            AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, 999902, ss, -999999999.000000, 0);
+                                                        }
                                                     }
-                                                    catch (Exception ee)
+                                                    catch (Exception eM)
                                                     {
-                                                        Resp.Success = false;
-                                                        itm.Success = false;
-                                                        var err = new CAlohaErrors(ee.Message);
-                                                        mod.AlohaErrorCode = err.Val;
-                                                        mod.ErrorMsg = err.ValStr;
-                                                        Resp.ErrorItems.Add(mod);
-                                                        modOk = false;
-                                                        Utils.ToCardLog("Error AddModd " + mod.Barcode + " " + ee.Message);
+                                                        Utils.ToCardLog("Error AddDish in itm.Mods " + itm.Barcode + " " + eM.Message);
                                                     }
                                                 }
-                                            }
 
-                                            var chunkSize = 14;
-                                            foreach (var mod in itm.Mods.Where(a => a.Barcode == 0))
-                                            {
-                                                try
+                                                if (itm.Comment?.Length > 0)
                                                 {
-                                                    var result = (from Match m in Regex.Matches(mod.Name, @".{1," + chunkSize + "}")
-                                                                  select m.Value).ToList();
-                                                    foreach (string ss in result)
+                                                    try
                                                     {
-                                                        AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, 999902, ss, -999999999.000000, 0);
+                                                        var result = (from Match m in Regex.Matches(itm.Comment, @".{1," + chunkSize + "}")
+                                                                      select m.Value).ToList();
+
+                                                        foreach (string ss in result)
+                                                        {
+                                                            AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, 999902, ss, -999999999.000000, 0);
+                                                        }
                                                     }
-                                                }
-                                                catch (Exception eM)
-                                                {
-                                                    Utils.ToCardLog("Error AddDish in itm.Mods " + itm.Barcode + " " + eM.Message);
-                                                }
-                                            }
-
-                                            if (itm.Comment?.Length > 0)
-                                            {
-                                                try
-                                                {
-                                                    var result = (from Match m in Regex.Matches(itm.Comment, @".{1," + chunkSize + "}")
-                                                                  select m.Value).ToList();
-
-                                                    foreach (string ss in result)
+                                                    catch (Exception eM)
                                                     {
-                                                        AlohaFuncs.ModItem(iniFile.ExternalInterfaceTerminal, pId, 999902, ss, -999999999.000000, 0);
+                                                        Utils.ToCardLog("Error AddDish in Comment " + itm.Barcode + " " + eM.Message);
                                                     }
                                                 }
-                                                catch (Exception eM)
+                                                itm.Success = modOk;
+                                                if (modOk)
                                                 {
-                                                    Utils.ToCardLog("Error AddDish in Comment " + itm.Barcode + " " + eM.Message);
+                                                    AlohaFuncs.EndItem(iniFile.ExternalInterfaceTerminal);
+                                                    Resp.AddedItems.Add(itm);
+
                                                 }
-                                            }
-                                            itm.Success = modOk;
-                                            if (modOk)
-                                            {
-                                                AlohaFuncs.EndItem(iniFile.ExternalInterfaceTerminal);
-                                                Resp.AddedItems.Add(itm);
+                                                else
+                                                {
+
+                                                    itm.ErrorMsg = "Не смог добавить модификаторы";
+                                                    Resp.Success = false;
+                                                    itm.Success = false;
+                                                    //var err = new CAlohaErrors(e.Message);
+                                                    //itm.AlohaErrorCode = -5;
+                                                    itm.ErrorMsg = "Не смог добавить модификаторы";
+                                                    Resp.ErrorItems.Add(itm);
+                                                    Utils.ToCardLog("Error AddDish " + itm.Barcode + " Не смог добавить модификаторы ");
+                                                }
+
 
                                             }
-                                            else
+                                            catch (Exception e)
                                             {
-
-                                                itm.ErrorMsg = "Не смог добавить модификаторы";
                                                 Resp.Success = false;
                                                 itm.Success = false;
-                                                //var err = new CAlohaErrors(e.Message);
-                                                //itm.AlohaErrorCode = -5;
-                                                itm.ErrorMsg = "Не смог добавить модификаторы";
+                                                var err = new CAlohaErrors(e.Message);
+                                                itm.AlohaErrorCode = err.Val;
+                                                itm.ErrorMsg = err.ValStr;
                                                 Resp.ErrorItems.Add(itm);
-                                                Utils.ToCardLog("Error AddDish " + itm.Barcode + " Не смог добавить модификаторы ");
+                                                Utils.ToCardLog("Error AddDish " + itm.Barcode + " " + e.Message);
                                             }
-
-
                                         }
-                                        catch (Exception e)
+
+
+                                        if (Request.DiscountId != 0)
                                         {
-                                            Resp.Success = false;
-                                            itm.Success = false;
-                                            var err = new CAlohaErrors(e.Message);
-                                            itm.AlohaErrorCode = err.Val;
-                                            itm.ErrorMsg = err.ValStr;
-                                            Resp.ErrorItems.Add(itm);
-                                            Utils.ToCardLog("Error AddDish " + itm.Barcode + " " + e.Message);
+                                            var dres = ApplyComp(Request.DiscountId, "", out string ErMessage);
+                                            if (dres == 0)
+                                            {
+                                                Resp.Success = false;
+                                                var err = new CAlohaErrors(ErMessage);
+                                                Resp.AlohaErrorCode = err.Val;
+                                                Resp.ErrorMsg = err.ValStr;
+
+                                            }
                                         }
-                                    }
 
 
-                                    if (Request.DiscountId != 0)
+                                    try
                                     {
-                                        var dres = ApplyComp(Request.DiscountId, "", out string ErMessage);
-                                        if (dres == 0)
+                                        Utils.ToCardLog("Request.SendToKitchenOrderType  " + Request.SendToKitchenOrderType);
+                                        if (!IsAlohaTS())
                                         {
-                                            Resp.Success = false;
-                                            var err = new CAlohaErrors(ErMessage);
-                                            Resp.AlohaErrorCode = err.Val;
-                                            Resp.ErrorMsg = err.ValStr;
-
+                                            AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
+                                            AlohaFuncs.OrderItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                                            AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
                                         }
                                     }
+                                    catch (Exception ee)
+                                    {
+                                        Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
+                                    }
+
+
+
 
                                     LogOut();
-                                    return;
+                                        return;
+
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+
+                                    var err = new CAlohaErrors(e.Message);
+                                    if ((e.Message.Length < 3) || (e.Message.Substring(e.Message.Length - 2, 2) != "32"))
+                                    //if (err.Val != AlohaErrEnum.ErrCOM_TableInUse)
+                                    {
+                                        Utils.ToCardLog("Error no one AddTables " + e.Message);
+                                        Resp.ErrorMsg = err.ValStr;
+                                        Resp.AlohaErrorCode = err.Val;
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        Utils.ToCardLog("Error AddTable " + e.Message);
+
+                                    }
 
                                 }
                             }
-                            catch (Exception e)
-                            {
-
-                                var err = new CAlohaErrors(e.Message);
-                                if ((e.Message.Length < 3) || (e.Message.Substring(e.Message.Length - 2, 2) != "32"))
-                                //if (err.Val != AlohaErrEnum.ErrCOM_TableInUse)
-                                {
-                                    Utils.ToCardLog("Error no one AddTables " + e.Message);
-                                    Resp.ErrorMsg = err.ValStr;
-                                    Resp.AlohaErrorCode = err.Val;
-                                    return;
-                                }
-                                else
-                                {
-                                    Utils.ToCardLog("Error AddTable " + e.Message);
-
-                                }
-
-                            }
-                        }
+                        
 
                     }
                     else
