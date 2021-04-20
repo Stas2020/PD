@@ -4271,7 +4271,7 @@ Delivery club самовывоз - 208 - 209
                                         if (!IsAlohaTS())
                                         {
                                             AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
-                                            AlohaFuncs.OrderItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)Request.AlohaTableId, Request.SendToKitchenOrderType);
                                             AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
                                         }
                                     }
