@@ -146,6 +146,11 @@ namespace PDiscountCard
 
         public void CloseCheck(int EmployeeId, int QueueId, int TableId, int CheckId)
         {
+            if (QueueId == 5)
+            {
+                Utils.ToLog($"CheckId ={CheckId} Чек из очереди №5. Это иp хаба Закрываем без Джестори. В Джестори отправит хаб", 2); 
+                return;
+            }
 
             if (iniFile.CustomerDisplayEnabled)
             {
