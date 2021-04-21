@@ -4139,6 +4139,45 @@ Delivery club самовывоз - 208 - 209
                                             }
                                         }
 
+
+                                    // это исправление ошибки
+                                    //There was no order number assigned by master – This is QS only
+
+                                    
+                                        try
+                                        {
+                                        if (!IsAlohaTS())
+                                        {
+                                            int count = 0;
+                                            while (count<5){
+
+                                                try
+
+                                                {
+                                                    AlohaExternal.AlohaItemInfo itm = Request.Items.First();
+                                                    double Price = (double)itm.Price;
+                                                    int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
+                                                    AlohaFuncs.VoidItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, pId, 1);
+                                                    count = 5;
+                                                }
+                                                catch
+                                                {
+                                                    count++;
+                                                }
+                                            }
+                                        }
+                                        }
+                                        catch(Exception e)
+                                        {
+                                        
+
+
+                                            Utils.ToCardLog("AddDish try fo qs error " +e.Message);
+                                        }
+                                        
+                                    
+
+
                                         foreach (AlohaExternal.AlohaItemInfo itm in Request.Items)
                                         {
                                             Utils.ToCardLog("AddDish " + itm.Barcode + " " + itm.Name);
