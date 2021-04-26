@@ -4529,7 +4529,7 @@ Delivery club самовывоз - 208 - 209
                         if (Request.SendToKitchenOrderType > 0)
                         {
                             AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
-                            AlohaFuncs.OrderItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
                             AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
                         }
                     }
