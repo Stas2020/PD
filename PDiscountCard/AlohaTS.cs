@@ -3063,11 +3063,21 @@ namespace PDiscountCard
                     string points_total_ = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "total_p");
                     string quantity_points_str = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "quant_p");
 
+                    double point_quant = 0;
+                    double.TryParse(quantity_points_str, out point_quant);
+
+                    int percent = 0;
+                    if (sum > 0)
+                    { 
+                        percent = (int)Math.Round((point_quant * 100 /(double)sum), 0, MidpointRounding.ToEven); 
+                    }
+                    
+
                     s += "<PRINTLEFTRIGHT><LEFT>Баллов на счету: </LEFT>";
                     s += "<RIGHT> " + points_total_ + "</RIGHT></PRINTLEFTRIGHT>";
 
                     s += "<PRINTLEFTRIGHT><LEFT>Будет зачислено:  </LEFT>";
-                    s += "<RIGHT> " + quantity_points_str + "</RIGHT></PRINTLEFTRIGHT>";
+                    s += "<RIGHT> " + quantity_points_str + " [" + percent.ToString() + "%]</RIGHT></PRINTLEFTRIGHT>";
                 }
 
 
@@ -4610,7 +4620,7 @@ Delivery club самовывоз - 208 - 209
                         if (Request.SendToKitchenOrderType > 0)
                         {
                             AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
-                            AlohaFuncs.OrderItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
                             AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
                         }
                     }
