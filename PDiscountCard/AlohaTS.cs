@@ -4620,7 +4620,7 @@ Delivery club самовывоз - 208 - 209
                         if (Request.SendToKitchenOrderType > 0)
                         {
                             AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
-                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, Resp.TableId, Request.SendToKitchenOrderType);
                             AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
                         }
                     }
@@ -4789,8 +4789,8 @@ Delivery club самовывоз - 208 - 209
                         Utils.ToCardLog("Request.SendToKitchenOrderType  " + Request.SendToKitchenOrderType);
                         if (Request.SendToKitchenOrderType > 0)
                         {
-                            AlohaFuncs.SelectEntryAndChildren(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, pId);
-                            AlohaFuncs.OrderItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                            AlohaFuncs.SelectEntryAndChildren(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, pId); 
+                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)Request.AlohaTableId, Request.SendToKitchenOrderType);
                             AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
                         }
                     }

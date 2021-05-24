@@ -668,7 +668,7 @@ namespace PDiscountCard
             }
 
 
-            if ((Prefix.ToUpper() == "20189")||(Prefix.ToUpper() == "20180"))
+            if ((Prefix.ToUpper() == "20189")||(Prefix.ToUpper() == "20180") || (Prefix.ToUpper() == "20187"))
             {
                 return CardTypes.Sber;
             }
