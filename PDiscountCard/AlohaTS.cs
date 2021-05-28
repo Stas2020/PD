@@ -4192,15 +4192,11 @@ Delivery club самовывоз - 208 - 209
                                         Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, TableNum, Request.TableName, Request.NumGuest);
                                         Request.TableNumber = TableNum;
                                         Resp.TableNum = TableNum;
-<<<<<<< HEAD
-										
-										Utils.ToCardLog("AlohaFuncs.AddTable ok" );
-                                    }
-=======
+
 
                                     Utils.ToCardLog("AlohaFuncs.AddTable ok" );
                                 }
->>>>>>> refs/remotes/origin/master
+
                                     catch (Exception e)
                                     {
                                         Utils.ToCardLog("Error AddTable" + e.Message);
@@ -4213,13 +4209,10 @@ Delivery club самовывоз - 208 - 209
 
                                             Request.AlohaCheckId = AlohaFuncs.AddCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId);
                                             Resp.AlohaId = Request.AlohaCheckId;
-<<<<<<< HEAD
-											Utils.ToCardLog("AlohaFuncs.AddCheck ok");
-                                        }
-=======
+
                                         Utils.ToCardLog("AlohaFuncs.AddCheck ok");
                                     }
->>>>>>> refs/remotes/origin/master
+
                                         catch (Exception e)
                                         {
                                             Utils.ToCardLog("Error AddCheck" + e.Message);
@@ -4260,12 +4253,10 @@ Delivery club самовывоз - 208 - 209
                                                 try
 
                                                 {
-<<<<<<< HEAD
-													Utils.ToCardLog("try add dish QS count "+ count);												 
-=======
+
                                                     Utils.ToCardLog("try add dish QS count "+ count);
 
->>>>>>> refs/remotes/origin/master
+
                                                     AlohaExternal.AlohaItemInfo itm = Request.Items.First();
                                                     double Price = (double)itm.Price;
                                                     int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
@@ -4302,13 +4293,10 @@ Delivery club самовывоз - 208 - 209
                                             {
 
                                                 int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
-<<<<<<< HEAD
-												Utils.ToCardLog("AddDish ok" + itm.Barcode + " " + itm.Name);														 
-                                                bool modOk = true;
-=======
+
                                             Utils.ToCardLog("AddDish ok" + itm.Barcode + " " + itm.Name);
                                             bool modOk = true;
->>>>>>> refs/remotes/origin/master
+
                                                 if (itm.Mods != null)
                                                 {
                                                     foreach (var mod in itm.Mods.Where(a => a.Barcode > 0))
@@ -4355,13 +4343,10 @@ Delivery club самовывоз - 208 - 209
                                                         Utils.ToCardLog("Error AddDish in itm.Mods " + itm.Barcode + " " + eM.Message);
                                                     }
                                                 }
-<<<<<<< HEAD
-												Utils.ToCardLog("AddDishMods ok" + itm.Barcode + " " + itm.Name);
-                                                if (itm.Comment?.Length > 0)
-=======
+
                                             Utils.ToCardLog("AddDishMods ok" + itm.Barcode + " " + itm.Name);
                                             if (itm.Comment?.Length > 0)
->>>>>>> refs/remotes/origin/master
+
                                                 {
                                                     try
                                                     {
@@ -4378,13 +4363,10 @@ Delivery club самовывоз - 208 - 209
                                                         Utils.ToCardLog("Error AddDish in Comment " + itm.Barcode + " " + eM.Message);
                                                     }
                                                 }
-<<<<<<< HEAD
-												Utils.ToCardLog("AlohaFuncs.AddComment ok");										
-                                                itm.Success = modOk;
-=======
+
                                             Utils.ToCardLog("AlohaFuncs.AddComment ok");
                                             itm.Success = modOk;
->>>>>>> refs/remotes/origin/master
+
                                                 if (modOk)
                                                 {
                                                     AlohaFuncs.EndItem(iniFile.ExternalInterfaceTerminal);
@@ -7996,7 +7978,7 @@ Delivery club самовывоз - 208 - 209
                 }
                 catch (Exception e)
                 {
-                    Utils.ToLog("Error [ApplyComp]  ManagerOverride " + e.Message + " pass: " + pass.ToString());
+                    Utils.ToLog("Error [ApplyComp]  ManagerOverride " + e.Message);
                 }
 
 
