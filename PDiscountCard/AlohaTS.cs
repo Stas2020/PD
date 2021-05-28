@@ -4167,6 +4167,7 @@ Delivery club самовывоз - 208 - 209
                                                 }
                                                 catch
                                                 {
+                                                    Thread.Sleep(1000);
                                                     count++;
                                                 }
                                             }
