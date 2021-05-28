@@ -4077,11 +4077,12 @@ namespace PDiscountCard
                         else if  (!AlohaTSClass.IsAlohaTS())
                         {
 
-                            int num_term = GetTermNum();
-                            
-                            var QueueId = GetQueue(num_term);
+
+
+                            var QueueId = GetQueue(iniFile.ExternalInterfaceTerminal);
                             Utils.ToLog("TOpenTableFromRangeExternal QS QueueId = " + QueueId);
-                            var TableNumber = GetLastQueue(num_term) + 1;
+                            var TableNumber = GetLastQueue(iniFile.ExternalInterfaceTerminal) + 1;
+
                             Tables.Add(TableNumber);
                             Utils.ToLog("TOpenTableFromRangeExternal QS TableNumber= " + TableNumber);
                             //var TableName = TableNumber.ToString();
@@ -4265,6 +4266,7 @@ Delivery club самовывоз - 208 - 209
                                                 }
                                                 catch
                                                 {
+                                                    Thread.Sleep(1000);
                                                     count++;
                                                 }
                                             }
