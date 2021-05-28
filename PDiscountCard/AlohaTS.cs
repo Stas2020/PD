@@ -4100,7 +4100,9 @@ Delivery club самовывоз - 208 - 209
                                         Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, TableNum, Request.TableName, Request.NumGuest);
                                         Request.TableNumber = TableNum;
                                         Resp.TableNum = TableNum;
-                                    }
+
+                                    Utils.ToCardLog("AlohaFuncs.AddTable ok" );
+                                }
                                     catch (Exception e)
                                     {
                                         Utils.ToCardLog("Error AddTable" + e.Message);
@@ -4113,7 +4115,8 @@ Delivery club самовывоз - 208 - 209
 
                                             Request.AlohaCheckId = AlohaFuncs.AddCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId);
                                             Resp.AlohaId = Request.AlohaCheckId;
-                                        }
+                                        Utils.ToCardLog("AlohaFuncs.AddCheck ok");
+                                    }
                                         catch (Exception e)
                                         {
                                             Utils.ToCardLog("Error AddCheck" + e.Message);
@@ -4154,6 +4157,8 @@ Delivery club самовывоз - 208 - 209
                                                 try
 
                                                 {
+                                                    Utils.ToCardLog("try add dish QS count "+ count);
+
                                                     AlohaExternal.AlohaItemInfo itm = Request.Items.First();
                                                     double Price = (double)itm.Price;
                                                     int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
@@ -4190,7 +4195,8 @@ Delivery club самовывоз - 208 - 209
                                             {
 
                                                 int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
-                                                bool modOk = true;
+                                            Utils.ToCardLog("AddDish ok" + itm.Barcode + " " + itm.Name);
+                                            bool modOk = true;
                                                 if (itm.Mods != null)
                                                 {
                                                     foreach (var mod in itm.Mods.Where(a => a.Barcode > 0))
@@ -4237,8 +4243,8 @@ Delivery club самовывоз - 208 - 209
                                                         Utils.ToCardLog("Error AddDish in itm.Mods " + itm.Barcode + " " + eM.Message);
                                                     }
                                                 }
-
-                                                if (itm.Comment?.Length > 0)
+                                            Utils.ToCardLog("AddDishMods ok" + itm.Barcode + " " + itm.Name);
+                                            if (itm.Comment?.Length > 0)
                                                 {
                                                     try
                                                     {
@@ -4255,7 +4261,8 @@ Delivery club самовывоз - 208 - 209
                                                         Utils.ToCardLog("Error AddDish in Comment " + itm.Barcode + " " + eM.Message);
                                                     }
                                                 }
-                                                itm.Success = modOk;
+                                            Utils.ToCardLog("AlohaFuncs.AddComment ok");
+                                            itm.Success = modOk;
                                                 if (modOk)
                                                 {
                                                     AlohaFuncs.EndItem(iniFile.ExternalInterfaceTerminal);
