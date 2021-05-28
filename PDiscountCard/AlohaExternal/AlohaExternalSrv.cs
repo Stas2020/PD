@@ -72,6 +72,10 @@ namespace PDiscountCard.AlohaExternal
             };
             foreach (Dish D in Chk.Dishez)
             {
+                if (Chk.Dishez.SelectMany(a => a.CurentModificators).Any(a => a.AlohaNum == D.AlohaNum))
+                    {
+                    continue;
+                }
                 Tmp.Dishez.Add(GetAlohaDishInfo(D));
             }
             
@@ -92,7 +96,15 @@ namespace PDiscountCard.AlohaExternal
             {
                 foreach (var m in D.CurentModificators)
                 {
-                    Tmp.Mods.Add(GetAlohaDishInfo(m));
+                    if (m.BarCode == 999902)
+                    {
+                        Tmp.Comment += Environment.NewLine+ m.Name;
+                    }
+                    else
+                    {
+
+                        Tmp.Mods.Add(GetAlohaDishInfo(m));
+                    }
                 }
             }
             return Tmp;

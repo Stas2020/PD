@@ -4077,17 +4077,7 @@ namespace PDiscountCard
                         else if  (!AlohaTSClass.IsAlohaTS())
                         {
 
-                            int num_term;
-                            
-
-                            if (iniFile.ExternalInterfaceTerminal != 0)
-                            {
-                                num_term = iniFile.ExternalInterfaceTerminal;
-                            }
-                            else
-                            {
-                                num_term = GetTermNum();
-                            }
+                            int num_term = GetTermNum();
                             
                             var QueueId = GetQueue(num_term);
                             Utils.ToLog("TOpenTableFromRangeExternal QS QueueId = " + QueueId);
@@ -4202,6 +4192,8 @@ Delivery club самовывоз - 208 - 209
                                         Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, TableNum, Request.TableName, Request.NumGuest);
                                         Request.TableNumber = TableNum;
                                         Resp.TableNum = TableNum;
+										
+										Utils.ToCardLog("AlohaFuncs.AddTable ok" );
                                     }
                                     catch (Exception e)
                                     {
@@ -4215,6 +4207,7 @@ Delivery club самовывоз - 208 - 209
 
                                             Request.AlohaCheckId = AlohaFuncs.AddCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId);
                                             Resp.AlohaId = Request.AlohaCheckId;
+											Utils.ToCardLog("AlohaFuncs.AddCheck ok");
                                         }
                                         catch (Exception e)
                                         {
@@ -4256,6 +4249,7 @@ Delivery club самовывоз - 208 - 209
                                                 try
 
                                                 {
+													Utils.ToCardLog("try add dish QS count "+ count);												 
                                                     AlohaExternal.AlohaItemInfo itm = Request.Items.First();
                                                     double Price = (double)itm.Price;
                                                     int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
@@ -4292,6 +4286,7 @@ Delivery club самовывоз - 208 - 209
                                             {
 
                                                 int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
+												Utils.ToCardLog("AddDish ok" + itm.Barcode + " " + itm.Name);														 
                                                 bool modOk = true;
                                                 if (itm.Mods != null)
                                                 {
@@ -4339,7 +4334,7 @@ Delivery club самовывоз - 208 - 209
                                                         Utils.ToCardLog("Error AddDish in itm.Mods " + itm.Barcode + " " + eM.Message);
                                                     }
                                                 }
-
+												Utils.ToCardLog("AddDishMods ok" + itm.Barcode + " " + itm.Name);
                                                 if (itm.Comment?.Length > 0)
                                                 {
                                                     try
@@ -4357,6 +4352,7 @@ Delivery club самовывоз - 208 - 209
                                                         Utils.ToCardLog("Error AddDish in Comment " + itm.Barcode + " " + eM.Message);
                                                     }
                                                 }
+												Utils.ToCardLog("AlohaFuncs.AddComment ok");										
                                                 itm.Success = modOk;
                                                 if (modOk)
                                                 {
@@ -4631,7 +4627,9 @@ Delivery club самовывоз - 208 - 209
                         if (Request.SendToKitchenOrderType > 0)
                         {
                             AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
-                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, Resp.TableId, Request.SendToKitchenOrderType);
+
+                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+
                             AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
                         }
                     }
@@ -4801,7 +4799,7 @@ Delivery club самовывоз - 208 - 209
                         if (Request.SendToKitchenOrderType > 0)
                         {
                             AlohaFuncs.SelectEntryAndChildren(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, pId); 
-                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)Request.AlohaTableId, Request.SendToKitchenOrderType);
+                            AlohaFuncs.OrderItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
                             AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
                         }
                     }
@@ -7958,9 +7956,10 @@ Delivery club самовывоз - 208 - 209
                 Utils.ToLog("[ApplyComp] Накладываю скидку ManagerOverride: Терминал: " + AlohaCurentState.TerminalId.ToString() + " Официант: " + AlohaCurentState.WaterId.ToString() + " Чек: " +
                    AlohaCurentState.CheckNum.ToString() + " Тип: " + CompTypeId.ToString());
                 int AuthorizeOverrideMgrRes = AlohaCurentState.WaterId;
-                int pass = Config.ConfigSettings.ManagerPass;
+                
                 try
                 {
+                    int pass = Config.ConfigSettings.ManagerPass;
                     AuthorizeOverrideMgrRes = AlohaFuncs.AuthorizeOverrideMgr(AlohaCurentState.TerminalId, 99921, pass.ToString(), "");
                     Utils.ToLog($"AuthorizeOverrideMgrRes = {AuthorizeOverrideMgrRes}, pass={pass}" );
                 }
