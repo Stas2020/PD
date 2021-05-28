@@ -3987,9 +3987,9 @@ namespace PDiscountCard
                         {
 
 
-                            var QueueId = GetQueue(GetTermNum());
+                            var QueueId = GetQueue(iniFile.ExternalInterfaceTerminal);
                             Utils.ToLog("TOpenTableFromRangeExternal QS QueueId = " + QueueId);
-                            var TableNumber = GetLastQueue(AlohaTSClass.GetTermNum()) + 1;
+                            var TableNumber = GetLastQueue(iniFile.ExternalInterfaceTerminal) + 1;
                             Tables.Add(TableNumber);
                             Utils.ToLog("TOpenTableFromRangeExternal QS TableNumber= " + TableNumber);
                             //var TableName = TableNumber.ToString();
