@@ -4074,13 +4074,24 @@ namespace PDiscountCard
                                 return;
                             }
                         }
-                        else if  (!AlohaTSClass.IsAlohaTS())                            
+                        else if  (!AlohaTSClass.IsAlohaTS())
                         {
 
+                            int num_term;
+                            
 
-                            var QueueId = GetQueue(GetTermNum());
+                            if (iniFile.ExternalInterfaceTerminal != 0)
+                            {
+                                num_term = iniFile.ExternalInterfaceTerminal;
+                            }
+                            else
+                            {
+                                num_term = GetTermNum();
+                            }
+                            
+                            var QueueId = GetQueue(num_term);
                             Utils.ToLog("TOpenTableFromRangeExternal QS QueueId = " + QueueId);
-                            var TableNumber = GetLastQueue(AlohaTSClass.GetTermNum()) + 1;
+                            var TableNumber = GetLastQueue(num_term) + 1;
                             Tables.Add(TableNumber);
                             Utils.ToLog("TOpenTableFromRangeExternal QS TableNumber= " + TableNumber);
                             //var TableName = TableNumber.ToString();
