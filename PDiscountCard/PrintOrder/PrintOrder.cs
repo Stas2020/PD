@@ -106,6 +106,11 @@ namespace PDiscountCard.PrintOrder
                     }
                 }
              //   if (expT.Item1 == 0) expT.Item1  = 24;
+
+
+
+
+
                 if (!PrintToGoDishLabel(itm, wname, expT.Item1, chk.TableNumber, dDescr, expT.Item2))
                 {
                     err += "Ошибка печати на принтере блюда "+itm.LongName + Environment.NewLine;

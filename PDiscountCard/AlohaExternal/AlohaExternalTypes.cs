@@ -161,6 +161,7 @@ namespace PDiscountCard.AlohaExternal
         /// </summary>
         public List<AlohaItemInfo> Items { set; get; }
         public int SendToKitchenOrderType { set; get; }
+        public int SendToKitchen { set; get; }
     }
 
     public class NewOrderRequest : AddEntityRequest
