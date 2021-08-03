@@ -54,6 +54,8 @@ namespace PDiscountCard.AlohaExternal
 
        private AlohaCheckInfo GetAlohaCheckInfo(Check Chk)
         {
+            
+
             AlohaCheckInfo Tmp = new AlohaCheckInfo()
             {
                 AlohaId = Chk.AlohaCheckNum,
@@ -68,7 +70,6 @@ namespace PDiscountCard.AlohaExternal
                 WaiterName = AlohaTSClass.GetWaterName(Chk.Waiter),
                 DiscountSumm = Chk.Comp,
                 NumberInTable = Chk.NumberInTable
-
             };
             foreach (Dish D in Chk.Dishez)
             {
@@ -302,7 +303,18 @@ namespace PDiscountCard.AlohaExternal
             ChInfo.CheckId = CheckId;
             ChInfo.Success=true;
 
-            ChInfo.Check= GetAlohaCheckInfo(AlohaTSClass.GetCheckByIdExternal(ChInfo));
+            var ch = AlohaTSClass.GetCheckByIdExternal(ChInfo);
+            if (ch == null)
+            {
+                ChInfo.Success = false;
+                ChInfo.AlohaErrorCode = AlohaErrEnum.ErrCOM_InvalidCheck;
+            }
+            else
+            {
+                ChInfo.Check = GetAlohaCheckInfo(ch);
+            }
+
+
             return ChInfo;
         }
         
