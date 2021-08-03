@@ -470,6 +470,20 @@ namespace PDiscountCard
 
         public List<AlohaComp> Comps = new List<AlohaComp>();
 
+        public decimal Comp_
+        {
+            get
+            {
+                decimal result = 0;
+                foreach (var comps_ in Comps)
+                {
+                    result += comps_.Amount;
+                }
+
+                return result;
+            }
+
+        }
         public decimal Comp = 0;
 
         internal DateTime SystemDateOfClose2 = new DateTime();

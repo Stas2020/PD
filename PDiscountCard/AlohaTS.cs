@@ -1030,13 +1030,44 @@ namespace PDiscountCard
 
                 //IberObjectClass Cmp = (IberObjectClass)CmpsEnum.First();
                 CheckDiscValue = Cmp.GetDoubleVal("RATE");
+
+                double CheckSum__ = GetCheckSum(CheckNum);
+                double CheckSum_ = 0;
+                bool distribute_discount_all_item = false;
+                foreach (Dish d in Tmp)
+                {
+                    if (DishInDiscount(d.BarCode, CheckDiscCat))
+                    {
+                        CheckSum_ += (double)(d.OPrice * d.QUANTITY);
+                    }
+                        
+                }
+
+                CheckDiscValue = (double)Ch.Comp / CheckSum_;
+                Utils.ToLog("CheckDiscValue: " + CheckDiscValue.ToString());
+
+                if (CheckDiscValue > 1)
+                {
+                    CheckSum_ = 0;
+                    distribute_discount_all_item = true;
+                    foreach (Dish d in Tmp)
+                    {
+                        CheckSum_ += (double)(d.OPrice * d.QUANTITY);
+                    }
+                    CheckDiscValue = (double)Ch.Comp / CheckSum_;
+
+                }
+                Utils.ToLog("CheckDiscValue: " + CheckDiscValue.ToString());
+
+                Utils.ToLog("Размер скидки: " + Ch.Comp.ToString() + "  Сумма чека: " + CheckSum__.ToString() + " Сумма позиций на которые распространяется скидка: " + CheckSum_);
+
                 foreach (Dish d in Tmp)
                 {
                     if (d.Price != 0)
                     {
                         if (d.Price == d.OPrice)
                         {
-                            if (DishInDiscount(d.BarCode, CheckDiscCat))
+                            if (DishInDiscount(d.BarCode, CheckDiscCat) || distribute_discount_all_item)
                             {
                                 d.Price = (decimal)Math.Round((double)d.OPrice * (1 - CheckDiscValue), 2, MidpointRounding.ToEven);
                                 d.Priceone = (double)Math.Round(d.OPriceone * (1 - CheckDiscValue), 2, MidpointRounding.ToEven);
@@ -2963,22 +2994,39 @@ namespace PDiscountCard
                 s += "<LINEFEED>1</LINEFEED>";
                 s += "<PRINTLEFTRIGHT><LEFT>Подытог: </LEFT>";
                 s += "<RIGHT>" + PodIt.ToString("0.00") + "</RIGHT></PRINTLEFTRIGHT>";
-                decimal sum = PodIt - Discount + Ch.ServiceChargeSumm;
-                if(Ch.CompId == 77)
+
+                
+                decimal sum_discount = 0;
+
+                foreach (var comp in Ch.Comps)
                 {
-                    sum = PodIt - Ch.Comp;
+                    sum_discount += comp.Amount;
                 }
+
+                decimal sum = PodIt - sum_discount + Ch.ServiceChargeSumm;
+                decimal summ_not_duscount = PodIt + Ch.ServiceChargeSumm;
+
+                foreach (var comp in Ch.Comps)
+                {
+                    if (comp.Amount != 0)
+                    {
+                        
+                        string comp_name = comp.Name;
+                        if (comp.Id == 77)
+                        {
+                            comp_name = "БАЛЛЫ";
+                        }
+
+                        s += "<LINEFEED>1</LINEFEED>";
+                        s += "<PRINTLEFTRIGHT><LEFT>" + comp_name + " </LEFT>";
+                        s += "<RIGHT> -" + comp.Amount.ToString("0.00") + "</RIGHT></PRINTLEFTRIGHT>";
+
+                    }
+
+                }
+
                 if (Ch.Comp != 0)
                 {
-                    string comp_name = Ch.CompName;
-                    if (Ch.CompId == 77)
-                    {
-                        comp_name = "БАЛЛЫ";
-                    }
-                    
-                    s += "<LINEFEED>1</LINEFEED>";
-                    s += "<PRINTLEFTRIGHT><LEFT>" + comp_name + " </LEFT>";
-                    s += "<RIGHT> -" + Discount.ToString("0.00") + "</RIGHT></PRINTLEFTRIGHT>";
                     if ((Ch.CompId > 9) && (Ch.CompId < 25))
                     {
                         s += "<PRINTLEFTRIGHT><LEFT>" + Ch.DegustationMGR_NUMBER + "</LEFT><RIGHT> " + Ch.CompDescription + "</RIGHT></PRINTLEFTRIGHT>";
@@ -2987,15 +3035,17 @@ namespace PDiscountCard
                     s += "<PRINTLEFTRIGHT><LEFT>Подытог с учетом скидки: </LEFT>";
                     s += "<RIGHT>" + sum.ToString("0.00") + "</RIGHT></PRINTLEFTRIGHT>";
                 }
-                //decimal  sum=  PodIt-Ch.Comp;
-                if (Ch.CompId != 77 && Ch.ServiceChargeSumm > 0 )
+                
+
+      
+                if (Ch.ServiceChargeSumm > 0 )
                 {
                     s += "<LINEFEED>1</LINEFEED>";
                     s += "<PRINTLEFTRIGHT><LEFT>" + Ch.ServiceChargeName + " </LEFT>";
                     s += "<RIGHT> " + Ch.ServiceChargeSumm.ToString("0.00") + "</RIGHT></PRINTLEFTRIGHT>";
 
                 }
-
+                
 
                 s += "<LINEFEED>1</LINEFEED>";
                 s += "<PRINTLEFTRIGHT><LEFT>Итого: </LEFT>";
@@ -3025,35 +3075,40 @@ namespace PDiscountCard
 
 
                 //TODO: Печать информации о баллах
-                if(Ch.CompId == 77)
+                foreach (var comp in Ch.Comps)
                 {
-                    string point_total_str = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "total_p");
-           
-                    int points_total = 0;
-                    if (point_total_str.Length != 0)
+                    if (comp.Id == 77)
                     {
-                        points_total = int.Parse(point_total_str);
-                    }
+                        string point_total_str = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "total_p");
 
-                    int percent = GetPercentOfPayment(PodIt, Ch.Comp);
-                    if (percent < 15)
-                    {
-                        s += "<PRINTLEFTRIGHT><LEFT>Баллов на счету: </LEFT>";
-                        s += "<RIGHT> " + points_total.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
+                        int points_total = 0;
+                        if (point_total_str.Length != 0)
+                        {
+                            points_total = int.Parse(point_total_str);
+                        }
 
-                        s += "<PRINTLEFTRIGHT><LEFT>Скидка баллами: </LEFT>";
-                        s += "<RIGHT> " + Ch.Comp.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
-                    }
-                    if(percent >= 15)
-                    {
-                        s += "<PRINTLEFTRIGHT><LEFT>Баллов на счету: </LEFT>";
-                        s += "<RIGHT> " + points_total.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
+                        int percent = GetPercentOfPayment(summ_not_duscount, comp.Amount);
+                        if (percent < 15)
+                        {
+                            s += "<PRINTLEFTRIGHT><LEFT>Баллов на счету: </LEFT>";
+                            s += "<RIGHT> " + points_total.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
 
-                        s += "<PRINTLEFTRIGHT><LEFT>Скидка баллами: -"+ percent .ToString()+ "% </LEFT>";
-                        s += "<RIGHT> " + Ch.Comp.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
+                            s += "<PRINTLEFTRIGHT><LEFT>Скидка баллами: </LEFT>";
+                            s += "<RIGHT> " + comp.Amount.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
+                        }
+                        if (percent >= 15)
+                        {
+                            s += "<PRINTLEFTRIGHT><LEFT>Баллов на счету: </LEFT>";
+                            s += "<RIGHT> " + points_total.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
+
+                            s += "<PRINTLEFTRIGHT><LEFT>Скидка баллами: -" + percent.ToString() + "% </LEFT>";
+                            s += "<RIGHT> " + comp.Amount.ToString("0") + "</RIGHT></PRINTLEFTRIGHT>";
+                        }
+
                     }
-       
                 }
+
+
 
 
                 string type = AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, Ch.AlohaCheckNum, "type");
@@ -3069,7 +3124,7 @@ namespace PDiscountCard
                     int percent = 0;
                     if (sum > 0)
                     { 
-                        percent = (int)Math.Round((point_quant * 100 /(double)sum), 0, MidpointRounding.ToEven); 
+                        percent = (int)Math.Round((point_quant * 100 /(double)summ_not_duscount), 0, MidpointRounding.ToEven); 
                     }
                     
 
@@ -4123,13 +4178,13 @@ namespace PDiscountCard
                             {
                                 Tables.Add(i);
                             }
-                            /*
-                            for (int i = 928; i < 930; i++)
+                            /**/
+                            for (int i = 930; i <= 934; i++)
                             {
                                 Tables.Add(i);
                             }
-
-                                */
+                            
+                                
                         }
                         /*
                         Delivery club -200 - 207
@@ -4642,10 +4697,7 @@ Delivery club самовывоз - 208 - 209
                         if (Request.SendToKitchenOrderType > 0)
                         {
                             AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
-
-                            
-                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId, Request.SendToKitchenOrderType);
-
+                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, Resp.TableId, Request.SendToKitchenOrderType);
                             AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
                         }
                     }
@@ -4815,7 +4867,7 @@ Delivery club самовывоз - 208 - 209
                         if (Request.SendToKitchenOrderType > 0)
                         {
                             AlohaFuncs.SelectEntryAndChildren(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, pId); 
-                            AlohaFuncs.OrderItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)Request.AlohaTableId, Request.SendToKitchenOrderType);
                             AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
                         }
                     }
@@ -6361,6 +6413,9 @@ Delivery club самовывоз - 208 - 209
         static public List<AlohaExternal.AlohaCheckInfo> GetToGoOrdersExternal()
         {
             Utils.ToCardLog("GetToGoOrdersExternal");
+
+            
+
             List<AlohaExternal.AlohaCheckInfo> res = new List<AlohaExternal.AlohaCheckInfo>();
 
             List<Check> Tmp = new List<Check>();
@@ -6709,11 +6764,14 @@ Delivery club самовывоз - 208 - 209
                 IberObjectClass Ch = (IberObjectClass)ChEnum.First();
 
                 IberEnumClass CompsEnum = (IberEnumClass)Ch.GetEnum(INTERNAL_CHECKS_COMPS);
+                decimal Amount = 0;
+                foreach (IberObject mComp in CompsEnum)
+                {
+                     Amount += Convert.ToDecimal(mComp.GetDoubleVal("AMOUNT"));
+                }
 
+                Ch2.Comp = Amount;
                 IberObjectClass Comp = (IberObjectClass)CompsEnum.First();
-
-                Ch2.Comp = Convert.ToDecimal(Comp.GetDoubleVal("AMOUNT"));
-
                 Ch2.CompId = Comp.GetLongVal("COMPTYPE_ID");
                 return true;
             }
@@ -6838,8 +6896,15 @@ Delivery club самовывоз - 208 - 209
                 try
                 {
                     IberEnumClass CompsEnum = (IberEnumClass)Ch.GetEnum(INTERNAL_CHECKS_COMPS);
+
+                    decimal Amount = 0;
+                    foreach (IberObject mComp in CompsEnum)
+                    {
+                        Amount += Convert.ToDecimal(mComp.GetDoubleVal("AMOUNT"));
+                    }
+
                     IberObjectClass Comp = (IberObjectClass)CompsEnum.First();
-                    Ch2.Comp = Convert.ToDecimal(Comp.GetDoubleVal("AMOUNT"));
+                    Ch2.Comp = Amount;
                     Ch2.CompId = Comp.GetLongVal("COMPTYPE_ID");
                     Ch2.CompName = GetCompName(Ch2.CompId);
                 }
@@ -7202,7 +7267,14 @@ Delivery club самовывоз - 208 - 209
                     Utils.ToLog("Получил CompsEnum  ", 6);
                     IberObjectClass Comp = (IberObjectClass)CompsEnum.First();
                     Utils.ToLog("Получил Comp ", 6);
-                    Ch2.Comp = Convert.ToDecimal(Comp.GetDoubleVal("AMOUNT"));
+
+                    decimal Amount = 0;
+                    foreach (IberObject mComp in CompsEnum)
+                    {
+                        Amount += Convert.ToDecimal(mComp.GetDoubleVal("AMOUNT"));
+                    }
+
+                    Ch2.Comp = Amount;
                     Utils.ToLog("Получил Ch2.Comp =" + Ch2.Comp, 6);
                     Ch2.CompId = Comp.GetLongVal("COMPTYPE_ID");
                     Utils.ToLog("Получил Ch2.CompId  " + Ch2.CompId, 6);
@@ -7273,7 +7345,21 @@ Delivery club самовывоз - 208 - 209
                 try
                 {
                     decimal ManualDiscAmout = 0;
-                    ManualDiscAmout = Ch2.Comps.Where(a => a.CompType == 1).Sum(b => b.Amount);
+
+                    if (Ch2.Comps.Count < 2)
+                    {
+                       ManualDiscAmout = Ch2.Comps.Where(a => a.CompType == 1).Sum(b => b.Amount);
+                    }
+                    else
+                    {
+                        
+                        if (Ch2.Comps[0].Id == 77)
+                        {
+                            ManualDiscAmout = Ch2.Comp;
+                        }
+                    }
+                    
+
                     Ch2.Dishez = GetDishesOfCheck(Id, Ch2, ManualDiscAmout);
                     //Ch2.SetConSolidateDishez();
                     Utils.ToLog("Получил Ch2.Dishez    ", 6);

@@ -187,13 +187,34 @@ namespace PDiscountCard.MB
                         case "80840":
                             result = "Hello10 " + numStr.Substring(5).TrimStart('0');
                             break;
-                        case "20189":
-                            result = "Sber10 " + numStr.Substring(numStr.Length - 6);
-                            break;
                         case "20180":
                             result = "Sber10 " + numStr.Substring(numStr.Length - 6);
                             break;
+                        case "20181":
+                            result = "Sber10 " + numStr.Substring(numStr.Length - 6);
+                            break;
+                        case "20182":
+                            result = "Sber10 " + numStr.Substring(numStr.Length - 6);
+                            break;
+                        case "20183":
+                            result = "Sber10 " + numStr.Substring(numStr.Length - 6);
+                            break;
+                        case "20184":
+                            result = "Sber10 " + numStr.Substring(numStr.Length - 6);
+                            break;
+                        case "20185":
+                            result = "Sber10 " + numStr.Substring(numStr.Length - 6);
+                            break;
+                        case "20186":
+                            result = "Sber10 " + numStr.Substring(numStr.Length - 6);
+                            break;
                         case "20187":
+                            result = "Sber10 " + numStr.Substring(numStr.Length - 6);
+                            break;
+                        case "20188":
+                            result = "Sber10 " + numStr.Substring(numStr.Length - 6);
+                            break;
+                        case "20189":
                             result = "Sber10 " + numStr.Substring(numStr.Length - 6);
                             break;
                         case "86738":

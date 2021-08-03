@@ -668,7 +668,16 @@ namespace PDiscountCard
             }
 
 
-            if ((Prefix.ToUpper() == "20189")||(Prefix.ToUpper() == "20180") || (Prefix.ToUpper() == "20187"))
+            if ((Prefix.ToUpper() == "20180") ||
+                (Prefix.ToUpper() == "20181") || 
+                (Prefix.ToUpper() == "20182") ||
+                (Prefix.ToUpper() == "20183") ||
+                (Prefix.ToUpper() == "20184") ||
+                (Prefix.ToUpper() == "20185") ||
+                (Prefix.ToUpper() == "20186") ||
+                (Prefix.ToUpper() == "20187") ||
+                (Prefix.ToUpper() == "20188") ||
+                (Prefix.ToUpper() == "20189"))
             {
                 return CardTypes.Sber;
             }
@@ -866,7 +875,16 @@ namespace PDiscountCard
                 if (Track1.Length == 0 && Track2.Length > 3)
                 {
                     Utils.ToLog("вся информация записана на второй дорожке карты");
-                    if ((Track2.Substring(0, 5) == "20189")||((Track2.Substring(0, 5) == "20180")))
+                    if ((Track2.Substring(0, 5) == "20180") || 
+                        (Track2.Substring(0, 5) == "20181") ||
+                        (Track2.Substring(0, 5) == "20182") ||
+                        (Track2.Substring(0, 5) == "20183") ||
+                        (Track2.Substring(0, 5) == "20184") ||
+                        (Track2.Substring(0, 5) == "20185") ||
+                        (Track2.Substring(0, 5) == "20186") ||
+                        (Track2.Substring(0, 5) == "20187") ||
+                        (Track2.Substring(0, 5) == "20188") ||
+                        (Track2.Substring(0, 5) == "20189") )
                     {
                         Track1 = Track2.Substring(0, 5);
                         Track2 = Track2.Substring(5);

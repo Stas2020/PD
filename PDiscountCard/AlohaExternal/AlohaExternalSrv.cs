@@ -401,6 +401,7 @@ namespace PDiscountCard.AlohaExternal
         public GetToGoordersResponse GetToGoOrders()
         {
             Utils.ToCardLog("GetToGoOrdersExternal from ext");
+
             var res = new GetToGoordersResponse();
             res.Checks = AlohaTSClass.GetToGoOrdersExternal();
 

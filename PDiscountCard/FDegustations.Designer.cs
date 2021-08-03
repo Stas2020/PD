@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.pnlButtons = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btn25 = new System.Windows.Forms.Button();
             this.btn24 = new System.Windows.Forms.Button();
@@ -56,13 +60,15 @@
             this.ctrlDegustationsManagers1 = new PDiscountCard.CtrlDegustationsManagers();
             this.ctrlDegustationsWithKeys1 = new PDiscountCard.CtrlDegustationsWithKeys();
             this.ctrlHotelBreakfastCount1 = new PDiscountCard.CtrlHotelBreakfastCount();
-            this.button2 = new System.Windows.Forms.Button();
             this.pnlButtons.SuspendLayout();
             this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlButtons
             // 
+            this.pnlButtons.Controls.Add(this.button5);
+            this.pnlButtons.Controls.Add(this.button4);
+            this.pnlButtons.Controls.Add(this.button3);
             this.pnlButtons.Controls.Add(this.button2);
             this.pnlButtons.Controls.Add(this.button1);
             this.pnlButtons.Controls.Add(this.btn25);
@@ -85,6 +91,62 @@
             this.pnlButtons.Size = new System.Drawing.Size(860, 385);
             this.pnlButtons.TabIndex = 0;
             // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button5.Location = new System.Drawing.Point(572, 265);
+            this.button5.Margin = new System.Windows.Forms.Padding(20);
+            this.button5.Name = "button5";
+            this.button5.Padding = new System.Windows.Forms.Padding(10);
+            this.button5.Size = new System.Drawing.Size(139, 98);
+            this.button5.TabIndex = 18;
+            this.button5.Text = "Компенсация Офлайн";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button4.Location = new System.Drawing.Point(572, 148);
+            this.button4.Margin = new System.Windows.Forms.Padding(20);
+            this.button4.Name = "button4";
+            this.button4.Padding = new System.Windows.Forms.Padding(10);
+            this.button4.Size = new System.Drawing.Size(139, 98);
+            this.button4.TabIndex = 17;
+            this.button4.Text = "Компенсация Онлайн";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button3.Location = new System.Drawing.Point(572, 26);
+            this.button3.Margin = new System.Windows.Forms.Padding(20);
+            this.button3.Name = "button3";
+            this.button3.Padding = new System.Windows.Forms.Padding(10);
+            this.button3.Size = new System.Drawing.Size(139, 98);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "Комплимент доставка";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(146, 23);
+            this.button2.Margin = new System.Windows.Forms.Padding(20);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(10);
+            this.button2.Size = new System.Drawing.Size(123, 101);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "Контроль качества на местах";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.LightSkyBlue;
@@ -103,7 +165,7 @@
             // 
             this.btn25.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn25.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn25.Location = new System.Drawing.Point(710, 262);
+            this.btn25.Location = new System.Drawing.Point(720, 263);
             this.btn25.Name = "btn25";
             this.btn25.Size = new System.Drawing.Size(134, 101);
             this.btn25.TabIndex = 13;
@@ -114,10 +176,10 @@
             // btn24
             // 
             this.btn24.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btn24.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn24.Location = new System.Drawing.Point(408, 262);
+            this.btn24.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btn24.Location = new System.Drawing.Point(428, 263);
             this.btn24.Name = "btn24";
-            this.btn24.Size = new System.Drawing.Size(296, 101);
+            this.btn24.Size = new System.Drawing.Size(135, 101);
             this.btn24.TabIndex = 12;
             this.btn24.Text = "Представительские расходы";
             this.btn24.UseVisualStyleBackColor = false;
@@ -129,7 +191,7 @@
             this.btn23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btn23.Location = new System.Drawing.Point(282, 262);
             this.btn23.Name = "btn23";
-            this.btn23.Size = new System.Drawing.Size(120, 101);
+            this.btn23.Size = new System.Drawing.Size(140, 101);
             this.btn23.TabIndex = 11;
             this.btn23.Text = "Конкурс";
             this.btn23.UseVisualStyleBackColor = false;
@@ -153,7 +215,7 @@
             // 
             this.button10.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button10.Location = new System.Drawing.Point(710, 143);
+            this.button10.Location = new System.Drawing.Point(720, 148);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(134, 101);
             this.button10.TabIndex = 9;
@@ -165,11 +227,11 @@
             // 
             this.btn19.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn19.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn19.Location = new System.Drawing.Point(710, 25);
+            this.btn19.Location = new System.Drawing.Point(720, 25);
             this.btn19.Name = "btn19";
             this.btn19.Size = new System.Drawing.Size(134, 100);
             this.btn19.TabIndex = 8;
-            this.btn19.Text = "Комплимент гостю";
+            this.btn19.Text = "Комплимент зал";
             this.btn19.UseVisualStyleBackColor = false;
             this.btn19.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -177,9 +239,9 @@
             // 
             this.btn18.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn18.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn18.Location = new System.Drawing.Point(554, 144);
+            this.btn18.Location = new System.Drawing.Point(428, 147);
             this.btn18.Name = "btn18";
-            this.btn18.Size = new System.Drawing.Size(150, 101);
+            this.btn18.Size = new System.Drawing.Size(135, 101);
             this.btn18.TabIndex = 7;
             this.btn18.Text = "Списание десертов\r\n";
             this.btn18.UseVisualStyleBackColor = false;
@@ -189,7 +251,7 @@
             // 
             this.btn17.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn17.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn17.Location = new System.Drawing.Point(408, 143);
+            this.btn17.Location = new System.Drawing.Point(282, 148);
             this.btn17.Name = "btn17";
             this.btn17.Size = new System.Drawing.Size(140, 101);
             this.btn17.TabIndex = 6;
@@ -201,7 +263,7 @@
             // 
             this.btn16.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn16.Location = new System.Drawing.Point(282, 142);
+            this.btn16.Location = new System.Drawing.Point(149, 147);
             this.btn16.Name = "btn16";
             this.btn16.Size = new System.Drawing.Size(120, 101);
             this.btn16.TabIndex = 5;
@@ -226,10 +288,10 @@
             // btn14
             // 
             this.btn14.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btn14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn14.Location = new System.Drawing.Point(554, 25);
+            this.btn14.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btn14.Location = new System.Drawing.Point(428, 26);
             this.btn14.Name = "btn14";
-            this.btn14.Size = new System.Drawing.Size(150, 100);
+            this.btn14.Size = new System.Drawing.Size(135, 100);
             this.btn14.TabIndex = 3;
             this.btn14.Text = "Питание менеджеров";
             this.btn14.UseVisualStyleBackColor = false;
@@ -239,7 +301,7 @@
             // 
             this.btn13.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn13.Location = new System.Drawing.Point(408, 25);
+            this.btn13.Location = new System.Drawing.Point(282, 25);
             this.btn13.Name = "btn13";
             this.btn13.Size = new System.Drawing.Size(140, 100);
             this.btn13.TabIndex = 2;
@@ -393,20 +455,6 @@
             this.ctrlHotelBreakfastCount1.Size = new System.Drawing.Size(861, 247);
             this.ctrlHotelBreakfastCount1.TabIndex = 11;
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(146, 23);
-            this.button2.Margin = new System.Windows.Forms.Padding(20);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(10);
-            this.button2.Size = new System.Drawing.Size(123, 101);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Контроль качества на местах";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
             // FDegustations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -469,5 +517,8 @@
         private System.Windows.Forms.Button btn25;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
     }
 }

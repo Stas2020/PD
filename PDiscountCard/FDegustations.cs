@@ -225,7 +225,16 @@ namespace PDiscountCard
              case 27:
                     ShowKeyboard("Комментарий");
                     break;
-             default:
+              case 28:
+                  ShowKeyboard("Комментарий");
+                  break;
+              case 29:
+                  ShowKeyboard("Комментарий");
+                  break;
+              case 30:
+                  ShowKeyboard("Комментарий");
+                  break;
+                default:
                     break;
             }
         
@@ -425,6 +434,21 @@ namespace PDiscountCard
         private void button2_Click_1(object sender, EventArgs e)
         {
             DiscTypeSelector(27);
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            DiscTypeSelector(28);
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            DiscTypeSelector(30);
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            DiscTypeSelector(29);
         }
     }
     
