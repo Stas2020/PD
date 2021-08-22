@@ -4231,8 +4231,14 @@ Delivery club самовывоз - 208 - 209
                             }
                         }
 
-                       
-                            foreach (int TableNum in Tables)
+                        else if (Request.TableRangeId == 9)//ИМ с оплатой на месте
+                        {
+                            for (int i = 935; i <= 940; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                        }
+                        foreach (int TableNum in Tables)
                             {
                                 try
                                 {
