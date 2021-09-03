@@ -42,7 +42,8 @@ namespace PDiscountCard.InterceptPrinting
 
             if ((FOHDocumentType == 2) || (FOHDocumentType == 3))
             {
-                
+
+
                 string xmlOut = AlohaPrintUtils.PrintCheckByMe(xmlIn);
             
             
@@ -133,6 +134,9 @@ namespace PDiscountCard.InterceptPrinting
             {
                 if ((!Closed))
                 {
+                    FrmQuestionLoyalty frmQuestionLoyalty = new FrmQuestionLoyalty();
+                    frmQuestionLoyalty.ShowDialog();
+
                     GuestCount.GuestCount.SetGuestCount(CheckId);
                 }
 

@@ -230,6 +230,12 @@
     <Compile Include="FrmCashIn.xaml.cs">
       <DependentUpon>FrmCashIn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmQuestionLoyalty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmQuestionLoyalty.Designer.cs">
+      <DependentUpon>FrmQuestionLoyalty.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmStopListReasons.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1095,6 +1101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CtrStopListReasonChooser.resx">
       <DependentUpon>CtrStopListReasonChooser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmQuestionLoyalty.resx">
+      <DependentUpon>FrmQuestionLoyalty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmStopListReasons.resx">
       <DependentUpon>FrmStopListReasons.cs</DependentUpon>

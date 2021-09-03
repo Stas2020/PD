@@ -373,11 +373,11 @@ namespace PDiscountCard
 
                         if (Tmp.Find(
 
-                            delegate(Dish Dd)
-                            {
-                                return CompareDishez(Dd, D);
+                                delegate(Dish Dd)
+                                {
+                                    return CompareDishez(Dd, D);
 
-                            }
+                                }
                             ) == null)
                         {
 

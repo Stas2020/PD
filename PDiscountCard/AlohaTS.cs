@@ -2913,6 +2913,23 @@ namespace PDiscountCard
                 s += "<LINEFEED>1</LINEFEED>";
                 decimal PodIt = 0;
                 decimal Discount = 0;
+
+                //Не печатаем модификатор надбавку 999800
+                int idx = 0;               
+                foreach (Dish dd in Ch.Dishez)
+                {
+                    if(dd.BarCode == 999800)
+                    {
+                        if (idx > 0)
+                        {
+                            Ch.Dishez[idx - 1].Price = Ch.Dishez[idx - 1].Price + dd.Price;
+                            Ch.Dishez[idx - 1].OPrice = Ch.Dishez[idx - 1].OPrice  + dd.OPrice;
+                        }
+                    }
+                    idx++;
+                }
+                Ch.Dishez.RemoveAll(d => d.BarCode == 999800);
+
                 if (AllDishez)
                 {
 
