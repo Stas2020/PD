@@ -87,113 +87,25 @@ namespace PDiscountCard.CreditCardIntegration
                 Utils.ToCardLog(String.Format("[RunOper] Запрос операции. Входящий запрос: " + request.ToString()));
                 int res = arc.CallArcusOper(OperType, request, response);
                 
-        //
-          //      Request.Amount = (Amount).ToString();
-            //    Request.OperationCode = OperType;
-              //  Request.CurrencyCode = "643";
-//                Request.DateTimeHost = DateTime.Now.ToString("yyyyMMddHHmmss");
-                
-                //Conn.InitResources();
-                //Conn.Exchange(ref  Request, ref  Response, 10);
+       
                 
                 RespCode = response.Response_code.Trim();
 
                 Utils.ToCardLog(String.Format("[RunOper] Операция выполнена res: " + res + "; Результат:  " + response.ToString()));
                 
-                
+                if (response!=null )
+
+
                 Receipt = ReadChequeFile();
-                /*
-                 * 
-               if (((RespCode == "00") || (RespCode == "000")) && (!Receipt.ToUpper().Contains("НЕ ОПЛАЧИВАТЬ")))
-               {
-                   
-                   if ((OperType == Arcus3Wrapper.ArcusOp.Pay) || (OperType == Arcus3Wrapper.ArcusOp.Refund))
-                   {
-                       string Tmp = Receipt;
-                       if (!iniFile.Arcus2PrintOneSlip)
-                       {
-                           Tmp += Convert.ToChar(31) + Environment.NewLine;
-                           Tmp += Receipt;
-                           Receipt = Tmp;
-                       }
-
-                       try
-                       {
-                            
-                           Utils.ToCardLog("[RunOper] Добавляю Слип в Файл.");
-
-                           ArcusSlips AS = Arcus2DataFromXML.ReadArcusSlips();
-                           DateTime HDT = DateTime.Now;
-                           try
-                           {
-                               HDT = Convert.ToDateTime(response.DateTimeCRM);
-                           }
-                           catch
-                           { }
-                            
-                           ArcusSlip S = new ArcusSlip()
-                           {
-                               HostDt = HDT,
-                               Sum = Convert.ToDecimal(Response.Amount),
-                               Void = (Response.OperationCode == 4),
-                               Num = Response.TrxIDCRM,
-                               RRN = Response.ReferenceNumber,
-                               AlohaCheckId = AlohaCheckId,
-                               AlohaCheckShortNum = AlohaCheckShortNum
-                           };
-                           string[] Str = Receipt.Split(char.ConvertFromUtf32(10)[0]);
-                            
-                           foreach (string str in Str)
-                           {
-                               Utils.ToCardLog(str);
-                               S.Slip.Add(str);
-                           }
-
-                           decimal SummFromTxt = GetSummFromSlip(S.Slip);
-
-                           if ((SummFromTxt != 0) && (S.Sum != SummFromTxt * 100))
-                           {
-                               Utils.ToCardLog("Error Разные суммы в слипе " + SummFromTxt.ToString() + " и ответе от терминала. " + S.Sum.ToString());
-                               S.Sum = SummFromTxt * 100;
-                           }
-
-                           AS.Slips.Add(S);
-
-                           Arcus2DataFromXML.WriteArcusSlips(AS);
-                            
-                           Utils.ToCardLog("[RunOper] Добавлил Слип в Файл.");
-                             
-                       }
-                       catch (Exception e)
-                       {
-                           Utils.ToCardLog("[Error] Ошибка добавления слипа в файл." + e.Message);
-                       }
-                    
-
-                   }
-               }
-               else
-               {
-                   try
-                   {
-                       EventSenderClass.SendAlohaAsincEvent(StopListService.AlohaEventType.ErrorCreditCardterminal, "", AlohaTSClass.AlohaCurentState.WaterId,
-                          AlohaTSClass.GetJobCode(AlohaTSClass.AlohaCurentState.WaterId),
-                          "",
-                        Convert.ToInt32(RespCode),
-                          (int)AlohaTSClass.AlohaCurentState.TableId,
-                          (int)AlohaTSClass.AlohaCurentState.CheckId);
-                   }
-                   catch
-                   { }
-
-
-               }
-                    * * */
+               
                 resOper = GetCodeDescr(RespCode);
                 Utils.ToCardLog(String.Format("[RunOper] Sinc: " + Sinc + " RespCode: " + RespCode));
-                if (!Sinc)
+                
+
+
+                    if (!Sinc)
                 {
-                    RunOperationAsincComplitedVoid(OperType, RespCode.Trim(), resOper,  Receipt);
+                    RunOperationAsincComplitedVoid(OperType, RespCode.Trim(), resOper,  Receipt, response.Pan, response.Rnn);
                 }
                 OperInProcess = false;
                 Utils.ToCardLog("Отработал RunOper OperType=" + OperType.ToString() + " Amount= " + Amount.ToString());
@@ -390,7 +302,7 @@ namespace PDiscountCard.CreditCardIntegration
         //public event RunOperationAsincDelegate RunOperationAsincComplited;
 
         CreditCardOperationType mOperType;
-        private void RunOperationAsincComplitedVoid(Arcus3Wrapper.ArcusOp OperType, string respCode, string resStr, string receipt)
+        private void RunOperationAsincComplitedVoid(Arcus3Wrapper.ArcusOp OperType, string respCode, string resStr, string receipt, string bins = "", string RRN = "")
         {
             Utils.ToCardLog(String.Format("[RunOper] RunOperationAsincComplitedVoid " + OperType.ToString() + "; RespCode=" + respCode));
 
@@ -435,7 +347,7 @@ namespace PDiscountCard.CreditCardIntegration
             {
                 res = (respCodeInt==0) && (!receipt.ToUpper().Contains("НЕ ОПЛАЧИВАТЬ"));
             }
-            CreditCardAlohaIntegration.CreditCardOperationComplited(mOperType, ShowError, res, resStr,  receipt);
+            CreditCardAlohaIntegration.CreditCardOperationComplited(mOperType, ShowError, res, resStr,  receipt,bins ,RRN );
         }
 
         bool _OperInProcess;

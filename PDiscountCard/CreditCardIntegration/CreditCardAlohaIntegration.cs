@@ -148,7 +148,7 @@ namespace PDiscountCard
 
 
         static InpasChk currentCheck;
-        static public void CreditCardOperationComplited(CreditCardOperationType OperType, bool ShowError, bool res, string resStr, string Receipt)
+        static public void CreditCardOperationComplited(CreditCardOperationType OperType, bool ShowError, bool res, string resStr, string Receipt, string bins="", string RRN="")
         {
             Utils.ToCardLog(String.Format("CreditCardOperationComplited Receipt: {0}, res: {1},  resStr: {2}", Receipt, res, resStr));
             try
@@ -159,22 +159,19 @@ namespace PDiscountCard
                     HideLockScreen();
                     ShowMsg(resStr);
                 }
-                if ((!String.IsNullOrWhiteSpace(Receipt)) && (Receipt.Trim() != ""))
+
+                if (res && OperType == CreditCardOperationType.Payment)//Добавление бинов и RRN в атрибуты чека
+                {
+                    AlohaTSClass.SetPaymentOperAttr(currentCheck.AlohaId, bins, RRN);
+
+                }
+
+
+                        if ((!String.IsNullOrWhiteSpace(Receipt)) && (Receipt.Trim() != ""))
                 {
                     if ((iniFile.Arcus2PrintSlip) || ((iniFile.PlastikPrintSlip)))
                     {
-                        /*
-                        try
-                        {
-                            using (StreamWriter sw = new StreamWriter(@"C:\aloha\check\discount\tmp\check\bugs\" + Guid.NewGuid().ToString() + ".txt"))
-                            {
-                                sw.Write(Receipt);
-                                sw.Close();
-                            }
-                        }
-                        catch
-                        { }
-                        */
+                 
                         PrintSlip(Receipt);
                     }
                 }

@@ -5448,7 +5448,25 @@ Delivery club самовывоз - 208 - 209
             return true;
         }
 
+
+        static internal void SetPaymentOperAttr(int CheckId, string bins, string RRN)
+        {
+            try
+            {
+                Utils.ToCardLog($"SetPaymentOperAttr CheckId: {CheckId}, bins {bins}, string {RRN}");
+                AlohaFuncs.SetObjectAttribute(INTERNAL_CHECKS, CheckId, "PayOperBins", bins);
+                AlohaFuncs.SetObjectAttribute(INTERNAL_CHECKS, CheckId, "PayOperRRN", RRN);
+            }
+            catch (Exception e)
+            {
+                Utils.ToCardLog($"Error SetPaymentOperAttr {e.Message}");
+            }
+        }
+
+
         static internal string DeleteReasonName = "DelRes";
+
+
         static internal void SetDeleteReasonAttr(int ItemId, int i)
         {
             AlohaFuncs.SetObjectAttribute(540, ItemId, DeleteReasonName, i.ToString());
