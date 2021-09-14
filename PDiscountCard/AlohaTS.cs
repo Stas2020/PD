@@ -3985,8 +3985,6 @@ namespace PDiscountCard
                         }
                         else if  (!AlohaTSClass.IsAlohaTS())                            
                         {
-
-
                             var QueueId = GetQueue(iniFile.ExternalInterfaceTerminal);
                             Utils.ToLog("TOpenTableFromRangeExternal QS QueueId = " + QueueId);
                             var TableNumber = GetLastQueue(iniFile.ExternalInterfaceTerminal) + 1;
@@ -4333,7 +4331,20 @@ Delivery club самовывоз - 208 - 209
                                         Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
                                     }
 
-
+                                    try
+                                    {
+                                        Utils.ToCardLog("Request.SendToKitchenOrderType  " + Request.SendToKitchenOrderType);
+                                        if (Request.SendToKitchenOrderType > 0)
+                                        {
+                                            AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
+                                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                                            AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
+                                        }
+                                    }
+                                    catch (Exception ee)
+                                    {
+                                        Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
+                                    }
 
 
                                     LogOut();
