@@ -4150,7 +4150,6 @@ namespace PDiscountCard
                         {
 
 
-
                             var QueueId = GetQueue(iniFile.ExternalInterfaceTerminal);
                             Utils.ToLog("TOpenTableFromRangeExternal QS QueueId = " + QueueId);
                             var TableNumber = GetLastQueue(iniFile.ExternalInterfaceTerminal) + 1;
@@ -4272,10 +4271,8 @@ Delivery club самовывоз - 208 - 209
                                         Request.TableNumber = TableNum;
                                         Resp.TableNum = TableNum;
 
-
                                     Utils.ToCardLog("AlohaFuncs.AddTable ok" );
                                 }
-
                                     catch (Exception e)
                                     {
                                         Utils.ToCardLog("Error AddTable" + e.Message);
@@ -4288,10 +4285,8 @@ Delivery club самовывоз - 208 - 209
 
                                             Request.AlohaCheckId = AlohaFuncs.AddCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId);
                                             Resp.AlohaId = Request.AlohaCheckId;
-
                                         Utils.ToCardLog("AlohaFuncs.AddCheck ok");
                                     }
-
                                         catch (Exception e)
                                         {
                                             Utils.ToCardLog("Error AddCheck" + e.Message);
@@ -4332,9 +4327,7 @@ Delivery club самовывоз - 208 - 209
                                                 try
 
                                                 {
-
                                                     Utils.ToCardLog("try add dish QS count "+ count);
-
 
                                                     AlohaExternal.AlohaItemInfo itm = Request.Items.First();
                                                     double Price = (double)itm.Price;
@@ -4373,10 +4366,8 @@ Delivery club самовывоз - 208 - 209
                                             {
 
                                                 int pId = AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
-
                                             Utils.ToCardLog("AddDish ok" + itm.Barcode + " " + itm.Name);
                                             bool modOk = true;
-
                                                 if (itm.Mods != null)
                                                 {
                                                     foreach (var mod in itm.Mods.Where(a => a.Barcode > 0))
@@ -4423,10 +4414,8 @@ Delivery club самовывоз - 208 - 209
                                                         Utils.ToCardLog("Error AddDish in itm.Mods " + itm.Barcode + " " + eM.Message);
                                                     }
                                                 }
-
                                             Utils.ToCardLog("AddDishMods ok" + itm.Barcode + " " + itm.Name);
                                             if (itm.Comment?.Length > 0)
-
                                                 {
                                                     try
                                                     {
@@ -4443,10 +4432,8 @@ Delivery club самовывоз - 208 - 209
                                                         Utils.ToCardLog("Error AddDish in Comment " + itm.Barcode + " " + eM.Message);
                                                     }
                                                 }
-
                                             Utils.ToCardLog("AlohaFuncs.AddComment ok");
                                             itm.Success = modOk;
-
                                                 if (modOk)
                                                 {
                                                     AlohaFuncs.EndItem(iniFile.ExternalInterfaceTerminal);
@@ -4510,7 +4497,20 @@ Delivery club самовывоз - 208 - 209
                                         Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
                                     }
 
-
+                                    try
+                                    {
+                                        Utils.ToCardLog("Request.SendToKitchenOrderType  " + Request.SendToKitchenOrderType);
+                                        if (Request.SendToKitchenOrderType > 0)
+                                        {
+                                            AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
+                                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                                            AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
+                                        }
+                                    }
+                                    catch (Exception ee)
+                                    {
+                                        Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
+                                    }
 
 
                                     LogOut();
@@ -6454,9 +6454,6 @@ Delivery club самовывоз - 208 - 209
         static public List<AlohaExternal.AlohaCheckInfo> GetToGoOrdersExternal()
         {
             Utils.ToCardLog("GetToGoOrdersExternal");
-
-            
-
             List<AlohaExternal.AlohaCheckInfo> res = new List<AlohaExternal.AlohaCheckInfo>();
 
             List<Check> Tmp = new List<Check>();
