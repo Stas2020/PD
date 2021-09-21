@@ -4262,16 +4262,16 @@ Delivery club самовывоз - 208 - 209
                                     try
                                     {
 
-                                    if (!IsAlohaTS())
-                                    {
-                                         Request.TableName = TableNum.ToString();
-                                    }
+                                        if (!IsAlohaTS())
+                                        {
+                                             Request.TableName = TableNum.ToString();
+                                        }
 
                                         Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, TableNum, Request.TableName, Request.NumGuest);
                                         Request.TableNumber = TableNum;
                                         Resp.TableNum = TableNum;
 
-                                    Utils.ToCardLog("AlohaFuncs.AddTable ok" );
+                                        Utils.ToCardLog("AlohaFuncs.AddTable ok" );
                                 }
                                     catch (Exception e)
                                     {
