@@ -4254,6 +4254,13 @@ Delivery club самовывоз - 208 - 209
                                 Tables.Add(i);
                             }
                         }
+                        else if (Request.TableRangeId == 10)//ООО «ББ-АГЕНТ»
+                        {
+                            for (int i = 945; i <= 950; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                        }
                         foreach (int TableNum in Tables)
                             {
                                 try
