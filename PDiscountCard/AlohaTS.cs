@@ -2332,6 +2332,7 @@ namespace PDiscountCard
                 s += "<PRINTCENTERED>" + AlohainiFile.ADDRESS2 + "</PRINTCENTERED>";
 
                 string wName = GetWaterName(Ch.Waiter);
+                /*
                 if ((Config.ConfigSettings.QRPrinting) && ((Ch.IsClosed) ^ (IsTableServise())))
                 {
                     
@@ -2343,7 +2344,10 @@ namespace PDiscountCard
                     s += "<PRINTBITMAP><PATH>" + fName + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
                     s += "<LINEFEED>1</LINEFEED>";
                 }
-
+                */
+                string fName2 = "c:\aloha\alohats\bmp\appQr.bmp";
+                s += "<PRINTCENTERED>  </PRINTCENTERED>";
+                s += "<PRINTBITMAP><PATH>" + fName2 + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
 
                 s += "<PRINTLEFTRIGHT><LEFT>Официант: " + wName + "</LEFT>";
                 s += "<RIGHT>" + NDt.ToString("dd/MM/yyyy") + "</RIGHT></PRINTLEFTRIGHT>";
@@ -2791,6 +2795,8 @@ namespace PDiscountCard
                 string wName = GetWaterName(Ch.Waiter);
 
                 string fName = "";
+
+                /*
                 if ((Config.ConfigSettings.QRPrinting) && (!Closed) && (!needMods))
                 {
                     fName = SaveQREmpInfo(wName);
@@ -2799,6 +2805,11 @@ namespace PDiscountCard
                     s += "<PRINTCENTERED>  </PRINTCENTERED>";
                     s += "<PRINTBITMAP><PATH>" + fName + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
                 }
+                */
+                string fName2 = "c:\aloha\alohats\bmp\appQr.bmp";
+                s += "<PRINTCENTERED>  </PRINTCENTERED>";
+                s += "<PRINTBITMAP><PATH>" + fName2 + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
+
 
                 s += "<PRINTCENTERED>  </PRINTCENTERED>";
 
@@ -3040,7 +3051,7 @@ namespace PDiscountCard
 
                     s += "<PRINTCENTERED>" + AlohainiFile.ADDRESS1 + "</PRINTCENTERED>";
                     s += "<PRINTCENTERED>" + AlohainiFile.ADDRESS2 + "</PRINTCENTERED>";
-
+                    /*
                     if (Config.ConfigSettings.QRPrinting)
                     {
                         //string fName = SaveQREmpInfo(wName);
@@ -3051,7 +3062,10 @@ namespace PDiscountCard
                         s += "<PRINTBITMAP><PATH>" + fName + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
                         s += "<LINEFEED>1</LINEFEED>";
                     }
-
+                    */
+                    string fName3 = "c:\aloha\alohats\bmp\appQr.bmp";
+                    s += "<PRINTCENTERED>  </PRINTCENTERED>";
+                    s += "<PRINTBITMAP><PATH>" + fName3 + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
 
                     s += "<PRINTLEFTRIGHT><LEFT>Официант: " + GetWaterName(Ch.Waiter) + "</LEFT>";
                     s += "<RIGHT>" + NDt.ToString("dd/MM/yyyy") + "</RIGHT></PRINTLEFTRIGHT>";
@@ -4014,12 +4028,7 @@ namespace PDiscountCard
                             {
                                 Tables.Add(i);
                             }
-                            /*
-                            for (int i = 925; i < 928; i++)
-                            {
-                                Tables.Add(i);
-                            }
-                            */
+                           
 
                         }
                         else if (Request.TableRangeId == 4)//Филиас онлайн самовынос
@@ -4028,20 +4037,9 @@ namespace PDiscountCard
                             {
                                 Tables.Add(i);
                             }
-                            /*
-                            for (int i = 928; i < 930; i++)
-                            {
-                                Tables.Add(i);
-                            }
-
-                                */
+                           
                         }
-                        /*
-                        Delivery club -200 - 207
-Delivery club самовывоз - 208 - 209
-Яндекс - еда - 231 - 240; 169 - 173
-Яндекс - еда самовынос  163 – 168
-*/
+                        
                         else if (Request.TableRangeId == 5)//Яндекс
                         {
                             for (int i = 231; i <= 240; i++)
@@ -4325,12 +4323,21 @@ Delivery club самовывоз - 208 - 209
                                             AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)Request.AlohaTableId, Request.SendToKitchenOrderType);
                                             AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
                                         }
+                                        else
+                                        {
+                                            if (Request.SendToKitchenOrderType > 0)
+                                            {
+                                                AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
+                                                AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, (int)AlohaCurentState.TableId, Request.SendToKitchenOrderType);
+                                                AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
+                                            }
+                                        }
                                     }
                                     catch (Exception ee)
                                     {
                                         Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
                                     }
-
+                                    /*
                                     try
                                     {
                                         Utils.ToCardLog("Request.SendToKitchenOrderType  " + Request.SendToKitchenOrderType);
@@ -4345,7 +4352,7 @@ Delivery club самовывоз - 208 - 209
                                     {
                                         Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
                                     }
-
+                                    */
 
                                     LogOut();
                                         return;
