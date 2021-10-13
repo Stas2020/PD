@@ -2345,9 +2345,26 @@ namespace PDiscountCard
                     s += "<LINEFEED>1</LINEFEED>";
                 }
                 */
-                string fName2 = "c:\aloha\alohats\bmp\appQr.bmp";
-                s += "<PRINTCENTERED>  </PRINTCENTERED>";
-                s += "<PRINTBITMAP><PATH>" + fName2 + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
+
+
+                if ((Ch.IsClosed) )
+                {
+                    string fName2 = "c:\aloha\alohats\bmp\appQr.bmp";
+                    if (File.Exists(fName2))
+
+                    {
+                        s += "<LINEFEED>1</LINEFEED>";
+                        s += "<PRINTCENTERED>  </PRINTCENTERED>";
+                        s += "<PRINTBITMAP><PATH>" + fName2 + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
+                        s += "<LINEFEED>1</LINEFEED>";
+                    }
+                    else
+                    {
+                        Utils.ToLog("Error print QR. Not exists file " + fName2);
+                    }
+
+                }
+
 
                 s += "<PRINTLEFTRIGHT><LEFT>Официант: " + wName + "</LEFT>";
                 s += "<RIGHT>" + NDt.ToString("dd/MM/yyyy") + "</RIGHT></PRINTLEFTRIGHT>";
@@ -2806,11 +2823,23 @@ namespace PDiscountCard
                     s += "<PRINTBITMAP><PATH>" + fName + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
                 }
                 */
-                string fName2 = "c:\aloha\alohats\bmp\appQr.bmp";
-                s += "<PRINTCENTERED>  </PRINTCENTERED>";
-                s += "<PRINTBITMAP><PATH>" + fName2 + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
+                if ((!Closed) && (!needMods))
+                {
+                    string fName2 = "c:\aloha\alohats\bmp\appQr.bmp";
+                    if (File.Exists(fName2))
 
+                    {
+                        s += "<LINEFEED>1</LINEFEED>";
+                        s += "<PRINTCENTERED>  </PRINTCENTERED>";
+                        s += "<PRINTBITMAP><PATH>" + fName2 + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
+                        s += "<LINEFEED>1</LINEFEED>";
+                    }
+                    else
+                    {
+                        Utils.ToLog("Error print QR. Not exists file " + fName2);
+                    }
 
+                }
                 s += "<PRINTCENTERED>  </PRINTCENTERED>";
 
                 s += "<PRINTLEFTRIGHT><LEFT>Официант: " + wName + "</LEFT>";
