@@ -2393,7 +2393,7 @@ namespace PDiscountCard
 
                 if ((Ch.IsClosed) )
                 {
-                    string fName2 = "c:\aloha\alohats\bmp\appQr.bmp";
+                    string fName2 = @"c:\aloha\alohats\bmp\appQr.bmp";
                     if (File.Exists(fName2))
 
                     {
@@ -2872,7 +2872,7 @@ namespace PDiscountCard
                 */
                 if ((!Closed) && (!needMods))
                 {
-                    string fName2 = "c:\aloha\alohats\bmp\appQr.bmp";
+                    string fName2 = @"c:\aloha\alohats\bmp\appQr.bmp";
                     if (File.Exists(fName2))
 
                     {
