@@ -2393,8 +2393,9 @@ namespace PDiscountCard
 
                 if ((Ch.IsClosed) )
                 {
+                    string dir = @"C:\aloha\alohats\bmp\";
                     string fName2 = @"appQr.bmp";
-                    if (File.Exists(fName2))
+                    if (File.Exists(dir+fName2))
 
                     {
                         s += "<LINEFEED>1</LINEFEED>";
@@ -2872,8 +2873,9 @@ namespace PDiscountCard
                 */
                 if ((!Closed) && (!needMods))
                 {
+                    string dir = @"C:\aloha\alohats\bmp\";
                     string fName2 = @"appQr.bmp";
-                    if (File.Exists(fName2))
+                    if (File.Exists(dir + fName2))
 
                     {
                         s += "<LINEFEED>1</LINEFEED>";
@@ -3251,9 +3253,11 @@ namespace PDiscountCard
                     */
 
 
-                    
-                        string fName2 = @"appQr.bmp";
-                        if (File.Exists(fName2))
+
+                    string dir = @"C:\aloha\alohats\bmp\";
+                    string fName2 = @"appQr.bmp";
+                    if (File.Exists(dir + fName2))
+                       
 
                         {
                             s += "<LINEFEED>1</LINEFEED>";
