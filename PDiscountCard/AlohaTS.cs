@@ -2398,7 +2398,7 @@ namespace PDiscountCard
                     if (File.Exists(dir+fName2))
 
                     {
-                        s += "<LINEFEED>1</LINEFEED>";
+                     //   s += "<LINEFEED>1</LINEFEED>";
                         s += "<PRINTCENTERED>  </PRINTCENTERED>";
                         s += "<PRINTBITMAP><PATH>" + fName2 + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
                         s += "<LINEFEED>1</LINEFEED>";
@@ -2878,7 +2878,7 @@ namespace PDiscountCard
                     if (File.Exists(dir + fName2))
 
                     {
-                        s += "<LINEFEED>1</LINEFEED>";
+                        //s += "<LINEFEED>1</LINEFEED>";
                         s += "<PRINTCENTERED>  </PRINTCENTERED>";
                         s += "<PRINTBITMAP><PATH>" + fName2 + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
                         s += "<LINEFEED>1</LINEFEED>";
@@ -3260,7 +3260,7 @@ namespace PDiscountCard
                        
 
                         {
-                            s += "<LINEFEED>1</LINEFEED>";
+                          //  s += "<LINEFEED>1</LINEFEED>";
                             s += "<PRINTCENTERED>  </PRINTCENTERED>";
                             s += "<PRINTBITMAP><PATH>" + fName2 + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
                             s += "<LINEFEED>1</LINEFEED>";
