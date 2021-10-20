@@ -750,7 +750,7 @@ namespace PDiscountCard
                         int k = 0;
                         try
                         {
-                            if (Prefix == "80827")
+                            if ((Prefix == "80827")||(Prefix == "83858"))
                             {
                                 Utils.ToLog("Супервип. return 8");
                                 //string s = iniFile.Read("PrivilegedKey", Prefix + Num);
