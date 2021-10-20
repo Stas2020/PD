@@ -131,6 +131,7 @@
             this.button3.TabIndex = 16;
             this.button3.Text = "Комплимент доставка";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // button2
@@ -233,6 +234,7 @@
             this.btn19.TabIndex = 8;
             this.btn19.Text = "Комплимент зал";
             this.btn19.UseVisualStyleBackColor = false;
+            this.btn19.Visible = false;
             this.btn19.Click += new System.EventHandler(this.button7_Click);
             // 
             // btn18
@@ -255,7 +257,7 @@
             this.btn17.Name = "btn17";
             this.btn17.Size = new System.Drawing.Size(140, 101);
             this.btn17.TabIndex = 6;
-            this.btn17.Text = "Ошибка сотрудника Комплимент";
+            this.btn17.Text = "Ошибка сотрудника";
             this.btn17.UseVisualStyleBackColor = false;
             this.btn17.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -267,7 +269,7 @@
             this.btn16.Name = "btn16";
             this.btn16.Size = new System.Drawing.Size(120, 101);
             this.btn16.TabIndex = 5;
-            this.btn16.Text = "Отказ гостя";
+            this.btn16.Text = "Брак";
             this.btn16.UseVisualStyleBackColor = false;
             this.btn16.Click += new System.EventHandler(this.button8_Click);
             // 
