@@ -687,6 +687,11 @@ namespace PDiscountCard
                 return CardTypes.Discount;
             }
 
+            if (Prefix.ToUpper() == "83858")
+            {
+                return CardTypes.Discount;
+            }
+
 
             if ((Prefix.ToUpper() == "000") || (Prefix.ToUpper() == "99999"))
             {
@@ -873,7 +878,12 @@ namespace PDiscountCard
                         return;
                     }
 
-
+                    if ((Track2.Substring(0, 5) == "83858")) //зелёные карты
+                    {
+                        Track1 = Track2.Substring(0, 5);
+                        Track2 = Track2.Substring(5);
+                        return;
+                    }   
 
                     if ((Track2.Substring(0,5) == "80830")||
                         (Track2.Substring(0, 5) == "86738")||
