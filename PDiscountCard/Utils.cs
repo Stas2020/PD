@@ -881,7 +881,7 @@ namespace PDiscountCard
                     if ((Track2.Substring(0, 5) == "83858")) //зелёные карты
                     {
                         Track1 = Track2.Substring(0, 5);
-                        Track2 = Track2.Substring(6);
+                        Track2 = Track2.Substring(5);
                         Num = Track2;
                         Prefix = Track1;
                         Utils.ToLog($"Зелёные карты Prefix: {Track1} Number {Track2}");
