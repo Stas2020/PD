@@ -759,28 +759,7 @@ namespace PDiscountCard
                                 Utils.ToLog("Супервип. return 8");
                                 //string s = iniFile.Read("PrivilegedKey", Prefix + Num);
                                 return 8;
-                                /*
-                                //Это для мэра сочи и его мудаков
-                                try { if (Convert.ToInt32(Num) == 503) return 3; }
-                                catch { }
-
-
-                                if (s != null)
-                                {
-                                    Utils.ToLog("Супервип скидка" +s);
-                                    int dNum = -1;
-                                    if (Int32.TryParse(s, out dNum))
-                                    {
-                                        Utils.ToLog("Супервип скидка return " + dNum );
-                                        return dNum;
-                                    }
-                                }
-                                else
-                                {
-                                    Utils.ToLog("Супервип" + Prefix + Num + " нет в списке");
-                                    return -1;
-                                }
-                                 * */
+                                
                             }
 
                             if (Prefix == "VIP")
@@ -791,14 +770,7 @@ namespace PDiscountCard
                                     Utils.ToLog("Вип карта 3: "  + (Prefix + Num).ToString());
                                     return 3;
                                 }
-                                /*
-                                int n = Convert.ToInt32(Num);
-                                if ((n > 0) && (n < 150))
-                                {
-                                    
-
-                                }
-                                 * */
+                                
                             }
                         }
                         catch { }

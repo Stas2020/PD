@@ -1634,13 +1634,20 @@ namespace PDiscountCard
 
                             try
                             {
-                                if (CurentCard.Prefix == "80827")
+                                if ((CurentCard.Prefix == "80827")||(CurentCard.Prefix == "83858"))
                                 {
-                                    Utils.ToLog("[RegCard]  Распознал  супервип");
+                                    Utils.ToLog("[RegCard]  Распознал  супервип либо карту 15%");
                                     if (k == -1)
                                     {
                                         AlohaTSClass.ShowMessage("Нет связи с базой данных. Рекомендую применить скидку");
-                                        compId = 8;
+                                        if (CurentCard.Prefix == "80827")
+                                        {
+                                            compId = 8;
+                                        }
+                                        if (CurentCard.Prefix == "83858")
+                                        {
+                                            compId = 1;
+                                        }
                                     }
                                     else
                                     {
@@ -1746,10 +1753,6 @@ namespace PDiscountCard
                         {
                             Utils.ToLog("[ERROR] [RegCard] Ошибка Отправки в базу информацию о скидке. Результат: " + e.Message);
                         }
-
-
-
-
 
                         string Emess = "";
                         string validDataMess = "";
