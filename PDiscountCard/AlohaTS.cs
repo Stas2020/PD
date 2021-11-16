@@ -4320,6 +4320,14 @@ namespace PDiscountCard
                                 Tables.Add(i);
                             }
                         }
+                        else if (Request.TableRangeId == 11)//Салют СберБанк
+                        {
+                            for (int i = 260; i <= 262; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                        }
+
                         foreach (int TableNum in Tables)
                             {
                                 try
