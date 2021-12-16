@@ -4856,7 +4856,8 @@ namespace PDiscountCard
             }
 
             */
-            LogOut();
+            LogOut(iniFile.ExternalInterfaceTerminal);
+            
 
         }
 
@@ -6063,6 +6064,7 @@ namespace PDiscountCard
                 int j;
             }
         }
+
         static private int CurentLockEnt = 0;
         static internal void LockTable(int Dish, int TermNum, int CheckNum)
         {
