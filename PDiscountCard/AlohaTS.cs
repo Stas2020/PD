@@ -4147,7 +4147,7 @@ namespace PDiscountCard
 
                 }
             }
-            LogOut();
+            LogOut(iniFile.ExternalInterfaceTerminal);
         }
         static internal void AddPaymentExternal(AlohaExternal.AddPaymentsRequest Request, AlohaExternal.AddPaymentsResponse Resp)
         {
@@ -4175,7 +4175,7 @@ namespace PDiscountCard
                     Resp.ErrorMsg = "Error in child data";
                 }
             }
-            LogOut();
+            LogOut(iniFile.ExternalInterfaceTerminal);
         }
 
 
@@ -5052,7 +5052,7 @@ namespace PDiscountCard
             }
 
             */
-            LogOut();
+            LogOut(iniFile.ExternalInterfaceTerminal);
         }
 
         static RemoteOrderSrv.Item[] AddDishAsinkItems;
@@ -6057,7 +6057,7 @@ namespace PDiscountCard
         {
             try
             {
-                AlohaFuncs.LogOut(GetTermNum());
+                AlohaFuncs.LogOut(iniFile.ExternalInterfaceTerminal);
             }
             catch (Exception e)
             {
@@ -6091,6 +6091,7 @@ namespace PDiscountCard
         {
             try
             {
+                TermNum = iniFile.ExternalInterfaceTerminal;
                 Utils.ToLog("LogOut TermNum " + TermNum);
                 AlohaFuncs.LogOut(TermNum);
             }

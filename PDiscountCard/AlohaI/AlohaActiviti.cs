@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AlohaFOHLib;
-using INTERCEPTACTIVITYLib;
+using Interop.INTERCEPTACTIVITYLib;
 using System.Runtime.InteropServices ;
 using System.Threading;
 
@@ -17,7 +17,7 @@ namespace PDiscountCard
 {
 
     [ComVisible (true)]
-    public class AlohaActiviti : IInterceptAlohaActivity15
+    public class AlohaActiviti : IInterceptAlohaActivity5
     {
 
         public AlohaActiviti()
