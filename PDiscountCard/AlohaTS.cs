@@ -4628,7 +4628,7 @@ namespace PDiscountCard
                     {
                         Resp.Success = false;
                         Resp.ErrorMsg = "Invalid TableRangeId";
-                        LogOut();
+                        LogOut(iniFile.ExternalInterfaceTerminal);
                         return;
                     }
                 }
@@ -4638,7 +4638,7 @@ namespace PDiscountCard
                     Utils.ToCardLog("Error TOpenTableFromRangeExternal" + e.Message);
                     Resp.ErrorMsg = err.ValStr;
                     Resp.AlohaErrorCode = err.Val;
-                    LogOut();
+                    LogOut(iniFile.ExternalInterfaceTerminal);
                     return;
 
                 }
@@ -4646,7 +4646,7 @@ namespace PDiscountCard
                 Utils.ToCardLog("Error TOpenTableFromRangeExternal all tables in use");
                 Resp.ErrorMsg = "В данном диапазоне нет свободных столов";
                 Resp.IntegrationErrorCode = -2;
-                LogOut();
+                LogOut(iniFile.ExternalInterfaceTerminal);
                 return;
             }
 
@@ -6091,7 +6091,6 @@ namespace PDiscountCard
         {
             try
             {
-                TermNum = iniFile.ExternalInterfaceTerminal;
                 Utils.ToLog("LogOut TermNum " + TermNum);
                 AlohaFuncs.LogOut(TermNum);
             }

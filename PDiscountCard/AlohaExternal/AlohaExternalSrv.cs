@@ -54,8 +54,7 @@ namespace PDiscountCard.AlohaExternal
 
        private AlohaCheckInfo GetAlohaCheckInfo(Check Chk)
         {
-            
-
+           
             AlohaCheckInfo Tmp = new AlohaCheckInfo()
             {
                 AlohaId = Chk.AlohaCheckNum,

@@ -351,14 +351,17 @@ namespace PDiscountCard
 
         internal List<Dish> ConSolidateDishez
         {
+            
             get
             {
+                List<Dish> Tmp = new List<Dish>();
+
                 if (Dishez == null)
                 {
-                    return null;
+                    return Tmp;
                 }
 
-                List<Dish> Tmp = new List<Dish>();
+                
                 List<Dish> CopyDishez = new List<Dish>();
 
                 foreach (Dish D in Dishez)
