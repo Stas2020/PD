@@ -358,7 +358,7 @@ namespace PDiscountCard
 
                 if (Dishez == null)
                 {
-                    return Tmp;
+                    return null;
                 }
 
                 
