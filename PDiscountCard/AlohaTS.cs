@@ -1985,6 +1985,7 @@ namespace PDiscountCard
             try
             {
                 string s = "";
+                bool hasText = false;
                 //foreach (string str in info)
                 for (int i = 0; i < info.Count; i++)
                 {
@@ -2005,6 +2006,7 @@ namespace PDiscountCard
                             PrintINfo(s);
 
                         s = "<PRINTLINE>" + Printstr + "</PRINTLINE>";
+                        hasText = !string.IsNullOrWhiteSpace(Printstr);
                         continue;
                     }
 
@@ -2017,11 +2019,13 @@ namespace PDiscountCard
                         //continue;
                     }
                     //Printstr = str.Replace("0xD", "");
+                    if (!string.IsNullOrWhiteSpace(Printstr))
+                        hasText = true;
                     s += "<PRINTLINE>" + Printstr + "</PRINTLINE>";
                 }
 
-
-                PrintINfo(s);
+                if (hasText)
+                    PrintINfo(s);
                 /*
             string z = Ap.GetAllPrinters();
             Ap.PrintStream(s);
