@@ -39,6 +39,11 @@ namespace PDiscountCard
             {
                 btnShortRep.Visibility = System.Windows.Visibility.Visible;
             }
+            if (iniFile.VerifoneEnabled && iniFile.VerifoneShowShortReportBtn)
+            {
+                btnShortRep.Visibility = System.Windows.Visibility.Visible;
+
+            }
             if (iniFile.SBCreditCardEnabled)
             {
                 btnShortRep.Visibility = System.Windows.Visibility.Visible;

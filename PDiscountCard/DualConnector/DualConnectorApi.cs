@@ -43,7 +43,7 @@ namespace PDiscountCard.DualConnector
                 {
                     query.OrigOperation = 1; // 29 - если отменяем возврат
                     query.AuthorizationCode = RRN;
-                    query.ReferenceNumber = RRN;
+                    //query.ReferenceNumber = RRN;
 
 
                 }
@@ -55,6 +55,11 @@ namespace PDiscountCard.DualConnector
                 query.TerminalID = Terminal.ToString();
                 Utils.ToCardLog("dclink.InitResources");
                 int res = dclink.InitResources();
+
+                if (res != 0)
+                {
+                    Utils.ToCardLog(string.Format("Init resource:{0}-{1}", res, dclink.ErrorDescription));
+                }
                 /*
                 if (res != 0)
                 {
@@ -69,6 +74,7 @@ namespace PDiscountCard.DualConnector
                 */
                 //Utils.ToCardLog(String.Format("Inpas Exchange Amount: {0}, OperationCode: {1}, CommandMode2: {2} ", query.Amount, query.OperationCode, query.CommandMode2));
 
+                //Utils.ToCardLog("Inpas timeout:" + (iniFile.CreditTerminalTimeout * 1000).ToString());
                 Utils.ToCardLog("Inpas Exchange query:" + Environment.NewLine + query.ToStringExt());
                 res = dclink.Exchange(ref query, ref response, iniFile.CreditTerminalTimeout * 1000);
 

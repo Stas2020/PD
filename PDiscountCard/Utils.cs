@@ -1895,7 +1895,7 @@ namespace PDiscountCard
         {
             get
             {
-                int k = AbsIni.Read("Options", "CreditTerminalNum", 60);
+                int k = AbsIni.Read("Options", "CreditTerminalTimeout", 60);
                 return k;
             }
         }
@@ -2186,6 +2186,14 @@ namespace PDiscountCard
             get
             {
                 int k = AbsIni.Read("Options", "Arcus4ShowShortReportBtn", 1);
+                return Convert.ToBoolean(k);
+            }
+        }
+        internal static bool VerifoneShowShortReportBtn
+        {
+            get
+            {
+                int k = AbsIni.Read("Options", "VerifoneShowShortReportBtn", 1);
                 return Convert.ToBoolean(k);
             }
         }

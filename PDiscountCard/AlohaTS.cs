@@ -1985,22 +1985,27 @@ namespace PDiscountCard
             try
             {
                 string s = "";
-                foreach (string str in info)
+                //foreach (string str in info)
+                for (int i = 0; i < info.Count; i++)
                 {
+                    string str = info[i];
+
                     string Printstr = str;
                     //   Printstr = Printstr.Replace("~", " ");
                     //  Printstr = Printstr.Replace("^", " ");
                     //  Printstr = Printstr.Replace("0xDF", "   ");
 
+                    //Utils.ToLog("PRINT: "+str);
 
-                    if ((Printstr.Contains("0xDA")|| (Printstr.Contains("0xDF"))))
+                    if ((Printstr.Contains("0xDA") || (Printstr.Contains("0xDF"))))
                     {
                         Printstr = Printstr.Replace("0xDA", "");
 
-                        PrintINfo(s);
+                        if (i < info.Count - 1)
+                            PrintINfo(s);
+
                         s = "<PRINTLINE>" + Printstr + "</PRINTLINE>";
                         continue;
-
                     }
 
                     if (str.Contains("0xDE"))

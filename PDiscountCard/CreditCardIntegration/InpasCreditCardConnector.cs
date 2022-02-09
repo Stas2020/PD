@@ -10,7 +10,7 @@ using DualConnector;
 
 namespace PDiscountCard.CreditCardIntegration
 {
-    class InpasCreditCardConnector : ICreditCardConnector
+    class InpasCreditCardConnector : ICreditCardConnector, ICreditCardConnector2
     {
         public InpasCreditCardConnector()
         {
@@ -56,6 +56,7 @@ namespace PDiscountCard.CreditCardIntegration
         {
             operType = CreditCardOperationType.VoidPayment;
             frmInpasVoid fv = new frmInpasVoid();
+            fv.btnCancel.Visibility = System.Windows.Visibility.Visible;
             fv.ShowDialog();
             if (fv.Res == 1)
             {
@@ -105,8 +106,20 @@ namespace PDiscountCard.CreditCardIntegration
 
         public string RunSVERKARepSinc(out string mReciept, out string mRes)
         {
-            throw new NotImplementedException();
-            //RunOper(59, 0);
+            operType = CreditCardOperationType.Sverka;
+            //RunOper(63, 0, CommandMode2: 59);
+            RunOper(59, 0);
+            mReciept = "";// Receipt;
+            mRes = "";// resOper;
+            return "";// RespCode;
+            //throw new NotImplementedException();
+            ////RunOper(59, 0);
+        }
+
+        public void RunGetSlipCopyAsinc()
+        {
+            operType = CreditCardOperationType.ChkByNum;
+            RunOper(63, 0, CommandMode: 0, CommandMode2: 22);
         }
 
         /*

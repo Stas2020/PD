@@ -417,7 +417,8 @@ namespace PDiscountCard
         LongReport,
         LastChk,
         TestPinPad,
-        CassirMenu
+        CassirMenu,
+        ChkByNum,// 01.02.2022 - чек по номеру, номер наб. в терминале. Verifone
     }
 
 }
