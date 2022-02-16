@@ -14,6 +14,7 @@ using System.Web;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using PDiscountCard.MB;
 
 namespace PDiscountCard
 {
@@ -2325,6 +2326,30 @@ namespace PDiscountCard
                 Utils.ToLog("Error PrintCurentPredcheck Ap.PrintStream(s); " + e.Message);
             }
         }
+        public static string SaveQRTips(int head_place_code, int emp_id, int invoice_Id)
+        {
+            string fName = "QRTIPS.bmp";
+            try
+            {
+                string BmpPath = @"c:\aloha\alohats\bmp\";
+                DirectoryInfo di = new DirectoryInfo(BmpPath);
+
+                string str = @"https://pay.cloudtips.ru/e/" + head_place_code + "/" + AlohainiFile.DepNum + "/" + emp_id + "? invoiceId=" + invoice_Id;
+                var QrImg = FRSClientApp.FiscalCheckCreator.CreateQRBitmap(str, 260, 260);
+                BitmapEncoder encoder = new BmpBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(QrImg));
+
+                using (var fileStream = new System.IO.FileStream(BmpPath + fName, System.IO.FileMode.Create))
+                {
+                    encoder.Save(fileStream);
+                }
+            }
+            catch (Exception e)
+            {
+                Utils.ToCardLog("Error Save QR TIPS" + e.Message);
+            }
+            return fName;
+        }
 
         public static string SaveQREmpInfo(string EmpName)
         {
@@ -2842,8 +2867,25 @@ namespace PDiscountCard
         [DllImport("SUROK.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         private static extern void UpdateScopeInfo();
 
+
+        private static void DeleteQRTips()
+        {
+            string BmpPath = @"c:\aloha\alohats\bmp\";
+            DirectoryInfo di = new DirectoryInfo(BmpPath);
+            foreach (FileInfo Fi in di.GetFiles())
+            {
+                if (Fi.Name.Contains("QRTIPS"))
+                {
+                    Fi.Delete();
+                }
+
+            }
+        }
+
+
         static internal string FormStringPrintPredcheck(Check Ch, bool AllDishez, List<int> PrintableGropes, bool PrintableGropesPrint, bool PrintAll, List<int> Checks, string InnerString, bool Closed, bool needMods)
         {
+      
             try
             {
                 Utils.ToCardLog("FormStringPrintPredcheck needMods" + needMods.ToString());
@@ -2851,11 +2893,30 @@ namespace PDiscountCard
                 DateTime NDt = DateTime.Now;
                 string s = "";
 
+                MBClient mBClient = new MBClient();
+                var sett = mBClient.GetSettingTips();
+
+                Utils.ToLog("Получил настройки QR Tips, tips_type: " + sett.tips_type);
+                if (sett.tips_type == 1)
+                {
+                    Utils.ToLog("Удаляю старые QR.bmp");
+                    DeleteQRTips();
+
+                    var filename = SaveQRTips(sett.head_place_code, Ch.Waiter, Ch.AlohaCheckNum);
+                    Utils.ToLog("Создал новый QR.bmp по пути: " + filename);
+
+
+
+                    s += "<PRINTCENTERED>ЧАЕВЫЕ ОФИЦИАНТУ</PRINTCENTERED>";
+                    s += "<PRINTCENTERED>  </PRINTCENTERED>";
+                    s += "<PRINTBITMAP><PATH>" + filename + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
+                    s += "<LINEFEED>1</LINEFEED>";
+                }
+
+
 
                 if (needMods)
                 {
-
-
                     s += "<PRINTSTYLE><CPI>1</CPI><STYLE>1</STYLE></PRINTSTYLE>";
                     s += "<PRINTCENTERED>ЧЕК ДЛЯ СБОРКИ</PRINTCENTERED>";
                     s += "<PRINTSTYLE><CPI>1</CPI><STYLE>0</STYLE></PRINTSTYLE>";
@@ -2922,15 +2983,12 @@ namespace PDiscountCard
 
                 if (IsTableServise())
                 {
-
-
                     if (iniFile.PrintTableDesc)
                     {
                         s += "<PRINTLEFTRIGHT><LEFT>Стол: " + Ch.TableNumber + @"/" + Ch.NumberInTable + " " + Ch.TableDescription + "</LEFT><RIGHT></RIGHT></PRINTLEFTRIGHT>";
                     }
                     else
                     {
-
                         s += "<PRINTLEFTRIGHT><LEFT>Стол: " + Ch.TableNumber + @"/" + Ch.NumberInTable + "</LEFT><RIGHT></RIGHT></PRINTLEFTRIGHT>";
                     }
                 }
@@ -2940,7 +2998,6 @@ namespace PDiscountCard
                     s += "<PRINTSTYLE><CPI>0</CPI><STYLE>1</STYLE></PRINTSTYLE>";
                     s += "<PRINTCENTERED>Ваш заказ</PRINTCENTERED>";
                     s += "<DOUBLEHEIGHT>1</DOUBLEHEIGHT><PRINTSTYLE><CPI>0</CPI><STYLE>4</STYLE></PRINTSTYLE>";
-
 
                     s += "<PRINTCENTERED>" + Ch.TableName + "</PRINTCENTERED>";
                     s += "<DOUBLEHEIGHT>0</DOUBLEHEIGHT><PRINTSTYLE><CPI>1</CPI><STYLE>0</STYLE></PRINTSTYLE>";
@@ -4336,7 +4393,13 @@ namespace PDiscountCard
                                 Tables.Add(i);
                             }
                         }
-
+                        else if (Request.TableRangeId == 12)//My Ply
+                        {
+                            for (int i = 174; i <= 176; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                        }
                         foreach (int TableNum in Tables)
                             {
                                 try

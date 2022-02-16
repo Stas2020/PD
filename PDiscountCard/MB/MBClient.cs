@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using PDiscountCard.MBProxi;
+using System.IO;
 
 namespace PDiscountCard.MB
 {
@@ -32,7 +33,66 @@ namespace PDiscountCard.MB
                 return false;
             }
         }
+        public struct SettQRTips
+        {
 
+            public int tips_type;
+            public int head_place_code;
+        }
+
+        private void SaveData(int type)
+        {
+            string path = @"C:\aloha\alohats\tmp\sett_tips.tmp";
+            string data = type.ToString();
+
+            using (StreamWriter fs = File.CreateText(path))
+            {
+                fs.WriteLine(data);            
+            }
+        }
+
+        private int LoadData()
+        {
+            string path = @"C:\aloha\alohats\tmp\sett_tips.tmp";
+            string res = "";
+            // Open the stream and read it back.
+            if (!File.Exists(path))
+            {
+                return -1;
+            }
+
+            using (StreamReader sr = File.OpenText(path))
+            {
+                res = sr.ReadLine();
+            }           
+            return int.Parse(res);
+        }
+
+        public SettQRTips GetSettingTips()
+        {
+
+            SettQRTips sett = new SettQRTips{
+                tips_type = LoadData(),
+                head_place_code = 0
+            };
+            var request = new TermSettingsRequest
+            {
+                DepartmentNumber = AlohainiFile.DepNum,
+                TerminalNumber = AlohaTSClass.GetTermNum(),
+            };
+
+            var client = GetWCFClient();
+            var res = client.GetSettingsForTerm(request);
+            
+            if (res.Success)
+            {
+                sett.tips_type = res.Result.Main.QRTipsType;
+                sett.head_place_code = res.Result.Main.QRTipsTypeHeadPlaceCode;
+                SaveData(sett.tips_type);
+            }
+
+            return sett;
+        }
 
         public int GetFrendConvertCodeCardProcessing(Check check, string prefix, string number, out int CountV, out int CountD, out int VisitTotal, out int DayTotal, out int compId, out bool showValidateMess)
         {

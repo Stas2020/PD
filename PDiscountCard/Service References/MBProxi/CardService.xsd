@@ -290,6 +290,8 @@
   <xs:complexType name="MainTermSettings">
     <xs:sequence>
       <xs:element minOccurs="0" name="AlohaManagerPass" type="xs:int" />
+      <xs:element minOccurs="0" name="QRTipsType" type="xs:int" />
+      <xs:element minOccurs="0" name="QRTipsTypeHeadPlaceCode" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MainTermSettings" nillable="true" type="tns:MainTermSettings" />

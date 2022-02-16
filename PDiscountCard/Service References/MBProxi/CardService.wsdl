@@ -56,12 +56,6 @@
   <wsdl:message name="ICardService_CardProcessingNew_OutputMessage">
     <wsdl:part name="parameters" element="tns:CardProcessingNewResponse" />
   </wsdl:message>
-  <wsdl:message name="ICardService_CardProcessingV3_InputMessage">
-    <wsdl:part name="parameters" element="tns:CardProcessingV3" />
-  </wsdl:message>
-  <wsdl:message name="ICardService_CardProcessingV3_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CardProcessingV3Response" />
-  </wsdl:message>
   <wsdl:message name="ICardService_InternalCardProcessing_InputMessage">
     <wsdl:part name="parameters" element="tns:InternalCardProcessing" />
   </wsdl:message>
@@ -141,10 +135,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICardService/CardProcessingNew" message="tns:ICardService_CardProcessingNew_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICardService/CardProcessingNewResponse" message="tns:ICardService_CardProcessingNew_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CardProcessingV3">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICardService/CardProcessingV3" message="tns:ICardService_CardProcessingV3_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICardService/CardProcessingV3Response" message="tns:ICardService_CardProcessingV3_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="InternalCardProcessing">
       <wsdl:input wsaw:Action="http://tempuri.org/ICardService/InternalCardProcessing" message="tns:ICardService_InternalCardProcessing_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICardService/InternalCardProcessingResponse" message="tns:ICardService_InternalCardProcessing_OutputMessage" />
@@ -213,15 +203,6 @@
     </wsdl:operation>
     <wsdl:operation name="CardProcessingNew">
       <soap12:operation soapAction="http://tempuri.org/ICardService/CardProcessingNew" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CardProcessingV3">
-      <soap12:operation soapAction="http://tempuri.org/ICardService/CardProcessingV3" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
