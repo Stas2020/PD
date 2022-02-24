@@ -2893,25 +2893,7 @@ namespace PDiscountCard
                 DateTime NDt = DateTime.Now;
                 string s = "";
 
-                MBClient mBClient = new MBClient();
-                var sett = mBClient.GetSettingTips();
-
-                Utils.ToLog("Получил настройки QR Tips, tips_type: " + sett.tips_type);
-                if (sett.tips_type == 1)
-                {
-                    Utils.ToLog("Удаляю старые QR.bmp");
-                    DeleteQRTips();
-
-                    var filename = SaveQRTips(sett.head_place_code, Ch.Waiter, Ch.AlohaCheckNum);
-                    Utils.ToLog("Создал новый QR.bmp по пути: " + filename);
-
-
-
-                    s += "<PRINTCENTERED>ЧАЕВЫЕ ОФИЦИАНТУ</PRINTCENTERED>";
-                    s += "<PRINTCENTERED>  </PRINTCENTERED>";
-                    s += "<PRINTBITMAP><PATH>" + filename + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
-                    s += "<LINEFEED>1</LINEFEED>";
-                }
+                
 
 
 
@@ -2941,12 +2923,32 @@ namespace PDiscountCard
                     s += "<PRINTBITMAP><PATH>" + fName + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
                 }
                 */
-                if ((!Closed) && (!needMods))
+                MBClient mBClient = new MBClient();
+                var sett = mBClient.GetSettingTips();
+
+                Utils.ToLog("Получил настройки QR Tips, tips_type: " + sett.tips_type);
+                if (sett.tips_type == 1 && !needMods)
+                {
+                    Utils.ToLog("Удаляю старые QR.bmp");
+                    DeleteQRTips();
+
+                    var filename = SaveQRTips(sett.head_place_code, Ch.Waiter, Ch.AlohaCheckNum);
+                    Utils.ToLog("Создал новый QR.bmp по пути: " + filename);
+
+                    s += "<PRINTCENTERED>Отсканируйте QR-код </PRINTCENTERED>";
+                    s += "<PRINTCENTERED>чтобы оставить чаевые</PRINTCENTERED>";
+                    s += "<PRINTBITMAP><PATH>" + filename + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
+                    s += "<PRINTCENTERED>Чаевые для официантов</PRINTCENTERED>";
+                    s += "<PRINTCENTERED>не включены в счет</PRINTCENTERED>";
+                    s += "<PRINTCENTERED>и всегда остаются</PRINTCENTERED>";
+                    s += "<PRINTCENTERED>на усмотрение гостя. Спасибо!</PRINTCENTERED>";
+                    s += "<LINEFEED>1</LINEFEED>";
+                }
+                else if ((!Closed) && (!needMods))
                 {
                     string dir = @"C:\aloha\alohats\bmp\";
                     string fName2 = @"appQr.bmp";
                     if (File.Exists(dir + fName2))
-
                     {
                         //s += "<LINEFEED>1</LINEFEED>";
                         s += "<PRINTCENTERED>  </PRINTCENTERED>";
@@ -3065,8 +3067,6 @@ namespace PDiscountCard
                             Discount += (dd.OPrice - dd.Price) * dd.Count;
                         }
                     }
-
-
                 }
                 else
                 {
@@ -3284,6 +3284,14 @@ namespace PDiscountCard
                 if (Closed)
                 {
                     s += "<PRINTCENTERED>-----Чек закрыт-----</PRINTCENTERED>";
+                }
+
+                if (sett.tips_type != 1 && !needMods)
+                {
+                    s += "<PRINTCENTERED>Чаевые для официантов</PRINTCENTERED>";
+                    s += "<PRINTCENTERED>не включены в счет</PRINTCENTERED>";
+                    s += "<PRINTCENTERED>и всегда остаются</PRINTCENTERED>";
+                    s += "<PRINTCENTERED>на усмотрение гостя. Спасибо!</PRINTCENTERED>";
                 }
 
 
