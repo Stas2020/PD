@@ -2334,7 +2334,7 @@ namespace PDiscountCard
                 string BmpPath = @"c:\aloha\alohats\bmp\";
                 DirectoryInfo di = new DirectoryInfo(BmpPath);
 
-                string str = @"https://pay.cloudtips.ru/e/" + head_place_code + "/" + AlohainiFile.DepNum + "/" + emp_id + "? invoiceId=" + invoice_Id;
+                string str = @"https://pay.cloudtips.ru/e/" + head_place_code + "/" + AlohainiFile.DepNum + "/" + emp_id + "?invoiceId=" + invoice_Id;
                 var QrImg = FRSClientApp.FiscalCheckCreator.CreateQRBitmap(str, 260, 260);
                 BitmapEncoder encoder = new BmpBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(QrImg));
@@ -4404,6 +4404,13 @@ namespace PDiscountCard
                         else if (Request.TableRangeId == 12)//My Ply
                         {
                             for (int i = 174; i <= 176; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                        }
+                        else if (Request.TableRangeId == 13)//МирСити  
+                        {
+                            for (int i = 941; i <= 942; i++)
                             {
                                 Tables.Add(i);
                             }
