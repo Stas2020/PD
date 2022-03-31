@@ -64,8 +64,10 @@ namespace PDiscountCard.MB
             using (StreamReader sr = File.OpenText(path))
             {
                 res = sr.ReadLine();
-            }           
-            return int.Parse(res);
+            }
+            int result = -1;
+            int.TryParse(res, out result);
+            return result;
         }
 
         public SettQRTips GetSettingTips()

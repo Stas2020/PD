@@ -1231,7 +1231,7 @@ namespace PDiscountCard
                 {
                     var ps = PurgeNum(bstrTrack2Info);
                     Utils.ToCardLog($"Ps={ps}");
-                    if ((ps.Substring(0, 5) == "83857"))
+                    if ((ps.Substring(0, 5) == "83857") || (ps.Substring(0, 5) == "83858"))
                     {
                         Utils.ToCardLog("New card ShowLoyalty" + ps);
                         ShowLoyalty(ps);
