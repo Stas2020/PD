@@ -1229,12 +1229,97 @@ namespace PDiscountCard
             {
                 if (bstrTrack2Info.Length > 5)
                 {
+                    CurentCard = new MCard(bstrTrack1Info, bstrTrack2Info);
+                    Utils.ToLog(" CurentCard = new MCard(bstrTrack1Info, bstrTrack2Info); ok " );
+
+                    /*
+                    if (CurentCard.bad)
+                    {
+                        AlohaTSClass.ShowMessage("Не могу прочитать карту. Проведите еще раз.");
+                        Utils.ToLog("[RegCard] плохая карта " + bstrTrack1Info + " " + bstrTrack2Info);
+                        OldPrefixTime = DateTime.Now;
+                        OldPrefix = bstrTrack1Info;
+                        return 0;
+                    }
+                    */
+
                     var ps = PurgeNum(bstrTrack2Info);
                     Utils.ToCardLog($"Ps={ps}");
-                    if ((ps.Substring(0, 5) == "83857") || (ps.Substring(0, 5) == "83858"))
+                    if ((ps.Substring(0, 5) == "83857") //Бальные карты НПЛ
+                        || (ps.Substring(0, 5) == "83858") //НПЛ пятнашки
+                        || (ps.Substring(0, 5) == "80827")) //полтинники
                     {
+
+                        int VisitCount = -10;
+                        int DayCount = -10;
+                        int VisitTotal = -10;
+                        int DayTotal = -10;
+                        Check Ch = AlohaTSClass.GetCheckById((int)AlohaTSClass.AlohaCurentState.CheckId); 
+                        int k = 0;
+                        int compId = 0;
+
+                        //нет ли этой карты в базе полтинников
+                        MB.MBClient mbClient = new MB.MBClient();
+                        k = mbClient.GetFrendConvertCodeCardProcessing(Ch, CurentCard.Prefix, CurentCard.Num, out VisitCount, out DayCount, out VisitTotal, out DayTotal, out compId, out bool ShowValidMess);
+
+                        //Нет связи с базой полтинников. Применем 50 если префикс 50. На всякий случай
+                        if (k == -1)
+                        {
+                            AlohaTSClass.ShowMessage("Нет связи с базой данных. Рекомендую применить скидку");
+                            if (CurentCard.Prefix == "80827")
+                            {
+                                compId = 8;
+                            }
+                            else
+                            {
+                                Utils.ToCardLog("New card ShowLoyalty" + ps);
+                                ShowLoyalty(ps);
+                                return 1;
+                            }
+                        }
+                        else
+                        {
+                            if (VisitCount == -1)// карта есть в базе полтинников, но не активна для данного подразделения
+                            {
+                                AlohaTSClass.ShowMessage("Карта не активна для данного подразделения. Скидки не будет.");
+                                return 1;
+                            }
+
+                            else if (VisitCount == -5) // карты нет в базе полтинников
+                            {
+                                // AlohaTSClass.ShowMessage("Карта заблокирована для данного подразделения. Скидки не будет.");
+                                Utils.ToCardLog("New card ShowLoyalty" + ps);
+                                ShowLoyalty(ps);                                
+                                return 1;
+                            }
+                            else
+                            {
+                                compId = 8;
+                                Utils.ToCardLog("[RegCard]  Положительный ответ от сервера. Будет применена скидка 50");
+                            }
+                        }
+
+                        string Emess2 = "";
+                        int CompRes2 = AlohaTSClass.ApplyCompManagerOverride(compId, out Emess2);
+                        Utils.ToLog("[RegCard] Результат успешного наложения скидки: " + CompRes2.ToString());
+
+                        if (CompRes2 == 0)
+                        {
+
+                            AlohaTSClass.ShowMessage("Cкидка не применена.");
+                            AlohaTSClass.WriteToDebout("Cкидка не применена  тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum + " Причина: " + Emess2);
+                        }
+                        else
+                        {
+
+                            AlohaTSClass.WriteToDebout("Применена скидка тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum);
+                            AlohaTSClass.ShowMessage("Применена скидка.");
+                        }
+
+                        /*
                         Utils.ToCardLog("New card ShowLoyalty" + ps);
                         ShowLoyalty(ps);
+                        */
                         return 1;
                     }
                 }
@@ -1618,19 +1703,9 @@ namespace PDiscountCard
                             int k = 0;
                             int compId = 0;
                             MB.MBClient mbClient = new MB.MBClient();
-                            //if (mbClient.UsingMB())
-                            //{
+                            
                             k = mbClient.GetFrendConvertCodeCardProcessing(Ch, CurentCard.Prefix, CurentCard.Num, out VisitCount, out DayCount, out VisitTotal, out DayTotal, out compId, out ShowValidMess);
-                            //}
-                            /*
-                            else
-                            {
-
-                                k = ToBase.DoVizit(CurentCard.Prefix, CurentCard.Num, AlohainiFile.DepNum, AlohaTSClass.AlohaCurentState.CheckNum,
-                   AlohaTSClass.AlohaCurentState.TerminalId, DateTime.Now, out  VisitCount, out DayCount, out  VisitTotal, out DayTotal);
-                                Utils.ToLog("[RegCard] Отправил в базу информацию о скидке. Результат: " + k.ToString() + "Ответ базы: " + VisitCount.ToString());
-                            }
-                            */
+                           
 
                             try
                             {
@@ -1679,7 +1754,7 @@ namespace PDiscountCard
                                     }
                                     else
                                     {
-                                        //  AlohaTSClass.SetDiscountAttr((int)AlohaTSClass.AlohaCurentState.CheckId, CurentCard.Prefix + " " + CurentCard.Num, false, 0, 0);
+
                                         AlohaTSClass.WriteToDebout("Применена скидка тип: " + CurentCard.DiscountType + ", чек: " + AlohaTSClass.AlohaCurentState.CheckNum);
                                         AlohaTSClass.ShowMessage("Применена скидка.");
                                     }
@@ -1688,7 +1763,7 @@ namespace PDiscountCard
 
 
                                 }
-                                //else if (CurentCard.DiscountType != 8 && CurentCard.Prefix == "VIP" && Convert.ToInt64(CurentCard.Num) < 2500)
+
 
 
 
@@ -1720,23 +1795,7 @@ namespace PDiscountCard
                                 }
 
 
-                                /* Вернуть, когда появится инструмент добавления карт
-                            else if(CurentCard.DiscountType != 8 )
-                            {
-                                if (VisitCount == -5)
-                                {
-                                    AlohaTSClass.ShowMessage("Карта не зарегистрирована.");
-
-                                    return 1;
-                                }
-                                if (VisitCount == -1)
-                                {
-                                    AlohaTSClass.ShowMessage("Карта заблокирована.");
-
-                                    return 1;
-                                }
-                            }
-                                 * */
+                               
                             }
                             catch (Exception e)
                             {

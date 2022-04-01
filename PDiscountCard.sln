@@ -112,7 +112,6 @@ Global
 		{CEF558BA-0DE6-40B7-8552-6DD7E0B3D3C0}.Release|x86.ActiveCfg = Release|Any CPU
 		{C2279D49-804A-4B9E-A622-DFEE5E80B6E6}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{C2279D49-804A-4B9E-A622-DFEE5E80B6E6}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{C2279D49-804A-4B9E-A622-DFEE5E80B6E6}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{C2279D49-804A-4B9E-A622-DFEE5E80B6E6}.Debug|x86.ActiveCfg = Debug|x86
 		{C2279D49-804A-4B9E-A622-DFEE5E80B6E6}.Release|Any CPU.ActiveCfg = Release|x86
 		{C2279D49-804A-4B9E-A622-DFEE5E80B6E6}.Release|Mixed Platforms.ActiveCfg = Release|x86
@@ -143,7 +142,6 @@ Global
 		{F60674B2-F251-488B-8E73-19C58BBC9907}.Release|x86.Build.0 = Release|Any CPU
 		{CAF4913C-B578-4C9C-AC7A-EFD3BDDFE438}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{CAF4913C-B578-4C9C-AC7A-EFD3BDDFE438}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{CAF4913C-B578-4C9C-AC7A-EFD3BDDFE438}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{CAF4913C-B578-4C9C-AC7A-EFD3BDDFE438}.Debug|x86.ActiveCfg = Debug|x86
 		{CAF4913C-B578-4C9C-AC7A-EFD3BDDFE438}.Debug|x86.Build.0 = Debug|x86
 		{CAF4913C-B578-4C9C-AC7A-EFD3BDDFE438}.Release|Any CPU.ActiveCfg = Release|x86
@@ -156,14 +154,14 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8BA5D2A9-BCB9-4B69-BFB2-85B179E2BA1A}
-		Reflector0DestinationAssemblyName = 
-		Reflector0DestinationVersion = 1.0.0.0
-		Reflector0DestinationName = Interop.AlohaFOHLib
-		Reflector0DestinationLocation = D:\VS.Project\PDiscountCard\PDiscountCard\PDiscountCard\obj\Debug\Interop.AlohaFOHLib.dll
-		Reflector0SourceAssemblyName = 
-		Reflector0SourceVersion = 1.0.0.0
-		Reflector0SourceName = Interop.AlohaFOHLib
 		Reflector0SourceLocation = C:\Documents and Settings\manager\Рабочий стол\Interop.AlohaFOHLib.dll
+		Reflector0SourceName = Interop.AlohaFOHLib
+		Reflector0SourceVersion = 1.0.0.0
+		Reflector0SourceAssemblyName = 
+		Reflector0DestinationLocation = D:\VS.Project\PDiscountCard\PDiscountCard\PDiscountCard\obj\Debug\Interop.AlohaFOHLib.dll
+		Reflector0DestinationName = Interop.AlohaFOHLib
+		Reflector0DestinationVersion = 1.0.0.0
+		Reflector0DestinationAssemblyName = 
+		SolutionGuid = {8BA5D2A9-BCB9-4B69-BFB2-85B179E2BA1A}
 	EndGlobalSection
 EndGlobal

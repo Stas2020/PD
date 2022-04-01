@@ -114,29 +114,25 @@ namespace PDiscountCard.MB
             }
             showValidateMess = !res.Result.DataConfirmed;
             compId = res.Result.CompId;
+            /*
             if (res.Result.TemporarilyInactive)
             {//"Карта временно заблокирована."
                 CountV = -7;
                 return 1;
             }
-            if (!res.Result.CardRegistered)
+            */
+            if (!res.Result.CardRegistered) // не полтинник
             {//"Карта не зарег.."
                 CountV = -5;
                 return 1;
             }
 
-            if (!res.Result.Active)
+            if (!res.Result.Active) // полтинник , но не работает для этого подразделения
             {//"Карта заблокирована."
                 CountV = -1;
                 return 1;
             }
-            /*
-            if (!res.Result.Block)
-            {//"Карта заблокирована."
-                CountV = -1;
-                return 1;
-            }
-            */
+            
             if (!res.Result.PurchaseIsRegistered || !res.Result.VisitCounterIncreased)
             {
                 CountV = -3;

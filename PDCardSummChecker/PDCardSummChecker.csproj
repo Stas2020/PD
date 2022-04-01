@@ -121,7 +121,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PDiscountCard\PDiscountCard\PDiscountCard.csproj">
+    <ProjectReference Include="..\PDiscountCard\PDiscountCard.csproj">
       <Project>{58E97BC0-EEFD-4B72-BB25-32B4FDCF85DB}</Project>
       <Name>PDiscountCard</Name>
     </ProjectReference>
