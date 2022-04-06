@@ -4315,6 +4315,10 @@ namespace PDiscountCard
                             {
                                 Tables.Add(i);
                             }
+                            for (int i = 961; i < 966; i++)
+                            {
+                                Tables.Add(i);
+                            }
 
                         }
                         else if (Request.TableRangeId == 3)//Филиас онлайн пешком
