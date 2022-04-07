@@ -4285,7 +4285,7 @@ namespace PDiscountCard
                                 return;
                             }
                         }
-                        else if  (!AlohaTSClass.IsAlohaTS())
+                        else if (!AlohaTSClass.IsAlohaTS())
                         {
 
 
@@ -4297,7 +4297,7 @@ namespace PDiscountCard
                             Utils.ToLog("TOpenTableFromRangeExternal QS TableNumber= " + TableNumber);
                             //var TableName = TableNumber.ToString();
                             //Utils.ToLog("OpenEmptyCheck TableName = " + TableName);
-                           // UnikNum = AlohaFuncs.AddTable(GetTermNum(), QueueId, TableNumber, TableName, 1);
+                            // UnikNum = AlohaFuncs.AddTable(GetTermNum(), QueueId, TableNumber, TableName, 1);
                         }
 
                         else if (Request.TableRangeId == 2)//Филиас онлайн авто 
@@ -4315,10 +4315,7 @@ namespace PDiscountCard
                             {
                                 Tables.Add(i);
                             }
-                            for (int i = 961; i < 966; i++)
-                            {
-                                Tables.Add(i);
-                            }
+                           
 
                         }
                         else if (Request.TableRangeId == 3)//Филиас онлайн пешком
@@ -4327,7 +4324,7 @@ namespace PDiscountCard
                             {
                                 Tables.Add(i);
                             }
-                           
+
 
                         }
                         else if (Request.TableRangeId == 4)//Филиас онлайн самовынос
@@ -4341,10 +4338,10 @@ namespace PDiscountCard
                             {
                                 Tables.Add(i);
                             }
-                            
-                                
+
+
                         }
-                        
+
                         else if (Request.TableRangeId == 5)//Яндекс
                         {
                             for (int i = 231; i <= 240; i++)
@@ -4355,10 +4352,7 @@ namespace PDiscountCard
                             {
                                 Tables.Add(i);
                             }
-                            for (int i = 900; i <= 910; i++)
-                            {
-                                Tables.Add(i);
-                            }
+
 
                         }
                         else if (Request.TableRangeId == 6)//Яндекс самовынос
@@ -4415,6 +4409,13 @@ namespace PDiscountCard
                         else if (Request.TableRangeId == 13)//МирСити  
                         {
                             for (int i = 941; i <= 942; i++)
+                            {
+                                Tables.Add(i);
+                            }
+                        }
+                        else if (Request.TableRangeId == 14)// 
+                        {
+                            for (int i = 961; i < 966; i++)
                             {
                                 Tables.Add(i);
                             }
