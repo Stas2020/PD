@@ -134,8 +134,8 @@ namespace PDiscountCard.InterceptPrinting
             {
                 if ((!Closed))
                 {
-                    FrmQuestionLoyalty frmQuestionLoyalty = new FrmQuestionLoyalty();
-                    frmQuestionLoyalty.ShowDialog();
+                    //FrmQuestionLoyalty frmQuestionLoyalty = new FrmQuestionLoyalty();
+                    //frmQuestionLoyalty.ShowDialog();
 
                     GuestCount.GuestCount.SetGuestCount(CheckId);
                 }
