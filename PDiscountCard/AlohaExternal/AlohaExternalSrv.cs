@@ -318,6 +318,9 @@ namespace PDiscountCard.AlohaExternal
         }
         
 
+
+
+
         public NewOrderResponse NewOrder(NewOrderRequest Request)
         {
             Utils.ToCardLog("AlohaExternal NewOrder ");

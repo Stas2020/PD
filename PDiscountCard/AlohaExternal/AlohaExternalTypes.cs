@@ -196,6 +196,9 @@ namespace PDiscountCard.AlohaExternal
 
         public int SendToKitchenOrderType { set; get; }
 
+        public int PaymentId { set; get; }
+        public bool NeedCloseCheck { set; get; }
+
     }
 
     public class ApplyDiscountsRequest : AddEntityRequest
