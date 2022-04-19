@@ -210,7 +210,7 @@ namespace PDiscountCard.Spool
         }
 
 
-        internal static AllChecks GetHamsterForSpool()
+         public static AllChecks GetHamsterForSpool()
         {
             AllChecks Tmp = new AllChecks();
             StreamReader SW = new StreamReader(iniFile.SpoolPath);
