@@ -180,6 +180,13 @@ namespace PDiscountCard
                 AlohaTSClass.InitAlohaCom();
 
 
+                //ClockIn для 99921
+
+
+                AlohaTSClass.LogIn(AlohaTSClass.GetTermNum(),99921);
+                AlohaTSClass.LogOut(AlohaTSClass.GetTermNum());
+
+
                 if (!iniFile.NonAskRemoteSettings)
                 {
                     Config.ConfigSettings.SetSettings();
@@ -1298,6 +1305,11 @@ namespace PDiscountCard
                                 Utils.ToCardLog("[RegCard]  Положительный ответ от сервера. Будет применена скидка 50");
                             }
                         }
+
+
+
+
+                        //LogIn(AlohaCurentState.TerminalId, 99921);
 
                         string Emess2 = "";
                         int CompRes2 = AlohaTSClass.ApplyCompManagerOverride(compId, out Emess2);
