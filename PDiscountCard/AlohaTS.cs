@@ -2336,15 +2336,27 @@ namespace PDiscountCard
                 Utils.ToLog("Error PrintCurentPredcheck Ap.PrintStream(s); " + e.Message);
             }
         }
-        public static string SaveQRTips(int head_place_code, int emp_id, int invoice_Id)
+        public static string SaveQRTips(int head_place_code, int emp_id, int invoice_Id, int qrProvider,decimal summ,int tbl)
         {
             string fName = "QRTIPS.bmp";
             try
             {
-                string BmpPath = @"c:\aloha\alohats\bmp\";
+                string BmpPath = $@"c:\aloha\alohats\bmp\";
                 DirectoryInfo di = new DirectoryInfo(BmpPath);
 
-                string str = @"https://pay.cloudtips.ru/e/" + head_place_code + "/" + AlohainiFile.DepNum + "/" + emp_id + "?invoiceId=" + invoice_Id;
+                string str = "";
+                if (qrProvider == 1)
+                {
+                    str = @"https://pay.cloudtips.ru/e/" + head_place_code + "/" + AlohainiFile.DepNum + "/" + emp_id + "?invoiceId=" + invoice_Id;
+                }
+                else if (qrProvider == 2)
+                {
+                    var summStr = summ.ToString().Replace(",", ".");
+                    str = $@"https://netmonet.co/tip/coffeemania/{emp_id}?externalwp={AlohainiFile.DepNum}&o=3&s={summStr}&c={invoice_Id}&tn={tbl}";
+                   
+                    // https://netmonet.co/tip/coffeemania/XXXXXX?externalwp=YYYYYY&o=3&s=70.00&c=94948&tn=790
+                }
+
                 var QrImg = FRSClientApp.FiscalCheckCreator.CreateQRBitmap(str, 260, 260);
                 BitmapEncoder encoder = new BmpBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(QrImg));
@@ -2937,12 +2949,12 @@ namespace PDiscountCard
                 var sett = mBClient.GetSettingTips();
 
                 Utils.ToLog("Получил настройки QR Tips, tips_type: " + sett.tips_type);
-                if (sett.tips_type == 1 && !needMods)
+                if (sett.tips_type >0 && !needMods)
                 {
                     Utils.ToLog("Удаляю старые QR.bmp");
                     DeleteQRTips();
 
-                    var filename = SaveQRTips(sett.head_place_code, Ch.Waiter, Ch.AlohaCheckNum);
+                    var filename = SaveQRTips(sett.head_place_code, Ch.Waiter, Ch.AlohaCheckNum, sett.tips_type,Ch.Summ,Ch.TableNumber);
                     Utils.ToLog("Создал новый QR.bmp по пути: " + filename);
 
                     s += "<PRINTCENTERED>Отсканируйте QR-код </PRINTCENTERED>";
