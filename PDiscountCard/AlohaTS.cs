@@ -2344,14 +2344,16 @@ namespace PDiscountCard
                 string BmpPath = $@"c:\aloha\alohats\bmp\";
                 DirectoryInfo di = new DirectoryInfo(BmpPath);
 
+                var summStr = Math.Round(summ).ToString();//.Replace(",", ".");
+
                 string str = "";
                 if (qrProvider == 1)
                 {
-                    str = @"https://pay.cloudtips.ru/e/" + head_place_code + "/" + AlohainiFile.DepNum + "/" + emp_id + "?invoiceId=" + invoice_Id;
+                    str = @"https://pay.cloudtips.ru/e/" + head_place_code + "/" + AlohainiFile.DepNum + "/" + emp_id + "?invoiceId=" + invoice_Id+"?sum=" + summStr;
                 }
                 else if (qrProvider == 2)
                 {
-                    var summStr = summ.ToString().Replace(",", ".");
+                    //var summStr = summ.ToString().Replace(",", ".");
                     str = $@"https://netmonet.co/tip/coffeemania/{emp_id}?externalwp={AlohainiFile.DepNum}&o=3&s={summStr}&c={invoice_Id}&tn={tbl}";
                    
                     // https://netmonet.co/tip/coffeemania/XXXXXX?externalwp=YYYYYY&o=3&s=70.00&c=94948&tn=790
