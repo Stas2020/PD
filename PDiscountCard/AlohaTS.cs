@@ -4376,7 +4376,10 @@ namespace PDiscountCard
                             {
                                 Tables.Add(i);
                             }
-
+                            for (int i = 900; i <= 910; i++)
+                            {
+                                Tables.Add(i);
+                            }
 
                         }
                         else if (Request.TableRangeId == 6)//Яндекс самовынос
