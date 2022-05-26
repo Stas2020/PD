@@ -4777,11 +4777,7 @@ namespace PDiscountCard
         static internal void OpenTableFromExternal(AlohaExternal.NewOrderRequest Request, AlohaExternal.NewOrderResponse Resp)
         {
 
-            
-
-
-
-
+            List<Check> checksOnTable = null;
             if (Request.AlohaTableId == 0)
             {
                 Utils.ToCardLog($"OpenTableFromExternal  AlohaTableId =0");
@@ -4790,11 +4786,11 @@ namespace PDiscountCard
                     Utils.ToCardLog($"OpenTableFromExternal  EmplId =0");
                     try
                     {
-                        var checksOnTable = GetChecksOfTableExternal(Request.TableNumber);
+                        checksOnTable = GetChecksOfTableExternal(Request.TableNumber);
                         if ((checksOnTable != null) && (checksOnTable.Count() > 0))
                         {
                             var empl = checksOnTable[0].Waiter;
-                            Request.EmplId = iniFile.ExternalInterfaceEmployee;
+                            Request.EmplId = empl;
                             Request.AlohaTableId = checksOnTable[0].TableId;
                             Utils.ToCardLog($"OpenTableFromExternal  GetChecksOfTableExternal exists Empll {Request.EmplId}; TableId ={Request.AlohaTableId}");
                         }
@@ -4819,7 +4815,8 @@ namespace PDiscountCard
                     return;
                 }
 
-                if (Request.AlohaTableId != 0)
+                
+                if (Request.AlohaTableId == 0) // if (Request.AlohaTableId == 0) а так стол создается
                 {
                     try
                     {
@@ -4827,6 +4824,7 @@ namespace PDiscountCard
                             $"Request.QueueId:{Request.QueueId}, Request.TableNumber:{Request.TableNumber}, Request.TableName:{Request.TableName}, Request.NumGuest:{Request.NumGuest}");
 
                         Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, Request.TableNumber, "", Request.NumGuest);
+                        //Request.EmplId = iniFile.ExternalInterfaceEmployee;
                         Resp.TableId = Request.AlohaTableId;
                         Resp.TableNum = Request.TableNumber;
 
@@ -4978,10 +4976,20 @@ namespace PDiscountCard
                             AlohaFuncs.GetCheckTotal((int)Request.AlohaCheckId, out double Total, out double Tax);
 
                             LogOut(iniFile.ExternalInterfaceTerminal);
-                            LogIn(iniFile.ExternalInterfaceTerminal, 99921);
+                            LogIn(iniFile.ExternalInterfaceTerminal, iniFile.ExternalInterfaceManager, Config.ConfigSettings.ManagerPass.ToString());
                             ApplyPaymentAndClose(Request.AlohaCheckId, (decimal)Total, Request.PaymentId);
-                            
-                            
+                            Utils.ToCardLog("checksOnTable:  " + checksOnTable.Count());
+
+
+
+                            if ((checksOnTable==null)|| (checksOnTable?.Count() ==0 ))
+                            {
+                                LogOut(iniFile.ExternalInterfaceTerminal);
+                                LogIn(iniFile.ExternalInterfaceTerminal,Request.EmplId);
+
+                                Utils.ToCardLog("Закрываю стол:  " + Request.AlohaTableId);
+                                AlohaFuncs.CloseTable(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId);
+                            }
                         }
                     }
                     catch (Exception ee)
@@ -6329,7 +6337,7 @@ namespace PDiscountCard
         }
 
 
-        static internal void LogIn(int TermNum, int EmpId)
+        static internal void LogIn(int TermNum, int EmpId,string pass="")
         {
             Utils.ToLog(String.Format("LogIn TermNum: {0}, EmpId: {1}", TermNum, EmpId));
             try
@@ -6342,7 +6350,7 @@ namespace PDiscountCard
             try
             {
 
-                int i = AlohaFuncs.LogIn(TermNum, EmpId, "", "");
+                int i = AlohaFuncs.LogIn(TermNum, EmpId, pass, "");
 
 
                 try
@@ -8450,7 +8458,8 @@ namespace PDiscountCard
             {
                // MainClass.ComApplyPayment = true;
                 Utils.ToLog("ApplyPaymentAndClose ApplyPayment PId = " + PId);
-                int i = AlohaFuncs.ApplyPayment(GetTermNum(), CheckId, PId, (double)Ammount, 0, "", "", "", "");
+                //int i = AlohaFuncs.ApplyPayment(GetTermNum(), CheckId, PId, (double)Ammount, 0, "", "", "", "");
+                int i = AlohaFuncs.ApplyPayment(iniFile.ExternalInterfaceTerminal, CheckId, PId, (double)Ammount, 0, "", "", "", "");
             }
             catch (Exception e)
             {
@@ -8458,7 +8467,8 @@ namespace PDiscountCard
             }
             try
             {
-                AlohaFuncs.CloseCheck(GetTermNum(), CheckId);
+                AlohaFuncs.CloseCheck(iniFile.ExternalInterfaceTerminal, CheckId);
+                
                 return 1;
             }
             catch (Exception e)

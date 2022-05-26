@@ -1950,6 +1950,18 @@ namespace PDiscountCard
                 return k;
             }
         }
+
+
+        internal static int ExternalInterfaceManager
+        {
+            get
+            {
+                int k = AbsIni.Read("ExternalInterface", "ExternalInterfaceManager", 99922);
+                return k;
+            }
+        }
+
+
         internal static int ExternalInterfaceTerminal
         {
             get
