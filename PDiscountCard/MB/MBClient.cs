@@ -90,6 +90,9 @@ namespace PDiscountCard.MB
             {
                 sett.tips_type = res.Result.Main.QRTipsType;
                 sett.head_place_code = res.Result.Main.QRTipsTypeHeadPlaceCode;
+                Utils.ToLog("QRTipsTypeHeadPlaceCode: " + sett.head_place_code);
+
+
                 SaveData(sett.tips_type);
             }
 

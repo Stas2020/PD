@@ -331,11 +331,12 @@ namespace PDiscountCard.AlohaExternal
             {
                 //return Resp;
             }
+            /*
             if (Request.AlohaTableId == 0)
             {
                 Request.AlohaTableId = Resp.AlohaId;
             }
-            
+            */
             AlohaTSClass.OpenTableFromExternal(Request, Resp);
             UniversalHost.ComplitedRecivedCommand(Resp);
             return Resp;

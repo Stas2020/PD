@@ -232,6 +232,8 @@ namespace PDiscountCard.AlohaExternal
         /// </summary>
         public int AlohaTableId { set; get; }
 
+        //public List<int AlohaTableId { set; get; }
+
     }
 
 
