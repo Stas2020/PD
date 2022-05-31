@@ -2349,7 +2349,7 @@ namespace PDiscountCard
                 string str = "";
                 if (qrProvider == 1)
                 {
-                    str = @"https://pay.cloudtips.ru/e/" + head_place_code + "/" + AlohainiFile.DepNum + "/" + emp_id + "?invoiceId=" + invoice_Id + "?sum=" + summStr;
+                    str = @"https://pay.cloudtips.ru/e/" + head_place_code + "/" + AlohainiFile.DepNum + "/" + emp_id + "?invoiceId=" + invoice_Id + "&sum=" + summStr;
                 }
                 else if (qrProvider == 2)
                 {
@@ -2951,7 +2951,7 @@ namespace PDiscountCard
                 var sett = mBClient.GetSettingTips();
 
                 Utils.ToLog("Получил настройки QR Tips, tips_type: " + sett.tips_type);
-                if (sett.tips_type > 0 && !needMods)
+                if (sett.tips_type > 0 && !needMods && !Closed)
                 {
                     Utils.ToLog("Удаляю старые QR.bmp");
                     DeleteQRTips();
