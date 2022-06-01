@@ -67,20 +67,13 @@ namespace PDiscountCard.MB
             };
 
             var client = GetWCFClient();
-            try
+            var res = client.GetSettingsForTerm(request);
+            
+            if (res.Success)
             {
-                var res = client.GetSettingsForTerm(request);
-           
-                if (res.Success)
-                {
-                    sett.tips_type = res.Result.Main.QRTipsType;
-                    sett.head_place_code = res.Result.Main.QRTipsTypeHeadPlaceCode;
-                    SaveData(sett);
-                }
-            }
-            catch (Exception ex)
-            {
-
+                sett.tips_type = res.Result.Main.QRTipsType;
+                sett.head_place_code = res.Result.Main.QRTipsTypeHeadPlaceCode;
+                SaveData(sett.tips_type);
             }
             
         }

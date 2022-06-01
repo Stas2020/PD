@@ -2337,15 +2337,29 @@ namespace PDiscountCard
                 Utils.ToLog("Error PrintCurentPredcheck Ap.PrintStream(s); " + e.Message);
             }
         }
-        public static string SaveQRTips(int head_place_code, int emp_id, int invoice_Id)
+        public static string SaveQRTips(int head_place_code, int emp_id, int invoice_Id, int qrProvider, decimal summ, int tbl)
         {
             string fName = "QRTIPS.bmp";
             try
             {
-                string BmpPath = @"c:\aloha\alohats\bmp\";
+                string BmpPath = $@"c:\aloha\alohats\bmp\";
                 DirectoryInfo di = new DirectoryInfo(BmpPath);
 
-                string str = @"https://pay.cloudtips.ru/e/" + head_place_code + "/" + AlohainiFile.DepNum + "/" + emp_id + "?invoiceId=" + invoice_Id;
+                var summStr = Math.Round(summ).ToString();//.Replace(",", ".");
+
+                string str = "";
+                if (qrProvider == 1)
+                {
+                    str = @"https://pay.cloudtips.ru/e/" + head_place_code + "/" + AlohainiFile.DepNum + "/" + emp_id + "?invoiceId=" + invoice_Id + "&sum=" + summStr;
+                }
+                else if (qrProvider == 2)
+                {
+                    //var summStr = summ.ToString().Replace(",", ".");
+                    str = $@"https://netmonet.co/tip/coffeemania/{emp_id}?externalwp={AlohainiFile.DepNum}&o=3&s={summStr}&c={invoice_Id}&tn={tbl}";
+
+                    // https://netmonet.co/tip/coffeemania/XXXXXX?externalwp=YYYYYY&o=3&s=70.00&c=94948&tn=790
+                }
+
                 var QrImg = FRSClientApp.FiscalCheckCreator.CreateQRBitmap(str, 260, 260);
                 BitmapEncoder encoder = new BmpBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(QrImg));
@@ -2961,12 +2975,12 @@ namespace PDiscountCard
                 var sett = LoadData();
 
                 Utils.ToLog("Получил настройки QR Tips, tips_type: " + sett.tips_type);
-                if (sett.tips_type == 1 && !needMods)
+                if (sett.tips_type > 0 && !needMods && !Closed)
                 {
                     Utils.ToLog("Удаляю старые QR.bmp");
                     DeleteQRTips();
 
-                    var filename = SaveQRTips(sett.head_place_code, Ch.Waiter, Ch.AlohaCheckNum);
+                    var filename = SaveQRTips(sett.head_place_code, Ch.Waiter, Ch.AlohaCheckNum, sett.tips_type, Ch.Summ, Ch.TableNumber);
                     Utils.ToLog("Создал новый QR.bmp по пути: " + filename);
 
                     s += "<PRINTCENTERED>Отсканируйте QR-код </PRINTCENTERED>";
@@ -3320,7 +3334,7 @@ namespace PDiscountCard
                     s += "<PRINTCENTERED>-----Чек закрыт-----</PRINTCENTERED>";
                 }
 
-                if (sett.tips_type != 1 && !needMods)
+                if (sett.tips_type == 0 && !needMods)
                 {
                     s += "<PRINTCENTERED>Чаевые для официантов</PRINTCENTERED>";
                     s += "<PRINTCENTERED>не включены в счет</PRINTCENTERED>";
@@ -4349,7 +4363,7 @@ namespace PDiscountCard
                             {
                                 Tables.Add(i);
                             }
-                           
+
 
                         }
                         else if (Request.TableRangeId == 3)//Филиас онлайн пешком
@@ -4787,11 +4801,7 @@ namespace PDiscountCard
         static internal void OpenTableFromExternal(AlohaExternal.NewOrderRequest Request, AlohaExternal.NewOrderResponse Resp)
         {
 
-            
-
-
-
-
+            List<Check> checksOnTable = null;
             if (Request.AlohaTableId == 0)
             {
                 Utils.ToCardLog($"OpenTableFromExternal  AlohaTableId =0");
@@ -4800,11 +4810,11 @@ namespace PDiscountCard
                     Utils.ToCardLog($"OpenTableFromExternal  EmplId =0");
                     try
                     {
-                        var checksOnTable = GetChecksOfTableExternal(Request.TableNumber);
+                        checksOnTable = GetChecksOfTableExternal(Request.TableNumber);
                         if ((checksOnTable != null) && (checksOnTable.Count() > 0))
                         {
                             var empl = checksOnTable[0].Waiter;
-                            Request.EmplId = iniFile.ExternalInterfaceEmployee;
+                            Request.EmplId = empl;
                             Request.AlohaTableId = checksOnTable[0].TableId;
                             Utils.ToCardLog($"OpenTableFromExternal  GetChecksOfTableExternal exists Empll {Request.EmplId}; TableId ={Request.AlohaTableId}");
                         }
@@ -4815,11 +4825,11 @@ namespace PDiscountCard
                         }
                     }
 
-                    catch(Exception e )
+                    catch (Exception e)
                     {
                         Utils.ToCardLog($"Error OpenTableFromExternal  GetChecksOfTableExternal() {e.Message}");
                         Request.EmplId = iniFile.ExternalInterfaceEmployee;
-                    }                    
+                    }
                 }
 
 
@@ -4829,7 +4839,8 @@ namespace PDiscountCard
                     return;
                 }
 
-                if (Request.AlohaTableId != 0)
+
+                if (Request.AlohaTableId == 0) // if (Request.AlohaTableId == 0) а так стол создается
                 {
                     try
                     {
@@ -4837,7 +4848,8 @@ namespace PDiscountCard
                             $"Request.QueueId:{Request.QueueId}, Request.TableNumber:{Request.TableNumber}, Request.TableName:{Request.TableName}, Request.NumGuest:{Request.NumGuest}");
 
                         Request.AlohaTableId = AlohaFuncs.AddTable(iniFile.ExternalInterfaceTerminal, Request.QueueId, Request.TableNumber, "", Request.NumGuest);
-                        Resp.TableId = Request.AlohaTableId;
+                        //Request.EmplId = iniFile.ExternalInterfaceEmployee;
+
                         Resp.TableNum = Request.TableNumber;
 
 
@@ -4857,6 +4869,7 @@ namespace PDiscountCard
 
             try
             {
+                Resp.TableId = Request.AlohaTableId;
                 Utils.ToCardLog($"OpenTableFromExternal AddCheck iniFile.ExternalInterfaceTerminal: {iniFile.ExternalInterfaceTerminal}; Request.AlohaTableId:{Request.AlohaTableId}");
                 Request.AlohaCheckId = AlohaFuncs.AddCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId);
                 Resp.CheckId = Request.AlohaCheckId;
@@ -4964,43 +4977,6 @@ namespace PDiscountCard
                         Resp.ErrorItems.Add(itm);
                         Utils.ToCardLog("Error AddDish " + itm.Barcode + " Не смог добавить модификаторы ");
                     }
-
-                    try
-                    {
-                        Utils.ToCardLog("Request.SendToKitchenOrderType  " + Request.SendToKitchenOrderType);
-                        if (Request.SendToKitchenOrderType > 0)
-                        {
-                            AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
-                            AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, Resp.TableId, Request.SendToKitchenOrderType);
-                            AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
-                        }
-                    }
-                    catch (Exception ee)
-                    {
-                        Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
-                    }
-
-                    try
-                    {
-                        Utils.ToCardLog("Request.PaymentId  " + Request.PaymentId);
-                        if (Request.PaymentId > 0)
-                        {
-                            AlohaFuncs.GetCheckTotal((int)Request.AlohaCheckId, out double Total, out double Tax);
-
-                            LogOut(iniFile.ExternalInterfaceTerminal);
-                            LogIn(iniFile.ExternalInterfaceTerminal, 99921);
-                            ApplyPaymentAndClose(Request.AlohaCheckId, (decimal)Total, Request.PaymentId);
-                            
-                            
-                        }
-                    }
-                    catch (Exception ee)
-                    {
-                        Utils.ToCardLog("Error OpenTableFromExternal Add Payment and close " + ee.Message);
-                    }
-
-
-
                 }
                 catch (Exception e)
                 {
@@ -5013,36 +4989,64 @@ namespace PDiscountCard
                     Utils.ToCardLog("Error AddDish " + itm.Barcode + " " + e.Message);
                 }
             }
-            /*
 
-            foreach (AlohaExternal.AlohaItemInfo itm in Request.Items)
-            {
-                
-                double Price = (double)itm.Price;
-                if (Price == -1)
-                {
-                    Price = -999999999.0;
-                }
+
+
+
                 try
                 {
-                    Utils.ToCardLog($"OpenTableFromExternal AddCheck AlohaFuncs.BeginItem iniFile.ExternalInterfaceTerminal:{iniFile.ExternalInterfaceTerminal}," +
-                        $" Request.AlohaCheckId:{Request.AlohaCheckId}, itm.Barcode:{itm.Barcode}, Price:{Price}");
-                    AlohaFuncs.BeginItem(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId, itm.Barcode, "", Price);
-                    AlohaFuncs.EndItem(iniFile.ExternalInterfaceTerminal);
-                    itm.Success = true;
-                    Resp.AddedItems.Add(itm);
+                    Utils.ToCardLog("Request.SendToKitchenOrderType  " + Request.SendToKitchenOrderType);
+                    if (Request.SendToKitchenOrderType > 0)
+                    {
+                        AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
+                        AlohaFuncs.SelectAllEntriesOnCheck(iniFile.ExternalInterfaceTerminal, Request.AlohaCheckId);
+                        AlohaFuncs.OrderItems(iniFile.ExternalInterfaceTerminal, Resp.TableId, Request.SendToKitchenOrderType);
+                        AlohaFuncs.DeselectAllEntries(iniFile.ExternalInterfaceTerminal);
+                    }
                 }
-                catch (Exception e)
+                catch (Exception ee)
                 {
-                    Utils.ToCardLog($"Error OpenTableFromExternal.AlohaFuncs.BeginItem {e.Message}");
-                    Resp.Success = false;
-                    itm.Success = false;
-                    itm.AlohaErrorCode = CAlohaErrors.GetAlohaErrorVal(e.Message);
-                    Resp.ErrorItems.Add(itm);
+                    Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
                 }
-            }
 
-            */
+                try
+                {
+                    Utils.ToCardLog("Request.PaymentId  " + Request.PaymentId);
+                    if (Request.PaymentId > 0)
+                    {
+                        AlohaFuncs.GetCheckTotal((int)Request.AlohaCheckId, out double Total, out double Tax);
+
+                        LogOut(iniFile.ExternalInterfaceTerminal);
+                        LogIn(iniFile.ExternalInterfaceTerminal, iniFile.ExternalInterfaceManager, Config.ConfigSettings.ManagerPass.ToString());
+                        ApplyPaymentAndClose(Request.AlohaCheckId, (decimal)Total, Request.PaymentId);
+                        Utils.ToCardLog("checksOnTable:  " + checksOnTable.Count());
+
+
+
+                        if ((checksOnTable == null) || (checksOnTable?.Count() == 0))
+                        {
+                            LogOut(iniFile.ExternalInterfaceTerminal);
+                            LogIn(iniFile.ExternalInterfaceTerminal, Request.EmplId);
+
+                            Utils.ToCardLog("Закрываю стол:  " + Request.AlohaTableId);
+                            AlohaFuncs.CloseTable(iniFile.ExternalInterfaceTerminal, Request.AlohaTableId);
+                        }
+                    }
+                }
+                catch (Exception ee)
+                {
+                    Utils.ToCardLog("Error OpenTableFromExternal Add Payment and close " + ee.Message);
+                }
+
+
+
+            
+        
+                
+        
+    
+    
+   
             LogOut(iniFile.ExternalInterfaceTerminal);
 
 
@@ -6339,7 +6343,7 @@ namespace PDiscountCard
         }
 
 
-        static internal void LogIn(int TermNum, int EmpId)
+        static internal void LogIn(int TermNum, int EmpId,string pass="")
         {
             Utils.ToLog(String.Format("LogIn TermNum: {0}, EmpId: {1}", TermNum, EmpId));
             try
@@ -6352,7 +6356,7 @@ namespace PDiscountCard
             try
             {
 
-                int i = AlohaFuncs.LogIn(TermNum, EmpId, "", "");
+                int i = AlohaFuncs.LogIn(TermNum, EmpId, pass, "");
 
 
                 try
@@ -6835,7 +6839,7 @@ namespace PDiscountCard
         }
 
 
-        static public List<Check> GetChecksOfTableExternal(AlohaExternal.AlohaTableInfoResponse Resp)
+        static public List<Check> GetChecksOfTableExternal(AlohaExternal.AlohaTableInfoResponse Resp = null)
         {
             return GetChecksOfTableExternal(Resp.TNum, Resp);
 
@@ -6843,11 +6847,17 @@ namespace PDiscountCard
         }
 
 
-        static public List<Check> GetChecksOfTableExternal(int TNum, AlohaExternal.AlohaTableInfoResponse Resp=null)
+        static public List<Check> GetChecksOfTableExternal(int TNum, AlohaExternal.AlohaTableInfoResponse Resp = null)
         {
+
+            //var Resp = new AlohaExternal.AlohaTableInfoResponse();
             if (Resp == null) { Resp = new AlohaExternal.AlohaTableInfoResponse(); }
 
             List<Check> Tmp = new List<Check>();
+
+
+           // if (Resp!=n)
+
 
             if (!TableExist(TNum))
             {
@@ -6869,7 +6879,7 @@ namespace PDiscountCard
                         foreach (IberObject ChTable in OpenTbls)
                         {
                             int TblDId = ChTable.GetLongVal("TABLEDEF_ID");
-                            if (TblDId == Resp.TNum)
+                            if (TblDId == TNum)
                             {
                                 Resp.AlohaId = ChTable.GetLongVal("ID");
 
@@ -8460,7 +8470,8 @@ namespace PDiscountCard
             {
                // MainClass.ComApplyPayment = true;
                 Utils.ToLog("ApplyPaymentAndClose ApplyPayment PId = " + PId);
-                int i = AlohaFuncs.ApplyPayment(GetTermNum(), CheckId, PId, (double)Ammount, 0, "", "", "", "");
+                //int i = AlohaFuncs.ApplyPayment(GetTermNum(), CheckId, PId, (double)Ammount, 0, "", "", "", "");
+                int i = AlohaFuncs.ApplyPayment(iniFile.ExternalInterfaceTerminal, CheckId, PId, (double)Ammount, 0, "", "", "", "");
             }
             catch (Exception e)
             {
@@ -8468,7 +8479,8 @@ namespace PDiscountCard
             }
             try
             {
-                AlohaFuncs.CloseCheck(GetTermNum(), CheckId);
+                AlohaFuncs.CloseCheck(iniFile.ExternalInterfaceTerminal, CheckId);
+                
                 return 1;
             }
             catch (Exception e)
