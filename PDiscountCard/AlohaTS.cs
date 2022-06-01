@@ -3310,7 +3310,7 @@ namespace PDiscountCard
                     s += "<PRINTCENTERED>-----Чек закрыт-----</PRINTCENTERED>";
                 }
 
-                if (sett.tips_type != 1 && !needMods)
+                if (sett.tips_type == 0 && !needMods)
                 {
                     s += "<PRINTCENTERED>Чаевые для официантов</PRINTCENTERED>";
                     s += "<PRINTCENTERED>не включены в счет</PRINTCENTERED>";
