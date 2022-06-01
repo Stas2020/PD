@@ -56,7 +56,8 @@ namespace PDiscountCard.MB
         public void GetSettingTips()
         {
 
-            SettQRTips sett = new SettQRTips{
+            SettQRTips sett = new SettQRTips
+            {
                 tips_type = -1,
                 head_place_code = 0
             };
@@ -67,15 +68,22 @@ namespace PDiscountCard.MB
             };
 
             var client = GetWCFClient();
-            var res = client.GetSettingsForTerm(request);
-            
-            if (res.Success)
+            try
             {
-                sett.tips_type = res.Result.Main.QRTipsType;
-                sett.head_place_code = res.Result.Main.QRTipsTypeHeadPlaceCode;
-                SaveData(sett.tips_type);
+                var res = client.GetSettingsForTerm(request);
+
+                if (res.Success)
+                {
+                    sett.tips_type = res.Result.Main.QRTipsType;
+                    sett.head_place_code = res.Result.Main.QRTipsTypeHeadPlaceCode;
+                    SaveData(sett);
+                }
             }
-            
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
         public int GetFrendConvertCodeCardProcessing(Check check, string prefix, string number, out int CountV, out int CountD, out int VisitTotal, out int DayTotal, out int compId, out bool showValidateMess)
