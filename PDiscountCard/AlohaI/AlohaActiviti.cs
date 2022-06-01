@@ -10,8 +10,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.IO;
-
-
+using PDiscountCard.MB;
 
 namespace PDiscountCard
 {
@@ -859,6 +858,10 @@ namespace PDiscountCard
         {
             int i;
             //throw new NotImplementedException();
+            MBClient mBClient = new MBClient();
+            mBClient.GetSettingTips();
+
+
         }
 
         public void TableToShowOnDispBChanged(int nTermID, int TableId)

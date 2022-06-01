@@ -15,6 +15,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using PDiscountCard.MB;
+using static PDiscountCard.MB.MBClient;
 
 namespace PDiscountCard
 {
@@ -2892,6 +2893,32 @@ namespace PDiscountCard
             }
         }
 
+        static private SettQRTips LoadData()
+        {
+            SettQRTips sett = new SettQRTips
+            {
+                tips_type = -1,
+                head_place_code = 0
+            };
+
+            string path = @"C:\aloha\alohats\tmp\sett_tips.tmp";
+            
+            // Open the stream and read it back.
+            if (!File.Exists(path))
+            {
+                return sett;
+            }
+
+            using (StreamReader sr = File.OpenText(path))
+            {               
+                string tips_type_str = sr.ReadLine();
+                int.TryParse(tips_type_str, out sett.tips_type);
+                string head_place_code_str = sr.ReadLine();
+                int.TryParse(head_place_code_str, out sett.head_place_code);
+            }
+
+            return sett;
+        }
 
         static internal string FormStringPrintPredcheck(Check Ch, bool AllDishez, List<int> PrintableGropes, bool PrintableGropesPrint, bool PrintAll, List<int> Checks, string InnerString, bool Closed, bool needMods)
         {
@@ -2902,9 +2929,6 @@ namespace PDiscountCard
 
                 DateTime NDt = DateTime.Now;
                 string s = "";
-
-
-
 
 
                 if (needMods)
@@ -2933,8 +2957,8 @@ namespace PDiscountCard
                     s += "<PRINTBITMAP><PATH>" + fName + "</PATH><SIZE>1</SIZE><JUSTIFY>1</JUSTIFY> </PRINTBITMAP>";
                 }
                 */
-                MBClient mBClient = new MBClient();
-                var sett = mBClient.GetSettingTips();
+
+                var sett = LoadData();
 
                 Utils.ToLog("Получил настройки QR Tips, tips_type: " + sett.tips_type);
                 if (sett.tips_type == 1 && !needMods)

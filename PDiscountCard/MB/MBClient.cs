@@ -33,6 +33,7 @@ namespace PDiscountCard.MB
                 return false;
             }
         }
+
         public struct SettQRTips
         {
 
@@ -40,41 +41,23 @@ namespace PDiscountCard.MB
             public int head_place_code;
         }
 
-        private void SaveData(int type)
+        private void SaveData(SettQRTips sett)
         {
-            string path = @"C:\aloha\alohats\tmp\sett_tips.tmp";
-            string data = type.ToString();
+            string path = @"C:\aloha\alohats\tmp\sett_tips.tmp";         
 
             using (StreamWriter fs = File.CreateText(path))
             {
-                fs.WriteLine(data);            
+                fs.WriteLine(sett.tips_type.ToString());
+                fs.WriteLine(sett.head_place_code.ToString());
             }
         }
 
-        private int LoadData()
-        {
-            string path = @"C:\aloha\alohats\tmp\sett_tips.tmp";
-            string res = "";
-            // Open the stream and read it back.
-            if (!File.Exists(path))
-            {
-                return -1;
-            }
 
-            using (StreamReader sr = File.OpenText(path))
-            {
-                res = sr.ReadLine();
-            }
-            int result = -1;
-            int.TryParse(res, out result);
-            return result;
-        }
-
-        public SettQRTips GetSettingTips()
+        public void GetSettingTips()
         {
 
             SettQRTips sett = new SettQRTips{
-                tips_type = LoadData(),
+                tips_type = -1,
                 head_place_code = 0
             };
             var request = new TermSettingsRequest
@@ -84,16 +67,22 @@ namespace PDiscountCard.MB
             };
 
             var client = GetWCFClient();
-            var res = client.GetSettingsForTerm(request);
-            
-            if (res.Success)
+            try
             {
-                sett.tips_type = res.Result.Main.QRTipsType;
-                sett.head_place_code = res.Result.Main.QRTipsTypeHeadPlaceCode;
-                SaveData(sett.tips_type);
+                var res = client.GetSettingsForTerm(request);
+           
+                if (res.Success)
+                {
+                    sett.tips_type = res.Result.Main.QRTipsType;
+                    sett.head_place_code = res.Result.Main.QRTipsTypeHeadPlaceCode;
+                    SaveData(sett);
+                }
             }
+            catch (Exception ex)
+            {
 
-            return sett;
+            }
+            
         }
 
         public int GetFrendConvertCodeCardProcessing(Check check, string prefix, string number, out int CountV, out int CountD, out int VisitTotal, out int DayTotal, out int compId, out bool showValidateMess)
