@@ -38,6 +38,12 @@ namespace PDiscountCard.Spool
             Cod_Manager = Chk.Waiter;
             Id_Discnt = Chk.CompId;
             Cod_Table = Chk.TableNumber;
+            int TnumMP = AlohaTSClass.GetTableAttr(Chk.AlohaCheckNum);
+            if (TnumMP > 0)
+            {
+                Cod_Table =TnumMP; //Код стола 79
+            }
+
             Dt_Open = Chk.SystemDateOfOpen;
             PredCheck = Chk.PredcheckCount;
             Sum_Check = (int)(Chk.Summ * 100);

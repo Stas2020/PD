@@ -4682,6 +4682,10 @@ namespace PDiscountCard
                                             itm.ErrorMsg = err.ValStr;
                                             Resp.ErrorItems.Add(itm);
                                             Utils.ToCardLog("Error AddDish " + itm.Barcode + " " + e.Message);
+                                            if (string.IsNullOrWhiteSpace(itm.ErrorMsg))
+                                            { 
+                                                itm.ErrorMsg = e.Message; 
+                                            }
                                         }
                                     }
 
@@ -4796,6 +4800,7 @@ namespace PDiscountCard
 
         }
 
+        static int MPOrderTableNum = 970;
 
 
         static internal void OpenTableFromExternal(AlohaExternal.NewOrderRequest Request, AlohaExternal.NewOrderResponse Resp)
@@ -5009,13 +5014,20 @@ namespace PDiscountCard
                     Utils.ToCardLog("Error OpenTableFromExternal OrderItems " + ee.Message);
                 }
 
+
+
+
+
+
                 try
                 {
                     Utils.ToCardLog("Request.PaymentId  " + Request.PaymentId);
                     if (Request.PaymentId > 0)
                     {
-                        AlohaFuncs.GetCheckTotal((int)Request.AlohaCheckId, out double Total, out double Tax);
 
+                    SetTableAttr((int)Request.AlohaCheckId, MPOrderTableNum);
+
+                        AlohaFuncs.GetCheckTotal((int)Request.AlohaCheckId, out double Total, out double Tax);
                         LogOut(iniFile.ExternalInterfaceTerminal);
                         LogIn(iniFile.ExternalInterfaceTerminal, iniFile.ExternalInterfaceManager, Config.ConfigSettings.ManagerPass.ToString());
                         ApplyPaymentAndClose(Request.AlohaCheckId, (decimal)Total, Request.PaymentId);
@@ -5781,6 +5793,12 @@ namespace PDiscountCard
             AlohaFuncs.SetObjectAttribute(540, CheckId, "PaymentNum", Num.ToString());
         }
 
+        static internal void SetTableAttr(int CheckId, int Num)
+        {
+            AlohaFuncs.SetObjectAttribute(540, CheckId, "TableNum", Num.ToString());
+        }
+
+
         static internal void SetSVCardSaleAttr(int CheckId, String Card)
         {
             int Num = 0;
@@ -5995,6 +6013,8 @@ namespace PDiscountCard
             }
         }
 
+        
+
         static internal int GetPaymentAttr(int CheckId)
         {
             try
@@ -6009,6 +6029,20 @@ namespace PDiscountCard
             //string Tm = AlohaFuncs.GetObjectAttribute(520, TableId, "RemoteOrder");
         }
 
+
+        static internal int GetTableAttr(int CheckId)
+        {
+            try
+            {
+                return Convert.ToInt32(AlohaFuncs.GetObjectAttribute(540, CheckId, "TableNum"));
+            }
+            catch
+            {
+                return 0;
+            }
+            //Utils.ToLog("SetObjectAttribute " + Order.OrderID.ToString() + " на стол " + TableId);
+            //string Tm = AlohaFuncs.GetObjectAttribute(520, TableId, "RemoteOrder");
+        }
 
 
 

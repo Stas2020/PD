@@ -52,6 +52,8 @@ namespace PDiscountCard.AlohaExternal
     class AlohaExternal : IAlohaExternal
     {
 
+
+
        private AlohaCheckInfo GetAlohaCheckInfo(Check Chk)
         {
            
@@ -110,9 +112,19 @@ namespace PDiscountCard.AlohaExternal
             return Tmp;
         }
 
-        
 
-       
+
+        public DateTime? GetBDPlease()
+        {
+            try
+            {
+                return AlohainiFile.BDate;
+            }
+            catch(Exception e)
+            {
+                return null;
+            }        
+        }
 
         public GetMenuResponse GetMenu()
         {

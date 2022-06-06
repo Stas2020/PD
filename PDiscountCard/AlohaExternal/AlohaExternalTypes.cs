@@ -50,6 +50,21 @@ namespace PDiscountCard.AlohaExternal
                  )]
         CommandResponse PrintOrder(string orderId);
 
+
+        /// <summary>
+        /// Текущую дату бизнеса
+        /// </summary>
+        /// <param name="Request"></param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                 ResponseFormat = WebMessageFormat.Json
+            , UriTemplate = "json/GetBDPlease"
+                 )]
+        DateTime? GetBDPlease();
+
+
+
         /*
         /// <summary>   
         /// Тестовый метод

@@ -79,8 +79,8 @@ namespace PDiscountCard.Spool
             {
                 Tmp += GetStrWithOffcet(4, Chk.Waiter.ToString()); //Код официанта (старый) 36
             }
-            Tmp += GetStrWithOffcet(3, iniFile.SpoolKassaNum != -1 
-                ? iniFile.SpoolKassaNum.ToString() 
+            Tmp += GetStrWithOffcet(3, iniFile.SpoolKassaNum != -1
+                ? iniFile.SpoolKassaNum.ToString()
                 : Utils.GetTermNum().ToString()); //Номер кассы  (не использ) 39
 
             Tmp += GetStrWithOffcet(4, Chk.Cassir.ToString()); //Код кассира 43
@@ -97,8 +97,18 @@ namespace PDiscountCard.Spool
                 Tmp += GetStrWithOffcet(6, Chk.Waiter.ToString()); //Код официанта (новый) 61
             }
 
-            Tmp += GetStrWithOffcet(6, ""); //Доп.  Номер  чека (не исп)  67 
-            Tmp += GetStrWithOffcet(12, Chk.TableNumber.ToString()); //Код стола 79
+            Tmp += GetStrWithOffcet(6, ""); //Доп.  Номер  чека (не исп)  67
+            int TnumMP = AlohaTSClass.GetTableAttr(Chk.AlohaCheckNum);
+            if (TnumMP > 0)
+            {
+                Tmp += GetStrWithOffcet(12, TnumMP.ToString()); //Код стола 79
+            }
+            else
+            {
+                Tmp += GetStrWithOffcet(12, Chk.TableNumber.ToString()); //Код стола 79
+            }
+
+           // Tmp += GetStrWithOffcet(12, Chk.TableNumber.ToString()); //Код стола 79
             Tmp += GetStrWithOffcet(12, Chk.CheckNum); //Длинный номер чека 91
             Tmp += GetStrWithOffcet(4, Chk.KkmShiftNumber.ToString()); //Номер смены ккм 95
             Tmp += GetStrWithOffcet(1, Convert.ToInt32(Chk.RealOpenTimem).ToString()); //Тип чека 96
