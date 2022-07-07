@@ -117,6 +117,11 @@ namespace PDiscountCard.FRSClientApp
                             {
                                 Utils.ToCardLog("FClient.ZReport print");
                                 PrintOnWinPrinter.PrintDoc2(FiscalCheckCreator.GetEndOfSmenaVisual(Res));
+
+                                try {
+                                    PrintOnWinPrinter.PrintDoc2(FiscalCheckCreator.GetIMReportVisual(true));
+                                } catch { }
+                            
                             }
                             else
                             {
@@ -163,6 +168,22 @@ namespace PDiscountCard.FRSClientApp
             }
 
         }
+
+
+        public static void IMReport()
+        {
+            try
+            {
+                PrintOnWinPrinter.PrintDoc2(FiscalCheckCreator.GetIMReportVisual());
+            }
+            catch 
+            {
+            }
+
+        }
+
+
+
 
         public static FRSSrv.AddCheckResponce SendAlohaChk(Check Chk)
         {
