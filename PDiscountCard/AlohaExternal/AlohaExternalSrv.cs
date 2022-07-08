@@ -54,9 +54,9 @@ namespace PDiscountCard.AlohaExternal
 
 
 
-       private AlohaCheckInfo GetAlohaCheckInfo(Check Chk)
+        private AlohaCheckInfo GetAlohaCheckInfo(Check Chk)
         {
-           
+
             AlohaCheckInfo Tmp = new AlohaCheckInfo()
             {
                 AlohaId = Chk.AlohaCheckNum,
@@ -64,9 +64,9 @@ namespace PDiscountCard.AlohaExternal
                 TableId = Chk.TableId,
                 TableNum = Chk.TableNumber,
                 Summ = Chk.Summ,
-                IsClosed =Chk.IsClosed,
+                IsClosed = Chk.IsClosed,
                 TimeOfOpen = Chk.SystemDateOfOpen,
-                TimeOfClose= Chk.SystemDateOfClose2,
+                TimeOfClose = Chk.SystemDateOfClose2,
                 WaiterId = Chk.Waiter,
                 WaiterName = AlohaTSClass.GetWaterName(Chk.Waiter),
                 DiscountSumm = Chk.Comp,
@@ -75,12 +75,26 @@ namespace PDiscountCard.AlohaExternal
             foreach (Dish D in Chk.Dishez)
             {
                 if (Chk.Dishez.SelectMany(a => a.CurentModificators).Any(a => a.AlohaNum == D.AlohaNum))
-                    {
+                {
                     continue;
                 }
                 Tmp.Dishez.Add(GetAlohaDishInfo(D));
             }
+
+            Tmp.Paiments = new List<AlohaPaymentInfo>();
+            foreach (AlohaTender tndr in Chk.Tenders)
+            {
+                Tmp.Paiments.Add(new AlohaPaymentInfo
+                {
+                    AlohaId = tndr.TenderId,
+                    Id = tndr.AlohaTenderId,
+                    Summ = (decimal)tndr.Summ,
+
+
+                });
             
+            }
+
             return Tmp;
         }
 

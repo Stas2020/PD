@@ -213,6 +213,12 @@ namespace PDiscountCard
                     Utils.ToCardLog("Custom XReport");
                     AlohaEventVoids.XReport();
                 }
+                if (Name == "IMReport")
+                {
+                    //Utils.ToCardLog("Custom XReport");
+                    AlohaEventVoids.IMReport();
+                }
+
                 if (Name == "XReportHamster")
                 {
                     AlohaEventVoids.XReportHamster();

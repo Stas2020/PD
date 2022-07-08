@@ -241,8 +241,8 @@ namespace PDiscountCard.FRSClientApp
             }
 
             Res.Add(new FiscalCheckVisualString("Чеков возврата прихода: ", ""));
-            Res.Add(new FiscalCheckVisualString(VoidPayments.Sum(a => a.Count).ToString(), String.Format("≡{0}", VoidPayments.Sum(a => a.Summ).ToString("0.00").Replace(",", "."))));
-            foreach (FRSSrv.XRepFiskalPayment Fp in VoidPayments)
+            Res.Add(new FiscalCheckVisualString(VoidPayments.Where(a=>a.Id!=-10 && a.Id != -11).Sum(a => a.Count).ToString(), String.Format("≡{0}", VoidPayments.Sum(a => a.Summ).ToString("0.00").Replace(",", "."))));
+            foreach (FRSSrv.XRepFiskalPayment Fp in VoidPayments.Where(a => a.Id != -10 && a.Id != -11))
             {
                 if (String.IsNullOrWhiteSpace(Fp.Name))
                 {
@@ -264,12 +264,91 @@ namespace PDiscountCard.FRSClientApp
             Res.Add(new FiscalCheckVisualString("Выручка", String.Format("≡{0}", CashFlow.ToString("0.00").Replace(",", "."))));
             Res.Add(new FiscalCheckVisualString("   "));
             Res.Add(new FiscalCheckVisualString("   "));
+
+
+            try
+            {
+                if (Payments.Any(a => a.Id < 0))
+                {
+                    Res.Add(new FiscalCheckVisualString("Интернет магазин"));
+                    Res.Add(new FiscalCheckVisualString("--------------------------"));
+                    var ImP = Payments.FirstOrDefault(a => a.Id == -10);
+                    var ImPV = VoidPayments.FirstOrDefault(a => a.Id == -10);
+                    var ImS = ImP.Summ - ImPV?.Summ;
+                    Res.Add(new FiscalCheckVisualString(ImP.Name, String.Format("≡{0}", ImS.GetValueOrDefault().ToString("0.00").Replace(",", "."))));
+                   var  ImP2 = Payments.FirstOrDefault(a => a.Id == -11);
+                    Res.Add(new FiscalCheckVisualString(ImP2.Name, String.Format("≡{0}", ImP2.Summ.ToString("0.00").Replace(",", "."))));
+                    if (Math.Abs(ImS.GetValueOrDefault() - ImP2.Summ)>1)
+                    {
+                        Res.Add(new FiscalCheckVisualString("Сумма не равна!!!", (ImS.GetValueOrDefault() - ImP2.Summ).ToString()));
+                    }
+                    Res.Add(new FiscalCheckVisualString("--------------------------"));
+                    Res.Add(new FiscalCheckVisualString("   "));
+                    Res.Add(new FiscalCheckVisualString("   "));
+
+                }
+            }
+            catch(Exception e)
+            {
+                Utils.ToCardLog("GetXReportVisualPaymentsTerm error" + e.Message);
+            }
+
+
+            return Res;
+        }
+
+
+        internal static List<FiscalCheckVisualString> GetIMReportVisual(bool Z=false)
+        {
+            List<FiscalCheckVisualString> Res = new List<FiscalCheckVisualString>();
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString(AlohainiFile.UNITNAME));
+            Res.Add(new FiscalCheckVisualString(AlohainiFile.ADDRESS1));
+            Res.Add(new FiscalCheckVisualString(AlohainiFile.ADDRESS2));
+            Res.Add(new FiscalCheckVisualString("Выручка интернет магазин"));
+            Res.Add(new FiscalCheckVisualString("Смена  ", DateTime.Now.ToString("dd.MM.yy HH:mm:ss")));
+            Res.Add(new FiscalCheckVisualString("ДБ: " + AlohainiFile.BDate.ToString("dd.MM.yy")));
+
+            if (Z)
+            {
+                Res.Add(new FiscalCheckVisualString("День закрыт", "ДБ: " +AlohainiFile.BDate.ToString("dd.MM.yy")));
+            }
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString("--------------------------"));
+
+
+            var dHCDHConnect = new DHConnect();
+            var dhP = dHCDHConnect.GetHubXReport(AlohainiFile.BDate, AlohainiFile.DepNum, out int dhCount);
+            
+            var AlohaImSumm = AlohaTSClass.GetIMChecksSumm();
+
+            //var ImP = Payments.FirstOrDefault(a => a.Id == -10);
+            //var ImPV = VoidPayments.FirstOrDefault(a => a.Id == -10);
+
+            //var ImS = ImP.Summ - ImPV?.Summ;
+            Res.Add(new FiscalCheckVisualString("Алоха ИМ", String.Format("≡{0}", AlohaImSumm.ToString("0.00").Replace(",", "."))));
+            //var ImP2 = Payments.FirstOrDefault(a => a.Id == -11);
+            Res.Add(new FiscalCheckVisualString("Эквайринг ИМ", String.Format("≡{0}", dhP.ToString("0.00").Replace(",", "."))));
+            if (Math.Abs(AlohaImSumm- dhP) > 1)
+            {
+                Res.Add(new FiscalCheckVisualString("Сумма не равна!!!", (AlohaImSumm - dhP).ToString()));
+            }
+            Res.Add(new FiscalCheckVisualString("--------------------------"));
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString("   "));
+
+
+
             return Res;
         }
 
 
 
-        internal static List<FiscalCheckVisualString> GetXReportVisual(FRSSrv.XReportResponce XRepData)
+            internal static List<FiscalCheckVisualString> GetXReportVisual(FRSSrv.XReportResponce XRepData)
         {
             if (XRepData == null) { XRepData = new FRSSrv.XReportResponce(); }
             List<FiscalCheckVisualString> Res = new List<FiscalCheckVisualString>();

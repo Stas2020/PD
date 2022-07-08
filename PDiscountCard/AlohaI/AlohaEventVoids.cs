@@ -665,7 +665,15 @@ namespace PDiscountCard
 
         }
 
-        internal static void XReport()
+        internal static void IMReport()
+        {
+
+         
+                FRSClientApp.FRSClient.IMReport();
+         
+        }
+
+            internal static void XReport()
         {
 
             if (iniFile.FRSEnabled)
