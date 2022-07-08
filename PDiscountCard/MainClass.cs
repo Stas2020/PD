@@ -893,7 +893,7 @@ namespace PDiscountCard
                 //              ss1.SetDishListCompleted += new PDiscountCard.StopListService.SetDishListCompletedEventHandler(ss1_SetDishListCompleted); 
                 //            Dn[0]= AlohaTSClass.GetListOfDish().ToArray()[2] ;
                 ss1.SetDishListAsync(AlohaTSClass.GetListOfDish().ToArray());
-
+                
                 //    ss1.SetDishList( Dn);
             }
             catch

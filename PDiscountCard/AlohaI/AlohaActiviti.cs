@@ -592,7 +592,7 @@ namespace PDiscountCard
             try
             {
                 MainClass.InitData();
-               // MainClass.SendDishList();
+                MainClass.SendDishList();
                 MainClass.CurentMaster = DownTimeiniFile.GetMaster();  
             }
             catch (Exception e)
