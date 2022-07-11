@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PDiscountCard.DualConnector
+namespace PDiscountCard.DualConnectorIntegration
 {
     /// <summary>
     /// Interaction logic for frmInpasVoid.xaml

@@ -5,7 +5,7 @@ using System.Text;
 using DualConnector;
 
 
-namespace PDiscountCard.DualConnector
+namespace PDiscountCard.DualConnectorIntegration
 {
     class DualConnectorApi
     {
@@ -16,9 +16,17 @@ namespace PDiscountCard.DualConnector
         DCLink dclink;
         ISAPacket query = new SAPacket();
         ISAPacket response = new SAPacket();
-
-
-       // private DualConnectorMain.OnExchangeComplitedFromApiEventHendler ExchangeComplitedCallback;
+        int res;
+        bool asyncReturned = false;
+        int threadDuratioMaxMin = 30;
+        void dclink_OnExchange(int _res)
+        {
+            //Console.WriteLine("Inpas dclink_Exchange res:" + res);
+            Utils.ToCardLog(String.Format("Inpas [dclink_Exchange(int res)] res: {0}", _res));
+            res = _res;
+            asyncReturned = true;
+        }
+        // private DualConnectorMain.OnExchangeComplitedFromApiEventHendler ExchangeComplitedCallback;
         public int Exchange(int OperId, int CommandMode, int CommandMode2, int Amount, string Terminal, string RRN, out String ResStr, out string receipt, out int status, out string statusDescr)
         {
             status = 0;
@@ -53,8 +61,11 @@ namespace PDiscountCard.DualConnector
 
                 //query.TerminalID = "40000112";
                 query.TerminalID = Terminal.ToString();
+                
+                dclink.OnExchange += new DualConnector.OnExchangeHandler(dclink_OnExchange);
+
                 Utils.ToCardLog("dclink.InitResources");
-                int res = dclink.InitResources();
+                res = dclink.InitResources();
 
                 if (res != 0)
                 {
@@ -76,7 +87,21 @@ namespace PDiscountCard.DualConnector
 
                 //Utils.ToCardLog("Inpas timeout:" + (iniFile.CreditTerminalTimeout * 1000).ToString());
                 Utils.ToCardLog("Inpas Exchange query:" + Environment.NewLine + query.ToStringExt());
-                res = dclink.Exchange(ref query, ref response, iniFile.CreditTerminalTimeout * 1000);
+                //res = dclink.Exchange(ref query, ref response, iniFile.CreditTerminalTimeout * 1000); TimeOut Always Zero
+                res = dclink.Exchange(ref query, ref response, 0);
+
+                DateTime exchangeStart = DateTime.Now;
+                while (!asyncReturned)
+                {
+                    System.Threading.Thread.Sleep(250);
+                    if((DateTime.Now - exchangeStart).TotalMinutes > threadDuratioMaxMin)
+                    //if ((DateTime.Now - exchangeStart).TotalSeconds > threadDuratioMaxMin)
+                    {
+                        Utils.ToCardLog(string.Format("!!! ПРОЦЕСС ОБРАБОТКИ КАРТ АКТИВЕН БОЛЕЕ {0} МИНУТ !!!", threadDuratioMaxMin));
+                        //Utils.ToCardLog(string.Format("!!! ПРОЦЕСС ОБРАБОТКИ КАРТ АКТИВЕН БОЛЕЕ {0} СЕКУНД !!!", threadDuratioMaxMin));
+                        exchangeStart = DateTime.Now;
+                    }
+                }
 
                 Utils.ToCardLog("Inpas Exchange end res = " + res);
                 if (response != null)
