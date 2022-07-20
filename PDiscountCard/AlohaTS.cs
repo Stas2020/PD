@@ -7326,54 +7326,179 @@ namespace PDiscountCard
             decimal summ = 0;
             List<Check> Tmp = new List<Check>();
             IberEnum QEmpls = Depot.GetEnum(INTERNAL_EMPLOYEES);
+
+            List<int> tblids = new List<int>();
+
             foreach (IberObject Empl in QEmpls)
             {
                 try
                 {
-                    IberEnum Checks = Empl.GetEnum(INTERNAL_EMP_CLOSED_CHECKS);
-                    IberEnum ClTables = Empl.GetEnum(INTERNAL_EMP_CLOSED_TABLES);
-
-                    foreach (IberObject Chk in Checks)
-                    {
-
-                        var ChId = Chk.GetLongVal("ID");
-                        Utils.ToCardLog($"GetIMChecksSumm find chk {ChId}");
-                        int TId = Chk.GetLongVal("TABLE_ID");
-                        var ChTable = (IberObjectClass)ClTables.FindFromLongAttr("ID", TId);
-                        var tNum = ChTable.GetLongVal("TABLEDEF_ID");
-                        Utils.ToCardLog($"GetIMChecksSumm tNum  {tNum}");
-                        double Sum;
-                        double mTax;
-                        if (GetIMTables().Contains(tNum))
+                   var empId = Empl.GetLongVal("ID");
+                    Utils.ToCardLog($"GetIMChecksSumm Empl Id {empId.ToString()}");
+                    //IberEnum Checks = Empl.GetEnum(INTERNAL_EMP_CLOSED_CHECKS);
+                    try {
+                        IberEnum Tbls1 = Empl.GetEnum(INTERNAL_EMP_OPEN_TABLES);
+                        Utils.ToCardLog($"GetIMChecksSumm Empl Id {empId.ToString()} INTERNAL_EMP_OPEN_TABLES ok");
+                        if (Tbls1 != null)
                         {
-                            IberEnumClass PayMentsEnum = (IberEnumClass)Chk.GetEnum(INTERNAL_CHECKS_PAYMENTS);
-                            foreach (IberObject mPayMent in PayMentsEnum)
+                            foreach (IberObject tbl in Tbls1)
                             {
-                                var AlohaTenderId = mPayMent.GetLongVal("TENDER_ID");
-                                Utils.ToCardLog($"GetIMChecksSumm TENDER_ID  {AlohaTenderId}");
-                                if (AlohaTenderId == 30)
-                                {                                
-                                var ss = Convert.ToDecimal(mPayMent.GetDoubleVal("AMOUNT"));
-                                    Utils.ToCardLog($"GetIMChecksSumm summ  {ss}");
-                                    summ += ss;                                
+                                var tNum = tbl.GetLongVal("TABLEDEF_ID");
+                                Utils.ToCardLog($"GetIMChecksSumm tNum  {tNum } ");
+                                if (GetIMTables().Contains(tNum))
+                                {
+                                    var tblid = tbl.GetLongVal("ID");
+                                    tblids.Add(tblid);
+                                    Utils.ToCardLog($"GetIMChecksSumm AddTbl  {tblid} ");
+
+                                    /*
+                                IberEnum Checks = tbl.GetEnum(INTERNAL_TABLES_CHECKS);
+                                if (Checks != null)
+                                {
+                                    foreach (IberObject Chk in Checks)
+                                    {
+                                        var ChId = Chk.GetLongVal("ID");
+                                        Utils.ToCardLog($"GetIMChecksSumm ChId  {ChId } ");
+                                        IberEnumClass PayMentsEnum = (IberEnumClass)Chk.GetEnum(INTERNAL_CHECKS_PAYMENTS);
+                                        Utils.ToCardLog($"GetIMChecksSumm ChId  {ChId } INTERNAL_CHECKS_PAYMENTS");
+                                        foreach (IberObject mPayMent in PayMentsEnum)
+                                        {
+                                            var AlohaTenderId = mPayMent.GetLongVal("TENDER_ID");
+                                            Utils.ToCardLog($"GetIMChecksSumm TENDER_ID  {AlohaTenderId}");
+                                            if (AlohaTenderId == 30)
+                                            {
+                                                var ss = Convert.ToDecimal(mPayMent.GetDoubleVal("AMOUNT"));
+                                                Utils.ToCardLog($"GetIMChecksSumm summ  {ss}");
+                                                summ += ss;
+                                            }
+
+                                        }
+                                    }
                                 }
-                                // Summ = mPayMent.GetDoubleVal("AMOUNT")
-                                //    SummWithOverpayment = mPayMent.GetDoubleVal("AMOUNT"),
-
-
-                               // AlohaFuncs.GetCheckTotal(ChId, out Sum, out mTax);
-                              //  summ += Convert.ToDecimal(Sum);
+                                    */
+                                }
                             }
-                            //AlChk.SystemDate = Chk
-                            //Tmp.Add(AlChk);
+                        }
+                        }
+                    catch (Exception e)
+                    {
+                        Utils.ToCardLog($"Error GetIMChecksSumm INTERNAL_EMP_OPEN_TABLES {e.Message} ");
+                    }
+
+                    try
+                    {
+                        IberEnum Tbls1 = Empl.GetEnum(INTERNAL_EMP_CLOSED_TABLES);
+                        Utils.ToCardLog($"GetIMChecksSumm Empl Id {empId.ToString()} INTERNAL_EMP_CLOSED_TABLES ok");
+                        if (Tbls1 != null)
+                        {
+                            foreach (IberObject tbl in Tbls1)
+                            {
+                                var tNum = tbl.GetLongVal("TABLEDEF_ID");
+                                Utils.ToCardLog($"GetIMChecksSumm tNum  {tNum } ");
+                                if (GetIMTables().Contains(tNum))
+                                {
+                                    Utils.ToCardLog($"GetIMChecksSumm tNum  {tNum } in GetIMTables()");
+                                    var tblid = tbl.GetLongVal("ID");
+                                    tblids.Add(tblid);
+                                    Utils.ToCardLog($"GetIMChecksSumm AddTbl  {tblid} ");
+
+                                    /*
+                                    IberEnum Checks = tbl.GetEnum(INTERNAL_TABLES_CHECKS);
+                                    if (Checks != null)
+                                    {
+                                        foreach (IberObject Chk in Checks)
+                                        {
+                                            var ChId = Chk.GetLongVal("ID");
+                                            Utils.ToCardLog($"GetIMChecksSumm ChId  {ChId } ");
+                                            IberEnumClass PayMentsEnum = (IberEnumClass)Chk.GetEnum(INTERNAL_CHECKS_PAYMENTS);
+                                            Utils.ToCardLog($"GetIMChecksSumm ChId  {ChId } INTERNAL_CHECKS_PAYMENTS");
+                                            foreach (IberObject mPayMent in PayMentsEnum)
+                                            {
+                                                var AlohaTenderId = mPayMent.GetLongVal("TENDER_ID");
+                                                Utils.ToCardLog($"GetIMChecksSumm TENDER_ID  {AlohaTenderId}");
+                                                if (AlohaTenderId == 30)
+                                                {
+                                                    var ss = Convert.ToDecimal(mPayMent.GetDoubleVal("AMOUNT"));
+                                                    Utils.ToCardLog($"GetIMChecksSumm summ  {ss}");
+                                                    summ += ss;
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                    */
+                                }
+                            }
                         }
                     }
+                    catch (Exception e) {
+                        Utils.ToCardLog($"Error GetIMChecksSumm INTERNAL_EMP_CLOSED_TABLES {e.Message} ");
+                    }
+                   
                 }
                 catch (Exception e)
                 {
-                    Utils.ToCardLog($"GetIMChecksSumm error {e.Message}");
+                    Utils.ToCardLog($"GetIMChecksSumm 3 error {e.Message} ");
                 }
             }
+
+            Utils.ToCardLog($"GetIMChecksSumm end first ");
+
+
+            try
+            {
+                Utils.ToCardLog($"GetIMChecksSumm start second ");
+                QEmpls = Depot.GetEnum(INTERNAL_EMPLOYEES);
+                Utils.ToCardLog($"GetIMChecksSumm QEmpls  start second ");
+                foreach (IberObject Empl in QEmpls)
+                {
+                    try
+                    {
+                        var empId = Empl.GetLongVal("ID");
+                        Utils.ToCardLog($"GetIMChecksSumm Empl second Id {empId.ToString()}");
+                        IberEnum Checks = Empl.GetEnum(INTERNAL_EMP_CLOSED_CHECKS);
+                        Utils.ToCardLog($"GetIMChecksSumm Empl second Id {empId.ToString()} has closed checks");
+                        if (Checks != null)
+                        {
+                            foreach (IberObject Chk in Checks)
+                            {
+                                var ChId = Chk.GetLongVal("ID");
+                                Utils.ToCardLog($"GetIMChecksSumm ChId  {ChId } ");
+                                var Tblid = Chk.GetLongVal("TABLE_ID");
+                                Utils.ToCardLog($"GetIMChecksSumm Tblid  {Tblid } ");
+                                if (tblids.Contains(Tblid))
+                                {
+                                    Utils.ToCardLog($"GetIMChecksSumm table in range ");
+
+
+                                    IberEnumClass PayMentsEnum = (IberEnumClass)Chk.GetEnum(INTERNAL_CHECKS_PAYMENTS);
+                                    Utils.ToCardLog($"GetIMChecksSumm ChId  {ChId } INTERNAL_CHECKS_PAYMENTS");
+                                    foreach (IberObject mPayMent in PayMentsEnum)
+                                    {
+                                        var AlohaTenderId = mPayMent.GetLongVal("TENDER_ID");
+                                        Utils.ToCardLog($"GetIMChecksSumm TENDER_ID  {AlohaTenderId}");
+                                        if (AlohaTenderId == 30)
+                                        {
+                                            var ss = Convert.ToDecimal(mPayMent.GetDoubleVal("AMOUNT"));
+                                            Utils.ToCardLog($"GetIMChecksSumm summ  {ss}");
+                                            summ += ss;
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch 
+                    {
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Utils.ToCardLog($"GetIMChecksSumm 4 error {e.Message}");
+            }
+
             return summ;
         }
 

@@ -1241,7 +1241,12 @@ namespace PDiscountCard
                 {
                     if ((iniFile.FRSEnabled)&&(iniFile.FRSMaster))
                     {
-                        FRSClientApp.FRSClient.ZReport(AlohainiFile.BDate);
+                        try
+                        {
+                            FRSClientApp.FRSClient.ZReport(AlohainiFile.BDate);
+                        }
+                        catch { }
+                        AlohaEventVoids.IMReport();
                     }
 
                     if (iniFile.TRPOSXEnables)

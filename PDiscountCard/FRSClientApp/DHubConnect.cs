@@ -21,7 +21,7 @@ namespace PDiscountCard.FRSClientApp
             {
                 //var departmentNo = 205;
                 var departmentNo = depNUm;
-                var businesDate = DateTime.Now;
+                var businesDate = db;
 
                 var responseTask = Task.Run(() => GetDailyRevenueReport(departmentNo, businesDate));
                 responseTask.Wait();
