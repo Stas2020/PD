@@ -1891,14 +1891,14 @@ namespace PDiscountCard
             }
         }
 
-        internal static int CreditTerminalTimeout
-        {
-            get
-            {
-                int k = AbsIni.Read("Options", "CreditTerminalTimeout", 60);
-                return k;
-            }
-        }
+        //internal static int CreditTerminalTimeout TimeOut Always Zero
+        //{
+        //    get
+        //    {
+        //        int k = AbsIni.Read("Options", "CreditTerminalTimeout", 60);
+        //        return k;
+        //    }
+        //}
 
         internal static bool ExternalInterfaceEnable
         {
