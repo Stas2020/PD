@@ -318,7 +318,7 @@ namespace PDiscountCard.FRSClientApp
             }
             Res.Add(new FiscalCheckVisualString("   "));
             Res.Add(new FiscalCheckVisualString("   "));
-            /*
+            
             Res.Add(new FiscalCheckVisualString("--------------------------"));
 
 
@@ -339,7 +339,7 @@ namespace PDiscountCard.FRSClientApp
                 Res.Add(new FiscalCheckVisualString("Сумма не равна!!!", (AlohaImSumm - dhP).ToString()));
             }
             Res.Add(new FiscalCheckVisualString("--------------------------"));
-            */
+            
             Res.Add(new FiscalCheckVisualString("   "));
             Res.Add(new FiscalCheckVisualString("   "));
 
