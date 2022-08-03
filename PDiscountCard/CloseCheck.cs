@@ -187,7 +187,7 @@ namespace PDiscountCard
 
 
       internal static EventWaitHandle CreateCloseCheckFileEventWaitHandle = new AutoResetEvent(true);
-        internal static EventWaitHandle WriteCheck2FileEventWaitHandle = new AutoResetEvent(true);
+      internal static EventWaitHandle WriteCheck2FileEventWaitHandle = new AutoResetEvent(true);
 
         static void CloseCheckQuere()
         {
@@ -271,6 +271,7 @@ namespace PDiscountCard
                                         }
 
                                         Utils.ToCardLog("Переименовываю в  " + State1FileName);
+                                        //Зачем это нужно ?
                                         fi.MoveTo(State1FileName); //Нужен грамотный lock
                                     }
 
@@ -298,6 +299,8 @@ namespace PDiscountCard
                                             {
                                                 Ch.FiskalFileName = State1FileName;
                                                 ToShtrih.CloseCheck2(Ch);
+                                                fi.MoveTo(State2FileName);
+
                                             }
                                             else
                                             {

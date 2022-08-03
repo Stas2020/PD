@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AlohaFOHLib;
-using Interop.INTERCEPTACTIVITYLib;
+using INTERCEPTACTIVITYLib;
 using System.Runtime.InteropServices ;
 using System.Threading;
 
@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.ComponentModel;
 using System.IO;
 using PDiscountCard.MB;
+
 
 namespace PDiscountCard
 {

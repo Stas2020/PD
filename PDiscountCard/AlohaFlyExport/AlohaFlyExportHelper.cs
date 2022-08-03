@@ -86,15 +86,15 @@ namespace PDiscountCard.AlohaFlyExport
             {
                 if (Tndrid == 1)
                 {
-                    of.AirCompanyId = 44;
+                    of.AirCompanyId =  iniFile.AlohaFlyCompanyIdCash;
                 }
                 else if (Tndrid == 20)
                 {
-                    of.AirCompanyId = 45;
+                    of.AirCompanyId = iniFile.AlohaFlyCompanyIdCash;
                 }
                 else
                 {
-                    of.AirCompanyId = 41;
+                    of.AirCompanyId = iniFile.AlohaFlyCompanyIdOver;
                 }
                 
                 of.Closed = true;

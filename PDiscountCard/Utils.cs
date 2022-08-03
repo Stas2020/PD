@@ -1777,6 +1777,33 @@ namespace PDiscountCard
             }
         }
 
+        public static int AlohaFlyCompanyIdCash
+        {
+            get
+            {
+                int k = AbsIni.Read("AlohaFlyCompany", "AlohaFlyCompanyIdCash", 44);
+                return k;
+            }
+        }
+
+        public static int AlohaFlyCompanyIdPlast
+        {
+            get
+            {
+                int k = AbsIni.Read("AlohaFlyCompany", "AlohaFlyCompanyIdPlast", 45);
+                return k;
+            }
+        }
+
+        public static int AlohaFlyCompanyIdOver
+        {
+            get
+            {
+                int k = AbsIni.Read("AlohaFlyCompany", "AlohaFlyCompanyIdOver", 41);
+                return k;
+            }
+        }
+
         internal static int AlohaFlyExportUserId
         {
             get

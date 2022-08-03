@@ -596,7 +596,14 @@ namespace PDiscountCard
 
         public static void CloseCheck2(Check Ch)
         {
-            Utils.ToCardLog("CloseCheck2  Start"+Ch.CheckShortNum);
+            Utils.ToCardLog("CloseCheck2  Start" + Ch.CheckShortNum);
+            
+
+            if (!Ch.Tenders.Any(a => (a.TenderId == 1 || a.TenderId == 20)))
+            {
+                Utils.ToCardLog("В чеке есть вид оплат не 1 или 20");
+                return;
+            }
 
             ShtrihCommandBlock CloseCheckCommandBlock = new ShtrihCommandBlock();
             CloseCheckCommandBlock.ChkOwner = Ch;
