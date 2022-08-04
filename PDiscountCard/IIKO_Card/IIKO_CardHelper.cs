@@ -95,9 +95,25 @@ namespace PDiscountCard.IIKO_Card
 
             return new GiftCard(card_code, date, depNum, (double)balance);
         }
+
         public bool PayFromCard(String card_code, decimal sum, int depNum)
         {
-            Utils.ToLog($"Списание с карты {card_code} в iikoCard в размере {sum}");
+            return ChangeCardBalance(card_code, sum, depNum, false);
+        }
+
+        public bool ReturnToCard(String card_code, decimal sum, int depNum)
+        {
+            return ChangeCardBalance(card_code, sum, depNum, true);
+        }
+
+
+
+
+
+        private bool ChangeCardBalance(String card_code, decimal sum, int depNum, bool isReturn)
+        {
+            string actName = isReturn ? "Возврат" : "Списание";
+            Utils.ToLog($"{actName} с карты {card_code} в iikoCard в размере {sum}");
 
             IikoCardApi iikoCardApi = TryInitIikoCard(out string networkId, out string orgId, out string walletId);
 
@@ -108,29 +124,35 @@ namespace PDiscountCard.IIKO_Card
             if (guest != null)
             {
                 var balance = guest.walletBalances.Where(_wb => _wb.wallet.id == walletId).Sum(_wb => _wb.balance);
-                if (balance < sum)
+                if (balance < sum && !isReturn)
                 {
                     Utils.ToLog($"Остаток на карте {card_code} (balance бонусов) менее списываевой суммы в {sum}");
                     return false;
                 }
                 else
                 {
-                    var hasPayed = iikoCardApi.GuestBalanceMinus(new IikoCard.ApiChangeBalanceRequest()
+                    var request = new IikoCard.ApiChangeBalanceRequest()
                     {
                         customerId = guest.id,
                         organizationId = orgId,
                         walletId = walletId,
                         sum = sum,
                         comment = $"{depNum}"
-                    }, out string errorPay);
-                    if (hasPayed)
+                    };
+
+                    string errorTrans;
+                    var transactOk = isReturn
+                        ? iikoCardApi.GuestBalancePlus(request, out errorTrans) 
+                        : iikoCardApi.GuestBalanceMinus(request, out errorTrans);
+
+                    if (transactOk)
                     {
-                        Utils.ToLog($"Списано {sum} бонусов с карты {card_code}");
+                        Utils.ToLog($"{actName} {sum} бонусов с карты {card_code}");
                         return true;
                     }
                     else
                     {
-                        Utils.ToLog($"Не удалось списать {sum} бонусов с карты {card_code}. Сообщение: {errorPay}");
+                        Utils.ToLog($"{actName} не удалось. {sum} бонусов с карты {card_code}. Сообщение: {errorTrans}");
                         return false;
                     }
                 }
