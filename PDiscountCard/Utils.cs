@@ -1757,7 +1757,14 @@ namespace PDiscountCard
             }
         }
 
-
+        public static bool CreateWCFClient
+        {
+            get
+            {
+                int k = AbsIni.Read("AlohaFlyExport", "CreateWCFClient", 1);
+                return Convert.ToBoolean(k);
+            }
+        }
 
         public static bool AlohaFlyExportEnabled
         {

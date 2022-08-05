@@ -82,6 +82,9 @@ namespace PDiscountCard.AlohaFlyExport
             }
             of.AlohaGuidId = chk.GuidId;
             int Tndrid = chk.Tenders[0].AlohaTenderId;
+
+            Utils.ToLog("GetOrderFlightFromAlohaCheck Tndrid:" + Tndrid.ToString());
+
             if (Tndrid < 100)
             {
                 if (Tndrid == 1)
@@ -101,12 +104,15 @@ namespace PDiscountCard.AlohaFlyExport
                 of.PreCheckPrinted = (Tndrid == 2);
                 of.FRPrinted = (Tndrid != 2);
                 of.OrderStatus = AlohaService.OrderStatus._16;
+
+                Utils.ToLog("Чек отправлен как закрытый Tndrid:" + Tndrid.ToString());
             }
             else
             {
                 of.AirCompanyId = Tndrid - 100;
                 of.Closed = false;
                 of.OrderStatus = AlohaService.OrderStatus._4;
+                Utils.ToLog("Чек отправлен как открытый Tndrid:" + Tndrid.ToString());
             }
 
             of.CreatedById = iniFile.AlohaFlyExportUserId;

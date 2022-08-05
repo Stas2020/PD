@@ -22,6 +22,13 @@ namespace PDiscountCard.Config
             CardServiceClient _client = null;
             bool succes = false;
 
+            if (!iniFile.CreateWCFClient)
+            {
+                return _client;
+            }
+            
+
+
             try
             {
                 Utils.ToCardLog("CreateWCFClient");
@@ -31,7 +38,7 @@ namespace PDiscountCard.Config
                 binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
                 binding.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
 
-                string uri = @"net.tcp://192.168.254.139/CardService/CardService.svc";
+                string uri = @"net.tcp://192.168.254.1391/CardService/CardService.svc";
 
                 EndpointAddress endpoint = new EndpointAddress(new Uri(uri));
 

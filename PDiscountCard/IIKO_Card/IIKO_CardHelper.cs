@@ -19,5 +19,10 @@ namespace PDiscountCard.IIKO_Card
 
             return null;
         }
+
+        public void SetBalance(String card_code, double balance)
+        {
+
+        }
     }
 }
