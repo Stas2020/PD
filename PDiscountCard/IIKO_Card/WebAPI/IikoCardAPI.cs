@@ -366,6 +366,7 @@ namespace PDiscountCard.IIKO_Card
             public int depNum;
             public string dateStart;
             public decimal sumStart;
+            public bool? active;
         }
 
         public class OrganizationGuestInfo

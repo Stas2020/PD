@@ -12,13 +12,15 @@ namespace PDiscountCard.IIKO_Card
         private DateTime dt_create;
         private int num_shop;
         private double balance;
+        private bool active;
 
-        public GiftCard(string card_code_, DateTime dt_create_, int num_shop_, double balance_)
+        public GiftCard(string card_code_, DateTime dt_create_, int num_shop_, double balance_, bool active_)
         {
             card_code = card_code_;
             dt_create = dt_create_;
             num_shop = num_shop_;
             balance = balance_;
+            active = active_;
 
         }
         public string CardCode   
@@ -38,6 +40,10 @@ namespace PDiscountCard.IIKO_Card
         public double Balance
         {
             get { return balance; }
+        }
+        public bool Active
+        {
+            get { return active; }
         }
     }
 }
