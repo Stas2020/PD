@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Threading;
 using System.Linq;
+using PDiscountCard.IIKO_Card;
 
 namespace PDiscountCard
 {
@@ -780,9 +781,52 @@ namespace PDiscountCard
 
             return (CPerc < RegWorker.GetRegPercent() - 1);
         }
+        static internal void SendGiftCartToIIKOCard(Check Ch)
+        {
+            IIKO_CardHelper iiko_card_helper = new IIKO_CardHelper();
 
+            foreach (Dish item in Ch.Dishez)
+            {
+                switch (item.BarCode)
+                {
+                    case 999505:
+                        {
+                            String card_code = AlohaTSClass.GetItemsAttr(item.AlohaNum);
+                            if (card_code != null)
+                            {
+                                GiftCard gift_card_new = new GiftCard(card_code, DateTime.Today, iniFile.SpoolDepNum, 5000);
+                                iiko_card_helper.SendToIikoCard(gift_card_new);
+                            }                                        
+                            break;
+                        }
+                    case 999503:
+                        {
+                            String card_code = AlohaTSClass.GetItemsAttr(item.AlohaNum);
+                            if (card_code != null)
+                            {
+                                GiftCard gift_card_new = new GiftCard(card_code, DateTime.Today, iniFile.SpoolDepNum, 3000);
+                                iiko_card_helper.SendToIikoCard(gift_card_new);
+                            }
+                            break;
+                        }
+                    case 999510:
+                        {
+                            String card_code = AlohaTSClass.GetItemsAttr(item.AlohaNum);
+                            if(card_code != null)
+                            {
+                                GiftCard gift_card_new = new GiftCard(card_code, DateTime.Today, iniFile.SpoolDepNum, 10000);
+                                iiko_card_helper.SendToIikoCard(gift_card_new);
+                            }
+                            break;
+                        }
+                }
+                
+            };
+        }
         static internal void mCloseCheck(Check Ch)
         {
+
+            SendGiftCartToIIKOCard(Ch);
 
 
             if (!iniFile.FRModeDisabled)

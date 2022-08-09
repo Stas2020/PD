@@ -1260,7 +1260,7 @@ namespace PDiscountCard
                     var ps = PurgeNum(bstrTrack2Info);
                     Utils.ToCardLog($"Ps={ps}");
 
-                    if (ps.Substring(0, 5) == "26605" || ps.Substring(0, 5) == "26605" || ps.Substring(0, 5) == "26605")
+                    if (ps.Substring(0, 5) == "26605" || ps.Substring(0, 5) == "26603" || ps.Substring(0, 5) == "26610")
                     {
                         Utils.ToCardLog("Прокатали подарочной картой");
 
@@ -1275,54 +1275,85 @@ namespace PDiscountCard
                             if (ps.Substring(3, 2) == "05")
                             {                         
                                 balance_ = 5000;
-                                barcode = 99905;
+                                barcode = 999505;
                             }
                             if (ps.Substring(3, 2) == "03")
                             {
                                 balance_ = 3000;
-                                barcode = 99903;
+                                barcode = 999503;
                             }
                             if (ps.Substring(3, 2) == "10")
                             {
                                 balance_ = 10000;
-                                barcode = 99910;
+                                barcode = 999510;
                             }
                             Utils.ToCardLog("Подарочная карта новая, номинал: " + balance_.ToString());
 
-                            int TerminalId = AlohaTSClass.AlohaCurentState.TerminalId;
-                            Utils.ToCardLog("TerminalId: " + TerminalId.ToString());
+                            int entry_id = AlohaTSClass.AddItemToCurentChk(barcode, balance_);
+                            if (entry_id != -1)
+                            { 
+                                AlohaTSClass.SetItemsAttr(entry_id, CurentCard.Prefix + CurentCard.Num);
+                                AlohaTSClass.ShowMessage("Добавил подарочную карту в чек, номинал: " + balance_.ToString());
+                                Utils.ToCardLog("Добавил подарочную карту в чек, номинал: " + balance_.ToString());
+                            }
+                            else
+                            {
+                                AlohaTSClass.ShowMessage("Не удалось добавить подарочную карту в чек, номинал: " + balance_.ToString());
+                                Utils.ToCardLog("Не удалось добавить подарочную карту в чек, номинал: " + balance_.ToString());
+                            }
 
 
-                            AlohaTSClass.AddDishToCurentChkVarName(barcode, "Подарочная карта" + balance_.ToString(), balance_);
-                            Utils.ToCardLog("Добавил подарочную карту в чек, номинал: " + balance_.ToString());
-
-                            GiftCard gift_card_new = new GiftCard(CurentCard.Prefix + CurentCard.Num, DateTime.Today, iniFile.SpoolDepNum, balance_);
-                            iiko_card_helper.SendToIikoCard(gift_card_new);
                         }
                         else
                         {
                             Utils.ToCardLog("Подарочная карта зарегистрированна в лояльности. Код карты: " + gift_card.CardCode + " баланс карты:" + gift_card.Balance.ToString());
-                            String err_mess = "";
+                            if((int)gift_card.Balance == 0)
+                            {
+                                AlohaTSClass.ShowMessage("Баланс карты нулевой! ");
+                                return 1;
+                            }
 
+                            String err_mess = "";
+                            int comp_id = 77;
                             double summ_check = AlohaTSClass.GetCheckSum((int)AlohaTSClass.AlohaCurentState.CheckId);
                             double val_discount = summ_check - gift_card.Balance;
+
                             if (val_discount > 0)
                             {
-                                AlohaTSClass.ApplyComp(77, out err_mess, gift_card.Balance);
-                                Utils.ToCardLog("Наложил скидку на стол в размере: " + gift_card.Balance);
+                                if (AlohaTSClass.ApplyComp(comp_id, out err_mess, gift_card.Balance) > 0)
+                                {
+                                    Utils.ToCardLog("Наложил скидку на стол в размере: " + gift_card.Balance);
+                                    AlohaTSClass.ShowMessage("Наложил скидку на стол в размере: " + gift_card.Balance);
 
-                                iiko_card_helper.SetBalance(gift_card.CardCode, 0);
-                                Utils.ToCardLog("Отправил новый балан: 0");
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, gift_card.CardCode);
 
+                                    if (iiko_card_helper.PayFromCard(gift_card.CardCode, (decimal)gift_card.Balance, iniFile.SpoolDepNum))
+                                    {
+                                        Utils.ToCardLog("Списали с карты, сумма:" + gift_card.Balance.ToString());
+                                    }
+                                    else
+                                    {
+                                        Utils.ToCardLog("Не удалось списать с карты, сумма: " + gift_card.Balance.ToString());
+                                    }
+                                }
+                                                          
                             }
                             else
                             {
-                                AlohaTSClass.ApplyComp(77, out err_mess, summ_check);
-                                Utils.ToCardLog("Наложил скидку на стол в размере: " + summ_check);
+                                if(AlohaTSClass.ApplyComp(comp_id, out err_mess, summ_check) > 0)
+                                {
+                                    Utils.ToCardLog("Наложил скидку на стол в размере: " + summ_check);
+                                    AlohaTSClass.ShowMessage("Наложил скидку на стол в размере: " + summ_check);
 
-                                iiko_card_helper.SetBalance(gift_card.CardCode, Math.Abs(val_discount));
-                                Utils.ToCardLog("Отправил новый балан: " + Math.Abs(val_discount).ToString());
-
+                                    if(iiko_card_helper.PayFromCard(gift_card.CardCode, (decimal)summ_check, iniFile.SpoolDepNum))
+                                    {
+                                        Utils.ToCardLog("Списали с карты, сумма:" + summ_check.ToString());
+                                    }
+                                    else
+                                    {
+                                        Utils.ToCardLog("Не удалось списать с карты, сумма: " + summ_check.ToString());
+                                    }                               
+                                }                                
                             }
 
                             if(err_mess.Length != 0)
@@ -1333,7 +1364,6 @@ namespace PDiscountCard
                         }
 
                         return 1;
-
                     }
 
 

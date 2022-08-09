@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-
+using PDiscountCard.IIKO_Card;
 
 namespace PDiscountCard
 {
@@ -1083,6 +1083,7 @@ namespace PDiscountCard
             DisplayBoardClass.AddDishEvent(CheckId, EntryId);
             SendToVideo.AddItem(CheckId, EntryId);
             CheckAddBonusCard(EmployeeId, QueueId, TableId, CheckId, EntryId);
+
         }
 
         internal static void CheckAddBonusCard(int EmployeeId, int QueueId, int TableId, int CheckId, int EntryId)
@@ -1130,7 +1131,29 @@ namespace PDiscountCard
 
 
         }
-
+        internal static void DeleteComp(int ManagerId, int EmployeeId, int QueueId, int TableId, int CheckId, int CompTypeId, int CompId)
+        {
+            Utils.ToLog("Удалили скидку, CompTypeId:" + CompTypeId.ToString());
+            if (CompTypeId == 77)
+            {
+                String card_code = AlohaTSClass.GetCheckAttr(CheckId);
+                if (card_code != null)
+                {
+                    IIKO_CardHelper iiko_card_helper = new IIKO_CardHelper();
+                    Check check = AlohaTSClass.GetCheckById(CheckId);
+                    decimal sum_comp = check.Comp;
+                    if(iiko_card_helper.ReturnToCard(card_code, sum_comp, iniFile.SpoolDepNum))
+                    {
+                        Utils.ToLog("Вернул деньги на падарочную карту, card_code:" + card_code + " сумма:" + sum_comp.ToString());
+                    }
+                    else
+                    {
+                        Utils.ToLog("НЕ вернул деньги на падарочную карту, card_code:" + card_code + " сумма:" + sum_comp.ToString());
+                    }
+                    
+                }
+            }
+        }
 
         internal static void CloseCheck(int EmployeeId, int QueueId, int TableId, int CheckId)
         {

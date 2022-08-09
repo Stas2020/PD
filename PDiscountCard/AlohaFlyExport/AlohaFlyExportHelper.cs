@@ -90,14 +90,17 @@ namespace PDiscountCard.AlohaFlyExport
                 if (Tndrid == 1)
                 {
                     of.AirCompanyId =  iniFile.AlohaFlyCompanyIdCash;
+                    Utils.ToLog("Tndrid:" + Tndrid.ToString() + " AlohaFlyCompanyIdCash:" + iniFile.AlohaFlyCompanyIdCash.ToString());
                 }
                 else if (Tndrid == 20)
                 {
-                    of.AirCompanyId = iniFile.AlohaFlyCompanyIdCash;
+                    of.AirCompanyId = iniFile.AlohaFlyCompanyIdPlast;
+                    Utils.ToLog("Tndrid:" + Tndrid.ToString() + " AlohaFlyCompanyIdPlast:" + iniFile.AlohaFlyCompanyIdPlast.ToString());
                 }
                 else
                 {
                     of.AirCompanyId = iniFile.AlohaFlyCompanyIdOver;
+                    Utils.ToLog("Tndrid:" + Tndrid.ToString() + " AlohaFlyCompanyIdOver:" + iniFile.AlohaFlyCompanyIdOver.ToString());
                 }
                 
                 of.Closed = true;

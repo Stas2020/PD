@@ -5818,6 +5818,38 @@ namespace PDiscountCard
             AlohaFuncs.SetObjectAttribute(540, CheckId, "TableNum", Num.ToString());
         }
 
+        static internal void SetItemsAttr(int item_id, String value)
+        {
+            AlohaFuncs.SetObjectAttribute(INTERNAL_ITEMS, item_id, "gift_card", value);
+        }
+        static internal String GetItemsAttr(int item_id)
+        {
+            try
+            {
+                return AlohaFuncs.GetObjectAttribute(INTERNAL_ITEMS, item_id, "gift_card");
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        static internal void SetCheckAttr(int check_id, String value)
+        {
+            AlohaFuncs.SetObjectAttribute(INTERNAL_CHECKS, check_id, "gift_card", value);
+        }
+        static internal String GetCheckAttr(int check_id)
+        {
+            try
+            {
+                return AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, check_id, "gift_card");
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        
 
         static internal void SetSVCardSaleAttr(int CheckId, String Card)
         {
@@ -6558,7 +6590,26 @@ namespace PDiscountCard
             }
 
         }
+        static internal int AddItemToCurentChk(int BarCode, double price = -999999999.000000)
+        {
+            int entry_id = -1;
+            Utils.ToCardLog("AddItemToCurentChk " + BarCode);
+            try
+            {
+                entry_id = AlohaFuncs.BeginItem(AlohaCurentState.TerminalId, (int)AlohaCurentState.CheckId, BarCode, "", price);
+                AlohaFuncs.EndItem(AlohaCurentState.TerminalId);
+                AlohaFuncs.SelectAllEntriesOnCheck(AlohaCurentState.TerminalId, (int)AlohaCurentState.CheckId);
+                AlohaFuncs.OrderItems(AlohaCurentState.TerminalId, (int)AlohaCurentState.TableId, 2);
+                AlohaFuncs.DeselectAllEntries(AlohaCurentState.TerminalId);
 
+            }
+            catch (Exception e)
+            {
+                Utils.ToCardLog("Error AddItemToCurentChk " + e.Message);
+            }
+
+            return entry_id;
+        }
 
         /// <summary>
         /// Добавление блюда в чек с вариативным именем. Заказ только блюда
