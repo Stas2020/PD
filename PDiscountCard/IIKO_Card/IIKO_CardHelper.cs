@@ -98,7 +98,7 @@ namespace PDiscountCard.IIKO_Card
                 var newGuestId = iikoCardApi.CreateOrUpdateGuest(orgId, new IikoCard.CustomerForImport()
                 {
                     id = guest.id,
-                    userData = JsonConvert.SerializeObject(new IikoCard.GuestUserData() { depNum = depNum, dateStart = $"{dateStart:yyyy-MM-dd}", sumStart = (decimal)sum, active = active })
+                    userData = JsonConvert.SerializeObject(new IikoCard.GuestUserData() { depNum = depNum, dateStart = $"{dateStart:yyyy-MM-dd}", sumStart = (decimal)sum, active = acviteStatus })
                 }, out string errorMessageGuestCreate);
 
                 if (newGuestId != null)
