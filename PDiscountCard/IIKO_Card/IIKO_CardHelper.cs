@@ -10,15 +10,18 @@ namespace PDiscountCard.IIKO_Card
 {
     class IIKO_CardHelper
     {
+        static string IikoCardFlag = "[iikoCard] ";
         public bool SendToIikoCard(GiftCard card)
         {
+            DateTime tm = DateTime.Now;
+
             var cardNumber = card.CardCode;
             var depNum = card.NumShop;
             var dateStart = $"{card.DTCreate:yyyy-MM-dd}";
             var sum = card.Balance;
             var active = card.Active;
 
-            Utils.ToLog($"Создания карты {cardNumber} в iikoCard");
+            Utils.ToLog($"{IikoCardFlag}Создание карты {cardNumber} в iikoCard");
 
             IikoCardApi iikoCardApi = TryInitIikoCard(out string networkId, out string orgId, out string walletId);
 
@@ -44,21 +47,24 @@ namespace PDiscountCard.IIKO_Card
                 }, out string errorMessageBalancePlus);
                 if (!balanceUpdated)
                 {
-                    Utils.ToLog($"Не удалось зачислить гостю с номером карты {cardNumber} в {depNum} от {dateStart} бонусы в размере {sum}. Сообщение: {errorMessageBalancePlus}");
+                    Utils.ToLog($"{IikoCardFlag}Не удалось зачислить на карту {cardNumber} в {depNum} от {dateStart} бонусы в размере {sum}. {GetTiming(tm)}. Сообщение: {errorMessageBalancePlus}");
                     return false;
                 }
             }
             else
             {
-                Utils.ToLog($"Не удалось создать госта с номером карты {cardNumber} в {depNum} от {dateStart}. Сообщение: {errorMessageGuestCreate}");
+                Utils.ToLog($"{IikoCardFlag}Не удалось создать карту {cardNumber} в {depNum} от {dateStart}. {GetTiming(tm)}. Сообщение: {errorMessageGuestCreate}");
                 return false;
             }
+            Utils.ToLog($"{IikoCardFlag}Карта {cardNumber} от {dateStart}/{depNum} создана ({(active ? "активна" : "неактивна")}). {GetTiming(tm)}");
             return true;
         }
 
-        public bool SetCardActiveStatus(String card_code, bool acviteStatus)
+        public bool SetCardActiveStatus(String card_code, bool activeStatus)
         {
-            Utils.ToLog($"Установка статуса карты {card_code} active={acviteStatus}");
+            DateTime tm = DateTime.Now;
+
+            Utils.ToLog($"{IikoCardFlag}Установка статуса карты {card_code} active={activeStatus}");
 
             IikoCardApi iikoCardApi = TryInitIikoCard(out string networkId, out string orgId, out string walletId);
 
@@ -81,7 +87,7 @@ namespace PDiscountCard.IIKO_Card
                     IikoCard.GuestUserData userData = JsonConvert.DeserializeObject<IikoCard.GuestUserData>(guest.userData);
                     if (!DateTime.TryParseExact(userData.dateStart, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateStart))
                     {
-                        Utils.ToLog($"Невозможно распознать дату выпуска карты {card_code} в iikoCard. UserData={guest.userData}");
+                        Utils.ToLog($"{IikoCardFlag}Невозможно распознать дату выпуска карты {card_code} в iikoCard. {GetTiming(tm)}. UserData={guest.userData}");
                         //return null;
                     }
                     depNum = userData.depNum;
@@ -91,31 +97,31 @@ namespace PDiscountCard.IIKO_Card
                 }
                 catch (Exception ex)
                 {
-                    Utils.ToLog($"Невозможно распознать объект userData карты {card_code} в iikoCard. UserData={guest.userData} Сообщение: {ex.Message}");
+                    Utils.ToLog($"{IikoCardFlag}Невозможно распознать объект userData карты {card_code} в iikoCard. {GetTiming(tm)}. UserData={guest.userData} Сообщение: {ex.Message}");
                     //return null;
                 }
 
                 var newGuestId = iikoCardApi.CreateOrUpdateGuest(orgId, new IikoCard.CustomerForImport()
                 {
                     id = guest.id,
-                    userData = JsonConvert.SerializeObject(new IikoCard.GuestUserData() { depNum = depNum, dateStart = $"{dateStart:yyyy-MM-dd}", sumStart = (decimal)sum, active = acviteStatus })
+                    userData = JsonConvert.SerializeObject(new IikoCard.GuestUserData() { depNum = depNum, dateStart = $"{dateStart:yyyy-MM-dd}", sumStart = (decimal)sum, active = activeStatus })
                 }, out string errorMessageGuestCreate);
 
                 if (newGuestId != null)
                 {
-                    Utils.ToLog($"{(acviteStatus ? "Активирована" : "Деактивирована")} карта {card_code}");
+                    Utils.ToLog($"{IikoCardFlag}{(activeStatus ? "Активирована" : "Деактивирована")} карта {card_code}. {GetTiming(tm)}");
                     return true;
                 }
                 else
                 {
-                    Utils.ToLog($"Не удалось {(acviteStatus ? "активировать" : "деактивировать")} карту {card_code}. Сообщение: {errorMessageGuestCreate}");
+                    Utils.ToLog($"{IikoCardFlag}Не удалось {(activeStatus ? "активировать" : "деактивировать")} карту {card_code}. {GetTiming(tm)}. Сообщение: {errorMessageGuestCreate}");
                     return false;
                 }
 
             }
             else
             {
-                Utils.ToLog($"Карта {card_code} не найдена в iikoCard. Сообщение: {errorGuest} ");
+                Utils.ToLog($"{IikoCardFlag}Карта {card_code} не найдена в iikoCard. {GetTiming(tm)}. Сообщение: {errorGuest} ");
                 return false;
             }
 
@@ -124,7 +130,9 @@ namespace PDiscountCard.IIKO_Card
 
         public GiftCard GetCard(String card_code)
         {
-            Utils.ToLog($"Запрос баланса карты {card_code} в iikoCard");
+            DateTime tm = DateTime.Now;
+
+            Utils.ToLog($"{IikoCardFlag}Запрос баланса карты {card_code} в iikoCard");
 
             IikoCardApi iikoCardApi = TryInitIikoCard(out string networkId, out string orgId, out string walletId);
 
@@ -144,7 +152,7 @@ namespace PDiscountCard.IIKO_Card
                     IikoCard.GuestUserData userData = JsonConvert.DeserializeObject<IikoCard.GuestUserData>(guest.userData);
                     if (!DateTime.TryParseExact(userData.dateStart, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                     {
-                        Utils.ToLog($"Невозможно распознать дату выпуска карты {card_code} в iikoCard. UserData={guest.userData}");
+                        Utils.ToLog($"{IikoCardFlag}Невозможно распознать дату выпуска карты {card_code} в iikoCard. {GetTiming(tm)}. UserData={guest.userData}");
                         //return null;
                     }
                     depNum = userData.depNum;
@@ -153,16 +161,17 @@ namespace PDiscountCard.IIKO_Card
                 }
                 catch(Exception ex)
                 {
-                    Utils.ToLog($"Невозможно распознать объект userData карты {card_code} в iikoCard. UserData={guest.userData}. Сообщение: {ex.Message}");
+                    Utils.ToLog($"{IikoCardFlag}Невозможно распознать объект userData карты {card_code} в iikoCard. {GetTiming(tm)}. UserData={guest.userData}. Сообщение: {ex.Message}");
                     //return null;
                 }
             }
             else
             {
-                Utils.ToLog($"Карта {card_code} не найдена в iikoCard. Сообщение: {errorGuest} ");
+                Utils.ToLog($"{IikoCardFlag}Карта {card_code} не найдена в iikoCard. {GetTiming(tm)}. Сообщение: {errorGuest} ");
                 return null;
             }
 
+            Utils.ToLog($"{IikoCardFlag}Карта {card_code} от {date}/{depNum} найдена ({(active ? "активна" : "неактивна")}), баланс: {balance} . {GetTiming(tm)}");
             return new GiftCard(card_code, date, depNum, (double)balance, active);
         }
 
@@ -182,8 +191,9 @@ namespace PDiscountCard.IIKO_Card
 
         private bool ChangeCardBalance(String card_code, decimal sum, int depNum, bool isReturn)
         {
+            DateTime tm = DateTime.Now;
             string actName = isReturn ? "Возврат" : "Списание";
-            Utils.ToLog($"{actName} с карты {card_code} в iikoCard в размере {sum}");
+            Utils.ToLog($"{IikoCardFlag}{actName} с карты {card_code} в iikoCard в размере {sum}");
 
             IikoCardApi iikoCardApi = TryInitIikoCard(out string networkId, out string orgId, out string walletId);
 
@@ -196,7 +206,7 @@ namespace PDiscountCard.IIKO_Card
                 var balance = guest.walletBalances.Where(_wb => _wb.wallet.id == walletId).Sum(_wb => _wb.balance);
                 if (balance < sum && !isReturn)
                 {
-                    Utils.ToLog($"Остаток на карте {card_code} (balance бонусов) менее списываевой суммы в {sum}");
+                    Utils.ToLog($"{IikoCardFlag}Остаток на карте {card_code} (balance бонусов) менее списываевой суммы в {sum}. {GetTiming(tm)}");
                     return false;
                 }
                 else
@@ -217,19 +227,19 @@ namespace PDiscountCard.IIKO_Card
 
                     if (transactOk)
                     {
-                        Utils.ToLog($"{actName} {sum} бонусов с карты {card_code}");
+                        Utils.ToLog($"{IikoCardFlag}{actName} {sum} бонусов с карты {card_code}. {GetTiming(tm)}");
                         return true;
                     }
                     else
                     {
-                        Utils.ToLog($"{actName} не удалось. {sum} бонусов с карты {card_code}. Сообщение: {errorTrans}");
+                        Utils.ToLog($"{IikoCardFlag}{actName} не удалось. {sum} бонусов с карты {card_code}. {GetTiming(tm)}. Сообщение: {errorTrans}");
                         return false;
                     }
                 }
             }
             else
             {
-                Utils.ToLog($"Карта {card_code} не найдена. Сообщение: {errorGuest}");
+                Utils.ToLog($"{IikoCardFlag}Карта {card_code} не найдена. Сообщение: {errorGuest}");
                 return false;
             }
         }
@@ -244,6 +254,8 @@ namespace PDiscountCard.IIKO_Card
         string iikoCardDomain = "https://iiko.biz";
         private IikoCardApi TryInitIikoCard(out string networkId, out string orgId, out string walletId)
         {
+            DateTime tm = DateTime.Now;
+
             networkId = null;
             orgId = null;
             walletId = null;
@@ -253,6 +265,7 @@ namespace PDiscountCard.IIKO_Card
             if (!loginOk)
             {
                 // Не удалось авторизоваться в iikoCard errorMessageLogin
+                Utils.ToLog($"{IikoCardFlag}Не удалось авторизоваться в iikoCard. {GetTiming(tm)}. Сообщение: {errorMessageLogin}");
                 return null;
             }
 
@@ -273,6 +286,7 @@ namespace PDiscountCard.IIKO_Card
             if (organizationsAll == null)
             {
                 // Не удалось получить список организаций в iikoCard errorMessageGetOrgs
+                Utils.ToLog($"{IikoCardFlag}Не удалось получить список организаций в iikoCard. Сообщение: {errorMessageGetOrgs}");
                 return null;
             }
 
@@ -280,6 +294,7 @@ namespace PDiscountCard.IIKO_Card
             if (orgCoffeemania == null)
             {
                 // Не удалось найти организацию Coffeemania в iikoCard
+                Utils.ToLog($"{IikoCardFlag}Не удалось найти организацию Coffeemania");
                 return null;
             }
 
@@ -290,6 +305,7 @@ namespace PDiscountCard.IIKO_Card
             if (programsAll == null)
             {
                 // Не удалось получить список программ в iikoCard errorMessageProgs
+                Utils.ToLog($"{IikoCardFlag}Не удалось получить список программ в iikoCard. Сообщение: {errorMessageProgs}");
                 return null;
             }
             var progAlohaSV = programsAll.FirstOrDefault(_pr => Convert.ToString(_pr.description).ToUpper().IndexOf("ALOHA") != -1
@@ -297,6 +313,7 @@ namespace PDiscountCard.IIKO_Card
             if (progAlohaSV == null)
             {
                 // Не удалось найти программу Подарочные карты Aloha Stored Values в iikoCard
+                Utils.ToLog($"{IikoCardFlag}Не удалось найти программу Подарочные карты Aloha Stored Values в iikoCard");
                 return null;
             }
 
@@ -304,10 +321,12 @@ namespace PDiscountCard.IIKO_Card
 
             return iikoCardApi;
         }
-
-        public void SetBalance(String card_code, double balance)
+        static int timingMax = 2;
+        static string GetTiming(DateTime startTime)
         {
-
+            var timing = (Math.Round((DateTime.Now - startTime).TotalSeconds, 3));
+            return $"Тайминг:{timing} cек{(timing >= timingMax ? " (!!!)" : "")}";
         }
     }
+
 }
