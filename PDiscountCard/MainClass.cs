@@ -1295,6 +1295,9 @@ namespace PDiscountCard
                                 AlohaTSClass.SetItemsAttr(entry_id, CurentCard.Prefix + CurentCard.Num);
                                 AlohaTSClass.ShowMessage("Добавил подарочную карту в чек, номинал: " + balance_.ToString());
                                 Utils.ToCardLog("Добавил подарочную карту в чек, номинал: " + balance_.ToString());
+
+                                GiftCard gift_card_new = new GiftCard(CurentCard.Prefix + CurentCard.Num, DateTime.Today, iniFile.SpoolDepNum, balance_, false);
+                                iiko_card_helper.SendToIikoCard(gift_card_new);
                             }
                             else
                             {
@@ -1310,6 +1313,12 @@ namespace PDiscountCard
                             if((int)gift_card.Balance == 0)
                             {
                                 AlohaTSClass.ShowMessage("Баланс карты нулевой! ");
+                                return 1;
+                            }
+
+                            if (!gift_card.Active)
+                            {
+                                AlohaTSClass.ShowMessage("Карта не активна! Обратитесь в тех.поддержку. ");
                                 return 1;
                             }
 
@@ -1345,7 +1354,9 @@ namespace PDiscountCard
                                     Utils.ToCardLog("Наложил скидку на стол в размере: " + summ_check);
                                     AlohaTSClass.ShowMessage("Наложил скидку на стол в размере: " + summ_check);
 
-                                    if(iiko_card_helper.PayFromCard(gift_card.CardCode, (decimal)summ_check, iniFile.SpoolDepNum))
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, gift_card.CardCode);
+
+                                    if (iiko_card_helper.PayFromCard(gift_card.CardCode, (decimal)summ_check, iniFile.SpoolDepNum))
                                     {
                                         Utils.ToCardLog("Списали с карты, сумма:" + summ_check.ToString());
                                     }

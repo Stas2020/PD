@@ -787,40 +787,11 @@ namespace PDiscountCard
 
             foreach (Dish item in Ch.Dishez)
             {
-                switch (item.BarCode)
+                if(item.BarCode == 999505 || item.BarCode == 999503 || item.BarCode == 999510)
                 {
-                    case 999505:
-                        {
-                            String card_code = AlohaTSClass.GetItemsAttr(item.AlohaNum);
-                            if (card_code != null)
-                            {
-                                GiftCard gift_card_new = new GiftCard(card_code, DateTime.Today, iniFile.SpoolDepNum, 5000);
-                                iiko_card_helper.SendToIikoCard(gift_card_new);
-                            }                                        
-                            break;
-                        }
-                    case 999503:
-                        {
-                            String card_code = AlohaTSClass.GetItemsAttr(item.AlohaNum);
-                            if (card_code != null)
-                            {
-                                GiftCard gift_card_new = new GiftCard(card_code, DateTime.Today, iniFile.SpoolDepNum, 3000);
-                                iiko_card_helper.SendToIikoCard(gift_card_new);
-                            }
-                            break;
-                        }
-                    case 999510:
-                        {
-                            String card_code = AlohaTSClass.GetItemsAttr(item.AlohaNum);
-                            if(card_code != null)
-                            {
-                                GiftCard gift_card_new = new GiftCard(card_code, DateTime.Today, iniFile.SpoolDepNum, 10000);
-                                iiko_card_helper.SendToIikoCard(gift_card_new);
-                            }
-                            break;
-                        }
-                }
-                
+                    String card_code = AlohaTSClass.GetItemsAttr(item.AlohaNum);
+                    iiko_card_helper.SetCardActiveStatus(card_code, true);
+                }                         
             };
         }
         static internal void mCloseCheck(Check Ch)
