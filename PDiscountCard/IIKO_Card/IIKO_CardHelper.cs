@@ -19,7 +19,7 @@ namespace PDiscountCard.IIKO_Card
             var sum = card.Balance;
             var active = card.Active;
 
-            Utils.ToLog($"{IikoCardFlag}Создания карты {cardNumber} в iikoCard");
+            Utils.ToLog($"{IikoCardFlag}Создание карты {cardNumber} в iikoCard");
 
             IikoCardApi iikoCardApi = TryInitIikoCard(out string networkId, out string orgId, out string walletId);
 
@@ -45,15 +45,16 @@ namespace PDiscountCard.IIKO_Card
                 }, out string errorMessageBalancePlus);
                 if (!balanceUpdated)
                 {
-                    Utils.ToLog($"{IikoCardFlag}Не удалось зачислить гостю с номером карты {cardNumber} в {depNum} от {dateStart} бонусы в размере {sum}. Сообщение: {errorMessageBalancePlus}");
+                    Utils.ToLog($"{IikoCardFlag}Не удалось зачислить на карту {cardNumber} в {depNum} от {dateStart} бонусы в размере {sum}. Сообщение: {errorMessageBalancePlus}");
                     return false;
                 }
             }
             else
             {
-                Utils.ToLog($"{IikoCardFlag}Не удалось создать госта с номером карты {cardNumber} в {depNum} от {dateStart}. Сообщение: {errorMessageGuestCreate}");
+                Utils.ToLog($"{IikoCardFlag}Не удалось создать карту {cardNumber} в {depNum} от {dateStart}. Сообщение: {errorMessageGuestCreate}");
                 return false;
             }
+            Utils.ToLog($"{IikoCardFlag}Карта {cardNumber} от {dateStart}/{depNum} создана ({(active ? "активна" : "неактивна")})");
             return true;
         }
 
@@ -255,6 +256,7 @@ namespace PDiscountCard.IIKO_Card
             if (!loginOk)
             {
                 // Не удалось авторизоваться в iikoCard errorMessageLogin
+                Utils.ToLog($"{IikoCardFlag}Не удалось авторизоваться в iikoCard. Сообщение: {errorMessageLogin}");
                 return null;
             }
 
@@ -275,6 +277,7 @@ namespace PDiscountCard.IIKO_Card
             if (organizationsAll == null)
             {
                 // Не удалось получить список организаций в iikoCard errorMessageGetOrgs
+                Utils.ToLog($"{IikoCardFlag}Не удалось получить список организаций в iikoCard. Сообщение: {errorMessageGetOrgs}");
                 return null;
             }
 
@@ -282,6 +285,7 @@ namespace PDiscountCard.IIKO_Card
             if (orgCoffeemania == null)
             {
                 // Не удалось найти организацию Coffeemania в iikoCard
+                Utils.ToLog($"{IikoCardFlag}Не удалось найти организацию Coffeemania");
                 return null;
             }
 
@@ -292,6 +296,7 @@ namespace PDiscountCard.IIKO_Card
             if (programsAll == null)
             {
                 // Не удалось получить список программ в iikoCard errorMessageProgs
+                Utils.ToLog($"{IikoCardFlag}Не удалось получить список программ в iikoCard. Сообщение: {errorMessageProgs}");
                 return null;
             }
             var progAlohaSV = programsAll.FirstOrDefault(_pr => Convert.ToString(_pr.description).ToUpper().IndexOf("ALOHA") != -1
@@ -299,6 +304,7 @@ namespace PDiscountCard.IIKO_Card
             if (progAlohaSV == null)
             {
                 // Не удалось найти программу Подарочные карты Aloha Stored Values в iikoCard
+                Utils.ToLog($"{IikoCardFlag}Не удалось найти программу Подарочные карты Aloha Stored Values в iikoCard");
                 return null;
             }
 
