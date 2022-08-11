@@ -49,7 +49,7 @@ namespace PDiscountCard.IIKO_Card
                 {
                     var balance = guest.walletBalances.Where(_wb => _wb.wallet.id == walletId).Sum(_wb => _wb.balance);
 
-                    Utils.ToLog($"{IikoCardFlag}На карте {cardNumber} уже имелось {balance} бонусов. {GetTiming(tm)}. Сообщение: {errorGuestFind}");
+                    Utils.ToLog($"{IikoCardFlag}На карте {cardNumber} уже имелось {balance} бонусов. {GetTiming(tm)}.");
 
                     double needToPut = sum - (double)balance;
                     //if(needToPut != 0)
