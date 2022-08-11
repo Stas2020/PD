@@ -37,19 +37,50 @@ namespace PDiscountCard.IIKO_Card
             if (newGuestId != null)
             {
                 newGuestId = newGuestId.Replace("\"", "");
-                bool balanceUpdated = iikoCardApi.GuestBalancePlus(new IikoCard.ApiChangeBalanceRequest()
+
+
+                var guest = iikoCardApi.GetGuestById(orgId, newGuestId, out string errorGuestFind);
+                if(guest == null)
                 {
-                    customerId = newGuestId,
-                    organizationId = orgId,
-                    walletId = walletId,
-                    sum = (decimal)sum,
-                    comment = $"{depNum}"
-                }, out string errorMessageBalancePlus);
-                if (!balanceUpdated)
-                {
-                    Utils.ToLog($"{IikoCardFlag}Не удалось зачислить на карту {cardNumber} в {depNum} от {dateStart} бонусы в размере {sum}. {GetTiming(tm)}. Сообщение: {errorMessageBalancePlus}");
+                    Utils.ToLog($"{IikoCardFlag}Не обновить вновь созданную карту {cardNumber} в {depNum} от {dateStart}. {GetTiming(tm)}. Сообщение: {errorGuestFind}");
                     return false;
                 }
+                else
+                {
+                    var balance = guest.walletBalances.Where(_wb => _wb.wallet.id == walletId).Sum(_wb => _wb.balance);
+
+                    Utils.ToLog($"{IikoCardFlag}На карте {cardNumber} уже имелось {balance} бонусов. {GetTiming(tm)}. Сообщение: {errorGuestFind}");
+
+                    double needToPut = sum - (double)balance;
+                    //if(needToPut != 0)
+                    if (Math.Abs(needToPut) > 0.1)
+                    {
+                        var balanceRequest = new IikoCard.ApiChangeBalanceRequest()
+                        {
+                            customerId = newGuestId,
+                            organizationId = orgId,
+                            walletId = walletId,
+                            sum = (decimal)Math.Abs(sum),
+                            comment = $"{depNum}"
+                        };
+                        string errorMessageBalanceChange;
+                        bool balanceUpdated = needToPut > 0
+                            ? iikoCardApi.GuestBalancePlus(balanceRequest, out errorMessageBalanceChange)
+                            : iikoCardApi.GuestBalanceMinus(balanceRequest, out errorMessageBalanceChange);
+                        if (!balanceUpdated)
+                        {
+                            Utils.ToLog($"{IikoCardFlag}Не удалось {(needToPut > 0 ? "зачислить на карту" : "списать с карты")} {cardNumber} в {depNum} от {dateStart} бонусы в размере {sum}. {GetTiming(tm)}. Сообщение: {errorMessageBalanceChange}");
+                            return false;
+                        }
+                    }
+                }
+
+
+                
+
+
+
+
             }
             else
             {
