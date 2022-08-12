@@ -179,6 +179,9 @@
     <Compile Include="CreditCardIntegration\Arcus4CreditCardConnector.cs" />
     <Compile Include="CreditCardIntegration\InpasChk.cs" />
     <Compile Include="CreditCardIntegration\InpasCreditCardConnector.cs" />
+    <Compile Include="ctrlQwertyKeyBoard.xaml.cs">
+      <DependentUpon>ctrlQwertyKeyBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EGAIS\ctrlEGAISBeer.xaml.cs">
       <DependentUpon>ctrlEGAISBeer.xaml</DependentUpon>
     </Compile>
@@ -1378,6 +1381,10 @@
     <Page Include="AlohaI\WndPaymentSelect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ctrlQwertyKeyBoard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="EGAIS\ctrlEGAISBeer.xaml">
       <SubType>Designer</SubType>
