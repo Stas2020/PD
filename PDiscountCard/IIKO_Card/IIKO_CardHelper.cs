@@ -53,7 +53,7 @@ namespace PDiscountCard.IIKO_Card
 
                     double needToPut = sum - (double)balance;
                     //if(needToPut != 0)
-                    if (Math.Abs(needToPut) > 0.1)
+                    if (Math.Abs(needToPut) > 0.001)
                     {
                         var balanceRequest = new IikoCard.ApiChangeBalanceRequest()
                         {

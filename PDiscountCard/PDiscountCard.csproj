@@ -354,7 +354,9 @@
     <Compile Include="Hamster\HamsterWorker.cs" />
     <Compile Include="IIKO_Card\GiftCard.cs" />
     <Compile Include="IIKO_Card\IIKO_CardHelper.cs" />
+    <Compile Include="IIKO_Card\S2010_CardHelper.cs" />
     <Compile Include="IIKO_Card\WebAPI\IikoCardAPI.cs" />
+    <Compile Include="IIKO_Card\WebAPI\S2010CardApi.cs" />
     <Compile Include="IIKO_Card\WebAPI\WebAPIBase.cs" />
     <Compile Include="InternalConnections.cs" />
     <Compile Include="KeyBoardControl.cs">
