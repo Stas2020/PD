@@ -291,7 +291,7 @@ namespace PDiscountCard.IIKO_Card
                 }
                 else
                 {
-                    if (/*response.StatusCode == HttpStatusCode.BadRequest && */path.IndexOf("iiko.biz") != -1)// && path.IndexOf("create_or_update") != -1)
+                    if (/*response.StatusCode == HttpStatusCode.BadRequest && */path.IndexOf("iiko.biz") != -1 || path.ToLower().IndexOf("giftcard/api") != -1)// && path.IndexOf("create_or_update") != -1)
                     {
                         using (StreamReader stream = new StreamReader(response.Content.ReadAsStreamAsync().Result))
                             _errorMessage = stream.ReadToEnd();
