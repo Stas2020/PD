@@ -1219,6 +1219,23 @@ namespace PDiscountCard
             return s;
         }
 
+        static internal bool CheckForCards(string card_code_in)
+        {
+            Check check = AlohaTSClass.GetCurentCheck();
+            foreach(Dish item in check.Dishez)
+            {
+                if (item.BarCode == 999505 || item.BarCode == 999503 || item.BarCode == 999510)
+                {
+                    String card_code = AlohaTSClass.GetItemsAttr(item.AlohaNum);
+                    if (card_code_in == card_code)
+                        return true;
+                    
+                }
+            }
+
+            return false;
+           
+        }
 
         static internal int RegCard(string bstrTrack1Info, string bstrTrack2Info, string bstrTrack3Info)
         {
@@ -1259,15 +1276,32 @@ namespace PDiscountCard
 
                     var ps = PurgeNum(bstrTrack2Info);
                     Utils.ToCardLog($"Ps={ps}");
+                    Utils.ToCardLog("Подарочная карта:" + ps.Substring(0, 5));
 
                     if (ps.Substring(0, 5) == "26605" || ps.Substring(0, 5) == "26603" || ps.Substring(0, 5) == "26610")
                     {
                         Utils.ToCardLog("Прокатали подарочной картой");
 
-                        IIKO_CardHelper iiko_card_helper = new IIKO_CardHelper();
-                        GiftCard gift_card = iiko_card_helper.GetCard(CurentCard.Prefix + CurentCard.Num);
-                        if(gift_card == null)
+                        ICardHelper card_helper = GetInstanceIIKOHelper.GetInstance();
+                        GiftCard gift_card = card_helper.GetCard(CurentCard.Prefix + CurentCard.Num);
+
+                        bool flag_new_card = false;
+                        if (gift_card == null)
                         {
+                            flag_new_card = true;
+                        }
+                        else if(gift_card.Active == false)
+                        {
+                            flag_new_card = true;
+                        }
+                                                                            
+                        if (flag_new_card)
+                        {                        
+                            if (gift_card != null && CheckForCards(gift_card.CardCode))
+                            {
+                                AlohaTSClass.ShowMessage("Карта с номером " + gift_card.CardCode + " уже добавлена в чек!");
+                                return 1;
+                            }
                             
                             double balance_ = 0;
                             int barcode = 0;
@@ -1297,15 +1331,20 @@ namespace PDiscountCard
                                 Utils.ToCardLog("Добавил подарочную карту в чек, номинал: " + balance_.ToString());
 
                                 GiftCard gift_card_new = new GiftCard(CurentCard.Prefix + CurentCard.Num, DateTime.Today, iniFile.SpoolDepNum, balance_, false);
-                                iiko_card_helper.SendToIikoCard(gift_card_new);
+                                if (card_helper.SendToIikoCard(gift_card_new))
+                                {
+                                    AlohaTSClass.ShowMessage("Регистрация карты в IIKO Card, номинал: " + balance_.ToString());
+                                }
+                                else
+                                {
+                                    AlohaTSClass.ShowMessage(" Не удалась регистрация карты в IIKO Card, номинал: " + balance_.ToString());
+                                }
                             }
                             else
                             {
                                 AlohaTSClass.ShowMessage("Не удалось добавить подарочную карту в чек, номинал: " + balance_.ToString());
                                 Utils.ToCardLog("Не удалось добавить подарочную карту в чек, номинал: " + balance_.ToString());
                             }
-
-
                         }
                         else
                         {
@@ -1322,21 +1361,32 @@ namespace PDiscountCard
                                 return 1;
                             }
 
+                            TimeSpan delta = DateTime.Now - gift_card.DTCreate;
+                            if (delta.Days > 365)
+                            {
+                                AlohaTSClass.ShowMessage("Истек срок действия карты с номером " + gift_card.CardCode);
+                                return 1;
+                            }
+
                             String err_mess = "";
-                            int comp_id = 77;
+                            int comp_type_id = 77;
                             double summ_check = AlohaTSClass.GetCheckSum((int)AlohaTSClass.AlohaCurentState.CheckId);
                             double val_discount = summ_check - gift_card.Balance;
 
                             if (val_discount > 0)
                             {
-                                if (AlohaTSClass.ApplyComp(comp_id, out err_mess, gift_card.Balance) > 0)
+
+                                int comp_id = AlohaTSClass.ApplyComp(comp_type_id, out err_mess, gift_card.Balance);
+                                if (comp_id > 0)
                                 {
                                     Utils.ToCardLog("Наложил скидку на стол в размере: " + gift_card.Balance);
                                     AlohaTSClass.ShowMessage("Наложил скидку на стол в размере: " + gift_card.Balance);
 
-                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, gift_card.CardCode);
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "gift_card", gift_card.CardCode);
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "anount_discount", gift_card.Balance.ToString());
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "comp_id", comp_id.ToString());
 
-                                    if (iiko_card_helper.PayFromCard(gift_card.CardCode, (decimal)gift_card.Balance, iniFile.SpoolDepNum))
+                                    if (card_helper.PayFromCard(gift_card.CardCode, (decimal)gift_card.Balance, iniFile.SpoolDepNum))
                                     {
                                         Utils.ToCardLog("Списали с карты, сумма:" + gift_card.Balance.ToString());
                                     }
@@ -1344,19 +1394,21 @@ namespace PDiscountCard
                                     {
                                         Utils.ToCardLog("Не удалось списать с карты, сумма: " + gift_card.Balance.ToString());
                                     }
-                                }
-                                                          
+                                }                                                         
                             }
                             else
                             {
-                                if(AlohaTSClass.ApplyComp(comp_id, out err_mess, summ_check) > 0)
+                                int comp_id = AlohaTSClass.ApplyComp(comp_type_id, out err_mess, summ_check);
+                                if (comp_id > 0)
                                 {
                                     Utils.ToCardLog("Наложил скидку на стол в размере: " + summ_check);
                                     AlohaTSClass.ShowMessage("Наложил скидку на стол в размере: " + summ_check);
 
-                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, gift_card.CardCode);
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "gift_card", gift_card.CardCode);
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "anount_discount", summ_check.ToString());
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "comp_id", comp_id.ToString());
 
-                                    if (iiko_card_helper.PayFromCard(gift_card.CardCode, (decimal)summ_check, iniFile.SpoolDepNum))
+                                    if (card_helper.PayFromCard(gift_card.CardCode, (decimal)summ_check, iniFile.SpoolDepNum))
                                     {
                                         Utils.ToCardLog("Списали с карты, сумма:" + summ_check.ToString());
                                     }
@@ -1370,10 +1422,8 @@ namespace PDiscountCard
                             if(err_mess.Length != 0)
                             {
                                 Utils.ToCardLog("Ошибка наложения скидки по подарочной карте" + err_mess);
-                            }
-                            
+                            }                       
                         }
-
                         return 1;
                     }
 

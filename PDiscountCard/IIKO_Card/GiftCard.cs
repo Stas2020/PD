@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PDiscountCard.IIKO_Card
 {
-    class GiftCard
+    public class GiftCard
     {
         private string card_code;
         private DateTime dt_create;

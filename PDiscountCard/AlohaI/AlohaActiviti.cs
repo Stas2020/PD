@@ -519,7 +519,8 @@ namespace PDiscountCard
             {
                 RemoteCommands.CustomerDisplayEventSender.AddSendChkToCustDispToQueue(CheckId, false);
             }
-            
+
+            AlohaEventVoids.DeleteItems(ManagerId,EmployeeId,QueueId,TableId, CheckId, ReasonId);
         }
 
         public void DeletePayment(int ManagerId, int EmployeeId, int QueueId, int TableId, int CheckId, int TenderId, int PaymentId)

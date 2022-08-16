@@ -13,10 +13,10 @@ namespace PDiscountCard.IIKO_Card
     // Здесь есть метод удаления карты
 
 
-    class S2010_CardHelper
+    public class S2010_CardHelper  : ICardHelper
     {
         static string IikoCardFlag = "[S2010Card] ";
-        public bool SendToIikoCard(GiftCard card)
+        override public bool SendToIikoCard(GiftCard card)
         {
             DateTime tm = DateTime.Now;
 
@@ -34,7 +34,7 @@ namespace PDiscountCard.IIKO_Card
                 Utils.ToLog($"{IikoCardFlag}Не удалось авторизоваться на S2010. {GetTiming(tm)}");
                 return false;
             }
-
+            S2010CardApi.Login(out string errorMessageLoginS2010);
             var newCard = S2010CardApi.CreateOrUpdateGiftCard(card,
                     out string errorMessageGuestCreate);
             if (newCard == null)
@@ -70,7 +70,7 @@ namespace PDiscountCard.IIKO_Card
                 return false;
             }
         }
-        public bool SetCardActiveStatus(String card_code, bool activeStatus)
+        override public bool SetCardActiveStatus(String card_code, bool activeStatus)
         {
             DateTime tm = DateTime.Now;
 
@@ -82,6 +82,7 @@ namespace PDiscountCard.IIKO_Card
                 Utils.ToLog($"{IikoCardFlag}Не удалось авторизоваться на S2010. {GetTiming(tm)}");
                 return false;
             }
+            S2010CardApi.Login(out string errorMessageLoginS2010);
             string errorMessageActivate;
             var operOk = activeStatus
                 ? S2010CardApi.ActivateGiftCard(card_code, out errorMessageActivate)
@@ -98,7 +99,7 @@ namespace PDiscountCard.IIKO_Card
             }
         }
 
-        public GiftCard GetCard(String card_code)
+        override public GiftCard GetCard(String card_code)
         {
             DateTime tm = DateTime.Now;
 
@@ -111,7 +112,7 @@ namespace PDiscountCard.IIKO_Card
                 Utils.ToLog($"{IikoCardFlag}Не удалось авторизоваться на S2010. {GetTiming(tm)}");
                 return null;
             }
-
+            S2010CardApi.Login(out string errorMessageLoginS2010);
             var result = S2010CardApi.GetGiftCardByNumber(card_code, out string errorGuest);
 
             if(result == null)
@@ -123,19 +124,15 @@ namespace PDiscountCard.IIKO_Card
 
         }
 
-        public bool PayFromCard(String card_code, decimal sum, int depNum)
+        override public bool PayFromCard(String card_code, decimal sum, int depNum)
         {
             return ChangeCardBalance(card_code, sum, depNum, false);
         }
 
-        public bool ReturnToCard(String card_code, decimal sum, int depNum)
+        override public bool ReturnToCard(String card_code, decimal sum, int depNum)
         {
             return ChangeCardBalance(card_code, sum, depNum, true);
         }
-
-
-
-
 
         private bool ChangeCardBalance(String card_code, decimal sum, int depNum, bool isReturn)
         {
@@ -154,6 +151,7 @@ namespace PDiscountCard.IIKO_Card
                 Utils.ToLog($"{IikoCardFlag}Ошибка: сумма должна быть положительной. {GetTiming(tm)}");
                 return false;
             }
+            S2010CardApi.Login(out string errorMessageLoginS2010);
             string errorTrans;
             var transactOk = isReturn
                 ? S2010CardApi.ReturnToGiftCard(card_code, sum, depNum, out errorTrans)

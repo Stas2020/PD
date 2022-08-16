@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace PDiscountCard.IIKO_Card
 {
-    class IIKO_CardHelper
+    class IIKO_CardHelper : ICardHelper
     {
         static string IikoCardFlag = "[iikoCard] ";
-        public bool SendToIikoCard(GiftCard card)
+        override public bool SendToIikoCard(GiftCard card)
         {
             DateTime tm = DateTime.Now;
 
@@ -91,7 +91,7 @@ namespace PDiscountCard.IIKO_Card
             return true;
         }
 
-        public bool SetCardActiveStatus(String card_code, bool activeStatus)
+        override public bool SetCardActiveStatus(String card_code, bool activeStatus)
         {
             DateTime tm = DateTime.Now;
 
@@ -159,7 +159,7 @@ namespace PDiscountCard.IIKO_Card
 
         }
 
-        public GiftCard GetCard(String card_code)
+        override public GiftCard GetCard(String card_code)
         {
             DateTime tm = DateTime.Now;
 
@@ -206,12 +206,12 @@ namespace PDiscountCard.IIKO_Card
             return new GiftCard(card_code, date, depNum, (double)balance, active);
         }
 
-        public bool PayFromCard(String card_code, decimal sum, int depNum)
+        override public bool PayFromCard(String card_code, decimal sum, int depNum)
         {
             return ChangeCardBalance(card_code, sum, depNum, false);
         }
 
-        public bool ReturnToCard(String card_code, decimal sum, int depNum)
+        override public bool ReturnToCard(String card_code, decimal sum, int depNum)
         {
             return ChangeCardBalance(card_code, sum, depNum, true);
         }

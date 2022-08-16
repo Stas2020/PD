@@ -1131,20 +1131,68 @@ namespace PDiscountCard
 
 
         }
-        internal static void DeleteComp(int ManagerId, int EmployeeId, int QueueId, int TableId, int CheckId, int CompTypeId, int CompId)
+        internal static void DeleteItems(int ManagerId, int EmployeeId, int QueueId, int TableId, int CheckId, int ReasonId)
         {
-            Utils.ToLog("Удалили скидку, CompTypeId:" + CompTypeId.ToString());
-            if (CompTypeId == 77)
+            String card_code = AlohaTSClass.GetCheckAttr(CheckId, "gift_card");
+            Utils.ToLog("Удалили товар из чека, card_code:" + card_code);
+            
+            if (card_code != null)
             {
-                String card_code = AlohaTSClass.GetCheckAttr(CheckId);
-                if (card_code != null)
+                int comp_id;
+                int.TryParse(AlohaTSClass.GetCheckAttr(CheckId, "comp_id"), out comp_id);
+                Utils.ToLog("comp_id: " + comp_id.ToString());
+                if (AlohaTSClass.DeleteComp(comp_id, 99921))
+                {
+                    AlohaTSClass.ShowMessage("Удалили товар! Средства вернутся на падарочную карту.");
+                }
+                                
+                return;
+
+
+                decimal anount_discount;
+                decimal.TryParse(AlohaTSClass.GetCheckAttr(CheckId, "anount_discount"), out anount_discount);
+               
+
+                 Check check = AlohaTSClass.GetCheckById(CheckId);
+                
+                decimal sum_comp = check.Comp;
+                decimal amount_refund = anount_discount - sum_comp;
+
+                Utils.ToLog("Необходимо ввернуть на падарочную карту, card_code:" + card_code + " сумма:" + amount_refund.ToString());
+
+                if (amount_refund > 0)
                 {
                     IIKO_CardHelper iiko_card_helper = new IIKO_CardHelper();
+                    if (iiko_card_helper.ReturnToCard(card_code, amount_refund, iniFile.SpoolDepNum))
+                    {
+                        Utils.ToLog("Вернул деньги на падарочную карту, card_code:" + card_code + " сумма:" + amount_refund.ToString());
+
+
+                    }
+                    else
+                    {
+                        Utils.ToLog("НЕ вернул деньги на падарочную карту, card_code:" + card_code + " сумма:" + amount_refund.ToString());
+                    }
+                }
+            }
+        }
+
+        internal static void DeleteComp(int ManagerId, int EmployeeId, int QueueId, int TableId, int CheckId, int CompTypeId, int CompId)
+        {
+            Utils.ToLog("Хотят удалить скидку, CompTypeId:" + CompTypeId.ToString());
+            if (CompTypeId == 77)
+            {
+                String card_code = AlohaTSClass.GetCheckAttr(CheckId, "gift_card");
+                if (card_code != null)
+                {                   
+                    ICardHelper card_helper = GetInstanceIIKOHelper.GetInstance();
                     Check check = AlohaTSClass.GetCheckById(CheckId);
                     decimal sum_comp = check.Comp;
-                    if(iiko_card_helper.ReturnToCard(card_code, sum_comp, iniFile.SpoolDepNum))
+                    if(card_helper.ReturnToCard(card_code, sum_comp, iniFile.SpoolDepNum))
                     {
                         Utils.ToLog("Вернул деньги на падарочную карту, card_code:" + card_code + " сумма:" + sum_comp.ToString());
+                        AlohaTSClass.SetCheckAttr(CheckId, "gift_card", "");
+                        AlohaTSClass.SetCheckAttr(CheckId, "anount_discount", "0");
                     }
                     else
                     {

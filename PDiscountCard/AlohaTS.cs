@@ -1946,8 +1946,23 @@ namespace PDiscountCard
         {
             try
             {
-                Utils.ToCardLog("DeleteComp");
+                Utils.ToCardLog("DeleteComp CurentWaiter:" + CurentWaiter.ToString() + " CheckId:" + GetCurentCheckId().ToString() + " TermNum:" + GetTermNum().ToString());
                 AlohaFuncs.DeleteComp(GetTermNum(), CurentWaiter, (int)GetCurentCheckId(), CompId);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Utils.ToCardLog("Error DeleteComp" + e.Message);
+                return false;
+            }
+        }
+
+        static internal bool DeleteComp(int CompId, int employee_id)
+        {
+            try
+            {
+                Utils.ToCardLog("DeleteComp employee_id:" + employee_id.ToString() + " CheckId:" + GetCurentCheckId().ToString() + " TermNum:" + GetTermNum().ToString());
+                AlohaFuncs.DeleteComp(GetTermNum(), employee_id, (int)GetCurentCheckId(), CompId);
                 return true;
             }
             catch (Exception e)
@@ -5833,15 +5848,15 @@ namespace PDiscountCard
                 return null;
             }
         }
-        static internal void SetCheckAttr(int check_id, String value)
+        static internal void SetCheckAttr(int check_id, String name_value, String value)
         {
-            AlohaFuncs.SetObjectAttribute(INTERNAL_CHECKS, check_id, "gift_card", value);
+            AlohaFuncs.SetObjectAttribute(INTERNAL_CHECKS, check_id, name_value, value);
         }
-        static internal String GetCheckAttr(int check_id)
+        static internal String GetCheckAttr(int check_id, String name_value)
         {
             try
             {
-                return AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, check_id, "gift_card");
+                return AlohaFuncs.GetObjectAttribute(INTERNAL_CHECKS, check_id, name_value);
             }
             catch
             {
@@ -7099,6 +7114,21 @@ namespace PDiscountCard
             catch
             {
                 return "";
+            }
+        }
+
+        static internal int GetCompid(int comp_type_id)
+        {
+            try
+            {
+                IberEnumClass CmpsEnum = (IberEnumClass)Depot.GetEnum(FILE_CMP);
+                IberObject Cmp = CmpsEnum.FindFromLongAttr("COMPTYPE_ID", comp_type_id);
+                return Cmp.GetLongVal("ID");
+               
+            }
+            catch
+            {
+                return 0;
             }
         }
 

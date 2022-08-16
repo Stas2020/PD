@@ -352,6 +352,8 @@
     </Compile>
     <Compile Include="GuestCount\GuestCount.cs" />
     <Compile Include="Hamster\HamsterWorker.cs" />
+    <Compile Include="IIKO_Card\CardHelper.cs" />
+    <Compile Include="IIKO_Card\GetInstanceIIKOHelper.cs" />
     <Compile Include="IIKO_Card\GiftCard.cs" />
     <Compile Include="IIKO_Card\IIKO_CardHelper.cs" />
     <Compile Include="IIKO_Card\S2010_CardHelper.cs" />
