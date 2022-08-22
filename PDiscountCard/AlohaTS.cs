@@ -834,7 +834,7 @@ namespace PDiscountCard
                     }
                     else //Блюдо
                     {
-
+                        
                         Dish mD = new Dish()
                         {
                             Count = 1,
@@ -1137,11 +1137,7 @@ namespace PDiscountCard
 
                 }
 
-
-
-                double Delta = CheckSum - (double)DSumm;
-
-
+                double Delta = CheckSum - (double)DSumm;                           
                 Utils.ToLog("Delta: " + Delta.ToString() + "  Сумма чека CheckSum: " + CheckSum.ToString() + "  DSumm: " + DSumm.ToString());
 
 
@@ -4035,17 +4031,19 @@ namespace PDiscountCard
         }
 
 
-        static internal void ApplyPayment(int TermID, int CheckID, double Summ, int Type)
+        static internal int ApplyPayment(int TermID, int CheckID, double Summ, int Type)
         {
             try
             {
                 Utils.ToCardLog("ApplyPayment TermID " + TermID + " CheckID " + CheckID + " Summ " + Summ + " Type " + Type);
-                AlohaFuncs.ApplyPayment(TermID, CheckID, Type, Summ, 0, "", "", "", "");
+                return AlohaFuncs.ApplyPayment(TermID, CheckID, Type, Summ, 0, "", "", "", "");
             }
             catch (Exception e)
             {
                 Utils.ToCardLog("[Error] ApplyPayment TermID " + TermID + " CheckID " + CheckID + " Summ " + Summ + " Type " + Type + " " + e.Message);
+                return 0;
             }
+
         }
 
 
@@ -7739,6 +7737,10 @@ namespace PDiscountCard
                         Utils.ToCardLog(String.Format("PayMent ID: {0}, Name: {1}, AUTH_CODE:{2}, IDENT:{3}, NR:{4}, GCTYPE:{5}, GCAMOUNT:{6}, GCREDEEM:{7} ",
                             Tndr.TenderId, Tndr.Name, Tndr.AuthId, Tndr.Ident, Tndr.NR, Tndr.GCTYPE, Tndr.GCAMOUNT, Tndr.GCREDEEM));
 
+                        if (Tndr.AlohaTenderId == 25)
+                        {
+                            Tndr.Ident = AlohaTSClass.GetCheckAttr(Id, "gift_card");
+                        }
 
                         if ((Tndr.AlohaTenderId == 25) && ((Tndr.CardPrefix == "77277") || (Tndr.CardPrefix == "NzcyN")))
                         {
@@ -7759,10 +7761,25 @@ namespace PDiscountCard
                             continue;
                         }
 
+                        if ((Tndr.AlohaTenderId == 25) && Loyalty.LoyaltyBasik.PresentCardPrefix.Contains(Tndr.CardPrefix))
+                        {
+                            NeedDiscountForCert += Tndr.Summ;
+                            var cc = new AlohaClientCard()
+                            {
+                                TypeId = "03",
+                                Number = Tndr.CardNumber,
+                                Prefix = Tndr.CardPrefix,
+                                Payment = Convert.ToInt32(Tndr.Summ * 100),
+                                BonusRemove = Convert.ToInt32(Tndr.Summ * 100),
+                            };
+
+                            Ch2.AlohaClientCardListCertifDisk.Add(cc);
+                            Utils.ToCardLog("Addd to AlohaClientCardListCertifDisk " + cc.Prefix + " " + cc.Number);
+
+                        }
 
                         Ch2.Tenders.Add(Tndr);
                     }
-
 
                 }
                 catch (Exception ee)
@@ -8014,6 +8031,7 @@ namespace PDiscountCard
                         {
                             ManualDiscAmout = Ch2.Comp;
                         }
+                       
                     }
 
 
@@ -8075,6 +8093,8 @@ namespace PDiscountCard
                 catch { }
 
                 var chk = Loyalty.LoyaltyBasik.CheckConvertForBOnusCard(Ch2);
+
+
                 Utils.ToLog("*****************Окончание запроса чека " + Id.ToString() + "****************************************", 6);
                 return chk;
 
@@ -8684,7 +8704,6 @@ namespace PDiscountCard
 
             return ApplyComp(CompTypeId, "", out ErMessage, Val);
         }
-
 
 
         static internal int ApplyComp(int CompTypeId, string CompName, out string ErMessage, double Val = 0)

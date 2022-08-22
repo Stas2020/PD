@@ -8,10 +8,17 @@ namespace PDiscountCard.IIKO_Card
 {
     public class GetInstanceIIKOHelper
     {
+        private static ICardHelper card_helper = null;
         public static ICardHelper GetInstance()
         {
-            //return new IIKO_CardHelper();
-            return new S2010_CardHelper();
+            if(card_helper == null)
+            {
+                //card_helper = new IIKO_CardHelper();
+                card_helper = new S2010_CardHelper();
+                Utils.ToLog("-------------------------Create object CardHelper-------------------------");
+            }
+
+            return card_helper;
         }
     }
 }

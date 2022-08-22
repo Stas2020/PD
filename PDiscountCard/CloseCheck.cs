@@ -782,15 +782,15 @@ namespace PDiscountCard
             return (CPerc < RegWorker.GetRegPercent() - 1);
         }
         static internal void SendGiftCartToIIKOCard(Check Ch)
-        {
-            IIKO_CardHelper iiko_card_helper = new IIKO_CardHelper();
+        {           
+            ICardHelper card_helper = GetInstanceIIKOHelper.GetInstance();
 
             foreach (Dish item in Ch.Dishez)
             {
                 if(item.BarCode == 999505 || item.BarCode == 999503 || item.BarCode == 999510)
                 {
                     String card_code = AlohaTSClass.GetItemsAttr(item.AlohaNum);
-                    iiko_card_helper.SetCardActiveStatus(card_code, true);
+                    card_helper.SetCardActiveStatus(card_code, true);
                 }                         
             };
         }

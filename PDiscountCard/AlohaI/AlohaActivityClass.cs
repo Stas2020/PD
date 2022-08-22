@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AlohaFOHLib;
-using INTERCEPTACTIVITYLib;
+using Interop.INTERCEPTACTIVITYLib;
 using System.Runtime.InteropServices;
 using System.Threading;
 

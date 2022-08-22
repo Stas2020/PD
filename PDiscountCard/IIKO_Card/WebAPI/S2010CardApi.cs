@@ -29,11 +29,14 @@ namespace PDiscountCard.IIKO_Card.WebAPI
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             System.Net.ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => { return true; };
+
+
         }
 
         public override bool Login(out string _errorMessage)
-        {
+        {            
             _errorMessage = null;
+                       
             try
             {
                 string path = urlAPI + string.Format("Auth/GetUser?Login={0}&Password={1}", login, pass);

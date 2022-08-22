@@ -38,7 +38,7 @@ namespace PDiscountCard
         public const int CardTenderId = 20;
         public static List<int> PredoplataTenderIds = new List<int> { 21, 30 };
         //public const int PredoplataTenderId = 30;
-        public static List<int> AlohaBallsTenderIds = new List<int> { 25, 26 };
+        public static List<int> AlohaBallsTenderIds = new List<int> { 25, 26};
         public const int CreditTenderIdOut = 25;
         public const int CreditTenderIdIn = 26;
 
@@ -686,6 +686,9 @@ namespace PDiscountCard
                     Tmp.Add(CC);
                 }
                 int Num = 0;
+
+                //TODO: Продажа подарочных карт
+               
                 foreach (Dish d in Dishez.Where(a => Loyalty.LoyaltyBasik.PresentCardBCs.Contains(a.BarCode)))
                 {
                     AlohaClientCard CC = new AlohaClientCard()
@@ -698,6 +701,7 @@ namespace PDiscountCard
                     };
                     Tmp.Add(CC);
                 }
+
 
                 if (AlohaClientCardListCertifDisk != null && AlohaClientCardListCertifDisk.Count > 0)
                 {

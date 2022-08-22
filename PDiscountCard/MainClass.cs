@@ -1277,7 +1277,8 @@ namespace PDiscountCard
                     var ps = PurgeNum(bstrTrack2Info);
                     Utils.ToCardLog($"Ps={ps}");
                     Utils.ToCardLog("Подарочная карта:" + ps.Substring(0, 5));
-
+                    //TODO: Пддарочная крта 
+                    // Событие при прокатке картой в чеке
                     if (ps.Substring(0, 5) == "26605" || ps.Substring(0, 5) == "26603" || ps.Substring(0, 5) == "26610")
                     {
                         Utils.ToCardLog("Прокатали подарочной картой");
@@ -1369,22 +1370,22 @@ namespace PDiscountCard
                             }
 
                             String err_mess = "";
-                            int comp_type_id = 77;
+                            
                             double summ_check = AlohaTSClass.GetCheckSum((int)AlohaTSClass.AlohaCurentState.CheckId);
                             double val_discount = summ_check - gift_card.Balance;
 
                             if (val_discount > 0)
                             {
+                                int payment_id = AlohaTSClass.ApplyPayment(AlohaTSClass.GetTermNum(), (int)AlohaTSClass.AlohaCurentState.CheckId, gift_card.Balance, 25);
 
-                                int comp_id = AlohaTSClass.ApplyComp(comp_type_id, out err_mess, gift_card.Balance);
-                                if (comp_id > 0)
+                                if (payment_id > 0)
                                 {
-                                    Utils.ToCardLog("Наложил скидку на стол в размере: " + gift_card.Balance);
-                                    AlohaTSClass.ShowMessage("Наложил скидку на стол в размере: " + gift_card.Balance);
+                                    Utils.ToCardLog("Наложил оплату подарочной картой на стол в размере: " + gift_card.Balance);
+                                    AlohaTSClass.ShowMessage("Наложил оплату подарочной картой на стол в размере: " + gift_card.Balance);
 
                                     AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "gift_card", gift_card.CardCode);
-                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "anount_discount", gift_card.Balance.ToString());
-                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "comp_id", comp_id.ToString());
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "payment_id", payment_id.ToString());
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "pay_sum", gift_card.Balance.ToString());
 
                                     if (card_helper.PayFromCard(gift_card.CardCode, (decimal)gift_card.Balance, iniFile.SpoolDepNum))
                                     {
@@ -1398,15 +1399,16 @@ namespace PDiscountCard
                             }
                             else
                             {
-                                int comp_id = AlohaTSClass.ApplyComp(comp_type_id, out err_mess, summ_check);
-                                if (comp_id > 0)
+                                int payment_id = AlohaTSClass.ApplyPayment(AlohaTSClass.GetTermNum(), (int)AlohaTSClass.AlohaCurentState.CheckId, summ_check, 25);
+
+                                if (payment_id > 0)
                                 {
-                                    Utils.ToCardLog("Наложил скидку на стол в размере: " + summ_check);
-                                    AlohaTSClass.ShowMessage("Наложил скидку на стол в размере: " + summ_check);
+                                    Utils.ToCardLog("Наложил оплату подарочной картой на стол в размере: " + summ_check);
+                                    AlohaTSClass.ShowMessage("Наложил оплату подарочной картой на стол в размере: " + summ_check);
 
                                     AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "gift_card", gift_card.CardCode);
-                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "anount_discount", summ_check.ToString());
-                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "comp_id", comp_id.ToString());
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "payment_id", payment_id.ToString());
+                                    AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "pay_sum", summ_check.ToString());
 
                                     if (card_helper.PayFromCard(gift_card.CardCode, (decimal)summ_check, iniFile.SpoolDepNum))
                                     {

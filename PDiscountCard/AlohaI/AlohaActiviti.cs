@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AlohaFOHLib;
-using INTERCEPTACTIVITYLib;
+using Interop.INTERCEPTACTIVITYLib;
 using System.Runtime.InteropServices ;
 using System.Threading;
 
@@ -529,6 +529,7 @@ namespace PDiscountCard
             {
                 RemoteCommands.CustomerDisplayEventSender.AddSendChkToCustDispToQueue(CheckId, true );
             }
+            AlohaEventVoids.DeletePayment(ManagerId, EmployeeId, QueueId, TableId, CheckId, TenderId, PaymentId);
         }
 
         public void DeletePromo(int ManagerId, int EmployeeId, int QueueId, int TableId, int CheckId, int PromotionId, int PromoId)

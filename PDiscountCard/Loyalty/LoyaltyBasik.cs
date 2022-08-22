@@ -8,7 +8,7 @@ namespace PDiscountCard.Loyalty
     class LoyaltyBasik
     {
        static public List<string> BonusPrefix = new List<string> { "11115", "26530" };
-       static public List<int> PresentCardBCs = new List<int> { 999903, 999905, 999910, 999803, 999805, 999810 };
+       static public List<int> PresentCardBCs = new List<int> { 999903, 999905, 999910, 999803, 999805, 999810, 999505, 999503, 999510 };
        static public List<int> SVMyPresentCardBCs = new List<int> { 999803, 999805, 999810 };
        static public List<string> PresentCardPrefix = new List<string> { "11116", "11117", "11118", "26603", "26605", "26610", "77577" };
        static string PresCard = "Подарочная карта"; 
@@ -54,18 +54,26 @@ namespace PDiscountCard.Loyalty
            int Num2 = 0;
            foreach (Dish d in chk.Dishez.Where(a => Loyalty.LoyaltyBasik.PresentCardBCs.Contains(a.BarCode)))
            {
-               if (chk.ASVCards.Count >= Num2 + 1)
-               {
-                   string Card = chk.ASVCards[Num2];
-                   if (Card.Length > 5)
-                   {
-                       d.CardPrefix = Card.Trim().Substring(0, 5);
-                       d.CardNumber = Card.Trim().Substring(5);
+                if (chk.ASVCards.Count >= Num2 + 1)
+                {
+                    string Card = chk.ASVCards[Num2];
+                    if (Card.Length > 5)
+                    {
+                        d.CardPrefix = Card.Trim().Substring(0, 5);
+                        d.CardNumber = Card.Trim().Substring(5);
                        
-                   }
-               }
-               Num2++;
-           }
+                    }
+                }
+                Num2++;
+
+                //TODO: Продажа подарочных карт 
+                // При добавлении товара в чек с баркодом который соответствует подарочной карте добавляется атрибут с номерм карты.
+                String card_code = AlohaTSClass.GetItemsAttr(d.AlohaNum);
+                d.CardPrefix = card_code.Substring(0, 5);
+                d.CardNumber = card_code.Substring(5);
+
+               
+            }
 
        }
 
