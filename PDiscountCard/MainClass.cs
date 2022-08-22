@@ -10,6 +10,7 @@ using AlohaFOHLib;
 using System.IO;
 using System.Runtime.InteropServices;
 using PDiscountCard.IIKO_Card;
+using System.Linq;
 
 namespace PDiscountCard
 {
@@ -1370,16 +1371,22 @@ namespace PDiscountCard
                             }
 
                             String err_mess = "";
-                            
+
+                            Check check = AlohaTSClass.GetCheckById((int)AlohaTSClass.AlohaCurentState.CheckId);
+                            double sum_tender = check.Tenders.FindAll(a => a.AlohaTenderId == 25).Sum(a => a.Summ);
                             double summ_check = AlohaTSClass.GetCheckSum((int)AlohaTSClass.AlohaCurentState.CheckId);
+                            summ_check = summ_check - sum_tender;
+
                             double val_discount = summ_check - gift_card.Balance;
 
-                            
                             if (summ_check.CompareTo(0) == 0)
                             {
                                 Utils.ToCardLog("Cумма чека = 0, подарочную карту применять не будем");
                                 return 1;
-
+                            }
+                            else
+                            {
+                                Utils.ToCardLog("Cумма чека > 0, подарочную карту применять будем");
                             }
 
                             if (val_discount > 0)

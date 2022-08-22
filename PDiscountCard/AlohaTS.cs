@@ -5862,7 +5862,21 @@ namespace PDiscountCard
             }
         }
 
-        
+        static internal void SetPaymentAttr(int pay_id, String name_value, String value)
+        {
+            AlohaFuncs.SetObjectAttribute(INTERNAL_PAYMENTS, pay_id, name_value, value);
+        }
+        static internal String GetPaymentAttr(int pay_id, String name_value)
+        {
+            try
+            {
+                return AlohaFuncs.GetObjectAttribute(INTERNAL_PAYMENTS, pay_id, name_value);
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         static internal void SetSVCardSaleAttr(int CheckId, String Card)
         {
