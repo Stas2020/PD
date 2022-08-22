@@ -140,7 +140,8 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
     <Reference Include="zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <HintPath>..\packages\ZXing.Net.0.14.0.0\lib\net40\zxing.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Aloha\zxing.dll</HintPath>
     </Reference>
     <Reference Include="zxing.presentation, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <HintPath>..\packages\ZXing.Net.0.14.0.0\lib\net40\zxing.presentation.dll</HintPath>
