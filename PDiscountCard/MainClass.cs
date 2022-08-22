@@ -1374,7 +1374,8 @@ namespace PDiscountCard
                             double summ_check = AlohaTSClass.GetCheckSum((int)AlohaTSClass.AlohaCurentState.CheckId);
                             double val_discount = summ_check - gift_card.Balance;
 
-                            if(summ_check == 0)
+                            
+                            if (summ_check.CompareTo(0) == 0)
                             {
                                 Utils.ToCardLog("Cумма чека = 0, подарочную карту применять не будем");
                                 return 1;
