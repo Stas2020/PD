@@ -1374,6 +1374,13 @@ namespace PDiscountCard
                             double summ_check = AlohaTSClass.GetCheckSum((int)AlohaTSClass.AlohaCurentState.CheckId);
                             double val_discount = summ_check - gift_card.Balance;
 
+                            if(summ_check == 0)
+                            {
+                                Utils.ToCardLog("Cумма чека = 0, подарочную карту применять не будем");
+                                return 1;
+
+                            }
+
                             if (val_discount > 0)
                             {
                                 int payment_id = AlohaTSClass.ApplyPayment(AlohaTSClass.GetTermNum(), (int)AlohaTSClass.AlohaCurentState.CheckId, gift_card.Balance, 25);
