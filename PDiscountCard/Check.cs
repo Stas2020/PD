@@ -705,7 +705,14 @@ namespace PDiscountCard
 
                 if (AlohaClientCardListCertifDisk != null && AlohaClientCardListCertifDisk.Count > 0)
                 {
-                    Tmp.AddRange(AlohaClientCardListCertifDisk);
+                    List<AlohaClientCard> Tmp2 = AlohaClientCardListCertifDisk.Where(_card => Tmp.FirstOrDefault(_exists =>
+                                _exists.TypeId == _card.TypeId &&
+                                _exists.Number == _card.Number &&
+                                _exists.Prefix == _card.Prefix &&
+                                _exists.Payment == _card.Payment &&
+                                _exists.BonusRemove == _card.BonusRemove
+                    ) == null).ToList();
+                    Tmp.AddRange(Tmp2);
                     Utils.ToCardLog("Addd to AlohaClientCardList from AlohaClientCardListCertifDisk ");
                 }
                 return Tmp;
