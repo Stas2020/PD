@@ -1402,6 +1402,7 @@ namespace PDiscountCard
                                     AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "payment_id", payment_id.ToString());
                                     AlohaTSClass.SetCheckAttr((int)AlohaTSClass.AlohaCurentState.CheckId, "pay_sum", gift_card.Balance.ToString());
 
+
                                     if (card_helper.PayFromCard(gift_card.CardCode, (decimal)gift_card.Balance, iniFile.SpoolDepNum))
                                     {
                                         Utils.ToCardLog("Списали с карты, сумма:" + gift_card.Balance.ToString());

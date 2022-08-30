@@ -1147,6 +1147,8 @@ namespace PDiscountCard
                 }                               
             }
         }
+
+
         internal static void DeletePayment(int ManagerId, int EmployeeId, int QueueId, int TableId, int CheckId, int TenderId, int PaymentId)
         {
             Utils.ToLog("Хотят удалить Оплату подарочной картой, TableId:" + TableId.ToString());
