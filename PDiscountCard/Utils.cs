@@ -2160,6 +2160,14 @@ namespace PDiscountCard
                 return Convert.ToBoolean(k);
             }
         }
+        internal static bool Arcus4ParseReceiptAutoCancel
+        {
+            get
+            {
+                int k = AbsIni.Read("Options", "Arcus4ParseReceiptAutoCancel", 0);
+                return Convert.ToBoolean(k);
+            }
+        }
         internal static bool VerifoneEnabled
         {
             get
