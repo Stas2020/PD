@@ -87,6 +87,7 @@ namespace PDiscountCard.CreditCardIntegration
                 Utils.ToCardLog(String.Format("[RunOper] Запрос операции. Входящий запрос: " + request.ToString()));
                 int res = arc.CallArcusOper(OperType, request, response);
                 
+                
        
                 
                 RespCode = response.Response_code.Trim();
@@ -337,6 +338,18 @@ namespace PDiscountCard.CreditCardIntegration
                 mOperType = CreditCardOperationType.VoidPayment;
             }
             bool res = false;
+
+            if(iniFile.Arcus4ParseReceiptAutoCancel && receipt != null)
+            {
+                var cancelMarkers = new List<string>() { "ОТВЕТ НЕ ПОЛУЧЕН", "ОПЕРАЦИЯ АВТОМАТИЧЕСКИ", "ОТМЕНЕНА" };
+                if (cancelMarkers.TrueForAll(_marker => receipt.ToUpper().IndexOf(_marker) != -1))
+                {
+                    Utils.ToCardLog("Arcus4ParseReceiptAutoCancel Выявлена автоотмена по парсингу чека. Стол не закрыт.");
+                    res = false;
+                    respCode = "999";
+                }
+            }
+
             if (respCode == "999")
             {
                 resStr += Environment.NewLine + "Нет связи с терминалом пластиковых карт.";

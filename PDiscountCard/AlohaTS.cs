@@ -7395,6 +7395,8 @@ namespace PDiscountCard
                 AlohaFuncs.GetCheckTotal(Id, out Sum1, out mTax1);
                 Ch2.Summ = (decimal)Sum1;
 
+                Utils.ToLog($"[SVDebug] GetCheckByIdShort Чеку Ch2 присвоена сумма: {Ch2.Summ}   сумма по тендерам: {(Ch2.Tenders.Where(_t => _t.AuthId == 2).Sum(_t => _t.Summ))}");
+
                 return Ch2;
             }
             catch (Exception e)
@@ -7692,6 +7694,9 @@ namespace PDiscountCard
                 AlohaFuncs.GetCheckTotal(Id, out Sum, out mTax);
                 Utils.ToLog("Получил GetCheckTotal " + Sum, 6);
                 Ch2.Summ = Convert.ToDecimal(Sum);
+
+                Utils.ToLog($"[SVDebug] GetCheckById Чеку Ch2 присвоена сумма: {Ch2.Summ}   сумма по тендерам: {(Ch2.Tenders.Where(_t => _t.AuthId == 2).Sum(_t => _t.Summ))}");
+
                 /*
                 if (Sum == 0)
                 { 
@@ -7716,6 +7721,10 @@ namespace PDiscountCard
                     _IsNal = (Tender == 1);
 
                     Utils.ToLog("Получил _IsNal= " + _IsNal.ToString(), 6);
+
+
+                    
+
 
                     foreach (IberObject mPayMent in PayMentsEnum)
                     {
@@ -7771,13 +7780,27 @@ namespace PDiscountCard
                             Ch2.AlohaClientCardListCertifDisk.Add(cc);
                             Utils.ToCardLog("Addd to AlohaClientCardListCertifDisk " + cc.Prefix + " " + cc.Number);
 
+
                             Ch2.Summ -= (decimal)Tndr.Summ;
+
+
+
+                            Utils.ToLog($"[SVDebug] Cумму в размере {Tndr.Summ} из чека ВЫЧИТАЮ   Префикс карты {Tndr.CardPrefix}");
+
+                           
+
                             continue;
                         }
 
                         if ((Tndr.AlohaTenderId == 25) && Loyalty.LoyaltyBasik.PresentCardPrefix.Contains(Tndr.CardPrefix))
                         {
-                            NeedDiscountForCert += Tndr.Summ;
+                            // FIX - Отключено обнуление цены блюд и чека для карт с префиксами
+                            // FIX - Отключено занижение цены блюд пропорцианально скидке для карт с префиксами
+                            // 11116 11117 11118 26603 26605 26610 77577 (77277 и NzcyN остались)
+                            Utils.ToLog($"[SVDebug] Ранее суммировался параметр {NeedDiscountForCert} на сумму {Tndr.Summ} (ОТКЛЮЧЕНО)   Префикс карты {Tndr.CardPrefix}");
+                            //NeedDiscountForCert += Tndr.Summ;
+
+
                             var cc = new AlohaClientCard()
                             {
                                 TypeId = "03",
@@ -7795,6 +7818,7 @@ namespace PDiscountCard
                         Ch2.Tenders.Add(Tndr);
                     }
 
+                   
                 }
                 catch (Exception ee)
                 {
@@ -7934,6 +7958,9 @@ namespace PDiscountCard
                                 AlohaFuncs.GetCheckTotal(Ch3.AlohaCheckNum, out Sum1, out mTax1);
                                 Utils.ToLog("Получил GetCheckTotal", 6);
                                 Ch3.Summ = (decimal)Sum1;
+
+                                Utils.ToLog($"[SVDebug] GetCheckById Чеку Ch3 присвоена сумма: {Ch3.Summ}   сумма по тендерам: {(Ch3.Tenders.Where(_t => _t.AuthId == 2).Sum(_t => _t.Summ))}");
+
                                 Ch2.ChecksOnTable.Add(Ch3);
                             }
                             catch (Exception e)
@@ -8108,7 +8135,6 @@ namespace PDiscountCard
 
                 var chk = Loyalty.LoyaltyBasik.CheckConvertForBOnusCard(Ch2);
 
-
                 Utils.ToLog("*****************Окончание запроса чека " + Id.ToString() + "****************************************", 6);
                 return chk;
 
@@ -8136,15 +8162,27 @@ namespace PDiscountCard
                     Utils.ToLog("NeedDiscountForCert    ", 6);
                     if ((decimal)Chs <= NeedDiscountForCert)
                     {
+                        Utils.ToLog($"[SVDebug] CheckCertifDiscount ОБНУЛЕНИЕ СУММ блюд и чека, т.к. чек оплачиваеся полностью баллами. Чек Ch2, сумма: {Ch2.Summ}   сумма по тендерам: {(Ch2.Tenders.Where(_t => _t.AuthId == 2).Sum(_t => _t.Summ))}   Префиксы: {string.Join(", ", Ch2.Tenders.Select(_t => _t.CardPrefix))}");
+
+
+
                         foreach (var d in Ch2.Dishez)
                         {
                             d.Priceone = 0;
                             d.Price = 0;
                         }
                         Ch2.Summ = 0;
+
+
+
+                        // Utils.ToLog($"[SVDebug] CheckCertifDiscount РАНЬШЕ ЗДЕСЬ БЫЛО ОБНУЛЕНИЕ СУММ, если чек оплачивался полностью баллами. Чек Ch2, сумма: {Ch2.Summ}   сумма по тендерам: {(Ch2.Tenders.Where(_t => _t.AuthId == 2).Sum(_t => _t.Summ))}");
+
+                        //Utils.ToLog($"[SVDebug] CheckCertifDiscount Чеку Ch2 присвоена сумма: {Ch2.Summ}   сумма по тендерам: {(Ch2.Tenders.Where(_t => _t.AuthId == 2).Sum(_t => _t.Summ))}");
                     }
                     else
                     {
+                        Utils.ToLog($"[SVDebug] CheckCertifDiscount ЗАНИЖЕНИЕ ЦЕН БЛЮД ПРОПОРЧИОНАЛЬНО СКИДКЕ, т.к. чек оплачиваеся частично баллами. Чек Ch2, сумма: {Ch2.Summ}   сумма по тендерам: {(Ch2.Tenders.Where(_t => _t.AuthId == 2).Sum(_t => _t.Summ))}   Префиксы: {string.Join(", ", Ch2.Tenders.Select(_t => _t.CardPrefix))}");
+
                         var k = 1 - ((double)NeedDiscountForCert) / Chs;
                         foreach (var d in Ch2.Dishez)
                         {
