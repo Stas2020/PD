@@ -243,6 +243,10 @@ namespace PDiscountCard.FRSClientApp
                 {
                     Fpp.Add(new FiskalPayment() { Id = 4, Summ = (decimal)Math.Abs(tdr.Summ), ExternalId = tdr.AlohaTenderId });
                 }
+                else if (tdr.AlohaTenderId == 15)
+                {
+                    Fpp.Add(new FiskalPayment() { Id = 4, Summ = (decimal)Math.Abs(tdr.Summ), ExternalId = tdr.AlohaTenderId });
+                }
                 else if (AlohaTender.AlohaBallsTenderIds.Contains(tdr.AlohaTenderId)) //25,26
                 {
                     if (tdr.AuthId == 2)

@@ -4492,7 +4492,7 @@ namespace PDiscountCard
                         }
                         else if (Request.TableRangeId == 13)//МирСити  
                         {
-                            for (int i = 941; i <= 942; i++)
+                            for (int i = 941; i <= 944; i++)
                             {
                                 Tables.Add(i);
                             }
