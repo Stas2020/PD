@@ -182,6 +182,17 @@ namespace PDiscountCard.FRSClientApp
 
         }
 
+        public static void SBPReport()
+        {
+            try
+            {
+                PrintOnWinPrinter.PrintDoc2(FiscalCheckCreator.GetSBPReportVisual());
+            }
+            catch
+            {
+            }
+
+        }
 
 
 
@@ -240,10 +251,6 @@ namespace PDiscountCard.FRSClientApp
                     Fpp.Add(new FiskalPayment() { Id = 1, Summ = (decimal)Math.Abs(tdr.SummWithOverpayment), ExternalId = tdr.AlohaTenderId });
                 }
                 else if (tdr.AlohaTenderId == 20)
-                {
-                    Fpp.Add(new FiskalPayment() { Id = 4, Summ = (decimal)Math.Abs(tdr.Summ), ExternalId = tdr.AlohaTenderId });
-                }
-                else if (tdr.AlohaTenderId == 15)
                 {
                     Fpp.Add(new FiskalPayment() { Id = 4, Summ = (decimal)Math.Abs(tdr.Summ), ExternalId = tdr.AlohaTenderId });
                 }

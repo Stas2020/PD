@@ -40,9 +40,41 @@ namespace PDiscountCard.FRSClientApp
             }
         }
 
-        private static string hubDepartmentDailyCardRevenueUri = "https://s2020reserve/deliveryhub/api/info/DepartmentDailyCardRevenue?";
+        public decimal GetHubSBPReport(DateTime db, int depNUm, out int count)
+        {
+            count = 0;
+
+            try
+            {
+                //var departmentNo = 205;
+                var departmentNo = depNUm;
+                var businesDate = db;
+
+                var responseTask = Task.Run(() => GetDailyRevenueReport(departmentNo, businesDate, "DepartmentDailyFPSRevenue"));
+                responseTask.Wait();
+
+                var zz = Math.Abs(responseTask.Result.RefundTotal);
+                var vv = responseTask.Result.Total;
+                count = responseTask.Result.OrdersCount;
+                Utils.ToCardLog($"GetHubXReport Total:{responseTask.Result.Total}; count:{responseTask.Result.OrdersCount}");
+
+
+                return vv - zz;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+
+
+
+
+
+
+        private static string hubDepartmentDailyCardRevenueUri = "https://s2020reserve/deliveryhub/api/info/";
         private static string alohaAccessToken = "601de19e418f4c4a837303398c18c2ce";
-        private async Task<DailyRevenueInfo> GetDailyRevenueReport(int departmentNo, DateTime? businesDate)
+        private async Task<DailyRevenueInfo> GetDailyRevenueReport(int departmentNo, DateTime? businesDate,string mName= "DepartmentDailyCardRevenue")
         {
             DailyRevenueInfo result = null;
 
@@ -61,7 +93,7 @@ namespace PDiscountCard.FRSClientApp
                         client.Timeout = TimeSpan.FromSeconds(3);
                         var request = new HttpRequestMessage()
                         {
-                            RequestUri = new Uri(hubDepartmentDailyCardRevenueUri + $"departmentNo={departmentNo}&date={requestDate.ToString("yyyy-MM-dd")}"),
+                            RequestUri = new Uri(hubDepartmentDailyCardRevenueUri+mName + $"?departmentNo={departmentNo}&date={requestDate.ToString("yyyy-MM-dd")}"),
                             Method = HttpMethod.Get,
                             Headers = { { "Authorization", alohaAccessToken } }
                         };

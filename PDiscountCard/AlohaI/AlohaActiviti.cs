@@ -7,12 +7,10 @@ using Interop.INTERCEPTACTIVITYLib;
 using System.Runtime.InteropServices ;
 using System.Threading;
 
-
 using System.Diagnostics;
 using System.ComponentModel;
 using System.IO;
 using PDiscountCard.MB;
-
 
 namespace PDiscountCard
 {
@@ -220,7 +218,11 @@ namespace PDiscountCard
                     //Utils.ToCardLog("Custom XReport");
                     AlohaEventVoids.IMReport();
                 }
-
+                if (Name == "SBPReport")
+                {
+                    //Utils.ToCardLog("Custom XReport");
+                    AlohaEventVoids.SBPReport();
+                }
                 if (Name == "XReportHamster")
                 {
                     AlohaEventVoids.XReportHamster();
@@ -509,8 +511,6 @@ namespace PDiscountCard
             {
                 RemoteCommands.CustomerDisplayEventSender.AddSendChkToCustDispToQueue(CheckId, true);
             }
-
-            AlohaEventVoids.DeleteComp(ManagerId, EmployeeId, QueueId, TableId, CheckId, CompTypeId, CompId);
         }
 
         public void DeleteItems(int ManagerId, int EmployeeId, int QueueId, int TableId, int CheckId, int ReasonId)
@@ -520,8 +520,7 @@ namespace PDiscountCard
             {
                 RemoteCommands.CustomerDisplayEventSender.AddSendChkToCustDispToQueue(CheckId, false);
             }
-
-            AlohaEventVoids.DeleteItems(ManagerId,EmployeeId,QueueId,TableId, CheckId, ReasonId);
+            
         }
 
         public void DeletePayment(int ManagerId, int EmployeeId, int QueueId, int TableId, int CheckId, int TenderId, int PaymentId)
@@ -530,7 +529,6 @@ namespace PDiscountCard
             {
                 RemoteCommands.CustomerDisplayEventSender.AddSendChkToCustDispToQueue(CheckId, true );
             }
-            AlohaEventVoids.DeletePayment(ManagerId, EmployeeId, QueueId, TableId, CheckId, TenderId, PaymentId);
         }
 
         public void DeletePromo(int ManagerId, int EmployeeId, int QueueId, int TableId, int CheckId, int PromotionId, int PromoId)

@@ -298,6 +298,9 @@ namespace PDiscountCard.FRSClientApp
         }
 
 
+
+
+
         internal static List<FiscalCheckVisualString> GetIMReportVisual(bool Z=false)
         {
             List<FiscalCheckVisualString> Res = new List<FiscalCheckVisualString>();
@@ -348,9 +351,49 @@ namespace PDiscountCard.FRSClientApp
             return Res;
         }
 
+        internal static List<FiscalCheckVisualString> GetSBPReportVisual(bool Z = false)
+        {
+            List<FiscalCheckVisualString> Res = new List<FiscalCheckVisualString>();
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString(AlohainiFile.UNITNAME));
+            Res.Add(new FiscalCheckVisualString(AlohainiFile.ADDRESS1));
+            Res.Add(new FiscalCheckVisualString(AlohainiFile.ADDRESS2));
+            Res.Add(new FiscalCheckVisualString("Оплата СБП"));
+            Res.Add(new FiscalCheckVisualString("Смена  ", DateTime.Now.ToString("dd.MM.yy HH:mm:ss")));
+            Res.Add(new FiscalCheckVisualString("ДБ: " + AlohainiFile.BDate.ToString("dd.MM.yy")));
+
+            if (Z)
+            {
+                Res.Add(new FiscalCheckVisualString("День закрыт", "ДБ: " + AlohainiFile.BDate.ToString("dd.MM.yy")));
+            }
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString("   "));
+
+            Res.Add(new FiscalCheckVisualString("--------------------------"));
 
 
-            internal static List<FiscalCheckVisualString> GetXReportVisual(FRSSrv.XReportResponce XRepData)
+            var dHCDHConnect = new DHConnect();
+            var dhP = dHCDHConnect.GetHubSBPReport(AlohainiFile.BDate, AlohainiFile.DepNum, out int dhCount);
+
+
+            Res.Add(new FiscalCheckVisualString("Чеков", String.Format("≡{0}", dhCount.ToString("0.00").Replace(",", "."))));
+            Res.Add(new FiscalCheckVisualString("На сумму", String.Format("≡{0}", dhP.ToString("0.00").Replace(",", "."))));
+
+            Res.Add(new FiscalCheckVisualString("--------------------------"));
+
+            Res.Add(new FiscalCheckVisualString("   "));
+            Res.Add(new FiscalCheckVisualString("   "));
+
+
+
+            return Res;
+        }
+
+
+        internal static List<FiscalCheckVisualString> GetXReportVisual(FRSSrv.XReportResponce XRepData)
         {
             if (XRepData == null) { XRepData = new FRSSrv.XReportResponce(); }
             List<FiscalCheckVisualString> Res = new List<FiscalCheckVisualString>();
